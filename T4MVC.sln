@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CAE9486F-6151-4675-9C2F-0C1D9BBC7149}"
+	ProjectSection(SolutionItems) = preProject
+		T4MVC.vsmdi = T4MVC.vsmdi
+		TestRunConfig1.testrunconfig = TestRunConfig1.testrunconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4MVCHostMvcApp", "T4MVCHostMvcApp\T4MVCHostMvcApp.csproj", "{504F8A6E-E5B7-4339-AD54-0D8094538D74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4MVCHostMvcApp.Tests", "T4MVCHostMvcApp.Tests\T4MVCHostMvcApp.Tests.csproj", "{13728C99-3510-44F7-9244-77C350A1B1AB}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = T4MVC.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{504F8A6E-E5B7-4339-AD54-0D8094538D74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{504F8A6E-E5B7-4339-AD54-0D8094538D74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{504F8A6E-E5B7-4339-AD54-0D8094538D74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{504F8A6E-E5B7-4339-AD54-0D8094538D74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13728C99-3510-44F7-9244-77C350A1B1AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13728C99-3510-44F7-9244-77C350A1B1AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13728C99-3510-44F7-9244-77C350A1B1AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13728C99-3510-44F7-9244-77C350A1B1AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
