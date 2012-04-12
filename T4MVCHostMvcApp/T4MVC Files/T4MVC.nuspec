@@ -9,8 +9,8 @@
     <summary>T4MVC is a T4 template that generates strongly typed helpers for ASP.NET MVC.</summary>
     <language>en-US</language>
     <licenseUrl>http://mvccontrib.codeplex.com/license</licenseUrl>
-    <projectUrl>http://mvccontrib.codeplex.com/wikipage?title=T4MVC</projectUrl>
-    <tags>t4 mvc</tags>
+    <projectUrl>http://t4mvc.codeplex.com/</projectUrl>
+    <tags>t4 mvc t4mvc</tags>
   </metadata>
   <files>
     <file src="T4MVC.tt" target="Content" />
