@@ -427,7 +427,7 @@ namespace <#=controller.Namespace #> {
         [NonAction]
         [<#= GeneratedCode #>, DebuggerNonUserCode]
         public <#=method.ReturnTypeFullName #> <#=method.Name #>() {
-            return new T4MVC_<#=method.ReturnType #>(Area, Name, ActionNames.<#=method.ActionName #>);
+            return new T4MVC_<#=method.ReturnType #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
         }
 <#} #>
 

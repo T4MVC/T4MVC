@@ -94,6 +94,12 @@ namespace T4MVCHostMvcApp.Controllers {
         public virtual ActionResult ActionThatUsesActionNameConstantInAttribute() {
             return new EmptyResult();
         }
+
+        [RequireHttps]
+        public virtual ActionResult ActionThatRequiresHttps(string someString)
+        {
+            return new EmptyResult();
+        }
     }
 
     sealed class DummyAttribute : Attribute {

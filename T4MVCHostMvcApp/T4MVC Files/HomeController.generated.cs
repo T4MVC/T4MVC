@@ -60,6 +60,11 @@ namespace T4MVCHostMvcApp.Controllers {
         public System.Web.Mvc.ActionResult ActionWithParamUsingAtSyntax() {
             return new T4MVC_ActionResult(Area, Name, ActionNames.ActionWithParamUsingAtSyntax);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult ActionThatRequiresHttps() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.ActionThatRequiresHttps, "https");
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public HomeController Actions { get { return MVC.Home; } }
@@ -89,6 +94,7 @@ namespace T4MVCHostMvcApp.Controllers {
             public readonly string ActionWithSomeOptionalParams = "ActionWithSomeOptionalParams";
             public readonly string ActionWithParamUsingAtSyntax = "ActionWithParamUsingAtSyntax";
             public readonly string ActionThatUsesActionNameConstantInAttribute = "ActionThatUsesActionNameConstantInAttribute";
+            public readonly string ActionThatRequiresHttps = "ActionThatRequiresHttps";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -107,6 +113,7 @@ namespace T4MVCHostMvcApp.Controllers {
             public const string ActionWithSomeOptionalParams = "ActionWithSomeOptionalParams";
             public const string ActionWithParamUsingAtSyntax = "ActionWithParamUsingAtSyntax";
             public const string ActionThatUsesActionNameConstantInAttribute = "ActionThatUsesActionNameConstantInAttribute";
+            public const string ActionThatRequiresHttps = "ActionThatRequiresHttps";
         }
 
 
@@ -147,6 +154,13 @@ namespace T4MVCHostMvcApp.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_ActionWithParamUsingAtSyntax {
             public readonly string @event = "event";
+        }
+        static readonly ActionParamsClass_ActionThatRequiresHttps s_params_ActionThatRequiresHttps = new ActionParamsClass_ActionThatRequiresHttps();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ActionThatRequiresHttps ActionThatRequiresHttpsParams { get { return s_params_ActionThatRequiresHttps; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ActionThatRequiresHttps {
+            public readonly string someString = "someString";
         }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -277,6 +291,12 @@ namespace T4MVCHostMvcApp.Controllers {
 
         public override System.Web.Mvc.ActionResult ActionThatUsesActionNameConstantInAttribute() {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ActionThatUsesActionNameConstantInAttribute);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult ActionThatRequiresHttps(string someString) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ActionThatRequiresHttps, "https");
+            callInfo.RouteValueDictionary.Add("someString", someString);
             return callInfo;
         }
 
