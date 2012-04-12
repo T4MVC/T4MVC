@@ -1,0 +1,1 @@
+The reason this test library is not in the same solution is to force VS to treat it as an external binary rather than a same-solution project. This makes the VS code model (that T4MVC depends on) behave quite differently, making it a good test case that can't be covered with a single solution. Note that you should only have to build this helper library once, as it rarely changes.
