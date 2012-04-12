@@ -465,7 +465,7 @@ namespace Links {
 
 }
 
-static class T4MVCHelpers {
+public static class T4MVCHelpers {
     // You can change the ProcessVirtualPath method to modify the path that gets returned to the client.
     // e.g. you can prepend a domain, or append a query string:
     //      return "http://localhost" + path + "?foo=bar";
