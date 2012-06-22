@@ -1,5 +1,5 @@
 ﻿T4MVC readme file
-Find latest version and documentation at http://mvccontrib.codeplex.com/wikipage?title=T4MVC
+Find latest version and documentation at https://t4mvc.codeplex.com/
 Discuss on StackOverflow or on the MVC forum (http://forums.asp.net/1146.aspx)
 
 Maintained by David Ebbo, with much feedback from the MVC community (thanks all!)
@@ -54,6 +54,9 @@ TODO:
 - Support controllers in different project (http://forums.asp.net/t/1500812.aspx)
 
 HISTORY:
+
+!!! 2.9.0 (06-22-2012):
+* Added support for minified css files ([url:https://t4mvc.codeplex.com/discussions/360443])
 
 !!! 2.8.1 (04-12-2012):
 * Also default to https for the default (no param) action overload
