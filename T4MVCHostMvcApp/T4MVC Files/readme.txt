@@ -57,6 +57,7 @@ HISTORY:
 
 !!! 2.9.0 (06-22-2012):
 * Added support for minified css files ([url:https://t4mvc.codeplex.com/discussions/360443])
+* Replaced improper new RouteValueDictionary usage on htmlAttributes
 
 !!! 2.8.1 (04-12-2012):
 * Also default to https for the default (no param) action overload
