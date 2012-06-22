@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4MVCHostMvcApp", "T4MVCHos
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4MVCHostMvcApp.Tests", "T4MVCHostMvcApp.Tests\T4MVCHostMvcApp.Tests.csproj", "{13728C99-3510-44F7-9244-77C350A1B1AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SomeClassLibrary", "SomeClassLibrary\SomeClassLibrary.csproj", "{BC508C73-211C-47C1-B9A4-B7770DB7FC74}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = T4MVC.vsmdi
@@ -28,6 +30,10 @@ Global
 		{13728C99-3510-44F7-9244-77C350A1B1AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13728C99-3510-44F7-9244-77C350A1B1AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13728C99-3510-44F7-9244-77C350A1B1AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC508C73-211C-47C1-B9A4-B7770DB7FC74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC508C73-211C-47C1-B9A4-B7770DB7FC74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC508C73-211C-47C1-B9A4-B7770DB7FC74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC508C73-211C-47C1-B9A4-B7770DB7FC74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
