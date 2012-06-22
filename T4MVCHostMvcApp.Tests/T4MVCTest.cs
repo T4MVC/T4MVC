@@ -429,6 +429,12 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
+        public void TestCssFile()
+        {
+            Assert.AreEqual("/Content/StyleSheet.css", Links.Content.StyleSheet_css);
+        }
+
+        [TestMethod()]
         public void TestNoLinkGeneratedForIgnoredExtension() {
             var field = typeof(Links.Content).GetField("ShouldNotBeALink_cs");
 

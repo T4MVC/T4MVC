@@ -98,7 +98,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Home\Views\Home\EditorTemplates\SomeAreaEditorTemplate.ascx" />
+    <Content Include="Content\StyleSheet.min.css" />
     <Content Include="Content\SomeRandomName\SomeRandomName\SomeRandomName.txt" />
+    <Content Include="Content\StyleSheet.css" />
     <Content Include="Global.asax" />
     <Content Include="SomePortableArea\Views\Home\SomeHomeView.txt" />
     <Content Include="T4MVC Files\readme.txt" />
