@@ -36,3 +36,5 @@ namespace T4MVC.@break {
 
 #endregion T4MVC
 
+#pragma warning restore 1591
+

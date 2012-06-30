@@ -129,3 +129,5 @@ namespace System.Web.Mvc {
     #endregion
 #endregion T4MVC
 
+#pragma warning restore 1591
+

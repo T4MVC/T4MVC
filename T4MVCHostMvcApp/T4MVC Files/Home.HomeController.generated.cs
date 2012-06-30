@@ -92,3 +92,5 @@ namespace T4MVCHostMvcApp.Areas.Home.Controllers {
 
 #endregion T4MVC
 
+#pragma warning restore 1591
+
