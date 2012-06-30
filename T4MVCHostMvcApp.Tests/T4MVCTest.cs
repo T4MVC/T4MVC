@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Web.Routing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.TestTools.UnitTesting.Web;
 using System.Collections.Specialized;
@@ -487,6 +488,46 @@ namespace T4MVCHostMvcApp.Tests {
             TestRouteValue(actionRes, "model.Ints[1]", 2);
             TestRouteValue(actionRes, "model.One[0]", 6);
             TestRouteValue(actionRes, "model.One[1]", 5);
+        }
+
+        [TestMethod()]
+        public void Unbinder_AddRouteValue() {
+            RegisterModelUnbinders();
+
+            var actionRes = (IT4MVCActionResult)MVC.ModelUnbinder.ParameterlessAction()
+                .AddRouteValue("tst", new UnbindModel() { Id = 2 });
+
+            TestRouteValue(actionRes, "tst", 2);
+        }
+
+        [TestMethod()]
+        public void Unbinder_AddRouteValues_Object() {
+            RegisterModelUnbinders();
+
+            var actionRes = (IT4MVCActionResult)MVC.ModelUnbinder.ParameterlessAction()
+                .AddRouteValues(new {tst= new UnbindModel() { Id = 2 }});
+
+            TestRouteValue(actionRes, "tst", 2);
+        }
+
+        [TestMethod()]
+        public void Unbinder_AddRouteValues_RouteValueDictionary() {
+            RegisterModelUnbinders();
+
+            var actionRes = (IT4MVCActionResult)MVC.ModelUnbinder.ParameterlessAction()
+                .AddRouteValues(new RouteValueDictionary(new { tst = new UnbindModel() { Id = 2 } }));
+
+            TestRouteValue(actionRes, "tst", 2);
+        }
+
+        [TestMethod()]
+        public void Unbinder_AddRouteValues_NameValueCollection() {
+            RegisterModelUnbinders();
+
+            var actionRes = (IT4MVCActionResult)MVC.ModelUnbinder.ParameterlessAction()
+                .AddRouteValues(new NameValueCollection() {{"tst", "2"}});
+
+            TestRouteValue(actionRes, "tst", "2");
         }
 
         #endregion

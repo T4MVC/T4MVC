@@ -91,6 +91,7 @@ namespace T4MVCHostMvcApp.Controllers {
             public readonly string TestChildClass2 = "TestChildClass2";
             public readonly string TestComplexModel = "TestComplexModel";
             public readonly string TestComplexModelWithEnumerable = "TestComplexModelWithEnumerable";
+            public readonly string ParameterlessAction = "ParameterlessAction";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -101,6 +102,7 @@ namespace T4MVCHostMvcApp.Controllers {
             public const string TestChildClass2 = "TestChildClass2";
             public const string TestComplexModel = "TestComplexModel";
             public const string TestComplexModelWithEnumerable = "TestComplexModelWithEnumerable";
+            public const string ParameterlessAction = "ParameterlessAction";
         }
 
 
@@ -191,6 +193,11 @@ namespace T4MVCHostMvcApp.Controllers {
         public override System.Web.Mvc.ActionResult TestComplexModelWithEnumerable(T4MVCHostMvcApp.Controllers.ComplexModelWithEnumerable model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.TestComplexModelWithEnumerable);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult ParameterlessAction() {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ParameterlessAction);
             return callInfo;
         }
 

@@ -278,7 +278,7 @@ namespace System.Web.Mvc {
 
             // Add all the extra values
             foreach (var pair in routeValues) {
-                currentRouteValues.Add(pair.Key, pair.Value);
+                ModelUnbinderHelpers.AddRouteValues(currentRouteValues, pair.Key, pair.Value);
             }
 
             return result;
@@ -292,7 +292,7 @@ namespace System.Web.Mvc {
 
         public static ActionResult AddRouteValue(this ActionResult result, string name, object value) {
             RouteValueDictionary routeValues = result.GetRouteValueDictionary();
-            routeValues.Add(name, value);
+            ModelUnbinderHelpers.AddRouteValues(routeValues, name, value);
             return result;
         }
         
@@ -641,10 +641,9 @@ namespace System.Web.Mvc {
                     ModelUnbinderHelpers.AddRouteValues(routeValueDictionary, routeName + "." + name, entry.Value);
                 }
             }
-            return;
         }
     }
-	public class ModelUnbinderHelpers {
+    public class ModelUnbinderHelpers {
         public static void AddRouteValues(RouteValueDictionary routeValueDictionary, string routeName, object routeValue) {
             if (routeValue == null)
                 return;
@@ -652,7 +651,7 @@ namespace System.Web.Mvc {
             var unbinder = ModelUnbinders.FindUnbinderFor(routeValue.GetType()) ?? DefaultModelUnbinder;
             unbinder.UnbindModel(routeValueDictionary, routeName, routeValue);
         }
-		
+        
         private static readonly ModelUnbinders _modelUnbinders = new ModelUnbinders();
         public static ModelUnbinders ModelUnbinders {
             get { return _modelUnbinders; }
@@ -662,8 +661,8 @@ namespace System.Web.Mvc {
         static ModelUnbinderHelpers() {
             DefaultModelUnbinder = new DefaultModelUnbinder();
         }
-	}
-}	
+    }
+}
     #endregion
 <#  manager.EndBlock(); #>
 <#  }   #>

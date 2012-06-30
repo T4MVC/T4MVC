@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -76,6 +77,9 @@ namespace T4MVCHostMvcApp.Controllers
             return View();
         }
         public virtual ActionResult TestComplexModelWithEnumerable(ComplexModelWithEnumerable model) {
+            return View();
+        }
+        public virtual ActionResult ParameterlessAction() {
             return View();
         }
     }
