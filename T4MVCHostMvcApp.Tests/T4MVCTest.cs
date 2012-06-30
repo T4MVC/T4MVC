@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.TestTools.UnitTesting.Web;
@@ -405,6 +406,90 @@ namespace T4MVCHostMvcApp.Tests {
             Html.ActionLink("Test", controller.SomeViewResultAction());
         }
 
+        #region ModelUnbinder tests
+        private void RegisterModelUnbinders() {
+            ModelUnbinderHelpers.ModelUnbinders.Clear();
+            ModelUnbinderHelpers.ModelUnbinders.Add(new UnbindModelUnbinder());
+            ModelUnbinderHelpers.ModelUnbinders.Add(new BaseEntityUnbinder(), true);
+            ModelUnbinderHelpers.ModelUnbinders.Add(new UserEntityUnbinder());
+        }
+
+        [TestMethod()]
+        public void TestRouteValuesWithSimpleUnbinderModel() {
+            RegisterModelUnbinders();
+            var actionRes = (IT4MVCActionResult)MVC.ModelUnbinder.TestUnbindModel(new UnbindModel() { Id = 2 });
+
+            TestRouteValue(actionRes, "model", 2);
+        }
+
+        [TestMethod()]
+        public void TestRouteValuesWithSimpleUnbinderModel_NullValue() {
+            RegisterModelUnbinders();
+            var actionRes = (IT4MVCActionResult)MVC.ModelUnbinder.TestUnbindModel(null);
+
+            TestRouteValue(actionRes, "model", null);
+        }
+
+        [TestMethod()]
+        public void TestRouteValuesWithUnbinder_BaseClassWithUnbinder() {
+            RegisterModelUnbinders();
+            var actionRes = (IT4MVCActionResult)MVC.ModelUnbinder.TestBaseClass(new BaseEntity() { Id = 2 });
+
+            TestRouteValue(actionRes, "entity", 2);
+        }
+        [TestMethod()]
+        public void TestRouteValuesWithUnbinder_ChildClassWithDifferentUnbinderThanParent() {
+            RegisterModelUnbinders();
+            var actionRes = (IT4MVCActionResult)MVC.ModelUnbinder.TestChildClass1(new UserEntity() { Id = 2, Login = "asd" });
+
+            TestRouteValue(actionRes, "user", "asd");
+        }
+        [TestMethod()]
+        public void TestRouteValuesWithUnbinder_ChildClassWithoutUnbinder_ShouldUseUnbinderForBaseClass() {
+            RegisterModelUnbinders();
+            var actionRes = (IT4MVCActionResult)MVC.ModelUnbinder.TestChildClass2(new AnotherChildEntity() { Id = 2 });
+
+            TestRouteValue(actionRes, "child", 2);
+        }
+
+        [TestMethod()]
+        public void TestRouteValuesWithUnbinder_PropertiesUnbinder() {
+            RegisterModelUnbinders();
+            ModelUnbinderHelpers.ModelUnbinders.Add(typeof(IComplexModel), new PropertiesUnbinder(), true);
+
+            var actionRes = (IT4MVCActionResult)MVC.ModelUnbinder.TestComplexModel(new ComplexModel()
+            {
+                One = new BaseEntity() { Id = 1 },
+                Two = new BaseEntity() { Id = 2 },
+                Three = "zxc",
+            });
+
+            TestRouteValue(actionRes, "model.One", 1);
+            TestRouteValue(actionRes, "model.Two", 2);
+            TestRouteValue(actionRes, "model.Three", "zxc");
+        }
+
+        [TestMethod()]
+        public void TestRouteValuesWithUnbinder_ComplexModelWithEnumerable() {
+            RegisterModelUnbinders();
+            ModelUnbinderHelpers.ModelUnbinders.Add(typeof(IComplexModel), new PropertiesUnbinder(), true);
+
+            var model = new ComplexModelWithEnumerable()
+            {
+                String = "stt",
+                Ints = new List<int>() { 1, 2 },
+                One = new[] { new BaseEntity() { Id = 6 }, new BaseEntity() { Id = 5 }, },
+            };
+            var actionRes = (IT4MVCActionResult)MVC.ModelUnbinder.TestComplexModelWithEnumerable(model);
+
+            TestRouteValue(actionRes, "model.String", "stt");
+            TestRouteValue(actionRes, "model.Ints[0]", 1);
+            TestRouteValue(actionRes, "model.Ints[1]", 2);
+            TestRouteValue(actionRes, "model.One[0]", 6);
+            TestRouteValue(actionRes, "model.One[1]", 5);
+        }
+
+        #endregion
 
         // STATIC FILES TESTS
 

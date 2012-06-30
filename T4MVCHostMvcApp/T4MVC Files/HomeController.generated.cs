@@ -228,8 +228,8 @@ namespace T4MVCHostMvcApp.Controllers {
 
         public override System.Web.Mvc.ActionResult Blah(string name, int age) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Blah);
-            callInfo.RouteValueDictionary.Add("name", name);
-            callInfo.RouteValueDictionary.Add("age", age);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "name", name);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "age", age);
             return callInfo;
         }
 
@@ -265,27 +265,27 @@ namespace T4MVCHostMvcApp.Controllers {
 
         public override System.Web.Mvc.ActionResult ActionWithArrayParam(string[] someStrings) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ActionWithArrayParam);
-            callInfo.RouteValueDictionary.Add("someStrings", someStrings);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someStrings", someStrings);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult ActionWithAllOptionalParams(string someString, int n) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ActionWithAllOptionalParams);
-            callInfo.RouteValueDictionary.Add("someString", someString);
-            callInfo.RouteValueDictionary.Add("n", n);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someString", someString);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult ActionWithSomeOptionalParams(string someString, int n) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ActionWithSomeOptionalParams);
-            callInfo.RouteValueDictionary.Add("someString", someString);
-            callInfo.RouteValueDictionary.Add("n", n);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someString", someString);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult ActionWithParamUsingAtSyntax(int @event) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ActionWithParamUsingAtSyntax);
-            callInfo.RouteValueDictionary.Add("event", @event);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "event", @event);
             return callInfo;
         }
 
@@ -296,7 +296,7 @@ namespace T4MVCHostMvcApp.Controllers {
 
         public override System.Web.Mvc.ActionResult ActionThatRequiresHttps(string someString) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ActionThatRequiresHttps, "https");
-            callInfo.RouteValueDictionary.Add("someString", someString);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someString", someString);
             return callInfo;
         }
 
@@ -304,4 +304,4 @@ namespace T4MVCHostMvcApp.Controllers {
 }
 
 #endregion T4MVC
-#pragma warning restore 1591
+

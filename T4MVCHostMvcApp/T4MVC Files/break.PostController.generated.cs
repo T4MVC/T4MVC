@@ -180,45 +180,45 @@ namespace T4MVCHostMvcApp.Areas.Break.Controllers {
 
         public override System.Web.Mvc.ActionResult ActionWithBindPrefixAttribute(string fieldName) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ActionWithBindPrefixAttribute);
-            callInfo.RouteValueDictionary.Add("newParamName", fieldName);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "newParamName", fieldName);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult ActionWithBindNoPrefixAttribute(string fieldName) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ActionWithBindNoPrefixAttribute);
-            callInfo.RouteValueDictionary.Add("fieldName", fieldName);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "fieldName", fieldName);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult ActionThatTakesAnObject(T4MVCHostMvcApp.Areas.Break.Controllers.MyParamObject p) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ActionThatTakesAnObject);
-            callInfo.RouteValueDictionary.Add("p", p);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "p", p);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult ActionWithVariousParams(string myString, int someInt, object someObject) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ActionWithVariousParams);
-            callInfo.RouteValueDictionary.Add("myString", myString);
-            callInfo.RouteValueDictionary.Add("someInt", someInt);
-            callInfo.RouteValueDictionary.Add("someObject", someObject);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "myString", myString);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someInt", someInt);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someObject", someObject);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult CompiledControllerVirtualMethod2(string s) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.CompiledControllerVirtualMethod2);
-            callInfo.RouteValueDictionary.Add("s", s);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "s", s);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult SameProjectBaseControllerMethod(string s) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.SameProjectBaseControllerMethod);
-            callInfo.RouteValueDictionary.Add("s", s);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "s", s);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult CompiledControllerVirtualMethod(int n) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.CompiledControllerVirtualMethod);
-            callInfo.RouteValueDictionary.Add("n", n);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
             return callInfo;
         }
 
@@ -226,4 +226,4 @@ namespace T4MVCHostMvcApp.Areas.Break.Controllers {
 }
 
 #endregion T4MVC
-#pragma warning restore 1591
+

@@ -28,6 +28,7 @@ public static class MVC {
     static readonly HomeClass s_Home = new HomeClass();
     public static HomeClass HomeArea { get { return s_Home; } }
     public static T4MVCHostMvcApp.Controllers.HomeController Home = new T4MVCHostMvcApp.Controllers.T4MVC_HomeController();
+    public static T4MVCHostMvcApp.Controllers.ModelUnbinderController ModelUnbinder = new T4MVCHostMvcApp.Controllers.T4MVC_ModelUnbinderController();
     public static T4MVCHostMvcApp.Controllers.T4CtrlController T4Ctrl = new T4MVCHostMvcApp.Controllers.T4MVC_T4CtrlController();
     public static T4MVC.NoControllerMatchingFolderController NoControllerMatchingFolder = new T4MVC.NoControllerMatchingFolderController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
@@ -496,6 +497,8 @@ public static class T4MVCHelpers {
 
 
 #endregion T4MVC
+
+
 #pragma warning restore 1591
 
 
