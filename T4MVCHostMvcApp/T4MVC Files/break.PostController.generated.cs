@@ -226,6 +226,4 @@ namespace T4MVCHostMvcApp.Areas.Break.Controllers {
 }
 
 #endregion T4MVC
-
 #pragma warning restore 1591
-

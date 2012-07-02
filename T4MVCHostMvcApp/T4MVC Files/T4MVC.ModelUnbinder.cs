@@ -93,7 +93,7 @@ namespace System.Web.Mvc {
                 var name = entry.Key;
 
                 if (!(entry.Value is string) && (entry.Value is System.Collections.IEnumerable)) {
-                    var enumerableValue = entry.Value as System.Collections.IEnumerable;
+                    var enumerableValue = (System.Collections.IEnumerable)entry.Value;
                     var i = 0;
                     foreach (var enumerableElement in enumerableValue) {
                         ModelUnbinderHelpers.AddRouteValues(routeValueDictionary, string.Format("{0}.{1}[{2}]", routeName, name, i), enumerableElement);
@@ -128,6 +128,4 @@ namespace System.Web.Mvc {
 }
     #endregion
 #endregion T4MVC
-
 #pragma warning restore 1591
-
