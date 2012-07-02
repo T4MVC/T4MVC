@@ -569,7 +569,7 @@ namespace System.Web.Mvc {
         void UnbindModel(RouteValueDictionary routeValueDictionary, string routeName, T routeValue);
     }
     [<#= GeneratedCode #>]
-    public class ModelUnbinders {
+        public class ModelUnbinders {
         private class GenericModelUnbinderWrapper<T> : IModelUnbinder where T : class {
             private readonly IModelUnbinder<T> _unbinder;
 
@@ -584,36 +584,33 @@ namespace System.Web.Mvc {
         }
         
         private readonly Dictionary<Type, IModelUnbinder> _unbinders = new Dictionary<Type, IModelUnbinder>();
-        private readonly Dictionary<Type, IModelUnbinder> _baseClassUnbinders = new Dictionary<Type, IModelUnbinder>();
-        public virtual void Add(Type type, IModelUnbinder unbinder, bool isBaseClass = false) {
-            if (isBaseClass)
-                _baseClassUnbinders[type] = unbinder;
-            else
-                _unbinders[type] = unbinder;
+        public virtual void Add(Type type, IModelUnbinder unbinder) {
+            _unbinders[type] = unbinder;
         }
-        public virtual void Add<T>(IModelUnbinder<T> unbinder, bool isBaseClass = false) where T : class {
-            Add(typeof(T), new GenericModelUnbinderWrapper<T>(unbinder), isBaseClass);
+        public virtual void Add<T>(IModelUnbinder<T> unbinder) where T : class {
+            Add(typeof(T), new GenericModelUnbinderWrapper<T>(unbinder));
         }
         public virtual IModelUnbinder FindUnbinderFor(Type type) {
-            IModelUnbinder unbinder;
-            if (_unbinders.TryGetValue(type, out unbinder))
-                return unbinder;
-
+            IModelUnbinder resultUnbinder = null;
             Type baseType = null;
-            foreach (var baseClassUnbinder in _baseClassUnbinders) {
-                if (baseClassUnbinder.Key.IsAssignableFrom(type)) {
-                    if ((baseType == null) || baseType.IsAssignableFrom(baseClassUnbinder.Key)) {
-                        unbinder = baseClassUnbinder.Value;
-                        baseType = baseClassUnbinder.Key;
+            foreach (var unbinder in _unbinders) {
+                if (unbinder.Key.IsAssignableFrom(type)) {
+                    if ((baseType == null) || baseType.IsAssignableFrom(unbinder.Key)) {
+                        resultUnbinder = unbinder.Value;
+                        baseType = unbinder.Key;
                     }
                 }
             }
-            return unbinder;
+            return resultUnbinder;
+
+            while (type != typeof(object) && !_unbinders.TryGetValue(type, out resultUnbinder)) {
+                type = type.BaseType;
+            }
+            return resultUnbinder;
         }
         
         public virtual void Clear() {
             _unbinders.Clear();
-            _baseClassUnbinders.Clear();
         }
     }
     [<#= GeneratedCode #>]

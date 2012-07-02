@@ -411,7 +411,7 @@ namespace T4MVCHostMvcApp.Tests {
         private void RegisterModelUnbinders() {
             ModelUnbinderHelpers.ModelUnbinders.Clear();
             ModelUnbinderHelpers.ModelUnbinders.Add(new UnbindModelUnbinder());
-            ModelUnbinderHelpers.ModelUnbinders.Add(new BaseEntityUnbinder(), true);
+            ModelUnbinderHelpers.ModelUnbinders.Add(new BaseEntityUnbinder());
             ModelUnbinderHelpers.ModelUnbinders.Add(new UserEntityUnbinder());
         }
 
@@ -456,7 +456,7 @@ namespace T4MVCHostMvcApp.Tests {
         [TestMethod()]
         public void TestRouteValuesWithUnbinder_PropertiesUnbinder() {
             RegisterModelUnbinders();
-            ModelUnbinderHelpers.ModelUnbinders.Add(typeof(IComplexModel), new PropertiesUnbinder(), true);
+            ModelUnbinderHelpers.ModelUnbinders.Add(typeof(IComplexModel), new PropertiesUnbinder());
 
             var actionRes = (IT4MVCActionResult)MVC.ModelUnbinder.TestComplexModel(new ComplexModel()
             {
@@ -473,7 +473,7 @@ namespace T4MVCHostMvcApp.Tests {
         [TestMethod()]
         public void TestRouteValuesWithUnbinder_ComplexModelWithEnumerable() {
             RegisterModelUnbinders();
-            ModelUnbinderHelpers.ModelUnbinders.Add(typeof(IComplexModel), new PropertiesUnbinder(), true);
+            ModelUnbinderHelpers.ModelUnbinders.Add(typeof(IComplexModel), new PropertiesUnbinder());
 
             var model = new ComplexModelWithEnumerable()
             {

@@ -26,24 +26,16 @@ namespace T4MVCHostMvcApp.Tests {
         public class BaseClass { }
         public class Child1 : BaseClass { }
         public class Child2 : BaseClass { }
-
+        
         [TestMethod()]
         public void NoUnbinders_ReturnNull() {
             Assert.IsNull(_target.FindUnbinderFor(typeof(BaseClass)));
         }
 
         [TestMethod()]
-        public void OneUnbinder() {
-            var unbinder = new TestUnbinder();
-            _target.Add(typeof(BaseClass), unbinder);
-            Assert.AreSame(unbinder, _target.FindUnbinderFor(typeof(BaseClass)));
-            Assert.IsNull(_target.FindUnbinderFor(typeof(Child1)));
-        }
-
-        [TestMethod()]
         public void BaseClassUnbinder() {
             var unbinder = new TestUnbinder();
-            _target.Add(typeof(BaseClass), unbinder, true);
+            _target.Add(typeof(BaseClass), unbinder);
             Assert.AreSame(unbinder, _target.FindUnbinderFor(typeof(BaseClass)));
             Assert.AreSame(unbinder, _target.FindUnbinderFor(typeof(Child1)));
         }
@@ -52,8 +44,8 @@ namespace T4MVCHostMvcApp.Tests {
         public void OverridingUnbinder() {
             var unbinder1 = new TestUnbinder();
             var unbinder2 = new TestUnbinder();
-            _target.Add(typeof(BaseClass), unbinder1, true);
-            _target.Add(typeof(Child1), unbinder2, true);
+            _target.Add(typeof(BaseClass), unbinder1);
+            _target.Add(typeof(Child1), unbinder2);
             Assert.AreSame(unbinder1, _target.FindUnbinderFor(typeof(BaseClass)));
             Assert.AreSame(unbinder2, _target.FindUnbinderFor(typeof(Child1)));
             Assert.AreSame(unbinder1, _target.FindUnbinderFor(typeof(Child2)));
@@ -63,7 +55,7 @@ namespace T4MVCHostMvcApp.Tests {
         public void OverridingUnbinder2() {
             var unbinder1 = new TestUnbinder();
             var unbinder2 = new TestUnbinder();
-            _target.Add(typeof(BaseClass), unbinder1, true);
+            _target.Add(typeof(BaseClass), unbinder1);
             _target.Add(typeof(Child1), unbinder2);
             Assert.AreSame(unbinder1, _target.FindUnbinderFor(typeof(BaseClass)));
             Assert.AreSame(unbinder2, _target.FindUnbinderFor(typeof(Child1)));
@@ -75,7 +67,7 @@ namespace T4MVCHostMvcApp.Tests {
             var unbinder1 = new TestUnbinder();
             var unbinder2 = new TestUnbinder();
             _target.Add(typeof(Child1), unbinder2);
-            _target.Add(typeof(BaseClass), unbinder1, true);
+            _target.Add(typeof(BaseClass), unbinder1);
             Assert.AreSame(unbinder1, _target.FindUnbinderFor(typeof(BaseClass)));
             Assert.AreSame(unbinder2, _target.FindUnbinderFor(typeof(Child1)));
             Assert.AreSame(unbinder1, _target.FindUnbinderFor(typeof(Child2)));
@@ -99,7 +91,7 @@ namespace T4MVCHostMvcApp.Tests {
         [TestMethod()]
         public void GenericUnbinder_BaseClass() {
             var unbinder2 = new TestUnbinder2();
-            _target.Add(unbinder2, true);
+            _target.Add(unbinder2);
             var unbinder = _target.FindUnbinderFor(typeof(Child1));
             try {
                 unbinder.UnbindModel(null, "", null);
@@ -109,6 +101,29 @@ namespace T4MVCHostMvcApp.Tests {
                 return;
             }
             Assert.Fail("TestUnbinder2 wasn't called");
+        }
+
+
+        public interface ITest{}
+        public class TestImplementation : ITest {}
+        [TestMethod()]
+        public void UnbinderForInterface() {
+            var unbinder = new TestUnbinder();
+            _target.Add(typeof(ITest), unbinder);
+            var unbinderResult = _target.FindUnbinderFor(typeof(TestImplementation));
+            Assert.AreSame(unbinder, unbinderResult);
+        }
+
+        [TestMethod()]
+        public void UnbinderForValueType() {
+            var unbinderResult = _target.FindUnbinderFor(typeof(int));
+            Assert.IsNull(unbinderResult);
+        }
+
+        [TestMethod()]
+        public void UnbinderForString() {
+            var unbinderResult = _target.FindUnbinderFor(typeof(string));
+            Assert.IsNull(unbinderResult);
         }
     }
 }
