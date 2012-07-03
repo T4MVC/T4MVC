@@ -65,11 +65,6 @@ namespace System.Web.Mvc {
                 }
             }
             return resultUnbinder;
-
-            while (type != typeof(object) && !_unbinders.TryGetValue(type, out resultUnbinder)) {
-                type = type.BaseType;
-            }
-            return resultUnbinder;
         }
         
         public virtual void Clear() {
