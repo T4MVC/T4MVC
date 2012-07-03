@@ -55,6 +55,10 @@ TODO:
 
 HISTORY:
 
+!!! 2.10.0 (07-03-2012):
+* Added support for custom model binders ([url:https://t4mvc.codeplex.com/discussions/357386])
+* Fixed unreachable code warning
+
 !!! 2.9.0 (06-22-2012):
 * Added support for minified css files ([url:https://t4mvc.codeplex.com/discussions/360443])
 * Replaced improper new RouteValueDictionary usage on htmlAttributes
