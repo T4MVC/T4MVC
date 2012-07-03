@@ -92,7 +92,7 @@ readonly string[] ExcludedStaticFileExtensions = new string[] {
 
 //When creating links with T4MVC, it can force them to HTTPS if the action method you are linking to requires Http.  
 const string AttributeIndicatingHttps = "System.Web.Mvc.RequireHttpsAttribute";
-const bool GenerateSecureLinksInDebugMode = false;
+static bool GenerateSecureLinksInDebugMode = false;
 
 // Set this to false to omit the generation of parameters for action methods.
 static bool GenerateParamsForActionMethods = true;
