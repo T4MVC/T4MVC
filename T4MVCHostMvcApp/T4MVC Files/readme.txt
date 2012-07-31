@@ -55,6 +55,9 @@ TODO:
 
 HISTORY:
 
+!!! 2.10.1 (07-31-2012):
+* Fixed default param regression with model unbinder code ([url:http://stackoverflow.com/questions/11566207/t4mvc-optionalparameter-values-implied-from-current-context/11603897])
+
 !!! 2.10.0 (07-03-2012):
 * Added support for custom model binders ([url:https://t4mvc.codeplex.com/discussions/357386])
 * Fixed unreachable code warning

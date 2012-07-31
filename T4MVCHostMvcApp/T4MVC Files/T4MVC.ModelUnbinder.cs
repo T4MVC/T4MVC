@@ -100,13 +100,14 @@ namespace System.Web.Mvc {
     }
     public class ModelUnbinderHelpers {
         public static void AddRouteValues(RouteValueDictionary routeValueDictionary, string routeName, object routeValue) {
-            if (routeValue == null)
-                return;
-
-            var unbinder = ModelUnbinders.FindUnbinderFor(routeValue.GetType()) ?? DefaultModelUnbinder;
+            IModelUnbinder unbinder = DefaultModelUnbinder;
+            if (routeValue != null)
+            {
+                unbinder = ModelUnbinders.FindUnbinderFor(routeValue.GetType()) ?? DefaultModelUnbinder;
+            }
             unbinder.UnbindModel(routeValueDictionary, routeName, routeValue);
         }
-        
+    
         private static readonly ModelUnbinders _modelUnbinders = new ModelUnbinders();
         public static ModelUnbinders ModelUnbinders {
             get { return _modelUnbinders; }
