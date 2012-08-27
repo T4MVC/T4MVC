@@ -6,13 +6,15 @@ using System.ComponentModel;
 using System.Web.Mvc;
 
 namespace T4MVCHostMvcApp.Controllers {
-    public partial class T4CtrlController : Controller {
+    public partial class T4CtrlController : Controller
+    {
 
         public T4CtrlController() {
 
         }
 
-        public virtual ActionResult Qqq() {
+        public virtual ActionResult Qqq()
+        {
             return new EmptyResult();
         }
     }
