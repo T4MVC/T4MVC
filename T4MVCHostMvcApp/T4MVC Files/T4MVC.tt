@@ -552,9 +552,6 @@ namespace System.Web.Mvc {
 <#  manager.EndBlock(); #>
 <#  }   #>
 
-<#manager.StartFooter(); #>
-#endregion T4MVC
-#pragma warning restore 1591
 <#if (GenerateMvcT4Extensions) { 
 manager.StartNewFile("T4MVC.ModelUnbinder.cs"); #>
 
@@ -659,8 +656,9 @@ namespace System.Web.Mvc {
     #endregion
 <#  manager.EndBlock(); #>
 <#  }   #>
-
-
+<#manager.StartFooter(); #>
+#endregion T4MVC
+#pragma warning restore 1591
 <#manager.EndBlock(); #>
 <#manager.Process(SplitIntoMultipleFiles); #>
 

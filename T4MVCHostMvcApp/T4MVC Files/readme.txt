@@ -57,6 +57,7 @@ HISTORY:
 
 !!! 2.10.2 (09-17-2012):
 * Fix UnbindModel to avoid failing on duplicate entries [url:http://t4mvc.codeplex.com/discussions/394529]
+* Fix ModelUnbinder code generation when SplitIntoMultipleFiles is false [url:http://t4mvc.codeplex.com/workitem/9]
 
 !!! 2.10.1 (07-31-2012):
 * Fixed default param regression with model unbinder code ([url:http://stackoverflow.com/questions/11566207/t4mvc-optionalparameter-values-implied-from-current-context/11603897])
