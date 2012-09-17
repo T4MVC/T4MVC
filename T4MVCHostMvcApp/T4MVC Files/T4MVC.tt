@@ -1,6 +1,6 @@
 ﻿<#
 /*
-T4MVC Version 2.10.1
+T4MVC Version 2.10.2
 Find latest version and documentation at http://mvccontrib.codeplex.com/wikipage?title=T4MVC
 Discuss on StackOverflow or on the MVC forum (http://forums.asp.net/1146.aspx)
 
@@ -611,7 +611,7 @@ namespace System.Web.Mvc {
     [<#= GeneratedCode #>]
     public class DefaultModelUnbinder : IModelUnbinder {
         public void UnbindModel(RouteValueDictionary routeValueDictionary, string routeName, object routeValue) {
-            routeValueDictionary.Add(routeName, routeValue);
+            routeValueDictionary[routeName] = routeValue;
         }
     }
     [<#= GeneratedCode #>]

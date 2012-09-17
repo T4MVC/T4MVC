@@ -74,7 +74,7 @@ namespace System.Web.Mvc {
     [GeneratedCode("T4MVC", "2.0")]
     public class DefaultModelUnbinder : IModelUnbinder {
         public void UnbindModel(RouteValueDictionary routeValueDictionary, string routeName, object routeValue) {
-            routeValueDictionary.Add(routeName, routeValue);
+            routeValueDictionary[routeName] = routeValue;
         }
     }
     [GeneratedCode("T4MVC", "2.0")]
