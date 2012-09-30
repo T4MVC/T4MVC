@@ -241,9 +241,17 @@ namespace System.Web.Mvc {
             return result;
         }
 
-        public static ActionResult AddRouteValues(this ActionResult result, System.Collections.Specialized.NameValueCollection nameValueCollection) {
+        public static ActionResult AddRouteValues(this ActionResult result, System.Collections.Specialized.NameValueCollection nameValueCollection)
+        {
             // Copy all the values from the NameValueCollection into the route dictionary
-            nameValueCollection.CopyTo(result.GetRouteValueDictionary());
+            if (nameValueCollection.AllKeys.Any(m => m == null))  //if it has a null, the CopyTo extension will crash!
+            {
+                var filtered = new System.Collections.Specialized.NameValueCollection(nameValueCollection);
+                filtered.Remove(null);
+                filtered.CopyTo(result.GetRouteValueDictionary());
+            }
+            else
+                nameValueCollection.CopyTo(result.GetRouteValueDictionary());
             return result;
         }
 

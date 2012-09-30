@@ -400,6 +400,23 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
+        public void TestRouteValuesForQueryStringThatContainsNullDoesNotCrash()
+        {
+            var nameValueCollection = new NameValueCollection();
+            nameValueCollection["key1"] = "val1";
+            nameValueCollection["key2"] = "val2";
+            nameValueCollection.Add(null, string.Empty);
+
+            var actionRes = (IT4MVCActionResult)MVC.Home.Blah().AddRouteValue("name", "Hello").AddRouteValues(nameValueCollection);
+
+            TestAreaControllerActionNames(actionRes, "", "Home", "New-Name for Blah");
+            TestRouteValue(actionRes, "name", "Hello");
+            TestRouteValue(actionRes, "key1", "val1");
+            TestRouteValue(actionRes, "key2", "val2");
+
+        }
+
+        [TestMethod()]
         [ExpectedExceptionAttribute(typeof(InvalidOperationException), "")]
         public void TestErrorHandlingWhenPassingRealControllerAction() {
             var controller = new T4MVCHostMvcApp.Controllers.HomeController();
