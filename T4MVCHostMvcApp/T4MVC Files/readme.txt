@@ -55,6 +55,9 @@ TODO:
 
 HISTORY:
 
+!!! 2.10.3 (09-30-2012):
+* Fix crash when querystring contains a null key [url:http://t4mvc.codeplex.com/discussions/396916]
+
 !!! 2.10.2 (09-17-2012):
 * Fix UnbindModel to avoid failing on duplicate entries [url:http://t4mvc.codeplex.com/discussions/394529]
 * Fix ModelUnbinder code generation when SplitIntoMultipleFiles is false [url:http://t4mvc.codeplex.com/workitem/9]
