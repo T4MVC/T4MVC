@@ -99,11 +99,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="SomePortableArea\Controllers\HomeController.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <CodeAnalysisDictionary Include="..\CustomDictionary.xml">
+      <Link>CustomDictionary.xml</Link>
+      <SubType>Designer</SubType>
+    </CodeAnalysisDictionary>
     <Content Include="Areas\Home\Views\Home\EditorTemplates\SomeAreaEditorTemplate.ascx" />
     <Content Include="Content\StyleSheet.min.css" />
     <Content Include="Content\SomeRandomName\SomeRandomName\SomeRandomName.txt" />
