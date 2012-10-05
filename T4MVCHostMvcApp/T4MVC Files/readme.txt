@@ -55,6 +55,9 @@ TODO:
 
 HISTORY:
 
+!!! 2.10.4 (10-05-2012):
+* Added attributes so it builds clean under Code Analysis [url:http://t4mvc.codeplex.com/workitem/10]
+
 !!! 2.10.3 (09-30-2012):
 * Fix crash when querystring contains a null key [url:http://t4mvc.codeplex.com/discussions/396916]
 
