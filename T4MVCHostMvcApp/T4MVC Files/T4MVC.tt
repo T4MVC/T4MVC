@@ -389,6 +389,7 @@ RenderAdditionalCode();
 <#foreach (var controller in GetAbstractControllers().Where(c => !c.HasDefaultConstructor)) { #>
 <#manager.StartNewFile(controller.GeneratedFileName); #>
 namespace <#=controller.Namespace #> {
+    [<#= GeneratedCode #>, DebuggerNonUserCode]
     public partial class <#=controller.ClassName #> {
         protected <#=controller.ClassName #>() { }
     }
@@ -573,8 +574,9 @@ namespace System.Web.Mvc {
     public interface IModelUnbinder<in T> where T : class {
         void UnbindModel(RouteValueDictionary routeValueDictionary, string routeName, T routeValue);
     }
-    [<#= GeneratedCode #>]
-        public class ModelUnbinders {
+    [<#= GeneratedCode #>, DebuggerNonUserCode]
+    public class ModelUnbinders {
+        [<#= GeneratedCode #>, DebuggerNonUserCode]
         private class GenericModelUnbinderWrapper<T> : IModelUnbinder where T : class {
             private readonly IModelUnbinder<T> _unbinder;
 
@@ -613,13 +615,13 @@ namespace System.Web.Mvc {
             _unbinders.Clear();
         }
     }
-    [<#= GeneratedCode #>]
+    [<#= GeneratedCode #>, DebuggerNonUserCode]
     public class DefaultModelUnbinder : IModelUnbinder {
         public void UnbindModel(RouteValueDictionary routeValueDictionary, string routeName, object routeValue) {
             routeValueDictionary[routeName] = routeValue;
         }
     }
-    [<#= GeneratedCode #>]
+    [<#= GeneratedCode #>, DebuggerNonUserCode]
     public class PropertiesUnbinder : IModelUnbinder {
         public virtual void UnbindModel(RouteValueDictionary routeValueDictionary, string routeName, object routeValue) {
             var dict = new RouteValueDictionary(routeValue);
@@ -640,6 +642,7 @@ namespace System.Web.Mvc {
             }
         }
     }
+    [<#= GeneratedCode #>, DebuggerNonUserCode]
     public class ModelUnbinderHelpers {
         public static void AddRouteValues(RouteValueDictionary routeValueDictionary, string routeName, object routeValue) {
             IModelUnbinder unbinder = DefaultModelUnbinder;
@@ -1094,6 +1097,7 @@ void RenderViewsRecursive(ViewsFolderInfo viewsFolder, ControllerInfo controller
         }#>
 static readonly <#=className#> s_<#=name#> = new <#=className#>();
 public <#=className#> <#=EscapeID(name)#> { get { return s_<#=name#>; } }
+[<#= GeneratedCode #>, DebuggerNonUserCode]
 public partial class <#=className#>{
 <#+
 PushIndent("    ");

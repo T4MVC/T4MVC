@@ -176,35 +176,42 @@ namespace T4MVCHostMvcApp.Controllers {
             public readonly string Qqq_txt3 = "~/Views/Home/Qqq.txt3";
             static readonly _default s_default = new _default();
             public _default @default { get { return s_default; } }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public partial class _default{
             }
             static readonly _DisplayTemplates s_DisplayTemplates = new _DisplayTemplates();
             public _DisplayTemplates DisplayTemplates { get { return s_DisplayTemplates; } }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public partial class _DisplayTemplates{
                 public readonly string SomeDisplayTemplate = "SomeDisplayTemplate";
             }
             static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
             public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public partial class _EditorTemplates{
                 public readonly string SomeEditorTemplate = "SomeEditorTemplate";
             }
             static readonly _SomeName s_SomeName = new _SomeName();
             public _SomeName SomeName { get { return s_SomeName; } }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public partial class _SomeName{
                 static readonly _SomeName_ s_SomeName = new _SomeName_();
                 public _SomeName_ SomeName { get { return s_SomeName; } }
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public partial class _SomeName_{
                     public readonly string SomeName = "~/Views/Home/SomeName/SomeName/SomeName.txt";
                 }
             }
             static readonly _Sub_Home s_Sub_Home = new _Sub_Home();
             public _Sub_Home Sub_Home { get { return s_Sub_Home; } }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public partial class _Sub_Home{
                 public readonly string Qqq = "~/Views/Home/Sub Home/Qqq.txt";
                 public readonly string @string = "~/Views/Home/Sub Home/string.txt";
                 public readonly string T4View = "~/Views/Home/Sub Home/T4View.tt";
                 static readonly _Nested_Sub s_Nested_Sub = new _Nested_Sub();
                 public _Nested_Sub Nested_Sub { get { return s_Nested_Sub; } }
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public partial class _Nested_Sub{
                     public readonly string _99_Super_Nested_View = "~/Views/Home/Sub Home/Nested-Sub/99 Super~Nested-View.txt";
                 }

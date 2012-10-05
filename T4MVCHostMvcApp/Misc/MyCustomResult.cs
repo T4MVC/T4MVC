@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Diagnostics.CodeAnalysis;
 
 namespace T4MVCHostMvcApp.Misc {
     public enum Animal {
@@ -12,6 +13,7 @@ namespace T4MVCHostMvcApp.Misc {
     }
 
     public class MyCustomResult : ActionResult {
+        [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "num"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "name"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "animal"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "num")]
         public MyCustomResult(string name, int num, Animal animal) {
 
         }

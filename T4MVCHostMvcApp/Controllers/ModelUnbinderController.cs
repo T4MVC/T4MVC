@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -18,12 +15,14 @@ namespace T4MVCHostMvcApp.Controllers
     }
 
     public class UserEntity : BaseEntity {
+        [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Login")]
         public string Login { get; set; }
     }
 
     public class AnotherChildEntity : BaseEntity {
         public string Name { get; set; }
     }
+    [SuppressMessage("Microsoft.Design", "CA1040:AvoidEmptyInterfaces")]
     public interface IComplexModel { }
 
     public class ComplexModel : IComplexModel {
@@ -33,31 +32,40 @@ namespace T4MVCHostMvcApp.Controllers
     }
 
     public class ComplexModelWithEnumerable : IComplexModel {
+        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays")]
         public BaseEntity[] One { get; set; }
         public string String { get; set; }
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Ints"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public List<int> Ints { get; set; }
     }
 
+    [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Unbinder")]
     public class UnbindModelUnbinder : IModelUnbinder<UnbindModel> {
+        [SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0")]
         public void UnbindModel(RouteValueDictionary routeValueDictionary, string routeName, UnbindModel routeValue) {
             if (routeValue != null)
                 routeValueDictionary.Add(routeName, routeValue.Id);
         }
     }
+    [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Unbinder")]
     public class BaseEntityUnbinder : IModelUnbinder<BaseEntity> {
+        [SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0")]
         public void UnbindModel(RouteValueDictionary routeValueDictionary, string routeName, BaseEntity routeValue) {
             if (routeValue != null)
                 routeValueDictionary.Add(routeName, routeValue.Id);
         }
     }
 
+    [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Unbinder")]
     public class UserEntityUnbinder : IModelUnbinder<UserEntity> {
+        [SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0")]
         public void UnbindModel(RouteValueDictionary routeValueDictionary, string routeName, UserEntity routeValue) {
             if (routeValue != null)
                 routeValueDictionary.Add(routeName, routeValue.Login);
         }
     }
 
+    [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Unbinder")]
     public partial class ModelUnbinderController : Controller
     {
 

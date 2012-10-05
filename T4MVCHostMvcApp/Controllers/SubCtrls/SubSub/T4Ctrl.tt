@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc;
 
 namespace T4MVCHostMvcApp.Controllers {
@@ -12,6 +8,7 @@ namespace T4MVCHostMvcApp.Controllers {
 
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Qqq")]
         public ActionResult Qqq() {
             return new EmptyResult();
         }

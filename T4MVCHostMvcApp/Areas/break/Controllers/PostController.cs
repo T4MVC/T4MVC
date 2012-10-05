@@ -1,18 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
 
 namespace T4MVCHostMvcApp.Areas.Break.Controllers {
 
+    [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Param")]
     public class MyParamObject {
         public string Name { get; set; }
         public int Age { get; set; }
     }
 
     public partial class PostController : MyAbstractBaseController {
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "s", Scope = "member", Target = "T4MVCHostMvcApp.Areas.Break.Controllers.PostController.#.ctor(System.String)")]
         public PostController(string s)
             : base(s) { }
 
@@ -28,10 +26,12 @@ namespace T4MVCHostMvcApp.Areas.Break.Controllers {
             return View();
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "p")]
         public virtual ActionResult ActionThatTakesAnObject(MyParamObject p) {
             return View();
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "string"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "object"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "int"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Params")]
         public virtual ActionResult ActionWithVariousParams(string myString, int someInt, object someObject)
         {
             return View();

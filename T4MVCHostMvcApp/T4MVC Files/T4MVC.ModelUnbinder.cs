@@ -31,8 +31,9 @@ namespace System.Web.Mvc {
     public interface IModelUnbinder<in T> where T : class {
         void UnbindModel(RouteValueDictionary routeValueDictionary, string routeName, T routeValue);
     }
-    [GeneratedCode("T4MVC", "2.0")]
-        public class ModelUnbinders {
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public class ModelUnbinders {
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         private class GenericModelUnbinderWrapper<T> : IModelUnbinder where T : class {
             private readonly IModelUnbinder<T> _unbinder;
 
@@ -71,13 +72,13 @@ namespace System.Web.Mvc {
             _unbinders.Clear();
         }
     }
-    [GeneratedCode("T4MVC", "2.0")]
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class DefaultModelUnbinder : IModelUnbinder {
         public void UnbindModel(RouteValueDictionary routeValueDictionary, string routeName, object routeValue) {
             routeValueDictionary[routeName] = routeValue;
         }
     }
-    [GeneratedCode("T4MVC", "2.0")]
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class PropertiesUnbinder : IModelUnbinder {
         public virtual void UnbindModel(RouteValueDictionary routeValueDictionary, string routeName, object routeValue) {
             var dict = new RouteValueDictionary(routeValue);
@@ -98,6 +99,7 @@ namespace System.Web.Mvc {
             }
         }
     }
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class ModelUnbinderHelpers {
         public static void AddRouteValues(RouteValueDictionary routeValueDictionary, string routeName, object routeValue) {
             IModelUnbinder unbinder = DefaultModelUnbinder;

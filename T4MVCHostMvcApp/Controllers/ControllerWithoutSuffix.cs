@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using T4MVCHostMvcApp.Misc;
+﻿using System.Web.Mvc;
 
 namespace T4MVCHostMvcApp.Controllers {
     [HandleError]
