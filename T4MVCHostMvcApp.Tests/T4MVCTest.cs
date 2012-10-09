@@ -148,6 +148,8 @@ namespace T4MVCHostMvcApp.Tests {
             Assert.AreEqual("myString", MVC.@break.Post.ActionWithVariousParamsParams.myString);
             Assert.AreEqual("someInt", MVC.@break.Post.ActionWithVariousParamsParams.someInt);
             Assert.AreEqual("someObject", MVC.@break.Post.ActionWithVariousParamsParams.someObject);
+            Assert.AreEqual("someString", MVC.Home.OverloadedActionWithDifferentParamsParams.someString);
+            Assert.AreEqual("someNumber", MVC.Home.OverloadedActionWithDifferentParamsParams.someNumber);
         }
 
 

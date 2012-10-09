@@ -108,11 +108,13 @@ namespace T4MVCHostMvcApp.Controllers {
             return new EmptyResult();
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Params"), SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "string")]
         public virtual ActionResult OverloadedActionWithDifferentParams(string someString)
         {
             return new EmptyResult();
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Params")]
         public virtual ActionResult OverloadedActionWithDifferentParams(int someNumber)
         {
             return new EmptyResult();
