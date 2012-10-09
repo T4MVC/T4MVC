@@ -55,6 +55,9 @@ TODO:
 
 HISTORY:
 
+!!! 2.11.0 (10-09-2012):
+* Corrects the ActionParameters class for overloaded actions to list all parameters and not just the parameters from the first action found.
+
 !!! 2.10.4 (10-05-2012):
 * Added attributes so it builds clean under Code Analysis [url:http://t4mvc.codeplex.com/workitem/10]
 
