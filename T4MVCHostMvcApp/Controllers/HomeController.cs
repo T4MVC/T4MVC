@@ -107,6 +107,16 @@ namespace T4MVCHostMvcApp.Controllers {
         {
             return new EmptyResult();
         }
+
+        public virtual ActionResult OverloadedActionWithDifferentParams(string someString)
+        {
+            return new EmptyResult();
+        }
+
+        public virtual ActionResult OverloadedActionWithDifferentParams(int someNumber)
+        {
+            return new EmptyResult();
+        }
     }
 
     sealed class DummyAttribute : Attribute {
