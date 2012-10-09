@@ -478,13 +478,13 @@ if (!UseLowercaseRoutes) { #>
 } #>
 
 <#if (GenerateParamsForActionMethods){
-foreach (var method in controller.ActionMethodsWithUniqueNames) if (method.Parameters.Any()) { #>
-        static readonly ActionParamsClass_<#=method.ActionName #> s_params_<#=method.ActionName #> = new ActionParamsClass_<#=method.ActionName #>();
+foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (group.Any()) { #>
+        static readonly ActionParamsClass_<#=group.Key #> s_params_<#=group.Key #> = new ActionParamsClass_<#=group.Key #>();
         [<#= GeneratedCode #>, DebuggerNonUserCode]
-        public ActionParamsClass_<#=method.ActionName #> <#=method.ActionName + ParamsPropertySuffix #> { get { return s_params_<#=method.ActionName #>; } }
+        public ActionParamsClass_<#=group.Key #> <#=group.Key + ParamsPropertySuffix #> { get { return s_params_<#=group.Key #>; } }
         [<#= GeneratedCode #>, DebuggerNonUserCode]
-        public class ActionParamsClass_<#=method.ActionName #> {
-<#foreach (var param in method.Parameters) { #>
+        public class ActionParamsClass_<#=group.Key #> {
+<#foreach (var param in group) { #>
 <#  if (UseLowercaseRoutes) { #>
             public readonly string <#=param.Name #> = (<#=param.RouteNameExpression #>).ToLowerInvariant();
 <#  } else { #>
@@ -1445,6 +1445,28 @@ class ControllerInfo {
 
         public int GetHashCode(ActionMethodInfo obj) {
             return obj.ActionName.GetHashCode();
+        }
+    }
+
+    public IEnumerable<IGrouping<string, MethodParamInfo>> UniqueParameterNamesGroupedByActionName {
+        get {
+            var comp = new ActionParameterComparer();
+            return ActionMethods
+                .SelectMany(m => m.Parameters, (m, p) => new { Method = m, Parameter = p })
+                .GroupBy(m => m.Method.ActionName, m => m.Parameter)
+                .Select(g => new { g.Key, Items = g.Distinct(comp) })
+                .SelectMany(g => g.Items, (g, i) => new { g.Key, Item = i })
+                .GroupBy(i => i.Key, i => i.Item); 
+        }
+    } 
+
+    class ActionParameterComparer : IEqualityComparer<MethodParamInfo> {
+        public bool Equals(MethodParamInfo x, MethodParamInfo y) {
+            return x.Name == y.Name;
+        }
+
+        public int GetHashCode(MethodParamInfo obj) {
+            return obj.Name.GetHashCode();
         }
     }
 

@@ -175,6 +175,7 @@ namespace T4MVCHostMvcApp.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_OverloadedActionWithDifferentParams {
             public readonly string someString = "someString";
+            public readonly string someNumber = "someNumber";
         }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
