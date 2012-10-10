@@ -1,6 +1,6 @@
 ﻿<#
 /*
-T4MVC Version 2.11.0
+T4MVC Version 2.11.1
 Find latest version and documentation at http://mvccontrib.codeplex.com/wikipage?title=T4MVC
 Discuss on StackOverflow or on the MVC forum (http://forums.asp.net/1146.aspx)
 
@@ -982,7 +982,11 @@ void ProcessControllerActionMethods(ControllerInfo controllerInfo, CodeClass2 cu
                 continue;
 
             // This takes care of avoiding generic types which cause method.Type.CodeType to blow up
-            if (method.Type.TypeKind != vsCMTypeRef.vsCMTypeRefCodeType)
+            if (method.Type.TypeKind != vsCMTypeRef.vsCMTypeRefCodeType || !(method.Type.CodeType is CodeClass2))
+                continue;
+
+            // Ignore methods that return generic types (http://mvccontrib.codeplex.com/workitem/7178)
+            if (((CodeClass2)method.Type.CodeType).IsGeneric)
                 continue;
 
             // We only support action methods that return an ActionResult derived type

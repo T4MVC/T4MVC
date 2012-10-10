@@ -55,6 +55,9 @@ TODO:
 
 HISTORY:
 
+!!! 2.11.1 (10-10-2012):
+* Ignore methods that return generic types [url:http://mvccontrib.codeplex.com/workitem/7178]
+
 !!! 2.11.0 (10-09-2012):
 * Corrects the ActionParameters class for overloaded actions to list all parameters and not just the parameters from the first action found.
 

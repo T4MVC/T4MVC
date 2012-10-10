@@ -119,6 +119,28 @@ namespace T4MVCHostMvcApp.Controllers {
         {
             return new EmptyResult();
         }
+
+        public virtual SomeGenericResult<string> ActionReturningGenericResultString()
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual SomeGenericResult<int> ActionReturningGenericResultInt()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class SomeGenericResult<T> : FileResult
+    {
+        public SomeGenericResult(string contentType): base(contentType)
+        {
+
+        }
+        protected override void WriteFile(System.Web.HttpResponseBase response)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     sealed class DummyAttribute : Attribute {
