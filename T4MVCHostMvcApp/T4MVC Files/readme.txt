@@ -55,6 +55,10 @@ TODO:
 
 HISTORY:
 
+!!! 2.11.2 (10-11-2012):
+* Removed optional params in ActionLink to support expression trees [url:http://t4mvc.codeplex.com/workitem/4]
+* Change brace style of generated code to Allman
+
 !!! 2.11.1 (10-10-2012):
 * Ignore methods that return generic types [url:http://mvccontrib.codeplex.com/workitem/7178]
 
