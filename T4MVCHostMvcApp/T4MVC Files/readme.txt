@@ -55,6 +55,9 @@ TODO:
 
 HISTORY:
 
+!!! 2.12.0 (10-15-2012):
+* Add MVC 4 bundle starter classes [url:https://t4mvc.codeplex.com/discussions/399205]
+
 !!! 2.11.2 (10-11-2012):
 * Removed optional params in ActionLink to support expression trees [url:http://t4mvc.codeplex.com/workitem/4]
 * Change brace style of generated code to Allman
