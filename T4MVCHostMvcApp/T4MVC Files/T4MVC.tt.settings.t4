@@ -83,6 +83,7 @@ static bool AddTimestampToStaticLink(ProjectItem projectItem) {
 readonly string[] StaticFilesFolders = new string[] {
     "Scripts",
     "Content",
+    "ContentStatic\\TextFiles"
 };
 
 // Static files to exclude from the generated links   

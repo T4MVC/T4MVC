@@ -569,6 +569,12 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
+        public void TestLinkToTextFileOutsideOfTheRootFolder()
+        {
+            Assert.AreEqual("/ContentStatic/TextFiles/readme.txt", Links.ContentStatic.TextFiles.readme_txt);
+        }
+
+        [TestMethod()]
         public void TestScriptFile() {
             Assert.AreEqual("/Scripts/jquery-1.3.2.js", Links.Scripts.jquery_1_3_2_js);
         }

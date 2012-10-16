@@ -770,6 +770,7 @@ static string T4FileName;
 static string T4Folder;
 static string GeneratedCode = @"GeneratedCode(""T4MVC"", ""2.0"")";
 static Microsoft.CSharp.CSharpCodeProvider codeProvider = new Microsoft.CSharp.CSharpCodeProvider();
+List<string> virtualPathesForStaticFiles = new List<string>();
 
 IEnumerable<ControllerInfo> GetControllers() {
     var controllers = new List<ControllerInfo>();
@@ -1194,15 +1195,27 @@ WriteLine("}");
 }
 
 void ProcessStaticFiles(Project project, string folder) {
-
     ProjectItem folderProjectItem = GetProjectItem(project, folder);
-    if (folderProjectItem != null) {
-        ProcessStaticFilesRecursive(folderProjectItem, "~");
+    if (folderProjectItem != null)
+    {
+        var rootPath = "~";
+        if (folder.Contains("\\"))
+        {
+            rootPath += "/" + folder.Replace("\\", "/");
+            rootPath = rootPath.Substring(0, rootPath.LastIndexOf("/"));
+        }
+        ProcessStaticFilesRecursive(folderProjectItem, rootPath);
     }
 }
 
 void ProcessStaticFilesRecursive(ProjectItem projectItem, string path) {
+    int nestedLevel = BuildClassStructureForProvidedPath(path);
     ProcessStaticFilesRecursive(projectItem, path, false /*hasSameNameAsParent*/);
+    for(int i = 0; i < nestedLevel; ++i) {#>
+}
+<#+
+    PopIndent();
+    }
 }
 
 void ProcessStaticFilesRecursive(ProjectItem projectItem, string path, bool hasSameNameAsParent) {
@@ -1265,10 +1278,43 @@ if (!ExcludedStaticFileExtensions.Any(extension => projectItem.Name.EndsWith(ext
 // Non folder items may also have children (virtual folders, Class.cs -> Class.Designer.cs, template output)
 // Just register them on the same path as their parent item
 foreach (ProjectItem item in projectItem.ProjectItems) {
-    ProcessStaticFilesRecursive(item, path);
+    ProcessStaticFilesRecursive(item, path, false);
 }
     }
 }
+
+int BuildClassStructureForProvidedPath(string path) {
+    var folders = path.Split(new char[] {'/', '~'}, StringSplitOptions.RemoveEmptyEntries);
+    var parentFolder = String.Empty;
+    var currentPath = "~";
+    foreach(var folder in folders) {
+        currentPath += "/" + folder;
+        string className = EscapeID(Sanitize(folder));
+        // If the folder name is the same as the parent, add a modifier to avoid class name conflicts
+        // http://mvccontrib.codeplex.com/workitem/7153
+        if (parentFolder == folder) {
+            className += "_";
+        }
+
+        if(!virtualPathesForStaticFiles.Contains(currentPath)) {
+            virtualPathesForStaticFiles.Add(currentPath);#>
+
+    [<#= GeneratedCode #>, DebuggerNonUserCode]
+    public static partial class <#=className #> {
+        private const string URLPATH = "<#=currentPath#>";
+        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+<#+     } else {
+            #>
+
+    public static partial class <#=className #> {
+<#+     }
+        PushIndent("    ");
+        parentFolder = folder;
+    }
+    return folders.Length;
+}
+
 ProjectItem GetProjectItem(Project project, string name) {
     return GetProjectItem(project.ProjectItems, name);
 }
