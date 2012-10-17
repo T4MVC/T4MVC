@@ -80,10 +80,10 @@ static bool AddTimestampToStaticLink(ProjectItem projectItem) {
 }
 
 // Folders containing static files for which links are generated (e.g. Links.Scripts.Map_js)
+// They can contain sub-folders, e.g. "ContentStatic\\TextFiles", which then allows Links.ContentStatic.TextFiles.readme_txt
 readonly string[] StaticFilesFolders = new string[] {
     "Scripts",
-    "Content",
-    "ContentStatic\\TextFiles"
+    "Content"
 };
 
 // Static files to exclude from the generated links   

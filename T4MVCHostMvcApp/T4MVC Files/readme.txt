@@ -55,7 +55,8 @@ TODO:
 
 HISTORY:
 
-!!! 2.12.0 (10-15-2012):
+!!! 2.12.0 (10-16-2012):
+* Add support for static files in nested folders  [url:http://t4mvc.codeplex.com/workitem/6]
 * Add MVC 4 bundle starter classes [url:https://t4mvc.codeplex.com/discussions/399205]
 
 !!! 2.11.2 (10-11-2012):
