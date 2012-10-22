@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MvcSettings>
+  <!--The namespace used by some of T4MVC's generated code-->
+  <T4MVCNamespace>T4MVC</T4MVCNamespace>
+  <!--The prefix used for things like MVC.Dinners.Name and MVC.Dinners.Delete(Model.DinnerID)-->
+  <HelpersPrefix>MVC</HelpersPrefix>
+  <!--Namespaces to be referenced by the generated code-->
+  <ReferencedNamespaces>
+    <!--<Namespace></Namespace>-->
+  </ReferencedNamespaces>
+  <!--The folder under the project that contains the areas-->
+  <AreasFolder>Areas</AreasFolder>
+  <!--You can list folders containing portable areas here-->
+  <PortableAreas>
+    <!--<Area></Area>-->
+  </PortableAreas>
+  <!--Choose whether you want to include an 'Areas' token when referring to areas.
+e.g. Assume the Area is called Blog and the Controller is Post:
+- When false use MVC.Blog.Post.etc...
+- When true use MVC.Areas.Blog.Post.etc...-->
+  <IncludeAreasToken>False</IncludeAreasToken>
+  <!--The folder under the project that contains the controllers-->
+  <ControllersFolder>Controllers</ControllersFolder>
+  <!--The folder under the project that contains the views-->
+  <ViewsRootFolder>Views</ViewsRootFolder>
+  <!--Views in DisplayTemplates and EditorTemplates folders shouldn't be fully qualifed
+as it breaks the templated helper code-->
+  <NonQualifiedViewFolders>
+    <ViewFolder>DisplayTemplates</ViewFolder>
+    <ViewFolder>EditorTemplates</ViewFolder>
+  </NonQualifiedViewFolders>
+  <!--Set this to true if you *never* want view names to be fully qualified paths
+This may be needed if you are using Spark-->
+  <UseNonQualifiedViewNames>False</UseNonQualifiedViewNames>
+  <!--The name of the interface that all T4MVC action results will implement-->
+  <ActionResultInterfaceName>IT4MVCActionResult</ActionResultInterfaceName>
+  <!--This can be set to false to omit the generation of the System.Web.Mvc.T4Extensions class,
+which can be useful if it is already defined in a referenced library
+See http://stackoverflow.com/questions/5563163/t4mvc-use-extension-methods-in-control-library/5574227-->
+  <GenerateMvcT4Extensions>True</GenerateMvcT4Extensions>
+  <!--If true, the T4MVC action result interface will be generated
+If false, the namespace of the interface must be referenced in the 'ReferencedNamespaces' setting-->
+  <GenerateActionResultInterface>True</GenerateActionResultInterface>
+  <!--If true, use lower case tokens in routes for the area, controller and action names-->
+  <UseLowercaseRoutes>False</UseLowercaseRoutes>
+  <!--The namespace that the links are generated in (e.g. "Links", as in Links.Content.nerd_jpg)-->
+  <LinksNamespace>Links</LinksNamespace>
+  <!--If true, links to static files include a query string containing the file's last change time.
+This way, when the static file changes, the link changes and guarantees that the client will re-request the resource.
+e.g. when true, the link looks like: "/Content/nerd.jpg?2009-09-04T12:25:48"
+See http://mvccontrib.codeplex.com/workitem/7163 for potential issues with this feature-->
+  <AddTimestampToStaticLinks>False</AddTimestampToStaticLinks>
+  <!--Folders containing static files for which links are generated (e.g. Links.Scripts.Map_js)-->
+  <StaticFilesFolders>
+    <FileFolder>Scripts</FileFolder>
+    <FileFolder>Content</FileFolder>
+  </StaticFilesFolders>
+  <!--Static files to exclude from the generated links-->
+  <ExcludedStaticFileExtensions>
+    <Extension>.cs</Extension>
+  </ExcludedStaticFileExtensions>
+  <!--When creating links with T4MVC, it can force them to HTTPS if the action method you are linking to requires Http.-->
+  <AttributeIndicatingHttps>System.Web.Mvc.RequireHttpsAttribute</AttributeIndicatingHttps>
+  <GenerateSecureLinksInDebugMode>False</GenerateSecureLinksInDebugMode>
+  <!--The suffix added to action method names for the property containing the parameters, for example ImportParams
+for the Import action method.-->
+  <ParamsPropertySuffix>Params</ParamsPropertySuffix>
+  <!--create explicit HtmlHelpers for rendering partials-->
+  <ExplicitHtmlHelpersForPartials>False</ExplicitHtmlHelpersForPartials>
+  <ExplicitHtmlHelpersForPartialsFormat>Render{0}</ExplicitHtmlHelpersForPartialsFormat>
+  <!--If true, the template marks itself as unsaved as part of its execution.
+This way it will be saved and update itself next time the project is built.
+Basically, it keeps marking itself as unsaved to make the next build work.-->
+  <AlwaysKeepTemplateDirty>False</AlwaysKeepTemplateDirty>
+  <!--If true,the template output will be split into multiple files.-->
+  <SplitIntoMultipleFiles>True</SplitIntoMultipleFiles>
+</MvcSettings>
