@@ -55,6 +55,9 @@ TODO:
 
 HISTORY:
 
+!!! 2.13.0 (10-24-2012):
+* Move settings to T4MVC.tt.settings.xml XML file instead of tt file
+
 !!! 2.12.0 (10-16-2012):
 * Add support for static files in nested folders  [url:http://t4mvc.codeplex.com/workitem/6]
 * Add MVC 4 bundle starter classes [url:https://t4mvc.codeplex.com/discussions/399205]
