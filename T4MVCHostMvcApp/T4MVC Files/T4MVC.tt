@@ -875,13 +875,6 @@ Project GetProjectContainingT4File(DTE dte) {
     if (projectItem.Document == null)
         projectItem.Open(Constants.vsViewKindCode);
 
-    if (settings.AlwaysKeepTemplateDirty) {
-        // Mark the .tt file as unsaved. This way it will be saved and update itself next time the
-        // project is built. Basically, it keeps marking itself as unsaved to make the next build work.
-        // Note: this is certainly hacky, but is the best I could come up with so far.
-        projectItem.Document.Saved = false;
-    }
-
     return projectItem.ContainingProject;
 }
 
@@ -1832,7 +1825,6 @@ class MvcSettings : XmlSettings {
         this.GenerateSecureLinksInDebugMode = false;
         this.ParamsPropertySuffix = "Params";
         this.ExplicitHtmlHelpersForPartialsFormat = "Render{0}";
-        this.AlwaysKeepTemplateDirty = false;
         this.SplitIntoMultipleFiles = true;
 
     }
@@ -1904,18 +1896,17 @@ class MvcSettings : XmlSettings {
     public bool ExplicitHtmlHelpersForPartials { get; set; }
     public string ExplicitHtmlHelpersForPartialsFormat { get; set; }
 
-    [System.ComponentModel.Description("If true, the template marks itself as unsaved as part of its execution.\r\nThis way it will be saved and update itself next time the project is built.\r\nBasically, it keeps marking itself as unsaved to make the next build work.")]
-    public bool AlwaysKeepTemplateDirty { get; set; }
-
     [System.ComponentModel.Description("If true,the template output will be split into multiple files.")]
     public bool SplitIntoMultipleFiles { get; set; }
 
 }
 
 /*
-    Settings.tt
+    XmlSettings base classes, if you need to modify the T4MVC properties edit the MvcSettings Class Above
 */
 
+/// Base XmlSettings class, responsible for reading/writing the settigns file contents, all settings other 
+/// than string convertable types should decend from this class
 abstract class XmlSettingsBase {
     protected virtual void Init()
     {
@@ -1987,6 +1978,7 @@ abstract class XmlSettingsBase {
     }
 }
 
+/// Custom class to allow string arrays to be read and written to/from settings
 class XmlStringArray : XmlSettingsBase, IEnumerable<string> {
     public XmlStringArray(IEnumerable<string> items, string name) {
         this._items = items;
@@ -2026,6 +2018,9 @@ class XmlStringArray : XmlSettingsBase, IEnumerable<string> {
     }
 }
 
+/// This is the base class for the standard settings, the main settigns class should inherit from this
+/// one since it provides the methods to interact with the T4 system and EnvDTE. Sub-properties can
+/// just inherit from XmlSettingsBase.
 abstract class XmlSettings : XmlSettingsBase {
     protected static T Load<T>(ITextTemplatingEngineHost host) where T : XmlSettings, new() {
         T settings = new T();
@@ -2054,13 +2049,6 @@ abstract class XmlSettings : XmlSettingsBase {
         // If the .tt file is not opened, open it
         if (this.ProjectItem.Document == null)
             this.ProjectItem.Open(Constants.vsViewKindCode);
-
-        //if (AlwaysKeepTemplateDirty) {
-            // Mark the .tt file as unsaved. This way it will be saved and update itself next time the
-            // project is built. Basically, it keeps marking itself as unsaved to make the next build work.
-            // Note: this is certainly hacky, but is the best I could come up with so far.
-        //    projectItem.Document.Saved = false;
-        //}
 
         this.Project = this.ProjectItem.ContainingProject;
 

@@ -68,10 +68,6 @@ for the Import action method.-->
   <!--create explicit HtmlHelpers for rendering partials-->
   <ExplicitHtmlHelpersForPartials>False</ExplicitHtmlHelpersForPartials>
   <ExplicitHtmlHelpersForPartialsFormat>Render{0}</ExplicitHtmlHelpersForPartialsFormat>
-  <!--If true, the template marks itself as unsaved as part of its execution.
-This way it will be saved and update itself next time the project is built.
-Basically, it keeps marking itself as unsaved to make the next build work.-->
-  <AlwaysKeepTemplateDirty>False</AlwaysKeepTemplateDirty>
   <!--If true,the template output will be split into multiple files.-->
   <SplitIntoMultipleFiles>True</SplitIntoMultipleFiles>
 </MvcSettings>
