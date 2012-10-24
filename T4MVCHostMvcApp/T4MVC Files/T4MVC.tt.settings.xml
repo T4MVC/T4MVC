@@ -54,6 +54,7 @@ See http://mvccontrib.codeplex.com/workitem/7163 for potential issues with this 
   <StaticFilesFolders>
     <FileFolder>Scripts</FileFolder>
     <FileFolder>Content</FileFolder>
+    <FileFolder>ContentStatic\TextFiles</FileFolder>
   </StaticFilesFolders>
   <!--Static files to exclude from the generated links-->
   <ExcludedStaticFileExtensions>

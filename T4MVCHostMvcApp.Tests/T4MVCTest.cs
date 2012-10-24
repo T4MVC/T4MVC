@@ -568,12 +568,11 @@ namespace T4MVCHostMvcApp.Tests {
             Assert.AreEqual("/Content/Sub Content-folder.test/SomeT4.tt", Links.Content.Sub_Content_folder_test.SomeT4_tt);
         }
 
-        // Running this test requires a modified T4MVC.tt.settings.t4, so leaving it off
-        //[TestMethod()]
-        //public void TestLinkToTextFileOutsideOfTheRootFolder()
-        //{
-        //    Assert.AreEqual("/ContentStatic/TextFiles/readme.txt", Links.ContentStatic.TextFiles.readme_txt);
-        //}
+        [TestMethod()]
+        public void TestLinkToTextFileOutsideOfTheRootFolder()
+        {
+            Assert.AreEqual("/ContentStatic/TextFiles/readme.txt", Links.ContentStatic.TextFiles.readme_txt);
+        }
 
         [TestMethod()]
         public void TestScriptFile() {
