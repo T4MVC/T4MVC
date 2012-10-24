@@ -578,11 +578,11 @@ foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (gr
         }
 <# } #>
 <#} #>
-        static readonly ViewNames s_views = new ViewNames();
+        static readonly ViewsClass s_views = new ViewsClass();
         [<#= GeneratedCode #>, DebuggerNonUserCode]
-        public ViewNames Views { get { return s_views; } }
+        public ViewsClass Views { get { return s_views; } }
         [<#= GeneratedCode #>, DebuggerNonUserCode]
-        public class ViewNames {
+        public class ViewsClass {
 <#RenderControllerViews(controller);#>
         }
     }
@@ -1163,7 +1163,18 @@ void RenderControllerViews(ControllerInfo controller) {
 }
 
 void RenderViewsRecursive(ViewsFolderInfo viewsFolder, ControllerInfo controller) {
-
+    if(!viewsFolder.HasNonQualifiedViewNames) {
+#>
+static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
+public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
+public class _ViewNamesClass {
+<#+
+    foreach (var viewPair in viewsFolder.Views) {
+        WriteLine("public readonly string " + EscapeID(Sanitize(viewPair.Key)) + " = \"" + viewPair.Key + "\";");
+    }
+#>
+}
+<#+}
     // For each view, generate a readonly string
     foreach (var viewPair in viewsFolder.Views) {
         WriteLine("public readonly string " + EscapeID(Sanitize(viewPair.Key)) + " = \"" + viewPair.Value + "\";");
@@ -1179,10 +1190,10 @@ void RenderViewsRecursive(ViewsFolderInfo viewsFolder, ControllerInfo controller
         if (name == Sanitize(viewsFolder.Name)) {
             className += "_";
         }#>
-static readonly <#=className#> s_<#=name#> = new <#=className#>();
-public <#=className#> <#=EscapeID(name)#> { get { return s_<#=name#>; } }
+static readonly <#=className#>Class s_<#=name#> = new <#=className#>Class();
+public <#=className#>Class <#=EscapeID(name)#> { get { return s_<#=name#>; } }
 [<#= GeneratedCode #>, DebuggerNonUserCode]
-public partial class <#=className#>{
+public partial class <#=className#>Class{
 <#+
 PushIndent("    ");
 RenderViewsRecursive(subFolder, controller);
@@ -1629,9 +1640,11 @@ class ViewsFolderInfo {
         if (Views.ContainsKey(viewFieldName))
             viewFieldName = Sanitize(viewName);
  
+        HasNonQualifiedViewNames = HasNonQualifiedViewNames | useNonQualifiedViewName;
         Views[viewFieldName] = useNonQualifiedViewName ? Path.GetFileNameWithoutExtension(viewName) : GetVirtualPath(item);
     }
 
+    public bool HasNonQualifiedViewNames { get; private set; }
     public string Name { get; set; }
     public Dictionary<string, string> Views { get; private set; }
     public List<ViewsFolderInfo> SubFolders { get; set; }

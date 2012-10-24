@@ -177,11 +177,22 @@ namespace T4MVCHostMvcApp.Controllers {
             public readonly string someString = "someString";
             public readonly string someNumber = "someNumber";
         }
-        static readonly ViewNames s_views = new ViewNames();
+        static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ViewNames Views { get { return s_views; } }
+        public ViewsClass Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ViewNames {
+        public class ViewsClass {
+            static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
+            public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
+            public class _ViewNamesClass {
+            public readonly string _7_Some_Home_View_Hello = "7 Some Home.View-Hello";
+            public readonly string About = "About";
+            public readonly string DuplicateControl = "DuplicateControl";
+            public readonly string Index = "Index";
+            public readonly string Qqq = "Qqq";
+            public readonly string QqQ = "QqQ";
+            public readonly string Qqq_txt3 = "Qqq_txt3";
+            }
             public readonly string _7_Some_Home_View_Hello = "~/Views/Home/7 Some Home.View-Hello.txt";
             public readonly string About = "~/Views/Home/About.aspx";
             public readonly string DuplicateControl = "~/Views/Home/DuplicateControl.ascx";
@@ -189,45 +200,70 @@ namespace T4MVCHostMvcApp.Controllers {
             public readonly string Qqq = "~/Views/Home/Qqq.txt";
             public readonly string QqQ = "~/Views/Home/QqQ.txt2";
             public readonly string Qqq_txt3 = "~/Views/Home/Qqq.txt3";
-            static readonly _default s_default = new _default();
-            public _default @default { get { return s_default; } }
+            static readonly _defaultClass s_default = new _defaultClass();
+            public _defaultClass @default { get { return s_default; } }
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-            public partial class _default{
+            public partial class _defaultClass{
+                static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
+                public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
+                public class _ViewNamesClass {
+                }
             }
-            static readonly _DisplayTemplates s_DisplayTemplates = new _DisplayTemplates();
-            public _DisplayTemplates DisplayTemplates { get { return s_DisplayTemplates; } }
+            static readonly _DisplayTemplatesClass s_DisplayTemplates = new _DisplayTemplatesClass();
+            public _DisplayTemplatesClass DisplayTemplates { get { return s_DisplayTemplates; } }
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-            public partial class _DisplayTemplates{
+            public partial class _DisplayTemplatesClass{
                 public readonly string SomeDisplayTemplate = "SomeDisplayTemplate";
             }
-            static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
-            public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
+            static readonly _EditorTemplatesClass s_EditorTemplates = new _EditorTemplatesClass();
+            public _EditorTemplatesClass EditorTemplates { get { return s_EditorTemplates; } }
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-            public partial class _EditorTemplates{
+            public partial class _EditorTemplatesClass{
                 public readonly string SomeEditorTemplate = "SomeEditorTemplate";
             }
-            static readonly _SomeName s_SomeName = new _SomeName();
-            public _SomeName SomeName { get { return s_SomeName; } }
+            static readonly _SomeNameClass s_SomeName = new _SomeNameClass();
+            public _SomeNameClass SomeName { get { return s_SomeName; } }
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-            public partial class _SomeName{
-                static readonly _SomeName_ s_SomeName = new _SomeName_();
-                public _SomeName_ SomeName { get { return s_SomeName; } }
+            public partial class _SomeNameClass{
+                static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
+                public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
+                public class _ViewNamesClass {
+                }
+                static readonly _SomeName_Class s_SomeName = new _SomeName_Class();
+                public _SomeName_Class SomeName { get { return s_SomeName; } }
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                public partial class _SomeName_{
+                public partial class _SomeName_Class{
+                    static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
+                    public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
+                    public class _ViewNamesClass {
+                    public readonly string SomeName = "SomeName";
+                    }
                     public readonly string SomeName = "~/Views/Home/SomeName/SomeName/SomeName.txt";
                 }
             }
-            static readonly _Sub_Home s_Sub_Home = new _Sub_Home();
-            public _Sub_Home Sub_Home { get { return s_Sub_Home; } }
+            static readonly _Sub_HomeClass s_Sub_Home = new _Sub_HomeClass();
+            public _Sub_HomeClass Sub_Home { get { return s_Sub_Home; } }
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-            public partial class _Sub_Home{
+            public partial class _Sub_HomeClass{
+                static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
+                public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
+                public class _ViewNamesClass {
+                public readonly string Qqq = "Qqq";
+                public readonly string @string = "string";
+                public readonly string T4View = "T4View";
+                }
                 public readonly string Qqq = "~/Views/Home/Sub Home/Qqq.txt";
                 public readonly string @string = "~/Views/Home/Sub Home/string.txt";
                 public readonly string T4View = "~/Views/Home/Sub Home/T4View.tt";
-                static readonly _Nested_Sub s_Nested_Sub = new _Nested_Sub();
-                public _Nested_Sub Nested_Sub { get { return s_Nested_Sub; } }
+                static readonly _Nested_SubClass s_Nested_Sub = new _Nested_SubClass();
+                public _Nested_SubClass Nested_Sub { get { return s_Nested_Sub; } }
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                public partial class _Nested_Sub{
+                public partial class _Nested_SubClass{
+                    static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
+                    public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
+                    public class _ViewNamesClass {
+                    public readonly string _99_Super_Nested_View = "99 Super~Nested-View";
+                    }
                     public readonly string _99_Super_Nested_View = "~/Views/Home/Sub Home/Nested-Sub/99 Super~Nested-View.txt";
                 }
             }
