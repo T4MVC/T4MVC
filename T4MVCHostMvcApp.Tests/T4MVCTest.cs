@@ -158,58 +158,71 @@ namespace T4MVCHostMvcApp.Tests {
         [TestMethod()]
         public void TestSimpleViewName() {
             Assert.AreEqual("~/Views/Home/Index.aspx", MVC.Home.Views.Index);
+            Assert.AreEqual("Index", MVC.Home.Views.ViewNames.Index);
         }
 
         [TestMethod()]
         public void TestConflictingViewNames() {
             Assert.AreEqual("~/Views/Home/Qqq.txt", MVC.Home.Views.Qqq);
+            Assert.AreEqual("Qqq", MVC.Home.Views.ViewNames.Qqq);
             Assert.AreEqual("~/Views/Home/QqQ.txt2", MVC.Home.Views.QqQ);
+            Assert.AreEqual("QqQ", MVC.Home.Views.ViewNames.QqQ);
             Assert.AreEqual("~/Views/Home/Qqq.txt3", MVC.Home.Views.Qqq_txt3);
+            Assert.AreEqual("Qqq_txt3", MVC.Home.Views.ViewNames.Qqq_txt3);
         }
 
         [TestMethod()]
         public void TestComplexViewName() {
             Assert.AreEqual("~/Views/Home/7 Some Home.View-Hello.txt", MVC.Home.Views._7_Some_Home_View_Hello);
+            Assert.AreEqual("7 Some Home.View-Hello", MVC.Home.Views.ViewNames._7_Some_Home_View_Hello);
         }
 
         [TestMethod()]
         public void TestNestedViewNameWithSameNameAsParentFolder() {
             Assert.AreEqual("~/Views/Home/Sub Home/Qqq.txt", MVC.Home.Views.Sub_Home.Qqq);
+            Assert.AreEqual("Qqq", MVC.Home.Views.Sub_Home.ViewNames.Qqq);
         }
 
         [TestMethod()]
         public void TestViewNameMatchingLanguageKeyword() {
             Assert.AreEqual("~/Views/Home/Sub Home/string.txt", MVC.Home.Views.Sub_Home.@string);
+            Assert.AreEqual("string", MVC.Home.Views.Sub_Home.ViewNames.@string);
         }
 
         [TestMethod()]
         public void TestSuperNestedViewWithComplexName() {
             Assert.AreEqual("~/Views/Home/Sub Home/Nested-Sub/99 Super~Nested-View.txt", MVC.Home.Views.Sub_Home.Nested_Sub._99_Super_Nested_View);
+            Assert.AreEqual("99 Super~Nested-View", MVC.Home.Views.Sub_Home.Nested_Sub.ViewNames._99_Super_Nested_View);
         }
 
         [TestMethod()]
         public void TestViewThatGeneratesFile() {
             Assert.AreEqual("~/Views/Home/Sub Home/T4View.tt", MVC.Home.Views.Sub_Home.T4View);
+            Assert.AreEqual("T4View", MVC.Home.Views.Sub_Home.ViewNames.T4View);
         }
 
         [TestMethod()]
         public void TestSharedView() {
             Assert.AreEqual("~/Views/Shared/LogOnUserControl.ascx", MVC.Shared.Views.LogOnUserControl);
+            Assert.AreEqual("LogOnUserControl", MVC.Shared.Views.ViewNames.LogOnUserControl);
         }
 
         [TestMethod()]
         public void TestAreaView() {
             Assert.AreEqual("~/Areas/Home/Views/Home/SomeHomeView.txt", MVC.HomeArea.Home.Views.SomeHomeView);
+            Assert.AreEqual("SomeHomeView", MVC.HomeArea.Home.Views.ViewNames.SomeHomeView);
         }
 
         [TestMethod()]
         public void TestAreaSharedView() {
             Assert.AreEqual("~/Areas/break/Views/Shared/SharedAreaView.txt", MVC.@break.Shared.Views.SharedAreaView);
+            Assert.AreEqual("SharedAreaView", MVC.@break.Shared.Views.ViewNames.SharedAreaView);
         }
 
         [TestMethod()]
         public void TestViewFolderWithNoMatchingController() {
             Assert.AreEqual("~/Views/NoControllerMatchingFolder/Abcd.txt", MVC.NoControllerMatchingFolder.Views.Abcd);
+            Assert.AreEqual("Abcd", MVC.NoControllerMatchingFolder.Views.ViewNames.Abcd);
         }
 
         [TestMethod()]
@@ -218,8 +231,6 @@ namespace T4MVCHostMvcApp.Tests {
             Assert.AreEqual("SomeEditorTemplate", MVC.Home.Views.EditorTemplates.SomeEditorTemplate);
             Assert.AreEqual("SomeAreaEditorTemplate", MVC.HomeArea.Home.Views.EditorTemplates.SomeAreaEditorTemplate);
         }
-
-
 
         // ROUTE VALUES TESTS
 

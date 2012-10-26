@@ -185,13 +185,13 @@ namespace T4MVCHostMvcApp.Controllers {
             static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass {
-            public readonly string _7_Some_Home_View_Hello = "7 Some Home.View-Hello";
-            public readonly string About = "About";
-            public readonly string DuplicateControl = "DuplicateControl";
-            public readonly string Index = "Index";
-            public readonly string Qqq = "Qqq";
-            public readonly string QqQ = "QqQ";
-            public readonly string Qqq_txt3 = "Qqq_txt3";
+                public readonly string _7_Some_Home_View_Hello = "7 Some Home.View-Hello";
+                public readonly string About = "About";
+                public readonly string DuplicateControl = "DuplicateControl";
+                public readonly string Index = "Index";
+                public readonly string Qqq = "Qqq";
+                public readonly string QqQ = "QqQ";
+                public readonly string Qqq_txt3 = "Qqq_txt3";
             }
             public readonly string _7_Some_Home_View_Hello = "~/Views/Home/7 Some Home.View-Hello.txt";
             public readonly string About = "~/Views/Home/About.aspx";
@@ -236,7 +236,7 @@ namespace T4MVCHostMvcApp.Controllers {
                     static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
                     public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
                     public class _ViewNamesClass {
-                    public readonly string SomeName = "SomeName";
+                        public readonly string SomeName = "SomeName";
                     }
                     public readonly string SomeName = "~/Views/Home/SomeName/SomeName/SomeName.txt";
                 }
@@ -248,9 +248,9 @@ namespace T4MVCHostMvcApp.Controllers {
                 static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
                 public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
                 public class _ViewNamesClass {
-                public readonly string Qqq = "Qqq";
-                public readonly string @string = "string";
-                public readonly string T4View = "T4View";
+                    public readonly string Qqq = "Qqq";
+                    public readonly string @string = "string";
+                    public readonly string T4View = "T4View";
                 }
                 public readonly string Qqq = "~/Views/Home/Sub Home/Qqq.txt";
                 public readonly string @string = "~/Views/Home/Sub Home/string.txt";
@@ -262,7 +262,7 @@ namespace T4MVCHostMvcApp.Controllers {
                     static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
                     public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
                     public class _ViewNamesClass {
-                    public readonly string _99_Super_Nested_View = "99 Super~Nested-View";
+                        public readonly string _99_Super_Nested_View = "99 Super~Nested-View";
                     }
                     public readonly string _99_Super_Nested_View = "~/Views/Home/Sub Home/Nested-Sub/99 Super~Nested-View.txt";
                 }

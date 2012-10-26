@@ -31,8 +31,8 @@ namespace T4MVC {
             static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass {
-            public readonly string Abcd = "Abcd";
-            public readonly string DuplicateControl = "DuplicateControl";
+                public readonly string Abcd = "Abcd";
+                public readonly string DuplicateControl = "DuplicateControl";
             }
             public readonly string Abcd = "~/Views/NoControllerMatchingFolder/Abcd.txt";
             public readonly string DuplicateControl = "~/Views/NoControllerMatchingFolder/DuplicateControl.ascx";

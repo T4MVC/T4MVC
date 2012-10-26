@@ -31,11 +31,11 @@ namespace T4MVC {
             static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass {
-            public readonly string AnotherPartial = "AnotherPartial";
-            public readonly string DuplicateControl = "DuplicateControl";
-            public readonly string DuplicateControl1 = "DuplicateControl1";
-            public readonly string Error = "Error";
-            public readonly string LogOnUserControl = "LogOnUserControl";
+                public readonly string AnotherPartial = "AnotherPartial";
+                public readonly string DuplicateControl = "DuplicateControl";
+                public readonly string DuplicateControl1 = "DuplicateControl1";
+                public readonly string Error = "Error";
+                public readonly string LogOnUserControl = "LogOnUserControl";
             }
             public readonly string AnotherPartial = "~/Views/Shared/AnotherPartial.ascx";
             public readonly string DuplicateControl = "~/Views/Shared/DuplicateControl.ascx";

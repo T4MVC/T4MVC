@@ -31,7 +31,7 @@ namespace T4MVC.@break {
             static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass {
-            public readonly string SharedAreaView = "SharedAreaView";
+                public readonly string SharedAreaView = "SharedAreaView";
             }
             public readonly string SharedAreaView = "~/Areas/break/Views/Shared/SharedAreaView.txt";
         }

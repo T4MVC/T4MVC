@@ -1133,7 +1133,7 @@ void ProcessAllViews(ProjectItem viewsProjectItem, AreaInfo area) {
 }
 
 void AddViewsRecursive(ProjectItems items, ViewsFolderInfo viewsFolder) {
-  AddViewsRecursive(items, viewsFolder, settings.UseNonQualifiedViewNames);
+  AddViewsRecursive(items, viewsFolder, false);
 }
 void AddViewsRecursive(ProjectItems items, ViewsFolderInfo viewsFolder, bool useNonQualifiedViewNames) {
     // Go through all the files in the subfolder to get the view names
@@ -1169,9 +1169,11 @@ static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
 public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
 public class _ViewNamesClass {
 <#+
+    PushIndent("    ");
     foreach (var viewPair in viewsFolder.Views) {
         WriteLine("public readonly string " + EscapeID(Sanitize(viewPair.Key)) + " = \"" + viewPair.Key + "\";");
     }
+    PopIndent();
 #>
 }
 <#+}
@@ -1820,7 +1822,6 @@ class MvcSettings : XmlSettings {
           "DisplayTemplates",
           "EditorTemplates"
         }, "ViewFolder");
-        this.UseNonQualifiedViewNames = false;	
         this.ActionResultInterfaceName = "IT4MVCActionResult";
         this.GenerateMvcT4Extensions = true;
         this.GenerateActionResultInterface = true;
@@ -1868,9 +1869,6 @@ class MvcSettings : XmlSettings {
 
     [System.ComponentModel.Description("Views in DisplayTemplates and EditorTemplates folders shouldn't be fully qualifed\r\nas it breaks the templated helper code")]
     public XmlStringArray  NonQualifiedViewFolders { get; set; }
-
-    [System.ComponentModel.Description("Set this to true if you *never* want view names to be fully qualified paths\r\nThis may be needed if you are using Spark")]
-    public bool UseNonQualifiedViewNames { get; set; }
 
     [System.ComponentModel.Description("The name of the interface that all T4MVC action results will implement")]
     public string ActionResultInterfaceName { get; set; }

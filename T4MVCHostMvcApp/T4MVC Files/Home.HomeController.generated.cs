@@ -72,7 +72,7 @@ namespace T4MVCHostMvcApp.Areas.Home.Controllers {
             static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass {
-            public readonly string SomeHomeView = "SomeHomeView";
+                public readonly string SomeHomeView = "SomeHomeView";
             }
             public readonly string SomeHomeView = "~/Areas/Home/Views/Home/SomeHomeView.txt";
             static readonly _EditorTemplatesClass s_EditorTemplates = new _EditorTemplatesClass();

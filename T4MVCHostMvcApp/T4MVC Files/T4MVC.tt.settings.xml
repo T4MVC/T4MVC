@@ -29,9 +29,6 @@ as it breaks the templated helper code-->
     <ViewFolder>DisplayTemplates</ViewFolder>
     <ViewFolder>EditorTemplates</ViewFolder>
   </NonQualifiedViewFolders>
-  <!--Set this to true if you *never* want view names to be fully qualified paths
-This may be needed if you are using Spark-->
-  <UseNonQualifiedViewNames>False</UseNonQualifiedViewNames>
   <!--The name of the interface that all T4MVC action results will implement-->
   <ActionResultInterfaceName>IT4MVCActionResult</ActionResultInterfaceName>
   <!--This can be set to false to omit the generation of the System.Web.Mvc.T4Extensions class,
