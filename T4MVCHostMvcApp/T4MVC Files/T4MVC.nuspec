@@ -2,7 +2,7 @@
 <package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <id>T4MVC</id>
-    <version>2.13.0</version>
+    <version>3.0.0</version>
     <authors>David Ebbo</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>T4MVC is a T4 template that generates strongly typed helpers for ASP.NET MVC.</description>
@@ -15,5 +15,8 @@
   <files>
     <file src="T4MVC.tt" target="Content" />
     <file src="T4MVC.tt.hooks.t4" target="Content" />
+    <file src="..\..\T4MVCExtensions\bin\Debug\T4MVCExtensions.dll" target="lib\net40-full" />
+    <file src="..\..\T4MVCExtensions\bin\Debug\T4MVCExtensions.pdb" target="lib\net40-full" />
+    <file src="..\..\T4MVCExtensions\**\*.cs" target="src" />
   </files>
 </package>

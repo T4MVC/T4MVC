@@ -1,10 +1,10 @@
 ﻿<#
 /*
-T4MVC Version 2.13.0
+T4MVC Version 3.0.0
 Find latest version and documentation at http://mvccontrib.codeplex.com/wikipage?title=T4MVC
-Discuss on StackOverflow or on the MVC forum (http://forums.asp.net/1146.aspx)
+Discuss on StackOverflow or on Codeplex (https://t4mvc.codeplex.com/discussions)
 
-T4MVC is part of the MvcContrib project (http://mvccontrib.codeplex.com)
+T4MVC is part of the MvcContrib project, but in a different Codeplex location (http://t4mvc.codeplex.com)
 Maintained by David Ebbo, with much feedback from the MVC community (thanks all!)
 david.ebbo@microsoft.com
 http://twitter.com/davidebbo

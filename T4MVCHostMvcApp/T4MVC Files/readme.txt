@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.0.0 (10-29-2012):
+* Move all the non-dynamic code to a separate T4MVCExtensions.dll assembly
+
 !!! 2.13.0 (10-24-2012):
 * Move settings to T4MVC.tt.settings.xml XML file instead of tt file
 * Make simple view names available alongside full names, e.g. MVC.Home.Views.SomeView vs MVC.Home.Views.ViewNames.SomeView
