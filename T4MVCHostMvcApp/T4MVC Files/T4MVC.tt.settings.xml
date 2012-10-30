@@ -29,8 +29,6 @@ as it breaks the templated helper code-->
     <ViewFolder>DisplayTemplates</ViewFolder>
     <ViewFolder>EditorTemplates</ViewFolder>
   </NonQualifiedViewFolders>
-  <!--The name of the interface that all T4MVC action results will implement-->
-  <ActionResultInterfaceName>IT4MVCActionResult</ActionResultInterfaceName>
   <!--This can be set to false to omit the generation of the System.Web.Mvc.T4Extensions class,
 which can be useful if it is already defined in a referenced library
 See http://stackoverflow.com/questions/5563163/t4mvc-use-extension-methods-in-control-library/5574227-->

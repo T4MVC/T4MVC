@@ -29,6 +29,10 @@
     </UpgradeBackupLocation>
     <TargetFrameworkProfile />
     <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -252,6 +256,12 @@
     <Folder Include="Areas\Home\Views\Shared\" />
     <Folder Include="Content\Empty Folder\" />
     <Folder Include="Views\Home\default\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\T4MVCExtensions\T4MVCExtensions.csproj">
+      <Project>{1ffae4b4-95c4-4879-8a25-be332a527b75}</Project>
+      <Name>T4MVCExtensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

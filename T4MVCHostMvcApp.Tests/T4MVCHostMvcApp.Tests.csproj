@@ -115,6 +115,10 @@
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\T4MVCExtensions\T4MVCExtensions.csproj">
+      <Project>{1ffae4b4-95c4-4879-8a25-be332a527b75}</Project>
+      <Name>T4MVCExtensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\T4MVCHostMvcApp\T4MVCHostMvcApp.csproj">
       <Project>{504F8A6E-E5B7-4339-AD54-0D8094538D74}</Project>
       <Name>T4MVCHostMvcApp</Name>
