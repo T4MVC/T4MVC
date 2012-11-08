@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>T4MVCExtensions</id>
+    <version>3.0.0-beta2</version>
+    <authors>$author$</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <summary>$description$</summary>
+    <language>en-US</language>
+    <licenseUrl>http://mvccontrib.codeplex.com/license</licenseUrl>
+    <projectUrl>http://t4mvc.codeplex.com/</projectUrl>
+    <tags>t4 mvc t4mvc</tags>
+  </metadata>
+</package>
