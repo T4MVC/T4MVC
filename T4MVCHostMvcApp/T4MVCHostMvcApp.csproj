@@ -233,9 +233,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="T4MVC Files\T4MVC.ModelUnbinder.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Views\Home\Sub Home\T4View.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

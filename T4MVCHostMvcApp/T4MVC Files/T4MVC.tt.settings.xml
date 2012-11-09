@@ -29,10 +29,6 @@ as it breaks the templated helper code-->
     <ViewFolder>DisplayTemplates</ViewFolder>
     <ViewFolder>EditorTemplates</ViewFolder>
   </NonQualifiedViewFolders>
-  <!--This can be set to false to omit the generation of the System.Web.Mvc.T4Extensions class,
-which can be useful if it is already defined in a referenced library
-See http://stackoverflow.com/questions/5563163/t4mvc-use-extension-methods-in-control-library/5574227-->
-  <GenerateMvcT4Extensions>True</GenerateMvcT4Extensions>
   <!--If true, the T4MVC action result interface will be generated
 If false, the namespace of the interface must be referenced in the 'ReferencedNamespaces' setting-->
   <GenerateActionResultInterface>True</GenerateActionResultInterface>

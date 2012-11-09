@@ -339,43 +339,6 @@ namespace System.Web.Mvc {
 <#  manager.EndBlock(); #>
 <#  }   #>
 
-<#if (settings.GenerateMvcT4Extensions) { 
-manager.StartNewFile("T4MVC.ModelUnbinder.cs"); #>
-
-namespace System.Web.Mvc
-{
-    #region ModelUnbinders
-    
-    [<#= GeneratedCode #>]
-    public class PropertiesUnbinder : IModelUnbinder
-    {
-        public virtual void UnbindModel(RouteValueDictionary routeValueDictionary, string routeName, object routeValue)
-        {
-            var dict = new RouteValueDictionary(routeValue);
-            foreach (var entry in dict) {
-                var name = entry.Key;
-
-                if (!(entry.Value is string) && (entry.Value is System.Collections.IEnumerable))
-                {
-                    var enumerableValue = (System.Collections.IEnumerable)entry.Value;
-                    var i = 0;
-                    foreach (var enumerableElement in enumerableValue)
-                    {
-                        ModelUnbinderHelpers.AddRouteValues(routeValueDictionary, string.Format("{0}.{1}[{2}]", routeName, name, i), enumerableElement);
-                        i++;
-                    }
-                }
-                else
-                {
-                    ModelUnbinderHelpers.AddRouteValues(routeValueDictionary, routeName + "." + name, entry.Value);
-                }
-            }
-        }
-    }
-}
-    #endregion
-<#  manager.EndBlock(); #>
-<#  }   #>
 <#manager.StartFooter(); #>
 #endregion T4MVC
 #pragma warning restore 1591
@@ -1449,7 +1412,6 @@ class MvcSettings : XmlSettings {
           "DisplayTemplates",
           "EditorTemplates"
         }, "ViewFolder");
-        this.GenerateMvcT4Extensions = true;
         this.GenerateActionResultInterface = true;
         this.UseLowercaseRoutes = false;
         this.LinksNamespace = "Links";
@@ -1495,9 +1457,6 @@ class MvcSettings : XmlSettings {
 
     [System.ComponentModel.Description("Views in DisplayTemplates and EditorTemplates folders shouldn't be fully qualifed\r\nas it breaks the templated helper code")]
     public XmlStringArray  NonQualifiedViewFolders { get; set; }
-
-    [System.ComponentModel.Description("This can be set to false to omit the generation of the System.Web.Mvc.T4Extensions class,\r\nwhich can be useful if it is already defined in a referenced library\r\nSee http://stackoverflow.com/questions/5563163/t4mvc-use-extension-methods-in-control-library/5574227")]
-    public bool GenerateMvcT4Extensions { get; set; }
 
     [System.ComponentModel.Description("If true, the T4MVC action result interface will be generated\r\nIf false, the namespace of the interface must be referenced in the 'ReferencedNamespaces' setting")]
     public bool GenerateActionResultInterface { get; set; }
