@@ -21,25 +21,31 @@ using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
 
-namespace System.Web.Mvc {
+namespace System.Web.Mvc
+{
     #region ModelUnbinders
     
     [GeneratedCode("T4MVC", "2.0")]
-    public class PropertiesUnbinder : IModelUnbinder {
-        public virtual void UnbindModel(RouteValueDictionary routeValueDictionary, string routeName, object routeValue) {
+    public class PropertiesUnbinder : IModelUnbinder
+    {
+        public virtual void UnbindModel(RouteValueDictionary routeValueDictionary, string routeName, object routeValue)
+        {
             var dict = new RouteValueDictionary(routeValue);
             foreach (var entry in dict) {
                 var name = entry.Key;
 
-                if (!(entry.Value is string) && (entry.Value is System.Collections.IEnumerable)) {
+                if (!(entry.Value is string) && (entry.Value is System.Collections.IEnumerable))
+                {
                     var enumerableValue = (System.Collections.IEnumerable)entry.Value;
                     var i = 0;
-                    foreach (var enumerableElement in enumerableValue) {
+                    foreach (var enumerableElement in enumerableValue)
+                    {
                         ModelUnbinderHelpers.AddRouteValues(routeValueDictionary, string.Format("{0}.{1}[{2}]", routeName, name, i), enumerableElement);
                         i++;
                     }
                 }
-                else {
+                else
+                {
                     ModelUnbinderHelpers.AddRouteValues(routeValueDictionary, routeName + "." + name, entry.Value);
                 }
             }

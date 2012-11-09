@@ -20,9 +20,11 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace T4MVCHostMvcApp.Areas.Break.Controllers {
+namespace T4MVCHostMvcApp.Areas.Break.Controllers
+{
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class MyAbstractBaseController {
+    public partial class MyAbstractBaseController
+    {
         protected MyAbstractBaseController() { }
     }
 }

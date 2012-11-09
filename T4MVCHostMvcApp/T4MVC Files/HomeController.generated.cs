@@ -20,8 +20,10 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace T4MVCHostMvcApp.Controllers {
-    public partial class HomeController {
+namespace T4MVCHostMvcApp.Controllers
+{
+    public partial class HomeController
+    {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public HomeController() { }
 
@@ -29,45 +31,53 @@ namespace T4MVCHostMvcApp.Controllers {
         protected HomeController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToAction(ActionResult result) {
+        protected RedirectToRouteResult RedirectToAction(ActionResult result)
+        {
             var callInfo = result.GetT4MVCResult();
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result) {
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
+        {
             var callInfo = result.GetT4MVCResult();
             return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
         }
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult Blah() {
+        public System.Web.Mvc.ActionResult Blah()
+        {
             return new T4MVC_ActionResult(Area, Name, ActionNames.Blah);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult ActionWithArrayParam() {
+        public System.Web.Mvc.ActionResult ActionWithArrayParam()
+        {
             return new T4MVC_ActionResult(Area, Name, ActionNames.ActionWithArrayParam);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult ActionWithSomeOptionalParams() {
+        public System.Web.Mvc.ActionResult ActionWithSomeOptionalParams()
+        {
             return new T4MVC_ActionResult(Area, Name, ActionNames.ActionWithSomeOptionalParams);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult ActionWithParamUsingAtSyntax() {
+        public System.Web.Mvc.ActionResult ActionWithParamUsingAtSyntax()
+        {
             return new T4MVC_ActionResult(Area, Name, ActionNames.ActionWithParamUsingAtSyntax);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult ActionThatRequiresHttps() {
+        public System.Web.Mvc.ActionResult ActionThatRequiresHttps()
+        {
             return new T4MVC_ActionResult(Area, Name, ActionNames.ActionThatRequiresHttps, "https");
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult OverloadedActionWithDifferentParams() {
+        public System.Web.Mvc.ActionResult OverloadedActionWithDifferentParams()
+        {
             return new T4MVC_ActionResult(Area, Name, ActionNames.OverloadedActionWithDifferentParams);
         }
 
@@ -84,7 +94,8 @@ namespace T4MVCHostMvcApp.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionNamesClass {
+        public class ActionNamesClass
+        {
             public readonly string Index = "Index";
             public readonly string About = firstConst + " " + secondConst;
             public readonly string Blah = "New-Name for Blah";
@@ -104,7 +115,8 @@ namespace T4MVCHostMvcApp.Controllers {
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionNameConstants {
+        public class ActionNameConstants
+        {
             public const string Index = "Index";
             public const string About = firstConst + " " + secondConst;
             public const string Blah = "New-Name for Blah";
@@ -128,7 +140,8 @@ namespace T4MVCHostMvcApp.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Blah BlahParams { get { return s_params_Blah; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Blah {
+        public class ActionParamsClass_Blah
+        {
             public readonly string name = "name";
             public readonly string age = "age";
         }
@@ -136,14 +149,16 @@ namespace T4MVCHostMvcApp.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_ActionWithArrayParam ActionWithArrayParamParams { get { return s_params_ActionWithArrayParam; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ActionWithArrayParam {
+        public class ActionParamsClass_ActionWithArrayParam
+        {
             public readonly string someStrings = "someStrings";
         }
         static readonly ActionParamsClass_ActionWithAllOptionalParams s_params_ActionWithAllOptionalParams = new ActionParamsClass_ActionWithAllOptionalParams();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_ActionWithAllOptionalParams ActionWithAllOptionalParamsParams { get { return s_params_ActionWithAllOptionalParams; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ActionWithAllOptionalParams {
+        public class ActionParamsClass_ActionWithAllOptionalParams
+        {
             public readonly string someString = "someString";
             public readonly string n = "n";
         }
@@ -151,7 +166,8 @@ namespace T4MVCHostMvcApp.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_ActionWithSomeOptionalParams ActionWithSomeOptionalParamsParams { get { return s_params_ActionWithSomeOptionalParams; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ActionWithSomeOptionalParams {
+        public class ActionParamsClass_ActionWithSomeOptionalParams
+        {
             public readonly string someString = "someString";
             public readonly string n = "n";
         }
@@ -159,21 +175,24 @@ namespace T4MVCHostMvcApp.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_ActionWithParamUsingAtSyntax ActionWithParamUsingAtSyntaxParams { get { return s_params_ActionWithParamUsingAtSyntax; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ActionWithParamUsingAtSyntax {
+        public class ActionParamsClass_ActionWithParamUsingAtSyntax
+        {
             public readonly string @event = "event";
         }
         static readonly ActionParamsClass_ActionThatRequiresHttps s_params_ActionThatRequiresHttps = new ActionParamsClass_ActionThatRequiresHttps();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_ActionThatRequiresHttps ActionThatRequiresHttpsParams { get { return s_params_ActionThatRequiresHttps; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ActionThatRequiresHttps {
+        public class ActionParamsClass_ActionThatRequiresHttps
+        {
             public readonly string someString = "someString";
         }
         static readonly ActionParamsClass_OverloadedActionWithDifferentParams s_params_OverloadedActionWithDifferentParams = new ActionParamsClass_OverloadedActionWithDifferentParams();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_OverloadedActionWithDifferentParams OverloadedActionWithDifferentParamsParams { get { return s_params_OverloadedActionWithDifferentParams; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_OverloadedActionWithDifferentParams {
+        public class ActionParamsClass_OverloadedActionWithDifferentParams
+        {
             public readonly string someString = "someString";
             public readonly string someNumber = "someNumber";
         }
@@ -181,10 +200,12 @@ namespace T4MVCHostMvcApp.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ViewsClass {
+        public class ViewsClass
+        {
             static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
-            public class _ViewNamesClass {
+            public class _ViewNamesClass
+            {
                 public readonly string _7_Some_Home_View_Hello = "7 Some Home.View-Hello";
                 public readonly string About = "About";
                 public readonly string DuplicateControl = "DuplicateControl";
@@ -203,39 +224,47 @@ namespace T4MVCHostMvcApp.Controllers {
             static readonly _defaultClass s_default = new _defaultClass();
             public _defaultClass @default { get { return s_default; } }
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-            public partial class _defaultClass{
+            public partial class _defaultClass
+            {
                 static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
                 public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
-                public class _ViewNamesClass {
+                public class _ViewNamesClass
+                {
                 }
             }
             static readonly _DisplayTemplatesClass s_DisplayTemplates = new _DisplayTemplatesClass();
             public _DisplayTemplatesClass DisplayTemplates { get { return s_DisplayTemplates; } }
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-            public partial class _DisplayTemplatesClass{
+            public partial class _DisplayTemplatesClass
+            {
                 public readonly string SomeDisplayTemplate = "SomeDisplayTemplate";
             }
             static readonly _EditorTemplatesClass s_EditorTemplates = new _EditorTemplatesClass();
             public _EditorTemplatesClass EditorTemplates { get { return s_EditorTemplates; } }
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-            public partial class _EditorTemplatesClass{
+            public partial class _EditorTemplatesClass
+            {
                 public readonly string SomeEditorTemplate = "SomeEditorTemplate";
             }
             static readonly _SomeNameClass s_SomeName = new _SomeNameClass();
             public _SomeNameClass SomeName { get { return s_SomeName; } }
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-            public partial class _SomeNameClass{
+            public partial class _SomeNameClass
+            {
                 static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
                 public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
-                public class _ViewNamesClass {
+                public class _ViewNamesClass
+                {
                 }
                 static readonly _SomeName_Class s_SomeName = new _SomeName_Class();
                 public _SomeName_Class SomeName { get { return s_SomeName; } }
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                public partial class _SomeName_Class{
+                public partial class _SomeName_Class
+                {
                     static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
                     public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
-                    public class _ViewNamesClass {
+                    public class _ViewNamesClass
+                    {
                         public readonly string SomeName = "SomeName";
                     }
                     public readonly string SomeName = "~/Views/Home/SomeName/SomeName/SomeName.txt";
@@ -244,10 +273,12 @@ namespace T4MVCHostMvcApp.Controllers {
             static readonly _Sub_HomeClass s_Sub_Home = new _Sub_HomeClass();
             public _Sub_HomeClass Sub_Home { get { return s_Sub_Home; } }
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-            public partial class _Sub_HomeClass{
+            public partial class _Sub_HomeClass
+            {
                 static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
                 public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
-                public class _ViewNamesClass {
+                public class _ViewNamesClass
+                {
                     public readonly string Qqq = "Qqq";
                     public readonly string @string = "string";
                     public readonly string T4View = "T4View";
@@ -258,10 +289,12 @@ namespace T4MVCHostMvcApp.Controllers {
                 static readonly _Nested_SubClass s_Nested_Sub = new _Nested_SubClass();
                 public _Nested_SubClass Nested_Sub { get { return s_Nested_Sub; } }
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                public partial class _Nested_SubClass{
+                public partial class _Nested_SubClass
+                {
                     static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
                     public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
-                    public class _ViewNamesClass {
+                    public class _ViewNamesClass
+                    {
                         public readonly string _99_Super_Nested_View = "99 Super~Nested-View";
                     }
                     public readonly string _99_Super_Nested_View = "~/Views/Home/Sub Home/Nested-Sub/99 Super~Nested-View.txt";
@@ -271,100 +304,118 @@ namespace T4MVCHostMvcApp.Controllers {
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class T4MVC_HomeController: T4MVCHostMvcApp.Controllers.HomeController {
+    public class T4MVC_HomeController : T4MVCHostMvcApp.Controllers.HomeController
+    {
         public T4MVC_HomeController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult Index() {
+        public override System.Web.Mvc.ActionResult Index()
+        {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Index);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult About() {
+        public override System.Web.Mvc.ActionResult About()
+        {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.About);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult Blah(string name, int age) {
+        public override System.Web.Mvc.ActionResult Blah(string name, int age)
+        {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Blah);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "name", name);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "age", age);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ViewResult SomeViewResultAction() {
+        public override System.Web.Mvc.ViewResult SomeViewResultAction()
+        {
             var callInfo = new T4MVC_ViewResult(Area, Name, ActionNames.SomeViewResultAction);
             return callInfo;
         }
 
-        public override System.Web.Mvc.JsonResult SomeJsonResultAction() {
+        public override System.Web.Mvc.JsonResult SomeJsonResultAction()
+        {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.SomeJsonResultAction);
             return callInfo;
         }
 
-        public override System.Web.Mvc.FileContentResult SomeFileContentResultAction() {
+        public override System.Web.Mvc.FileContentResult SomeFileContentResultAction()
+        {
             var callInfo = new T4MVC_FileContentResult(Area, Name, ActionNames.SomeFileContentResultAction);
             return callInfo;
         }
 
-        public override System.Web.Mvc.FileStreamResult SomeFileStreamResultAction() {
+        public override System.Web.Mvc.FileStreamResult SomeFileStreamResultAction()
+        {
             var callInfo = new T4MVC_FileStreamResult(Area, Name, ActionNames.SomeFileStreamResultAction);
             return callInfo;
         }
 
-        public override System.Web.Mvc.FileResult SomeFileResultAction() {
+        public override System.Web.Mvc.FileResult SomeFileResultAction()
+        {
             var callInfo = new T4MVC_FileResult(Area, Name, ActionNames.SomeFileResultAction);
             return callInfo;
         }
 
-        public override T4MVCHostMvcApp.Misc.MyCustomResult SomeCustomResultAction() {
+        public override T4MVCHostMvcApp.Misc.MyCustomResult SomeCustomResultAction()
+        {
             var callInfo = new T4MVC_MyCustomResult(Area, Name, ActionNames.SomeCustomResultAction);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult ActionWithArrayParam(string[] someStrings) {
+        public override System.Web.Mvc.ActionResult ActionWithArrayParam(string[] someStrings)
+        {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ActionWithArrayParam);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someStrings", someStrings);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult ActionWithAllOptionalParams(string someString, int n) {
+        public override System.Web.Mvc.ActionResult ActionWithAllOptionalParams(string someString, int n)
+        {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ActionWithAllOptionalParams);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someString", someString);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult ActionWithSomeOptionalParams(string someString, int n) {
+        public override System.Web.Mvc.ActionResult ActionWithSomeOptionalParams(string someString, int n)
+        {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ActionWithSomeOptionalParams);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someString", someString);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult ActionWithParamUsingAtSyntax(int @event) {
+        public override System.Web.Mvc.ActionResult ActionWithParamUsingAtSyntax(int @event)
+        {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ActionWithParamUsingAtSyntax);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "event", @event);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult ActionThatUsesActionNameConstantInAttribute() {
+        public override System.Web.Mvc.ActionResult ActionThatUsesActionNameConstantInAttribute()
+        {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ActionThatUsesActionNameConstantInAttribute);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult ActionThatRequiresHttps(string someString) {
+        public override System.Web.Mvc.ActionResult ActionThatRequiresHttps(string someString)
+        {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ActionThatRequiresHttps, "https");
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someString", someString);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult OverloadedActionWithDifferentParams(string someString) {
+        public override System.Web.Mvc.ActionResult OverloadedActionWithDifferentParams(string someString)
+        {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.OverloadedActionWithDifferentParams);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someString", someString);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult OverloadedActionWithDifferentParams(int someNumber) {
+        public override System.Web.Mvc.ActionResult OverloadedActionWithDifferentParams(int someNumber)
+        {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.OverloadedActionWithDifferentParams);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someNumber", someNumber);
             return callInfo;

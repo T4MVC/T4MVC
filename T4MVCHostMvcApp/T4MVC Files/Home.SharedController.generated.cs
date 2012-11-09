@@ -20,17 +20,21 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace T4MVC.Home {
-    public class SharedController {
+namespace T4MVC.Home
+{
+    public class SharedController
+    {
 
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ViewsClass {
+        public class ViewsClass
+        {
             static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
-            public class _ViewNamesClass {
+            public class _ViewNamesClass
+            {
             }
         }
     }

@@ -22,7 +22,8 @@ using System.Web.Routing;
 using T4MVC;
 
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-public static class MVC {
+public static class MVC
+{
     static readonly breakClass s_break = new breakClass();
     public static breakClass @break { get { return s_break; } }
     static readonly HomeClass s_Home = new HomeClass();
@@ -34,32 +35,39 @@ public static class MVC {
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 
-namespace T4MVC {
+namespace T4MVC
+{
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class breakClass {
+    public class breakClass
+    {
         public readonly string Name = "break";
         public T4MVCHostMvcApp.Areas.Break.Controllers.PostController Post = new T4MVCHostMvcApp.Areas.Break.Controllers.T4MVC_PostController();
         public T4MVC.@break.SharedController Shared = new T4MVC.@break.SharedController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class HomeClass {
+    public class HomeClass
+    {
         public readonly string Name = "Home";
         public T4MVCHostMvcApp.Areas.Home.Controllers.HomeController Home = new T4MVCHostMvcApp.Areas.Home.Controllers.T4MVC_HomeController();
         public T4MVC.Home.SharedController Shared = new T4MVC.Home.SharedController();
     }
 }
 
-namespace T4MVC {
+namespace T4MVC
+{
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class Dummy {
+    public class Dummy
+    {
         private Dummy() { }
         public static Dummy Instance = new Dummy();
     }
 }
 
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-public class T4MVC_ActionResult : System.Web.Mvc.ActionResult, IT4MVCActionResult {
-    public T4MVC_ActionResult(string area, string controller, string action, string protocol = null): base()  {
+public class T4MVC_ActionResult : System.Web.Mvc.ActionResult, IT4MVCActionResult
+{
+    public T4MVC_ActionResult(string area, string controller, string action, string protocol = null): base()
+    {
         this.InitMVCT4Result(area, controller, action, protocol);
     }
      
@@ -71,8 +79,10 @@ public class T4MVC_ActionResult : System.Web.Mvc.ActionResult, IT4MVCActionResul
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-public class T4MVC_ViewResult : System.Web.Mvc.ViewResult, IT4MVCActionResult {
-    public T4MVC_ViewResult(string area, string controller, string action, string protocol = null): base()  {
+public class T4MVC_ViewResult : System.Web.Mvc.ViewResult, IT4MVCActionResult
+{
+    public T4MVC_ViewResult(string area, string controller, string action, string protocol = null): base()
+    {
         this.InitMVCT4Result(area, controller, action, protocol);
     }
     
@@ -82,8 +92,10 @@ public class T4MVC_ViewResult : System.Web.Mvc.ViewResult, IT4MVCActionResult {
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-public class T4MVC_JsonResult : System.Web.Mvc.JsonResult, IT4MVCActionResult {
-    public T4MVC_JsonResult(string area, string controller, string action, string protocol = null): base()  {
+public class T4MVC_JsonResult : System.Web.Mvc.JsonResult, IT4MVCActionResult
+{
+    public T4MVC_JsonResult(string area, string controller, string action, string protocol = null): base()
+    {
         this.InitMVCT4Result(area, controller, action, protocol);
     }
     
@@ -93,8 +105,10 @@ public class T4MVC_JsonResult : System.Web.Mvc.JsonResult, IT4MVCActionResult {
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-public class T4MVC_FileContentResult : System.Web.Mvc.FileContentResult, IT4MVCActionResult {
-    public T4MVC_FileContentResult(string area, string controller, string action, string protocol = null): base(new byte[0], " ")  {
+public class T4MVC_FileContentResult : System.Web.Mvc.FileContentResult, IT4MVCActionResult
+{
+    public T4MVC_FileContentResult(string area, string controller, string action, string protocol = null): base(new byte[0], " ")
+    {
         this.InitMVCT4Result(area, controller, action, protocol);
     }
     
@@ -104,8 +118,10 @@ public class T4MVC_FileContentResult : System.Web.Mvc.FileContentResult, IT4MVCA
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-public class T4MVC_FileStreamResult : System.Web.Mvc.FileStreamResult, IT4MVCActionResult {
-    public T4MVC_FileStreamResult(string area, string controller, string action, string protocol = null): base(default(System.IO.Stream), " ")  {
+public class T4MVC_FileStreamResult : System.Web.Mvc.FileStreamResult, IT4MVCActionResult
+{
+    public T4MVC_FileStreamResult(string area, string controller, string action, string protocol = null): base(default(System.IO.Stream), " ")
+    {
         this.InitMVCT4Result(area, controller, action, protocol);
     }
     
@@ -115,8 +131,10 @@ public class T4MVC_FileStreamResult : System.Web.Mvc.FileStreamResult, IT4MVCAct
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-public class T4MVC_FileResult : System.Web.Mvc.FileResult, IT4MVCActionResult {
-    public T4MVC_FileResult(string area, string controller, string action, string protocol = null): base(" ")  {
+public class T4MVC_FileResult : System.Web.Mvc.FileResult, IT4MVCActionResult
+{
+    public T4MVC_FileResult(string area, string controller, string action, string protocol = null): base(" ")
+    {
         this.InitMVCT4Result(area, controller, action, protocol);
     }
      
@@ -128,8 +146,10 @@ public class T4MVC_FileResult : System.Web.Mvc.FileResult, IT4MVCActionResult {
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-public class T4MVC_MyCustomResult : T4MVCHostMvcApp.Misc.MyCustomResult, IT4MVCActionResult {
-    public T4MVC_MyCustomResult(string area, string controller, string action, string protocol = null): base(" ", default(int), default(T4MVCHostMvcApp.Misc.Animal))  {
+public class T4MVC_MyCustomResult : T4MVCHostMvcApp.Misc.MyCustomResult, IT4MVCActionResult
+{
+    public T4MVC_MyCustomResult(string area, string controller, string action, string protocol = null): base(" ", default(int), default(T4MVCHostMvcApp.Misc.Animal))
+    {
         this.InitMVCT4Result(area, controller, action, protocol);
     }
     
@@ -141,7 +161,8 @@ public class T4MVC_MyCustomResult : T4MVCHostMvcApp.Misc.MyCustomResult, IT4MVCA
 
 
 
-namespace Links {
+namespace Links
+{
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public static class Scripts {
         private const string URLPATH = "~/Scripts";
@@ -240,7 +261,8 @@ namespace Links {
     
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public static partial class bundles {
+    public static partial class bundles
+    {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static partial class scripts {}
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]

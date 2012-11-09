@@ -67,9 +67,11 @@ using <#=referencedNamespace #>;
 <#manager.EndBlock(); #>
 
 [<#= GeneratedCode #>, DebuggerNonUserCode]
-public static class <#=settings.HelpersPrefix #> {
+public static class <#=settings.HelpersPrefix #>
+{
 <#if (settings.IncludeAreasToken) { #>
-public static class Areas {
+public static class Areas
+{
 <#} #>
 <#foreach (var area in Areas.Where(a => !string.IsNullOrEmpty(a.Name))) { #>
     static readonly <#=area.Name #>Class s_<#=area.Name #> = new <#=area.Name #>Class();
@@ -83,10 +85,12 @@ public static class Areas {
 <#} #>
 }
 
-namespace <#=settings.T4MVCNamespace #> {
+namespace <#=settings.T4MVCNamespace #>
+{
 <#foreach (var area in Areas.Where(a => !string.IsNullOrEmpty(a.Name))) { #>
     [<#= GeneratedCode #>, DebuggerNonUserCode]
-    public class <#=area.Name #>Class {
+    public class <#=area.Name #>Class
+    {
         public readonly string Name = "<#=ProcessAreaOrControllerName(area.Name) #>";
 <#foreach (var controller in area.GetControllers()) { #>
         public <#=controller.FullClassName #> <#=controller.Name #> = new <#=controller.FullDerivedClassName #>();
@@ -95,9 +99,11 @@ namespace <#=settings.T4MVCNamespace #> {
 <#} #>
 }
 
-namespace <#=settings.T4MVCNamespace #> {
+namespace <#=settings.T4MVCNamespace #>
+{
     [<#= GeneratedCode #>, DebuggerNonUserCode]
-    public class Dummy {
+    public class Dummy
+    {
         private Dummy() { }
         public static Dummy Instance = new Dummy();
     }
@@ -105,8 +111,10 @@ namespace <#=settings.T4MVCNamespace #> {
 
 <#foreach (var resultType in ResultTypes.Values) { #>
 [<#= GeneratedCode #>, DebuggerNonUserCode]
-public class T4MVC_<#=resultType.Name #> : <#=resultType.FullName #>, IT4MVCActionResult {
-    public T4MVC_<#=resultType.Name #>(string area, string controller, string action, string protocol = null): base(<#resultType.Constructor.WriteNonEmptyParameterValues(true); #>)  {
+public class T4MVC_<#=resultType.Name #> : <#=resultType.FullName #>, IT4MVCActionResult
+{
+    public T4MVC_<#=resultType.Name #>(string area, string controller, string action, string protocol = null): base(<#resultType.Constructor.WriteNonEmptyParameterValues(true); #>)
+    {
         this.InitMVCT4Result(area, controller, action, protocol);
     }
     <#foreach (var method in resultType.AbstractMethods) { #> 
@@ -122,14 +130,16 @@ public class T4MVC_<#=resultType.Name #> : <#=resultType.FullName #>, IT4MVCActi
 
 
 
-namespace <#=settings.LinksNamespace #> {
+namespace <#=settings.LinksNamespace #>
+{
 <#
 foreach (string folder in settings.StaticFilesFolders) {
     ProcessStaticFiles(Project, folder);
 }
 #>
     [<#= GeneratedCode #>, DebuggerNonUserCode]
-    public static partial class bundles {
+    public static partial class bundles
+    {
         [<#= GeneratedCode #>, DebuggerNonUserCode]
         public static partial class scripts {}
         [<#= GeneratedCode #>, DebuggerNonUserCode]
@@ -142,9 +152,11 @@ RenderAdditionalCode();
 #>
 <#foreach (var controller in GetAbstractControllers().Where(c => !c.HasDefaultConstructor)) { #>
 <#manager.StartNewFile(controller.GeneratedFileName); #>
-namespace <#=controller.Namespace #> {
+namespace <#=controller.Namespace #>
+{
     [<#= GeneratedCode #>, DebuggerNonUserCode]
-    public partial class <#=controller.ClassName #> {
+    public partial class <#=controller.ClassName #>
+    {
         protected <#=controller.ClassName #>() { }
     }
 }
@@ -162,9 +174,11 @@ namespace <#=controller.Namespace #> {
 #>
 <#manager.StartNewFile(controller.GeneratedFileName); #>
 <#if (!String.IsNullOrEmpty(controller.Namespace)) { #>
-namespace <#=controller.Namespace #> {
+namespace <#=controller.Namespace #>
+{
 <#} #>
-    public <#if (!controller.NotRealController) { #>partial <#} #>class <#=controller.ClassName #> {
+    public <#if (!controller.NotRealController) { #>partial <#} #>class <#=controller.ClassName #>
+    {
 <#if (!controller.NotRealController) { #>
 <#if (!controller.HasExplicitConstructor) { #>
         [<#= GeneratedCode #>, DebuggerNonUserCode]
@@ -175,13 +189,15 @@ namespace <#=controller.Namespace #> {
         protected <#=controller.ClassName #>(Dummy d) { }
 
         [<#= GeneratedCode #>, DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToAction(ActionResult result) {
+        protected RedirectToRouteResult RedirectToAction(ActionResult result)
+        {
             var callInfo = result.GetT4MVCResult();
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
         [<#= GeneratedCode #>, DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result) {
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
+        {
             var callInfo = result.GetT4MVCResult();
             return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
         }
@@ -189,7 +205,8 @@ namespace <#=controller.Namespace #> {
 <#foreach (var method in controller.ActionMethodsUniqueWithoutParameterlessOverload) { #>
         [NonAction]
         [<#= GeneratedCode #>, DebuggerNonUserCode]
-        public <#=method.ReturnTypeFullName #> <#=method.Name #>() {
+        public <#=method.ReturnTypeFullName #> <#=method.Name #>()
+        {
             return new T4MVC_<#=method.ReturnType #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
         }
 <#} #>
@@ -207,7 +224,8 @@ namespace <#=controller.Namespace #> {
         [<#= GeneratedCode #>, DebuggerNonUserCode]
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [<#= GeneratedCode #>, DebuggerNonUserCode]
-        public class ActionNamesClass {
+        public class ActionNamesClass
+        {
 <#foreach (var method in controller.ActionMethodsWithUniqueNames) { #>
 <#  if (settings.UseLowercaseRoutes) { #>
             public readonly string <#=method.ActionName #> = (<#=method.ActionNameValueExpression #>).ToLowerInvariant();
@@ -221,7 +239,8 @@ namespace <#=controller.Namespace #> {
 // Issue: we can't honor UseLowercaseRoutes here because ToLowerInvariant() is not valid in constants!
 if (!settings.UseLowercaseRoutes) { #>
         [<#= GeneratedCode #>, DebuggerNonUserCode]
-        public class ActionNameConstants {
+        public class ActionNameConstants
+        {
 <#foreach (var method in controller.ActionMethodsWithUniqueNames) { #>
             public const string <#=method.ActionName #> = <#=method.ActionNameValueExpression #>;
 <#
@@ -237,7 +256,8 @@ foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (gr
         [<#= GeneratedCode #>, DebuggerNonUserCode]
         public ActionParamsClass_<#=group.Key #> <#=group.Key + settings.ParamsPropertySuffix #> { get { return s_params_<#=group.Key #>; } }
         [<#= GeneratedCode #>, DebuggerNonUserCode]
-        public class ActionParamsClass_<#=group.Key #> {
+        public class ActionParamsClass_<#=group.Key #>
+        {
 <#foreach (var param in group) { #>
 <#  if (settings.UseLowercaseRoutes) { #>
             public readonly string <#=param.Name #> = (<#=param.RouteNameExpression #>).ToLowerInvariant();
@@ -252,18 +272,21 @@ foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (gr
         [<#= GeneratedCode #>, DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
         [<#= GeneratedCode #>, DebuggerNonUserCode]
-        public class ViewsClass {
+        public class ViewsClass
+        {
 <#RenderControllerViews(controller);#>
         }
     }
 
 <#if (!controller.NotRealController) { #>
     [<#= GeneratedCode #>, DebuggerNonUserCode]
-    public class <#=controller.DerivedClassName #>: <#=controller.FullClassName #> {
+    public class <#=controller.DerivedClassName #> : <#=controller.FullClassName #>
+    {
         public <#=controller.DerivedClassName #>() : base(Dummy.Instance) { }
 
 <#foreach (var method in controller.ActionMethods) { #>
-        public override <#=method.ReturnTypeFullName #> <#=method.Name #>(<#method.WriteFormalParameters(true); #>) {
+        public override <#=method.ReturnTypeFullName #> <#=method.Name #>(<#method.WriteFormalParameters(true); #>)
+        {
             var callInfo = new T4MVC_<#=method.ReturnType #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
 <#if (method.Parameters.Count > 0) { #>
 <#foreach (var p in method.Parameters) { #>
@@ -289,7 +312,8 @@ foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (gr
 
 namespace System.Web.Mvc {
     [<#= GeneratedCode #>]
-    public static class HtmlHelpersForExplicitPartials {
+    public static class HtmlHelpersForExplicitPartials
+    {
     <#  
         foreach(var partialView in GetPartials()) {
             string partialName = partialView.Key;
@@ -318,25 +342,31 @@ namespace System.Web.Mvc {
 <#if (settings.GenerateMvcT4Extensions) { 
 manager.StartNewFile("T4MVC.ModelUnbinder.cs"); #>
 
-namespace System.Web.Mvc {
+namespace System.Web.Mvc
+{
     #region ModelUnbinders
     
     [<#= GeneratedCode #>]
-    public class PropertiesUnbinder : IModelUnbinder {
-        public virtual void UnbindModel(RouteValueDictionary routeValueDictionary, string routeName, object routeValue) {
+    public class PropertiesUnbinder : IModelUnbinder
+    {
+        public virtual void UnbindModel(RouteValueDictionary routeValueDictionary, string routeName, object routeValue)
+        {
             var dict = new RouteValueDictionary(routeValue);
             foreach (var entry in dict) {
                 var name = entry.Key;
 
-                if (!(entry.Value is string) && (entry.Value is System.Collections.IEnumerable)) {
+                if (!(entry.Value is string) && (entry.Value is System.Collections.IEnumerable))
+                {
                     var enumerableValue = (System.Collections.IEnumerable)entry.Value;
                     var i = 0;
-                    foreach (var enumerableElement in enumerableValue) {
+                    foreach (var enumerableElement in enumerableValue)
+                    {
                         ModelUnbinderHelpers.AddRouteValues(routeValueDictionary, string.Format("{0}.{1}[{2}]", routeName, name, i), enumerableElement);
                         i++;
                     }
                 }
-                else {
+                else
+                {
                     ModelUnbinderHelpers.AddRouteValues(routeValueDictionary, routeName + "." + name, entry.Value);
                 }
             }
@@ -762,7 +792,8 @@ void RenderViewsRecursive(ViewsFolderInfo viewsFolder, ControllerInfo controller
 #>
 static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
 public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
-public class _ViewNamesClass {
+public class _ViewNamesClass
+{
 <#+
     PushIndent("    ");
     foreach (var viewPair in viewsFolder.Views) {
@@ -790,7 +821,8 @@ public class _ViewNamesClass {
 static readonly <#=className#>Class s_<#=name#> = new <#=className#>Class();
 public <#=className#>Class <#=EscapeID(name)#> { get { return s_<#=name#>; } }
 [<#= GeneratedCode #>, DebuggerNonUserCode]
-public partial class <#=className#>Class{
+public partial class <#=className#>Class
+{
 <#+
 PushIndent("    ");
 RenderViewsRecursive(subFolder, controller);

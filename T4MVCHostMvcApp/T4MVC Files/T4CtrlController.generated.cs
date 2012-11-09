@@ -20,19 +20,23 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace T4MVCHostMvcApp.Controllers {
-    public partial class T4CtrlController {
+namespace T4MVCHostMvcApp.Controllers
+{
+    public partial class T4CtrlController
+    {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected T4CtrlController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToAction(ActionResult result) {
+        protected RedirectToRouteResult RedirectToAction(ActionResult result)
+        {
             var callInfo = result.GetT4MVCResult();
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result) {
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
+        {
             var callInfo = result.GetT4MVCResult();
             return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
         }
@@ -51,12 +55,14 @@ namespace T4MVCHostMvcApp.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionNamesClass {
+        public class ActionNamesClass
+        {
             public readonly string Qqq = "Qqq";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionNameConstants {
+        public class ActionNameConstants
+        {
             public const string Qqq = "Qqq";
         }
 
@@ -65,19 +71,23 @@ namespace T4MVCHostMvcApp.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ViewsClass {
+        public class ViewsClass
+        {
             static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
-            public class _ViewNamesClass {
+            public class _ViewNamesClass
+            {
             }
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class T4MVC_T4CtrlController: T4MVCHostMvcApp.Controllers.T4CtrlController {
+    public class T4MVC_T4CtrlController : T4MVCHostMvcApp.Controllers.T4CtrlController
+    {
         public T4MVC_T4CtrlController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult Qqq() {
+        public override System.Web.Mvc.ActionResult Qqq()
+        {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Qqq);
             return callInfo;
         }
