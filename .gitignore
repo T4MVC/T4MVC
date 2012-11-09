@@ -6,5 +6,6 @@ TestResults
 *.vsp
 *.psess
 *.suo
+*.nupkg
 _Resharper*
 *DotSettings*
