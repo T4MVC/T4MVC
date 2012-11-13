@@ -58,6 +58,56 @@ namespace System.Web.Mvc
             return htmlHelper.RouteLink(linkText, null, protocol ?? result.GetT4MVCResult().Protocol, hostName, fragment, result.GetRouteValueDictionary(), htmlAttributes);
         }
 
+        public static MvcHtmlString RouteLink(this HtmlHelper htmlHelper, string linkText, ActionResult result, object htmlAttributes)
+        {
+            return htmlHelper.RouteLink(linkText, null, result, htmlAttributes, null, null, null);
+        }
+
+        public static MvcHtmlString RouteLink(this HtmlHelper htmlHelper, string linkText, string routeName, ActionResult result, object htmlAttributes)
+        {
+            return htmlHelper.RouteLink(linkText, routeName, result, htmlAttributes, null, null, null);
+        }
+
+        public static MvcHtmlString RouteLink(this HtmlHelper htmlHelper, string linkText, string routeName, ActionResult result, object htmlAttributes, string protocol)
+        {
+            return htmlHelper.RouteLink(linkText, routeName, result, htmlAttributes, protocol, null, null);
+        }
+
+        public static MvcHtmlString RouteLink(this HtmlHelper htmlHelper, string linkText, string routeName, ActionResult result, object htmlAttributes, string protocol, string hostName)
+        {
+            return htmlHelper.RouteLink(linkText, routeName, result, htmlAttributes, protocol, hostName, null);
+        }
+
+        public static MvcHtmlString RouteLink(this HtmlHelper htmlHelper, string linkText, string routeName, ActionResult result, object htmlAttributes, string protocol, string hostName, string fragment)
+        {
+            return htmlHelper.RouteLink(linkText, routeName, result, HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes), protocol, hostName, fragment);
+        }
+
+        public static MvcHtmlString RouteLink(this HtmlHelper htmlHelper, string linkText, ActionResult result, IDictionary<string, object> htmlAttributes)
+        {
+            return htmlHelper.RouteLink(linkText, null, result, htmlAttributes, null, null, null);
+        }
+
+        public static MvcHtmlString RouteLink(this HtmlHelper htmlHelper, string linkText, string routeName, ActionResult result, IDictionary<string, object> htmlAttributes)
+        {
+            return htmlHelper.RouteLink(linkText, routeName, result, htmlAttributes, null, null, null);
+        }
+
+        public static MvcHtmlString RouteLink(this HtmlHelper htmlHelper, string linkText, string routeName, ActionResult result, IDictionary<string, object> htmlAttributes, string protocol)
+        {
+            return htmlHelper.RouteLink(linkText, routeName, result, htmlAttributes, protocol, null, null);
+        }
+
+        public static MvcHtmlString RouteLink(this HtmlHelper htmlHelper, string linkText, string routeName, ActionResult result, IDictionary<string, object> htmlAttributes, string protocol, string hostName)
+        {
+            return htmlHelper.RouteLink(linkText, routeName, result, htmlAttributes, protocol, hostName, null);
+        }
+
+        public static MvcHtmlString RouteLink(this HtmlHelper htmlHelper, string linkText, string routeName, ActionResult result, IDictionary<string, object> htmlAttributes, string protocol, string hostName, string fragment)
+        {
+            return htmlHelper.RouteLink(linkText, routeName, protocol ?? result.GetT4MVCResult().Protocol, hostName, fragment, result.GetRouteValueDictionary(), htmlAttributes);
+        }
+
         public static MvcForm BeginForm(this HtmlHelper htmlHelper, ActionResult result)
         {
             return htmlHelper.BeginForm(result, FormMethod.Post);
@@ -77,6 +127,31 @@ namespace System.Web.Mvc
         {
             var callInfo = result.GetT4MVCResult();
             return htmlHelper.BeginForm(callInfo.Action, callInfo.Controller, callInfo.RouteValueDictionary, formMethod, htmlAttributes);
+        }
+
+        public static MvcForm BeginRouteForm(this HtmlHelper htmlHelper, ActionResult result)
+        {
+            return htmlHelper.BeginRouteForm(null, result, FormMethod.Post, null);
+        }
+
+        public static MvcForm BeginRouteForm(this HtmlHelper htmlHelper, string routeName, ActionResult result)
+        {
+            return htmlHelper.BeginRouteForm(routeName, result, FormMethod.Post, null);
+        }
+
+        public static MvcForm BeginRouteForm(this HtmlHelper htmlHelper, string routeName, ActionResult result, FormMethod method)
+        {
+            return htmlHelper.BeginRouteForm(routeName, result, method, null);
+        }
+
+        public static MvcForm BeginRouteForm(this HtmlHelper htmlHelper, string routeName, ActionResult result, FormMethod method, object htmlAttributes)
+        {
+            return htmlHelper.BeginRouteForm(routeName, result, method, HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes));
+        }
+
+        public static MvcForm BeginRouteForm(this HtmlHelper htmlHelper, string routeName, ActionResult result, FormMethod method, IDictionary<string, object> htmlAttributes)
+        {
+            return htmlHelper.BeginRouteForm(routeName, result.GetRouteValueDictionary(), method, htmlAttributes);
         }
 
         public static void RenderAction(this HtmlHelper htmlHelper, ActionResult result)
