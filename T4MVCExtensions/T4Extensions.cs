@@ -182,6 +182,26 @@ namespace System.Web.Mvc
                 urlHelper.RouteUrl(result.GetRouteValueDictionary()));
         }
 
+        public static string RouteUrl(this UrlHelper urlHelper, ActionResult result)
+        {
+            return urlHelper.RouteUrl(null, result, null, null);
+        }
+
+        public static string RouteUrl(this UrlHelper urlHelper, string routeName, ActionResult result)
+        {
+            return urlHelper.RouteUrl(routeName, result, null, null);
+        }
+
+        public static string RouteUrl(this UrlHelper urlHelper, string routeName, ActionResult result, string protocol)
+        {
+            return urlHelper.RouteUrl(routeName, result, protocol, null);
+        }
+
+        public static string RouteUrl(this UrlHelper urlHelper, string routeName, ActionResult result, string protocol, string hostName)
+        {
+            return urlHelper.RouteUrl(routeName, result.GetRouteValueDictionary(), protocol ?? result.GetT4MVCResult().Protocol, hostName);
+        }
+
         public static MvcHtmlString ActionLink(this AjaxHelper ajaxHelper, string linkText, ActionResult result, AjaxOptions ajaxOptions)
         {
             return ajaxHelper.RouteLink(linkText, result.GetRouteValueDictionary(), ajaxOptions);
@@ -195,6 +215,21 @@ namespace System.Web.Mvc
         public static MvcHtmlString ActionLink(this AjaxHelper ajaxHelper, string linkText, ActionResult result, AjaxOptions ajaxOptions, IDictionary<string, object> htmlAttributes)
         {
             return ajaxHelper.RouteLink(linkText, result.GetRouteValueDictionary(), ajaxOptions, htmlAttributes);
+        }
+
+        public static MvcHtmlString RouteLink(this AjaxHelper ajaxHelper, string linkText, string routeName, ActionResult result, AjaxOptions ajaxOptions)
+        {
+            return ajaxHelper.RouteLink(linkText, routeName, result, ajaxOptions, null);
+        }
+
+        public static MvcHtmlString RouteLink(this AjaxHelper ajaxHelper, string linkText, string routeName, ActionResult result, AjaxOptions ajaxOptions, object htmlAttributes)
+        {
+            return ajaxHelper.RouteLink(linkText, routeName, result, ajaxOptions, HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes));
+        }
+
+        public static MvcHtmlString RouteLink(this AjaxHelper ajaxHelper, string linkText, string routeName, ActionResult result, AjaxOptions ajaxOptions, IDictionary<string, object> htmlAttributes)
+        {
+            return ajaxHelper.RouteLink(linkText, routeName, result.GetRouteValueDictionary(), ajaxOptions, htmlAttributes);
         }
 
         public static MvcForm BeginForm(this AjaxHelper ajaxHelper, ActionResult result, AjaxOptions ajaxOptions)
@@ -211,6 +246,21 @@ namespace System.Web.Mvc
         {
             var callInfo = result.GetT4MVCResult();
             return ajaxHelper.BeginForm(callInfo.Action, callInfo.Controller, callInfo.RouteValueDictionary, ajaxOptions, htmlAttributes);
+        }
+
+        public static MvcForm BeginRouteForm(this AjaxHelper ajaxHelper, string routeName, ActionResult result, AjaxOptions ajaxOptions)
+        {
+            return ajaxHelper.BeginRouteForm(routeName, result, ajaxOptions, null);
+        }
+
+        public static MvcForm BeginRouteForm(this AjaxHelper ajaxHelper, string routeName, ActionResult result, AjaxOptions ajaxOptions, object htmlAttributes)
+        {
+            return ajaxHelper.BeginRouteForm(routeName, result, ajaxOptions, HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes));
+        }
+
+        public static MvcForm BeginRouteForm(this AjaxHelper ajaxHelper, string routeName, ActionResult result, AjaxOptions ajaxOptions, IDictionary<string, object> htmlAttributes)
+        {
+            return ajaxHelper.BeginRouteForm(routeName, result.GetRouteValueDictionary(), ajaxOptions, htmlAttributes);
         }
 
         public static Route MapRoute(this RouteCollection routes, string name, string url, ActionResult result)
