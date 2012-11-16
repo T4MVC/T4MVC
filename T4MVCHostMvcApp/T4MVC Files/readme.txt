@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.0.1 (11-16-2012):
+* Fix T4MVC.tt.settings.xml so it only gets generated when needed [url:https://t4mvc.codeplex.com/discussions/403390]
+
 !!! 3.0.0 (11-14-2012):
 * Move all the non-dynamic code to a separate T4MVCExtensions.dll assembly
 * Change generated code brace style to Allman
@@ -59,7 +62,7 @@ HISTORY:
 * Make simple view names available alongside full names, e.g. MVC.Home.Views.SomeView vs MVC.Home.Views.ViewNames.SomeView
 
 !!! 2.12.0 (10-16-2012):
-* Add support for static files in nested folders  [url:http://t4mvc.codeplex.com/workitem/6]
+* Add support for static files in nested folders [url:http://t4mvc.codeplex.com/workitem/6]
 * Add MVC 4 bundle starter classes [url:https://t4mvc.codeplex.com/discussions/399205]
 
 !!! 2.11.2 (10-11-2012):
