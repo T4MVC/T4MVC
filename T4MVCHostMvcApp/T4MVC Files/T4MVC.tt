@@ -1501,14 +1501,24 @@ class MvcSettings : XmlSettings {
 /// Base XmlSettings class, responsible for reading/writing the settigns file contents, all settings other 
 /// than string convertable types should decend from this class
 abstract class XmlSettingsBase {
+    protected XmlSettingsBase() {
+        this.NeedsSave = true;
+    }
+
     protected virtual void Init()
     {
     }
 
     protected bool SaveAsChild { get; private set; }
 
+    protected bool NeedsSave { get; private set; }
+
     protected static void SetSaveAsChild(XmlSettingsBase settings, bool value) {
         settings.SaveAsChild = value;
+    }
+
+    protected static void SetNeedsSave(XmlSettingsBase settings, bool value) {
+        settings.NeedsSave = value;
     }
 
     protected static void WriteCommentedProperty(System.Xml.XmlWriter writer, string name) {
@@ -1524,28 +1534,42 @@ abstract class XmlSettingsBase {
 
     protected virtual void Load(System.Xml.Linq.XElement xml)
     {
+        this.NeedsSave = false;
+        int matched = 0;
+        int read = 0;
         foreach(System.ComponentModel.PropertyDescriptor property in System.ComponentModel.TypeDescriptor.GetProperties(this)) {
-            var value = xml.Element(property.Name);
-            if(value != null) {
-                object pvalue;
-                if(typeof(XmlSettingsBase).IsAssignableFrom(property.PropertyType) || (((pvalue = property.GetValue(this)) != null) && typeof(XmlSettingsBase).IsAssignableFrom(pvalue.GetType()))) {
+            object pvalue;
+            if(typeof(XmlSettingsBase).IsAssignableFrom(property.PropertyType) || (((pvalue = property.GetValue(this)) != null) && typeof(XmlSettingsBase).IsAssignableFrom(pvalue.GetType()))) {
+                read++;
+                var value = xml.Element(property.Name);
+                if(value != null) {
                     var settings = (XmlSettingsBase)property.GetValue(this);
                     settings.Load(value);
+                    if(!settings.NeedsSave)
+                        matched++;
                     settings.SaveAsChild = true;
-                } else if(!property.IsReadOnly) {
-                    if(property.Converter.CanConvertFrom(typeof(string)))
+                }
+            } else if(!property.IsReadOnly) {
+                read++;
+                var value = xml.Element(property.Name);
+                if(value != null) {
+                    if(property.Converter.CanConvertFrom(typeof(string))) {
+                        matched++;
                         property.SetValue(this, property.Converter.ConvertFromString(value.Value));
-                    else {
+                    } else {
                         System.Reflection.MethodBase parser = property.PropertyType.GetMethod("Parse", new Type[] { typeof(string) });
                         if(parser == null)
                             parser = property.PropertyType.GetConstructor(new Type[] { typeof(string) });
 
-                        if(parser != null)
+                        if(parser != null) {
+                            matched++;
                             property.SetValue(this, parser.Invoke(null, new Object[] { value.Value }));
+                        }
                     }
                 }
             }
         }
+        this.NeedsSave = this.NeedsSave || (matched < read);
     }
 
     protected virtual void Save(System.Xml.XmlWriter writer) {
@@ -1588,6 +1612,7 @@ class XmlStringArray : XmlSettingsBase, IEnumerable<string> {
             items.Add(item.Value);
         }
         this._items = items;
+        SetNeedsSave(this, false);
     }
 
     protected override void Save(System.Xml.XmlWriter writer) {
@@ -1696,23 +1721,26 @@ abstract class XmlSettings : XmlSettingsBase {
     }
 
     public void SaveChanges(Manager manager) {
-        //FIXME: marking this file as owned by the template means it will be removed
-        //       when the template is removed, this would prevent settigns from persisting.
-        //manager.KeepGeneratedFile(this.SettingsFile);
-        
-        var settings = new System.Xml.XmlWriterSettings {
-            Indent = true
-        };
-        using(var writer = System.Xml.XmlWriter.Create(this.SettingsFile, settings)) {
-            writer.WriteStartDocument();
-            writer.WriteStartElement(this.GetType().Name);
-            this.Save(writer);
-            writer.WriteEndElement();
-            writer.WriteEndDocument();
-        }
+        // Avoid saving if we dont need to;
+        if(!this.NeedsSave)
+            return;
 
-        var item = this.ProjectItem.Collection.AddFromFile(this.SettingsFile);
-        item.Properties.Item("ItemType").Value = "None";
+        if(manager.FileOkToWrite(this.SettingsFile)) {
+            var settings = new System.Xml.XmlWriterSettings {
+                Indent = true
+            };
+            using(var writer = System.Xml.XmlWriter.Create(this.SettingsFile, settings)) {
+                writer.WriteStartDocument();
+                writer.WriteStartElement(this.GetType().Name);
+                this.Save(writer);
+                writer.WriteEndElement();
+                writer.WriteEndDocument();
+            }
+
+            var item = this.ProjectItem.Collection.AddFromFile(this.SettingsFile);
+            item.Properties.Item("ItemType").Value = "None";
+        } else
+            TT.Error("Cannot save settings file! " + this.SettingsFile);
     }
 }
 
@@ -1738,6 +1766,10 @@ class Manager {
 
     public static Manager Create(ITextTemplatingEngineHost host, StringBuilder template) {
         return (host is IServiceProvider) ? new VSManager(host, template) : new Manager(host, template);
+    }
+
+    public virtual bool FileOkToWrite(String fileName) {
+        return true;
     }
 
     public void KeepGeneratedFile(String name) {
@@ -1839,6 +1871,11 @@ class Manager {
                 return;
             base.Process(split);
             projectSyncAction.EndInvoke(projectSyncAction.BeginInvoke(generatedFileNames, null, null));
+        }
+
+        public override bool FileOkToWrite(String fileName) {
+            CheckoutFileIfRequired(fileName);
+            return base.FileOkToWrite(fileName);
         }
 
         protected override void CreateFile(String fileName, String content) {
