@@ -1000,7 +1000,18 @@ static CodeAttribute2 GetAttribute(CodeElements attributes, string attributeType
 }
 
 static string UniqueFullName(CodeType codeType) {
-    return codeType.FullName.Replace('<', '_').Replace(">", string.Empty).Replace('.', '_');
+    var uniqueName = codeType.FullName;
+	
+	// Match characters not allowed in class names.
+	uniqueName = Regex.Replace(uniqueName, @"[^\p{Ll}\p{Lu}\p{Lt}\p{Lm}\p{Lo}\p{Nl}\d]", "_");
+
+	// Remove duplicate '_' characters
+	uniqueName = Regex.Replace(uniqueName, @"__+", "_");
+
+	// Remove trailing '_' characters
+	uniqueName = uniqueName.TrimEnd('_');
+
+    return uniqueName;
 }
 
 // Return whether a ProjectItem is a folder and not a file
