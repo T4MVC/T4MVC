@@ -34,7 +34,7 @@ Please use in accordance to the MvcContrib license (http://mvccontrib.codeplex.c
 <#@ import namespace="Microsoft.VisualStudio.TextTemplating" #>
 <# // To debug, uncomment the next two lines !! 
 // System.Diagnostics.Debugger.Launch();
-// System.Diagnostics.Debugger.Break();
+// System.Diagnostics.Debugger.Break();	
 #>
 <#settings=MvcSettings.Load(Host);#>
 <#PrepareDataToRender(this); #>
@@ -111,9 +111,9 @@ namespace <#=settings.T4MVCNamespace #>
 
 <#foreach (var resultType in ResultTypes.Values) { #>
 [<#= GeneratedCode #>, DebuggerNonUserCode]
-public class T4MVC_<#=resultType.Name #> : <#=resultType.FullName #>, IT4MVCActionResult
+public class T4MVC_<#=resultType.UniqueName #> : <#=resultType.FullName #>, IT4MVCActionResult
 {
-    public T4MVC_<#=resultType.Name #>(string area, string controller, string action, string protocol = null): base(<#resultType.Constructor.WriteNonEmptyParameterValues(true); #>)
+    public T4MVC_<#=resultType.UniqueName #>(string area, string controller, string action, string protocol = null): base(<#resultType.Constructor.WriteNonEmptyParameterValues(true); #>)
     {
         this.InitMVCT4Result(area, controller, action, protocol);
     }
@@ -207,7 +207,7 @@ namespace <#=controller.Namespace #>
         [<#= GeneratedCode #>, DebuggerNonUserCode]
         public <#=method.ReturnTypeFullName #> <#=method.Name #>()
         {
-            return new T4MVC_<#=method.ReturnType #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
+            return new T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
         }
 <#} #>
 
@@ -287,7 +287,7 @@ foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (gr
 <#foreach (var method in controller.ActionMethods) { #>
         public override <#=method.ReturnTypeFullName #> <#=method.Name #>(<#method.WriteFormalParameters(true); #>)
         {
-            var callInfo = new T4MVC_<#=method.ReturnType #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
+            var callInfo = new T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
 <#if (method.Parameters.Count > 0) { #>
 <#foreach (var p in method.Parameters) { #>
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, <#=p.RouteNameExpression #>, <#=p.Name #>);
@@ -653,10 +653,6 @@ void ProcessControllerActionMethods(ControllerInfo controllerInfo, CodeClass2 cu
             if (method.Type.TypeKind != vsCMTypeRef.vsCMTypeRefCodeType || !(method.Type.CodeType is CodeClass2))
                 continue;
 
-            // Ignore methods that return generic types (http://mvccontrib.codeplex.com/workitem/7178)
-            if (((CodeClass2)method.Type.CodeType).IsGeneric)
-                continue;
-
             // We only support action methods that return an ActionResult derived type
             if (!method.Type.CodeType.get_IsDerivedFrom("System.Web.Mvc.ActionResult")) {
                 Warning(String.Format("{0} doesn't support {1}.{2} because it doesn't return a supported ActionResult type", T4FileName, type.Name, method.Name));
@@ -671,8 +667,7 @@ void ProcessControllerActionMethods(ControllerInfo controllerInfo, CodeClass2 cu
             // If we haven't yet seen this return type, keep track of it
             if (!ResultTypes.ContainsKey(method.Type.CodeType.Name)) {
                 var resTypeInfo = new ResultTypeInfo(method.Type.CodeType);
-
-                ResultTypes[method.Type.CodeType.Name] = resTypeInfo;
+                ResultTypes[method.Type.CodeType.FullName] = resTypeInfo;
             }
 
             // Make sure the method is virtual
@@ -1004,6 +999,10 @@ static CodeAttribute2 GetAttribute(CodeElements attributes, string attributeType
     return null;
 }
 
+static string UniqueFullName(CodeType codeType) {
+	return codeType.FullName.Replace('<', '_').Replace(">", string.Empty).Replace('.', '_');
+}
+
 // Return whether a ProjectItem is a folder and not a file
 static bool IsFolder(ProjectItem item) {
     return (item.Kind == Constants.vsProjectItemKindPhysicalFolder);
@@ -1294,6 +1293,7 @@ class FunctionInfo {
     public string Name { get { return _method.Name; } }
     public string ReturnType { get { return _method.Type.CodeType.Name; } }
     public string ReturnTypeFullName { get { return _method.Type.CodeType.FullName; } }
+	public string ReturnTypeUniqueName { get { return UniqueFullName(_method.Type.CodeType); } }
     public bool IsPublic { get { return _method.Access == vsCMAccess.vsCMAccessPublic; } }
     public List<MethodParamInfo> Parameters { get; private set; }
     public bool CanBeCalledWithoutParameters { get; private set; }
@@ -1377,6 +1377,7 @@ class ResultTypeInfo {
 
     public string Name { get { return _codeType.Name; } }
     public string FullName { get { return _codeType.FullName; } }
+	public string UniqueName { get { return UniqueFullName(_codeType); } }
     public FunctionInfo Constructor { get; set; }
     public IEnumerable<FunctionInfo> AbstractMethods {
         get {

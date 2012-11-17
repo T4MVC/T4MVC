@@ -45,43 +45,43 @@ namespace T4MVCHostMvcApp.Areas.Break.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult ActionWithBindPrefixAttribute()
         {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.ActionWithBindPrefixAttribute);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithBindPrefixAttribute);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult ActionWithBindNoPrefixAttribute()
         {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.ActionWithBindNoPrefixAttribute);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithBindNoPrefixAttribute);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult ActionThatTakesAnObject()
         {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.ActionThatTakesAnObject);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionThatTakesAnObject);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult ActionWithVariousParams()
         {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.ActionWithVariousParams);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithVariousParams);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult CompiledControllerVirtualMethod2()
         {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.CompiledControllerVirtualMethod2);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CompiledControllerVirtualMethod2);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult SameProjectBaseControllerMethod()
         {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.SameProjectBaseControllerMethod);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SameProjectBaseControllerMethod);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult CompiledControllerVirtualMethod()
         {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.CompiledControllerVirtualMethod);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CompiledControllerVirtualMethod);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -202,34 +202,34 @@ namespace T4MVCHostMvcApp.Areas.Break.Controllers
 
         public override System.Web.Mvc.ActionResult Index()
         {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Index);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult ActionWithBindPrefixAttribute(string fieldName)
         {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ActionWithBindPrefixAttribute);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithBindPrefixAttribute);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "newParamName", fieldName);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult ActionWithBindNoPrefixAttribute(string fieldName)
         {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ActionWithBindNoPrefixAttribute);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithBindNoPrefixAttribute);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "fieldName", fieldName);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult ActionThatTakesAnObject(T4MVCHostMvcApp.Areas.Break.Controllers.MyParamObject p)
         {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ActionThatTakesAnObject);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionThatTakesAnObject);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "p", p);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult ActionWithVariousParams(string myString, int someInt, object someObject)
         {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ActionWithVariousParams);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithVariousParams);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "myString", myString);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someInt", someInt);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someObject", someObject);
@@ -238,21 +238,21 @@ namespace T4MVCHostMvcApp.Areas.Break.Controllers
 
         public override System.Web.Mvc.ActionResult CompiledControllerVirtualMethod2(string s)
         {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.CompiledControllerVirtualMethod2);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CompiledControllerVirtualMethod2);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "s", s);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult SameProjectBaseControllerMethod(string s)
         {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.SameProjectBaseControllerMethod);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SameProjectBaseControllerMethod);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "s", s);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult CompiledControllerVirtualMethod(int n)
         {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.CompiledControllerVirtualMethod);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CompiledControllerVirtualMethod);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
             return callInfo;
         }

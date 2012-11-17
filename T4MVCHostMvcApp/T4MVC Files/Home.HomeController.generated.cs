@@ -100,7 +100,7 @@ namespace T4MVCHostMvcApp.Areas.Home.Controllers
 
         public override System.Web.Mvc.ActionResult Index()
         {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Index);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             return callInfo;
         }
 
