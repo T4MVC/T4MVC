@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc;
 using T4MVCHostMvcApp.Misc;
@@ -126,6 +127,11 @@ namespace T4MVCHostMvcApp.Controllers {
         }
 
         public virtual SomeGenericResult<int> ActionReturningGenericResultInt()
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual SomeGenericResult<List<Tuple<string, string, int>>> ActionReturningGenericResultNested()
         {
             throw new NotImplementedException();
         }

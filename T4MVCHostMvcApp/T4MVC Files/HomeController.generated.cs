@@ -114,6 +114,7 @@ namespace T4MVCHostMvcApp.Controllers
             public readonly string OverloadedActionWithDifferentParams = "OverloadedActionWithDifferentParams";
             public readonly string ActionReturningGenericResultString = "ActionReturningGenericResultString";
             public readonly string ActionReturningGenericResultInt = "ActionReturningGenericResultInt";
+            public readonly string ActionReturningGenericResultNested = "ActionReturningGenericResultNested";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -137,6 +138,7 @@ namespace T4MVCHostMvcApp.Controllers
             public const string OverloadedActionWithDifferentParams = "OverloadedActionWithDifferentParams";
             public const string ActionReturningGenericResultString = "ActionReturningGenericResultString";
             public const string ActionReturningGenericResultInt = "ActionReturningGenericResultInt";
+            public const string ActionReturningGenericResultNested = "ActionReturningGenericResultNested";
         }
 
 
@@ -434,6 +436,12 @@ namespace T4MVCHostMvcApp.Controllers
         public override T4MVCHostMvcApp.Controllers.SomeGenericResult<System.Int32> ActionReturningGenericResultInt()
         {
             var callInfo = new T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_Int32(Area, Name, ActionNames.ActionReturningGenericResultInt);
+            return callInfo;
+        }
+
+        public override T4MVCHostMvcApp.Controllers.SomeGenericResult<System.Collections.Generic.List<System.Tuple<System.String,System.String,System.Int32>>> ActionReturningGenericResultNested()
+        {
+            var callInfo = new T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_Collections_Generic_List_System_Tuple_System_String_System_String_System_Int32(Area, Name, ActionNames.ActionReturningGenericResultNested);
             return callInfo;
         }
 
