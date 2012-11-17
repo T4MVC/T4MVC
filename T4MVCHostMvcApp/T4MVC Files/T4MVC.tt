@@ -1000,7 +1000,7 @@ static CodeAttribute2 GetAttribute(CodeElements attributes, string attributeType
 }
 
 static string UniqueFullName(CodeType codeType) {
-	return codeType.FullName.Replace('<', '_').Replace(">", string.Empty).Replace('.', '_');
+    return codeType.FullName.Replace('<', '_').Replace(">", string.Empty).Replace('.', '_');
 }
 
 // Return whether a ProjectItem is a folder and not a file
@@ -1293,7 +1293,7 @@ class FunctionInfo {
     public string Name { get { return _method.Name; } }
     public string ReturnType { get { return _method.Type.CodeType.Name; } }
     public string ReturnTypeFullName { get { return _method.Type.CodeType.FullName; } }
-	public string ReturnTypeUniqueName { get { return UniqueFullName(_method.Type.CodeType); } }
+    public string ReturnTypeUniqueName { get { return UniqueFullName(_method.Type.CodeType); } }
     public bool IsPublic { get { return _method.Access == vsCMAccess.vsCMAccessPublic; } }
     public List<MethodParamInfo> Parameters { get; private set; }
     public bool CanBeCalledWithoutParameters { get; private set; }
@@ -1377,7 +1377,7 @@ class ResultTypeInfo {
 
     public string Name { get { return _codeType.Name; } }
     public string FullName { get { return _codeType.FullName; } }
-	public string UniqueName { get { return UniqueFullName(_codeType); } }
+    public string UniqueName { get { return UniqueFullName(_codeType); } }
     public FunctionInfo Constructor { get; set; }
     public IEnumerable<FunctionInfo> AbstractMethods {
         get {
