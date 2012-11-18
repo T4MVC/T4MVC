@@ -131,6 +131,7 @@ namespace T4MVCHostMvcApp.Controllers {
             throw new NotImplementedException();
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
         public virtual SomeGenericResult<List<Tuple<string, string, int>>> ActionReturningGenericResultNested()
         {
             throw new NotImplementedException();

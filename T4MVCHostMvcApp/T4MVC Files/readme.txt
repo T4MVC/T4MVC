@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.0.2 (11-17-2012):
+* Add support for generic result types [url:http://t4mvc.codeplex.com/SourceControl/network/forks/ryanrust/T4MVC/contribution/3653]
+
 !!! 3.0.1 (11-16-2012):
 * Fix T4MVC.tt.settings.xml so it only gets generated when needed [url:https://t4mvc.codeplex.com/discussions/403390]
 
