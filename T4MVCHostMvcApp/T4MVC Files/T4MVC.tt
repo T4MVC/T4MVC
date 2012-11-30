@@ -987,7 +987,7 @@ static CodeAttribute2 GetAttribute(CodeElements attributes, string attributeType
     for (int i = 1; i <= attributes.Count; i++) {
         try {
             var attrib = (CodeAttribute2)attributes.Item(i);
-            if (attrib.FullName == attributeType) {
+            if (attributeType.Split(',').Contains(attrib.FullName, StringComparer.OrdinalIgnoreCase)) {
                 return attrib;
             }
         }
