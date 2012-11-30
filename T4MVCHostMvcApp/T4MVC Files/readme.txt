@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.0.3 (11-30-2012):
+* Fix to deal with multiple attributes [url:http://t4mvc.codeplex.com/SourceControl/network/forks/ArtiomChi/t4mvc/contribution/3723]
+
 !!! 3.0.2 (11-17-2012):
 * Add support for generic result types [url:http://t4mvc.codeplex.com/SourceControl/network/forks/ryanrust/T4MVC/contribution/3653]
 
