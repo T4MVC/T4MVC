@@ -166,6 +166,41 @@ namespace System.Web.Mvc
             return htmlHelper.Action(callInfo.Action, callInfo.Controller, callInfo.RouteValueDictionary);
         }
 
+        /// <summary>
+        /// If specific route can be found, return that route with the parameter tokens in route string.
+        /// </summary>
+        public static string JavaScriptReplacableUrl(this UrlHelper urlHelper, ActionResult result)
+        {
+            var rvd = result.GetRouteValueDictionary();
+            string area = string.Empty;
+            object token;
+
+            if (rvd.TryGetValue("area", out token))
+                area = token.ToString();
+
+            if (!rvd.TryGetValue("controller", out token))
+                throw new Exception("T4MVC JavascriptReplacableUrl could not locate controller in source dictionary");
+            string controller = token.ToString();
+
+            if (!rvd.TryGetValue("action", out token))
+                throw new Exception("T4MVC JavascriptReplacableUrl could not locate action in source dictionary");
+            string action = token.ToString();
+
+            var specificActionUrl = (from r in RouteTable.Routes.OfType<Route>()
+                                     where r.DataTokens != null && r.Defaults != null
+                                     && r.DataTokens.Any(dt => string.Compare(dt.Key, "area", StringComparison.InvariantCultureIgnoreCase) == 0
+                                         && string.Compare(dt.Value.ToString(), area, StringComparison.InvariantCultureIgnoreCase) == 0)
+                                     && r.Defaults.Any(dt => string.Compare(dt.Key, "controller", StringComparison.InvariantCultureIgnoreCase) == 0
+                                         && string.Compare(dt.Value.ToString(), controller, StringComparison.InvariantCultureIgnoreCase) == 0)
+                                     && r.Defaults.Any(dt => string.Compare(dt.Key, "action", StringComparison.InvariantCultureIgnoreCase) == 0
+                                         && string.Compare(dt.Value.ToString(), action, StringComparison.InvariantCultureIgnoreCase) == 0)
+                                     select r.Url).FirstOrDefault();
+
+            if (String.IsNullOrEmpty(specificActionUrl))
+                return urlHelper.RouteUrl(null, result.GetRouteValueDictionary());
+            return "/" + specificActionUrl;
+        }
+
         public static string Action(this UrlHelper urlHelper, ActionResult result)
         {
             return urlHelper.Action(result, null, null);
