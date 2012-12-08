@@ -252,17 +252,14 @@ if (!settings.UseLowercaseRoutes) { #>
 
 <#if (settings.GenerateParamsForActionMethods){
 foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (group.Any()) { #>
-        static readonly ActionParamsClass_<#=group.Key #> s_params_<#=group.Key #> = new ActionParamsClass_<#=group.Key #>();
         [<#= GeneratedCode #>, DebuggerNonUserCode]
-        public ActionParamsClass_<#=group.Key #> <#=group.Key + settings.ParamsPropertySuffix #> { get { return s_params_<#=group.Key #>; } }
-        [<#= GeneratedCode #>, DebuggerNonUserCode]
-        public class ActionParamsClass_<#=group.Key #>
+        public class <#=group.Key + settings.ParamsPropertySuffix #>
         {
 <#foreach (var param in group) { #>
 <#  if (settings.UseLowercaseRoutes) { #>
-            public readonly string <#=param.Name #> = (<#=param.RouteNameExpression #>).ToLowerInvariant();
+            public const string <#=param.Name #> = (<#=param.RouteNameExpression #>).ToLowerInvariant();
 <#  } else { #>
-            public readonly string <#=param.Name #> = <#=param.RouteNameExpression #>;
+            public const string <#=param.Name #> = <#=param.RouteNameExpression #>;
 <#  }
 } #>
         }
