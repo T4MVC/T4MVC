@@ -137,6 +137,7 @@ foreach (string folder in settings.StaticFilesFolders) {
     ProcessStaticFiles(Project, folder);
 }
 #>
+<#if (settings.GenerateBundleNamespaceAsLowerCase){#>
     [<#= GeneratedCode #>, DebuggerNonUserCode]
     public static partial class bundles
     {
@@ -145,6 +146,17 @@ foreach (string folder in settings.StaticFilesFolders) {
         [<#= GeneratedCode #>, DebuggerNonUserCode]
         public static partial class styles {}
     }
+<#} else {#>
+    [<#= GeneratedCode #>, DebuggerNonUserCode]
+    public static partial class Bundles
+    {
+        [<#= GeneratedCode #>, DebuggerNonUserCode]
+        public static partial class Scripts {}
+        [<#= GeneratedCode #>, DebuggerNonUserCode]
+        public static partial class Styles {}
+    }
+<#} #>
+
 }
 
 <#
@@ -250,10 +262,30 @@ if (!settings.UseLowercaseRoutes) { #>
 <#}
 } #>
 
-<#if (settings.GenerateParamsForActionMethods){
+<#if (settings.GenerateParamsForActionMethods && !settings.GenerateParamsAsConstantsForActionMethods){
+foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (group.Any()) { #>
+        static readonly ActionParamsClass_<#=group.Key #> s_params_<#=group.Key #> = new ActionParamsClass_<#=group.Key #>();
+        [<#= GeneratedCode #>, DebuggerNonUserCode]
+        public ActionParamsClass_<#=group.Key #> <#=group.Key + settings.ParamsPropertySuffix #> { get { return s_params_<#=group.Key #>; } }
+        [<#= GeneratedCode #>, DebuggerNonUserCode]
+        public class ActionParamsClass_<#=group.Key #>
+        {
+<#foreach (var param in group) { #>
+<#  if (settings.UseLowercaseRoutes) { #>
+            public readonly string <#=param.Name #> = (<#=param.RouteNameExpression #>).ToLowerInvariant();
+<#  } else { #>
+            public readonly string <#=param.Name #> = <#=param.RouteNameExpression #>;
+<#  }
+} #>
+        }
+<# } #>
+<#} #>
+
+<#if (settings.GenerateParamsAsConstantsForActionMethods){
+
 foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (group.Any()) { #>
         [<#= GeneratedCode #>, DebuggerNonUserCode]
-        public class <#=group.Key + settings.ParamsPropertySuffix #>
+        public class <#=group.Key + settings.ParamsPropertySuffix#>
         {
 <#foreach (var param in group) { #>
 <#  if (settings.UseLowercaseRoutes) { #>
@@ -1422,6 +1454,9 @@ class MvcSettings : XmlSettings {
           "EditorTemplates"
         }, "ViewFolder");
         this.GenerateActionResultInterface = true;
+		this.GenerateParamsAsConstantsForActionMethods = false;
+		this.GenerateParamsForActionMethods = true;
+		this.GenerateBundleNamespaceAsLowerCase= false;
         this.UseLowercaseRoutes = false;
         this.LinksNamespace = "Links";
         this.AddTimestampToStaticLinks = false;
@@ -1490,7 +1525,14 @@ class MvcSettings : XmlSettings {
     public bool GenerateSecureLinksInDebugMode { get; set; }
 
     [System.ComponentModel.Description("Set this to false to omit the generation of parameters for action methods.")]
-    public bool GenerateParamsForActionMethods = true;
+    public bool GenerateParamsForActionMethods { get; set; }
+
+    [System.ComponentModel.Description("Set this to true to omit the generation of parameters for action methods as constants.  Choose this or GenerateParamsForActionMethods.")]
+    public bool GenerateParamsAsConstantsForActionMethods { get; set; }
+
+    [System.ComponentModel.Description("Set this to true and it will use lowercase class names.")]
+    public bool GenerateBundleNamespaceAsLowerCase { get; set; }
+
     [System.ComponentModel.Description("The suffix added to action method names for the property containing the parameters, for example ImportParams\r\nfor the Import action method.")]
     public string ParamsPropertySuffix { get; set; }
 
