@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.1.0 (12-09-2012):
+* Added JavaScriptReplacableUrl helper [url:http://t4mvc.codeplex.com/discussions/405911]
+
 !!! 3.0.3 (11-30-2012):
 * Fix to deal with multiple attributes [url:http://t4mvc.codeplex.com/SourceControl/network/forks/ArtiomChi/t4mvc/contribution/3723]
 
