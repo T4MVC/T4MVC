@@ -300,13 +300,14 @@ namespace Links
     
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public static partial class bundles
+    public static partial class Bundles
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public static partial class scripts {}
+        public static partial class Scripts {}
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public static partial class styles {}
+        public static partial class Styles {}
     }
+
 }
 
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
