@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.2.0 (12-11-2012):
+*  Add option to make parameter names constants [url:https://t4mvc.codeplex.com/SourceControl/network/forks/WayneBrantley/ParameterNamesToConst/contribution/3762]
+
 !!! 3.1.0 (12-09-2012):
 * Added JavaScriptReplacableUrl helper [url:http://t4mvc.codeplex.com/discussions/405911]
 

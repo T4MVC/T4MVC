@@ -1,6 +1,6 @@
 ﻿<#
 /*
-T4MVC Version 3.1.0
+T4MVC Version 3.2.0
 Find latest version and documentation at http://mvccontrib.codeplex.com/wikipage?title=T4MVC
 Discuss on StackOverflow or on Codeplex (https://t4mvc.codeplex.com/discussions)
 
@@ -268,7 +268,6 @@ foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (gr
         }
 <# } #>
 <#} #>
-
 <#if (settings.GenerateParamsAsConstantsForActionMethods){
 
 foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (group.Any()) { #>
@@ -1444,7 +1443,6 @@ class MvcSettings : XmlSettings {
         this.GenerateActionResultInterface = true;
 		this.GenerateParamsAsConstantsForActionMethods = false;
 		this.GenerateParamsForActionMethods = true;
-		this.GenerateBundleNamespaceAsLowerCase= false;
         this.UseLowercaseRoutes = false;
         this.LinksNamespace = "Links";
         this.AddTimestampToStaticLinks = false;
@@ -1517,9 +1515,6 @@ class MvcSettings : XmlSettings {
 
     [System.ComponentModel.Description("Set this to true to omit the generation of parameters for action methods as constants.  Choose this or GenerateParamsForActionMethods.")]
     public bool GenerateParamsAsConstantsForActionMethods { get; set; }
-
-    [System.ComponentModel.Description("Set this to true and it will use lowercase class names.")]
-    public bool GenerateBundleNamespaceAsLowerCase { get; set; }
 
     [System.ComponentModel.Description("The suffix added to action method names for the property containing the parameters, for example ImportParams\r\nfor the Import action method.")]
     public string ParamsPropertySuffix { get; set; }

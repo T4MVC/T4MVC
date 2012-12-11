@@ -181,7 +181,6 @@ namespace T4MVCHostMvcApp.Areas.Break.Controllers
         {
             public readonly string n = "n";
         }
-
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }

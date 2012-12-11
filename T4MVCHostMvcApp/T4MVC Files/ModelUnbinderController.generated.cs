@@ -166,7 +166,6 @@ namespace T4MVCHostMvcApp.Controllers
         {
             public readonly string model = "model";
         }
-
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }

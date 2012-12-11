@@ -25,7 +25,6 @@ namespace T4MVC.Home
     public class SharedController
     {
 
-
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
