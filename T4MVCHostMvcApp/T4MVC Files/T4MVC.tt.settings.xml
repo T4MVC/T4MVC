@@ -32,20 +32,6 @@ as it breaks the templated helper code-->
   <!--If true, the T4MVC action result interface will be generated
 If false, the namespace of the interface must be referenced in the 'ReferencedNamespaces' setting-->
   <GenerateActionResultInterface>True</GenerateActionResultInterface>
-  
-    <!--The true the parameter name class will be generated as constants (allowing use in attributes).  This is the suggested way to do this.  
-  However, if you used T4MVC Params before and referenced them outside the controller, your references will need to change from MVC.User.MyActionParams 
-  to MVC.UserController.MyActionParams.  -->
-  <GenerateParamsAsConstantsForActionMethods>False</GenerateParamsAsConstantsForActionMethods>
-
-  <!--The true the parameter name class will be generated as classes inside T4MVC - they cannote be used in attributes. -->
-  <GenerateParamsForActionMethods>True</GenerateParamsForActionMethods>
-  
-  <!--Original contribution for the bundle namespace named everything starting with a lower case letter.  This does not align with the naming convention used everywhere else
-  in T4MVC - so this was changed.  However, to avoid breaking code of existing users - you can enable the lower case option  -->
-  <GenerateBundleNamespaceAsLowerCase>False</GenerateBundleNamespaceAsLowerCase>
-
-  
   <!--If true, use lower case tokens in routes for the area, controller and action names-->
   <UseLowercaseRoutes>False</UseLowercaseRoutes>
   <!--The namespace that the links are generated in (e.g. "Links", as in Links.Content.nerd_jpg)-->
@@ -59,7 +45,6 @@ See http://mvccontrib.codeplex.com/workitem/7163 for potential issues with this 
   <StaticFilesFolders>
     <FileFolder>Scripts</FileFolder>
     <FileFolder>Content</FileFolder>
-    <FileFolder>ContentStatic\TextFiles</FileFolder>
   </StaticFilesFolders>
   <!--Static files to exclude from the generated links-->
   <ExcludedStaticFileExtensions>
@@ -68,6 +53,12 @@ See http://mvccontrib.codeplex.com/workitem/7163 for potential issues with this 
   <!--When creating links with T4MVC, it can force them to HTTPS if the action method you are linking to requires Http.-->
   <AttributeIndicatingHttps>System.Web.Mvc.RequireHttpsAttribute</AttributeIndicatingHttps>
   <GenerateSecureLinksInDebugMode>False</GenerateSecureLinksInDebugMode>
+  <!--Set this to false to omit the generation of parameters for action methods.-->
+  <GenerateParamsForActionMethods>True</GenerateParamsForActionMethods>
+  <!--Set this to true to omit the generation of parameters for action methods as constants.  Choose this or GenerateParamsForActionMethods.-->
+  <GenerateParamsAsConstantsForActionMethods>False</GenerateParamsAsConstantsForActionMethods>
+  <!--Set this to true and it will use lowercase class names.-->
+  <GenerateBundleNamespaceAsLowerCase>False</GenerateBundleNamespaceAsLowerCase>
   <!--The suffix added to action method names for the property containing the parameters, for example ImportParams
 for the Import action method.-->
   <ParamsPropertySuffix>Params</ParamsPropertySuffix>

@@ -137,16 +137,6 @@ foreach (string folder in settings.StaticFilesFolders) {
     ProcessStaticFiles(Project, folder);
 }
 #>
-<#if (settings.GenerateBundleNamespaceAsLowerCase){#>
-    [<#= GeneratedCode #>, DebuggerNonUserCode]
-    public static partial class bundles
-    {
-        [<#= GeneratedCode #>, DebuggerNonUserCode]
-        public static partial class scripts {}
-        [<#= GeneratedCode #>, DebuggerNonUserCode]
-        public static partial class styles {}
-    }
-<#} else {#>
     [<#= GeneratedCode #>, DebuggerNonUserCode]
     public static partial class Bundles
     {
@@ -155,8 +145,6 @@ foreach (string folder in settings.StaticFilesFolders) {
         [<#= GeneratedCode #>, DebuggerNonUserCode]
         public static partial class Styles {}
     }
-<#} #>
-
 }
 
 <#
