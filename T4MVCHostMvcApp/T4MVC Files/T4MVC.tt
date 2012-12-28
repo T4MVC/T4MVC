@@ -1,6 +1,6 @@
 ﻿<#
 /*
-T4MVC Version 3.2.0
+T4MVC Version 3.2.1
 Find latest version and documentation at http://mvccontrib.codeplex.com/wikipage?title=T4MVC
 Discuss on StackOverflow or on Codeplex (https://t4mvc.codeplex.com/discussions)
 
@@ -639,11 +639,17 @@ void ProcessControllerActionMethods(ControllerInfo controllerInfo, CodeClass2 cu
                    continue;
                 }
 
-                // If we can get a local project type, use it instead of the original
-                var codeType = prj.CodeModel.CodeTypeFromFullName(type.FullName);
-                if (codeType != null && codeType.InfoLocation == vsCMInfoLocation.vsCMInfoLocationProject) {
-                    type = (CodeClass2)codeType;
-                    break;
+                try {
+                    // If we can get a local project type, use it instead of the original
+                    var codeType = prj.CodeModel.CodeTypeFromFullName(type.FullName);
+                    if (codeType != null && codeType.InfoLocation == vsCMInfoLocation.vsCMInfoLocationProject) {
+                        type = (CodeClass2)codeType;
+                        break;
+                    }
+                }
+                catch (System.ArgumentException) {
+                    // CodeTypeFromFullName throws when called on VB projects with a type it doesn't know
+                    // (instead of returning null), so ignore those exceptions (See http://t4mvc.codeplex.com/workitem/7)
                 }
             }
         }

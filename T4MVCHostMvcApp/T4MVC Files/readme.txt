@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.2.1 (12-27-2012):
+*  Fix issue with VB projects causing exceptions [url:http://t4mvc.codeplex.com/workitem/7]
+
 !!! 3.2.0 (12-11-2012):
 *  Add option to make parameter names constants [url:https://t4mvc.codeplex.com/SourceControl/network/forks/WayneBrantley/ParameterNamesToConst/contribution/3762]
 
