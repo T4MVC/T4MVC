@@ -44,8 +44,10 @@
   <ItemGroup>
     <Compile Include="DefaultModelUnbinder.cs" />
     <Compile Include="IModelUnbinder.cs" />
+    <Compile Include="IModelUnbinderProvider.cs" />
     <Compile Include="IT4MVCActionResult.cs" />
     <Compile Include="ModelUnbinderHelpers.cs" />
+    <Compile Include="ModelUnbinderProviders.cs" />
     <Compile Include="ModelUnbinders.cs" />
     <Compile Include="PropertiesUnbinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

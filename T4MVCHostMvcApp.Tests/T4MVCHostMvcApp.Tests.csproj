@@ -107,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModelUnbinderProviderTests.cs" />
     <Compile Include="ModelUnbinderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="T4MVCTest.cs" />

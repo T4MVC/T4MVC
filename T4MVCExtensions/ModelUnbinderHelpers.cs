@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace System.Web.Mvc
@@ -15,7 +14,7 @@ namespace System.Web.Mvc
             IModelUnbinder unbinder = DefaultModelUnbinder;
             if (routeValue != null)
             {
-                unbinder = ModelUnbinders.FindUnbinderFor(routeValue.GetType()) ?? DefaultModelUnbinder;
+                unbinder = ModelUnbinders.FindUnbinderFor(routeValue.GetType()) ?? (ModelUnbinderProviders.FindUnbinderFor(routeValue.GetType()) ?? DefaultModelUnbinder);
             }
             unbinder.UnbindModel(routeValueDictionary, routeName, routeValue);
         }
@@ -24,6 +23,12 @@ namespace System.Web.Mvc
         public static ModelUnbinders ModelUnbinders
         {
             get { return _modelUnbinders; }
+        }
+
+        private static readonly ModelUnbinderProviders _modelUnbinderProviders = new ModelUnbinderProviders();
+        public static ModelUnbinderProviders ModelUnbinderProviders
+        {
+            get { return _modelUnbinderProviders; }
         }
 
         public static IModelUnbinder DefaultModelUnbinder { get; set; }
