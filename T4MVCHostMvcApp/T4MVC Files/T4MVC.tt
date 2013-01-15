@@ -683,7 +683,7 @@ void ProcessControllerActionMethods(ControllerInfo controllerInfo, CodeClass2 cu
 
             // Ignore async completion methods as they can't really be used in T4MVC, and can cause issues.
             // See http://stackoverflow.com/questions/5419173/t4mvc-asynccontroller
-            if (method.Name.EndsWith("Completed", StringComparison.OrdinalIgnoreCase))
+            if (IsAsyncController(type) && method.Name.EndsWith("Completed", StringComparison.OrdinalIgnoreCase))
                 continue;
 
             // If we haven't yet seen this return type, keep track of it
@@ -961,6 +961,14 @@ static bool IsController(CodeClass2 type) {
     if (!type.FullName.EndsWith(ControllerSuffix)) return false;
 
     for (; type.FullName != "System.Web.Mvc.Controller"; type = (CodeClass2)type.Bases.Item(1)) {
+        if (type.Bases.Count == 0)
+            return false;
+    }
+    return true;
+}
+
+static bool IsAsyncController(CodeClass2 type) {
+    for (; type.FullName != "System.Web.Mvc.AsyncController"; type = (CodeClass2)type.Bases.Item(1)) {
         if (type.Bases.Count == 0)
             return false;
     }
