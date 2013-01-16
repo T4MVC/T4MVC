@@ -7,13 +7,15 @@ using Microsoft.VisualStudio.TestTools.UnitTesting.Web;
 using System.Collections.Specialized;
 using T4MVCHostMvcApp.Controllers;
 
-namespace T4MVCHostMvcApp.Tests {
+namespace T4MVCHostMvcApp.Tests
+{
     /// <summary>
     ///This is a test class for T4ExtensionsTest and is intended
     ///to contain all T4ExtensionsTest Unit Tests
     ///</summary>
     [TestClass()]
-    public class T4MVCTest {
+    public class T4MVCTest
+    {
         private TestContext testContextInstance;
         private static HtmlHelper Html { get; set; }
 
@@ -24,24 +26,31 @@ namespace T4MVCHostMvcApp.Tests {
         ///Gets or sets the test context which provides
         ///information about and functionality for the current test run.
         ///</summary>
-        public TestContext TestContext {
-            get {
+        public TestContext TestContext
+        {
+            get
+            {
                 return testContextInstance;
             }
-            set {
+            set
+            {
                 testContextInstance = value;
             }
         }
 
 
-        class TestViewDataContainer : IViewDataContainer {
+        class TestViewDataContainer : IViewDataContainer
+        {
             #region IViewDataContainer Members
 
-            public ViewDataDictionary ViewData {
-                get {
+            public ViewDataDictionary ViewData
+            {
+                get
+                {
                     throw new System.NotImplementedException();
                 }
-                set {
+                set
+                {
                     throw new System.NotImplementedException();
                 }
             }
@@ -51,7 +60,8 @@ namespace T4MVCHostMvcApp.Tests {
 
 
         [ClassInitialize()]
-        public static void MyClassInitialize(TestContext testContext) {
+        public static void MyClassInitialize(TestContext testContext)
+        {
             T4MVCHelpers.ProcessVirtualPath = ProcessVirtualPath;
 
             Html = new HtmlHelper(new ViewContext(), new TestViewDataContainer());
@@ -61,7 +71,8 @@ namespace T4MVCHostMvcApp.Tests {
         // API TESTS
 
         [TestMethod()]
-        public void TestInitMVCT4Result() {
+        public void TestInitMVCT4Result()
+        {
             var result = (IT4MVCActionResult)MVC.Home.About();
             string area = "some area";
             string controller = "some controller";
@@ -79,13 +90,15 @@ namespace T4MVCHostMvcApp.Tests {
         // AREA NAMES TESTS
 
         [TestMethod()]
-        public void TestAreaNameConstants() {
+        public void TestAreaNameConstants()
+        {
             TestAreaControllerActionName("Home", MVC.HomeArea.Name);
             TestAreaControllerActionName("break", MVC.@break.Name);
         }
 
         [TestMethod()]
-        public void TestAreaNameConstantsViewController() {
+        public void TestAreaNameConstantsViewController()
+        {
             TestAreaControllerActionName("", MVC.T4Ctrl.Area);
             TestAreaControllerActionName("Home", MVC.HomeArea.Home.Area);
             TestAreaControllerActionName("break", MVC.@break.Post.Area);
@@ -95,18 +108,21 @@ namespace T4MVCHostMvcApp.Tests {
         // CONTROLLER NAMES TESTS
 
         [TestMethod()]
-        public void TestControllerName() {
+        public void TestControllerName()
+        {
             TestAreaControllerActionName("Home", MVC.Home.Name);
         }
 
         [TestMethod()]
-        public void TestAreaControllerName() {
+        public void TestAreaControllerName()
+        {
             TestAreaControllerActionName("Home", MVC.HomeArea.Home.Name);
             TestAreaControllerActionName("Post", MVC.@break.Post.Name);
         }
 
         [TestMethod()]
-        public void TestT4SubFolderControllerName() {
+        public void TestT4SubFolderControllerName()
+        {
             TestAreaControllerActionName("T4Ctrl", MVC.T4Ctrl.Name);
         }
 
@@ -114,13 +130,15 @@ namespace T4MVCHostMvcApp.Tests {
         // ACTION NAMES TESTS
 
         [TestMethod()]
-        public void TestSimpleActionName() {
+        public void TestSimpleActionName()
+        {
             TestAreaControllerActionName("Index", MVC.Home.ActionNames.Index);
             TestAreaControllerActionName("Index", HomeController.ActionNameConstants.Index);
         }
 
         [TestMethod()]
-        public void TestRenamedActionName() {
+        public void TestRenamedActionName()
+        {
             TestAreaControllerActionName("The About Action", MVC.Home.ActionNames.About);
             TestAreaControllerActionName("New-Name for Blah", MVC.Home.ActionNames.Blah);
             TestAreaControllerActionName("The About Action", HomeController.ActionNameConstants.About);
@@ -128,7 +146,8 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void TestT4SubFolderControlleActionName() {
+        public void TestT4SubFolderControlleActionName()
+        {
             TestAreaControllerActionName("Qqq", MVC.T4Ctrl.ActionNames.Qqq);
             TestAreaControllerActionName("Qqq", T4CtrlController.ActionNameConstants.Qqq);
         }
@@ -156,13 +175,15 @@ namespace T4MVCHostMvcApp.Tests {
         // VIEW PATHS TESTS
 
         [TestMethod()]
-        public void TestSimpleViewName() {
+        public void TestSimpleViewName()
+        {
             Assert.AreEqual("~/Views/Home/Index.aspx", MVC.Home.Views.Index);
             Assert.AreEqual("Index", MVC.Home.Views.ViewNames.Index);
         }
 
         [TestMethod()]
-        public void TestConflictingViewNames() {
+        public void TestConflictingViewNames()
+        {
             Assert.AreEqual("~/Views/Home/Qqq.txt", MVC.Home.Views.Qqq);
             Assert.AreEqual("Qqq", MVC.Home.Views.ViewNames.Qqq);
             Assert.AreEqual("~/Views/Home/QqQ.txt2", MVC.Home.Views.QqQ);
@@ -172,61 +193,71 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void TestComplexViewName() {
+        public void TestComplexViewName()
+        {
             Assert.AreEqual("~/Views/Home/7 Some Home.View-Hello.txt", MVC.Home.Views._7_Some_Home_View_Hello);
             Assert.AreEqual("7 Some Home.View-Hello", MVC.Home.Views.ViewNames._7_Some_Home_View_Hello);
         }
 
         [TestMethod()]
-        public void TestNestedViewNameWithSameNameAsParentFolder() {
+        public void TestNestedViewNameWithSameNameAsParentFolder()
+        {
             Assert.AreEqual("~/Views/Home/Sub Home/Qqq.txt", MVC.Home.Views.Sub_Home.Qqq);
             Assert.AreEqual("Qqq", MVC.Home.Views.Sub_Home.ViewNames.Qqq);
         }
 
         [TestMethod()]
-        public void TestViewNameMatchingLanguageKeyword() {
+        public void TestViewNameMatchingLanguageKeyword()
+        {
             Assert.AreEqual("~/Views/Home/Sub Home/string.txt", MVC.Home.Views.Sub_Home.@string);
             Assert.AreEqual("string", MVC.Home.Views.Sub_Home.ViewNames.@string);
         }
 
         [TestMethod()]
-        public void TestSuperNestedViewWithComplexName() {
+        public void TestSuperNestedViewWithComplexName()
+        {
             Assert.AreEqual("~/Views/Home/Sub Home/Nested-Sub/99 Super~Nested-View.txt", MVC.Home.Views.Sub_Home.Nested_Sub._99_Super_Nested_View);
             Assert.AreEqual("99 Super~Nested-View", MVC.Home.Views.Sub_Home.Nested_Sub.ViewNames._99_Super_Nested_View);
         }
 
         [TestMethod()]
-        public void TestViewThatGeneratesFile() {
+        public void TestViewThatGeneratesFile()
+        {
             Assert.AreEqual("~/Views/Home/Sub Home/T4View.tt", MVC.Home.Views.Sub_Home.T4View);
             Assert.AreEqual("T4View", MVC.Home.Views.Sub_Home.ViewNames.T4View);
         }
 
         [TestMethod()]
-        public void TestSharedView() {
+        public void TestSharedView()
+        {
             Assert.AreEqual("~/Views/Shared/LogOnUserControl.ascx", MVC.Shared.Views.LogOnUserControl);
             Assert.AreEqual("LogOnUserControl", MVC.Shared.Views.ViewNames.LogOnUserControl);
         }
 
         [TestMethod()]
-        public void TestAreaView() {
+        public void TestAreaView()
+        {
             Assert.AreEqual("~/Areas/Home/Views/Home/SomeHomeView.txt", MVC.HomeArea.Home.Views.SomeHomeView);
             Assert.AreEqual("SomeHomeView", MVC.HomeArea.Home.Views.ViewNames.SomeHomeView);
         }
 
         [TestMethod()]
-        public void TestAreaSharedView() {
+        public void TestAreaSharedView()
+        {
             Assert.AreEqual("~/Areas/break/Views/Shared/SharedAreaView.txt", MVC.@break.Shared.Views.SharedAreaView);
             Assert.AreEqual("SharedAreaView", MVC.@break.Shared.Views.ViewNames.SharedAreaView);
         }
 
         [TestMethod()]
-        public void TestViewFolderWithNoMatchingController() {
+        public void TestViewFolderWithNoMatchingController()
+        {
             Assert.AreEqual("~/Views/NoControllerMatchingFolder/Abcd.txt", MVC.NoControllerMatchingFolder.Views.Abcd);
             Assert.AreEqual("Abcd", MVC.NoControllerMatchingFolder.Views.ViewNames.Abcd);
         }
 
         [TestMethod()]
-        public void TestTemplateFolders() {
+        public void TestTemplateFolders()
+        {
             Assert.AreEqual("SomeDisplayTemplate", MVC.Home.Views.DisplayTemplates.SomeDisplayTemplate);
             Assert.AreEqual("SomeEditorTemplate", MVC.Home.Views.EditorTemplates.SomeEditorTemplate);
             Assert.AreEqual("SomeAreaEditorTemplate", MVC.HomeArea.Home.Views.EditorTemplates.SomeAreaEditorTemplate);
@@ -235,14 +266,16 @@ namespace T4MVCHostMvcApp.Tests {
         // ROUTE VALUES TESTS
 
         [TestMethod()]
-        public void TestRouteValuesForDefaultAreaNoParamAction() {
+        public void TestRouteValuesForDefaultAreaNoParamAction()
+        {
             var actionRes = (IT4MVCActionResult)MVC.T4Ctrl.Qqq();
 
             TestAreaControllerActionNames(actionRes, "", "T4Ctrl", "Qqq");
         }
 
         [TestMethod()]
-        public void TestRouteValuesForRenamedActionWithParams() {
+        public void TestRouteValuesForRenamedActionWithParams()
+        {
             var actionRes = (IT4MVCActionResult)MVC.Home.Blah("Hello", 123);
 
             TestAreaControllerActionNames(actionRes, "", "Home", "New-Name for Blah");
@@ -251,7 +284,8 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void TestRouteValuesForRenamedActionUsingGeneratedNoParamOverload() {
+        public void TestRouteValuesForRenamedActionUsingGeneratedNoParamOverload()
+        {
             var actionRes = (IT4MVCActionResult)MVC.Home.Blah();
 
             TestAreaControllerActionNames(actionRes, "", "Home", "New-Name for Blah");
@@ -260,7 +294,8 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void TestDontGeneratedNoParamOverloadWhenAllParamsAreOptional() {
+        public void TestDontGeneratedNoParamOverloadWhenAllParamsAreOptional()
+        {
             var actionRes = (IT4MVCActionResult)MVC.Home.ActionWithAllOptionalParams();
 
             TestAreaControllerActionNames(actionRes, "", "Home", "ActionWithAllOptionalParams");
@@ -269,7 +304,8 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void TestGeneratedNoParamOverloadWhenOnlySomeParamsAreOptional() {
+        public void TestGeneratedNoParamOverloadWhenOnlySomeParamsAreOptional()
+        {
             var actionRes = (IT4MVCActionResult)MVC.Home.ActionWithSomeOptionalParams();
 
             TestAreaControllerActionNames(actionRes, "", "Home", "ActionWithSomeOptionalParams");
@@ -277,7 +313,8 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void TestRouteValuesForParamUsingAtSyntax() {
+        public void TestRouteValuesForParamUsingAtSyntax()
+        {
             var actionRes = (IT4MVCActionResult)MVC.Home.ActionWithParamUsingAtSyntax(8);
 
             TestRouteValue(actionRes, "event", 8);
@@ -300,7 +337,8 @@ namespace T4MVCHostMvcApp.Tests {
 #endif
 
         [TestMethod()]
-        public void TestRouteValuesForActionWithBindPrefixAttrib() {
+        public void TestRouteValuesForActionWithBindPrefixAttrib()
+        {
             var actionRes = (IT4MVCActionResult)MVC.@break.Post.ActionWithBindPrefixAttribute("Hello");
 
             TestAreaControllerActionNames(actionRes, "break", "Post", "ActionWithBindPrefixAttribute");
@@ -308,7 +346,8 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void TestRouteValuesForActionWithBindNoPrefixAttrib() {
+        public void TestRouteValuesForActionWithBindNoPrefixAttrib()
+        {
             var actionRes = (IT4MVCActionResult)MVC.@break.Post.ActionWithBindNoPrefixAttribute("Hello");
 
             TestAreaControllerActionNames(actionRes, "break", "Post", "ActionWithBindNoPrefixAttribute");
@@ -316,7 +355,8 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void TestRouteValuesForActionWithArrayParam() {
+        public void TestRouteValuesForActionWithArrayParam()
+        {
             var strings = new string[] { "cat", "dog" };
             var actionRes = (IT4MVCActionResult)MVC.Home.ActionWithArrayParam(strings);
 
@@ -325,14 +365,16 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void TestRouteValuesForAreaNoParamAction() {
+        public void TestRouteValuesForAreaNoParamAction()
+        {
             var actionRes = (IT4MVCActionResult)MVC.@break.Post.Index();
 
             TestAreaControllerActionNames(actionRes, "break", "Post", "Index");
         }
 
         [TestMethod()]
-        public void TestRouteValuesForSameAssemblyBaseAction() {
+        public void TestRouteValuesForSameAssemblyBaseAction()
+        {
             var actionRes = (IT4MVCActionResult)MVC.@break.Post.SameProjectBaseControllerMethod("Hello");
 
             TestAreaControllerActionNames(actionRes, "break", "Post", "SameProjectBaseControllerMethod");
@@ -340,7 +382,8 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void TestRouteValuesForCompiledBaseAction() {
+        public void TestRouteValuesForCompiledBaseAction()
+        {
             var actionRes = (IT4MVCActionResult)MVC.@break.Post.CompiledControllerVirtualMethod(17);
 
             TestAreaControllerActionNames(actionRes, "break", "Post", "CompiledControllerVirtualMethod");
@@ -348,7 +391,8 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void TestRouteValuesForDerivedBuiltInActionResultTypes() {
+        public void TestRouteValuesForDerivedBuiltInActionResultTypes()
+        {
             var viewResultActionRes = (IT4MVCActionResult)MVC.Home.SomeViewResultAction();
             var jsonResultActionRes = (IT4MVCActionResult)MVC.Home.SomeJsonResultAction();
             var fileContentResultActionRes = (IT4MVCActionResult)MVC.Home.SomeFileContentResultAction();
@@ -363,14 +407,16 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void TestRouteValuesForCustomActionResultType() {
+        public void TestRouteValuesForCustomActionResultType()
+        {
             var actionRes = (IT4MVCActionResult)MVC.Home.SomeCustomResultAction();
 
             TestAreaControllerActionNames(actionRes, "", "Home", "SomeCustomResultAction");
         }
 
         [TestMethod()]
-        public void TestRouteValuesWithAddedValues() {
+        public void TestRouteValuesWithAddedValues()
+        {
             var actionRes = (IT4MVCActionResult)MVC.Home.Index().AddRouteValues(new { foo1 = "bar", foo2 = 234 });
 
             TestAreaControllerActionNames(actionRes, "", "Home", "Index");
@@ -379,7 +425,8 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void TestRouteValuesWithAddedValue() {
+        public void TestRouteValuesWithAddedValue()
+        {
             var actionRes = (IT4MVCActionResult)MVC.Home.Index().AddRouteValue("foo", "bar");
 
             TestAreaControllerActionNames(actionRes, "", "Home", "Index");
@@ -387,7 +434,8 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void TestRouteValuesWithAddedValuesUsingGeneratedNoParamOverload() {
+        public void TestRouteValuesWithAddedValuesUsingGeneratedNoParamOverload()
+        {
             var actionRes = (IT4MVCActionResult)MVC.Home.Blah().AddRouteValue("name", "Hello").AddRouteValues(new { age = 123, foo = true });
 
             TestAreaControllerActionNames(actionRes, "", "Home", "New-Name for Blah");
@@ -397,7 +445,8 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void TestRouteValuesFromNameValueCollection() {
+        public void TestRouteValuesFromNameValueCollection()
+        {
             var nameValueCollection = new NameValueCollection();
             nameValueCollection["key1"] = "val1";
             nameValueCollection["key2"] = "val2";
@@ -431,14 +480,16 @@ namespace T4MVCHostMvcApp.Tests {
 
         [TestMethod()]
         [ExpectedExceptionAttribute(typeof(InvalidOperationException), "")]
-        public void TestErrorHandlingWhenPassingRealControllerAction() {
+        public void TestErrorHandlingWhenPassingRealControllerAction()
+        {
             var controller = new T4MVCHostMvcApp.Controllers.HomeController();
 
             Html.ActionLink("Test", controller.SomeViewResultAction());
         }
 
         #region ModelUnbinder tests
-        private void RegisterModelUnbinders() {
+        private void RegisterModelUnbinders()
+        {
             ModelUnbinderHelpers.ModelUnbinders.Clear();
             ModelUnbinderHelpers.ModelUnbinders.Add(new UnbindModelUnbinder());
             ModelUnbinderHelpers.ModelUnbinders.Add(new BaseEntityUnbinder());
@@ -446,7 +497,8 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void TestRouteValuesWithSimpleUnbinderModel() {
+        public void TestRouteValuesWithSimpleUnbinderModel()
+        {
             RegisterModelUnbinders();
             var actionRes = (IT4MVCActionResult)MVC.ModelUnbinder.TestUnbindModel(new UnbindModel() { Id = 2 });
 
@@ -454,7 +506,8 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void TestRouteValuesWithSimpleUnbinderModel_NullValue() {
+        public void TestRouteValuesWithSimpleUnbinderModel_NullValue()
+        {
             RegisterModelUnbinders();
             var actionRes = (IT4MVCActionResult)MVC.ModelUnbinder.TestUnbindModel(null);
 
@@ -462,21 +515,24 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void TestRouteValuesWithUnbinder_BaseClassWithUnbinder() {
+        public void TestRouteValuesWithUnbinder_BaseClassWithUnbinder()
+        {
             RegisterModelUnbinders();
             var actionRes = (IT4MVCActionResult)MVC.ModelUnbinder.TestBaseClass(new BaseEntity() { Id = 2 });
 
             TestRouteValue(actionRes, "entity", 2);
         }
         [TestMethod()]
-        public void TestRouteValuesWithUnbinder_ChildClassWithDifferentUnbinderThanParent() {
+        public void TestRouteValuesWithUnbinder_ChildClassWithDifferentUnbinderThanParent()
+        {
             RegisterModelUnbinders();
             var actionRes = (IT4MVCActionResult)MVC.ModelUnbinder.TestChildClass1(new UserEntity() { Id = 2, Login = "asd" });
 
             TestRouteValue(actionRes, "user", "asd");
         }
         [TestMethod()]
-        public void TestRouteValuesWithUnbinder_ChildClassWithoutUnbinder_ShouldUseUnbinderForBaseClass() {
+        public void TestRouteValuesWithUnbinder_ChildClassWithoutUnbinder_ShouldUseUnbinderForBaseClass()
+        {
             RegisterModelUnbinders();
             var actionRes = (IT4MVCActionResult)MVC.ModelUnbinder.TestChildClass2(new AnotherChildEntity() { Id = 2 });
 
@@ -484,7 +540,8 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void TestRouteValuesWithUnbinder_PropertiesUnbinder() {
+        public void TestRouteValuesWithUnbinder_PropertiesUnbinder()
+        {
             RegisterModelUnbinders();
             ModelUnbinderHelpers.ModelUnbinders.Add(typeof(IComplexModel), new PropertiesUnbinder());
 
@@ -501,7 +558,8 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void TestRouteValuesWithUnbinder_ComplexModelWithEnumerable() {
+        public void TestRouteValuesWithUnbinder_ComplexModelWithEnumerable()
+        {
             RegisterModelUnbinders();
             ModelUnbinderHelpers.ModelUnbinders.Add(typeof(IComplexModel), new PropertiesUnbinder());
 
@@ -521,7 +579,8 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void Unbinder_AddRouteValue() {
+        public void Unbinder_AddRouteValue()
+        {
             RegisterModelUnbinders();
 
             var actionRes = (IT4MVCActionResult)MVC.ModelUnbinder.ParameterlessAction()
@@ -531,17 +590,19 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void Unbinder_AddRouteValues_Object() {
+        public void Unbinder_AddRouteValues_Object()
+        {
             RegisterModelUnbinders();
 
             var actionRes = (IT4MVCActionResult)MVC.ModelUnbinder.ParameterlessAction()
-                .AddRouteValues(new {tst= new UnbindModel() { Id = 2 }});
+                .AddRouteValues(new { tst = new UnbindModel() { Id = 2 } });
 
             TestRouteValue(actionRes, "tst", 2);
         }
 
         [TestMethod()]
-        public void Unbinder_AddRouteValues_RouteValueDictionary() {
+        public void Unbinder_AddRouteValues_RouteValueDictionary()
+        {
             RegisterModelUnbinders();
 
             var actionRes = (IT4MVCActionResult)MVC.ModelUnbinder.ParameterlessAction()
@@ -551,11 +612,12 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void Unbinder_AddRouteValues_NameValueCollection() {
+        public void Unbinder_AddRouteValues_NameValueCollection()
+        {
             RegisterModelUnbinders();
 
             var actionRes = (IT4MVCActionResult)MVC.ModelUnbinder.ParameterlessAction()
-                .AddRouteValues(new NameValueCollection() {{"tst", "2"}});
+                .AddRouteValues(new NameValueCollection() { { "tst", "2" } });
 
             TestRouteValue(actionRes, "tst", "2");
         }
@@ -565,17 +627,20 @@ namespace T4MVCHostMvcApp.Tests {
         // STATIC FILES TESTS
 
         [TestMethod()]
-        public void TestLinkWithComplexFileName() {
+        public void TestLinkWithComplexFileName()
+        {
             Assert.AreEqual("/Content/7 My.Text-File Space.txt", Links.Content._7_My_Text_File_Space_txt);
         }
 
         [TestMethod()]
-        public void TestLinkInFolderNamedAfterKeyword() {
+        public void TestLinkInFolderNamedAfterKeyword()
+        {
             Assert.AreEqual("/Content/default/Zzz.txt", Links.Content.@default.Zzz_txt);
         }
 
         [TestMethod()]
-        public void TestLinkToT4File() {
+        public void TestLinkToT4File()
+        {
             Assert.AreEqual("/Content/Sub Content-folder.test/SomeT4.tt", Links.Content.Sub_Content_folder_test.SomeT4_tt);
         }
 
@@ -586,7 +651,8 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void TestScriptFile() {
+        public void TestScriptFile()
+        {
             Assert.AreEqual("/Scripts/jquery-1.3.2.js", Links.Scripts.jquery_1_3_2_js);
         }
 
@@ -597,7 +663,8 @@ namespace T4MVCHostMvcApp.Tests {
         }
 
         [TestMethod()]
-        public void TestNoLinkGeneratedForIgnoredExtension() {
+        public void TestNoLinkGeneratedForIgnoredExtension()
+        {
             var field = typeof(Links.Content).GetField("ShouldNotBeALink_cs");
 
             Assert.AreEqual(null, field);
@@ -606,8 +673,10 @@ namespace T4MVCHostMvcApp.Tests {
 
         // HELPER METHODS
 
-        private void TestAreaControllerActionNames(IT4MVCActionResult actionResult, string area, string controller, string action) {
-            if (UseLowerCaseNames) {
+        private void TestAreaControllerActionNames(IT4MVCActionResult actionResult, string area, string controller, string action)
+        {
+            if (UseLowerCaseNames)
+            {
                 area = area.ToLowerInvariant();
                 controller = controller.ToLowerInvariant();
                 action = action.ToLowerInvariant();
@@ -618,19 +687,23 @@ namespace T4MVCHostMvcApp.Tests {
             TestRouteValue(actionResult, "action", action);
         }
 
-        private void TestAreaControllerActionName(string expected, string actual) {
-            if (UseLowerCaseNames) {
+        private void TestAreaControllerActionName(string expected, string actual)
+        {
+            if (UseLowerCaseNames)
+            {
                 expected = expected.ToLowerInvariant();
             }
 
             Assert.AreEqual(expected, actual);
         }
 
-        private void TestRouteValue(IT4MVCActionResult actionResult, string name, object value) {
+        private void TestRouteValue(IT4MVCActionResult actionResult, string name, object value)
+        {
             Assert.AreEqual(value, actionResult.RouteValueDictionary[name]);
         }
 
-        private static string ProcessVirtualPath(string virtualPath) {
+        private static string ProcessVirtualPath(string virtualPath)
+        {
             // The path that comes in starts with ~/ and must first be made absolute
             if (virtualPath.StartsWith("~/"))
                 virtualPath = virtualPath.Substring(1);

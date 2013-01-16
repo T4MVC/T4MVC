@@ -8,7 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
-namespace T4MVCHostMvcApp.Models {
+namespace T4MVCHostMvcApp.Models
+{
 
     #region Services
     // The FormsAuthentication type is sealed and contains static members, so it is difficult to
@@ -16,7 +17,8 @@ namespace T4MVCHostMvcApp.Models {
     // how to create an abstract wrapper around such a type in order to make the AccountController
     // code unit testable.
 
-    public interface IMembershipService {
+    public interface IMembershipService
+    {
         int MinPasswordLength { get; }
 
         bool ValidateUser(string userName, string password);
@@ -24,31 +26,38 @@ namespace T4MVCHostMvcApp.Models {
         bool ChangePassword(string userName, string oldPassword, string newPassword);
     }
 
-    public class AccountMembershipService : IMembershipService {
+    public class AccountMembershipService : IMembershipService
+    {
         private readonly MembershipProvider _provider;
 
         public AccountMembershipService()
-            : this(null) {
+            : this(null)
+        {
         }
 
-        public AccountMembershipService(MembershipProvider provider) {
+        public AccountMembershipService(MembershipProvider provider)
+        {
             _provider = provider ?? Membership.Provider;
         }
 
-        public int MinPasswordLength {
-            get {
+        public int MinPasswordLength
+        {
+            get
+            {
                 return _provider.MinRequiredPasswordLength;
             }
         }
 
-        public bool ValidateUser(string userName, string password) {
+        public bool ValidateUser(string userName, string password)
+        {
             ValidationUtil.ValidateRequiredStringValue(userName, "userName");
             ValidationUtil.ValidateRequiredStringValue(password, "password");
 
             return _provider.ValidateUser(userName, password);
         }
 
-        public MembershipCreateStatus CreateUser(string userName, string password, string email) {
+        public MembershipCreateStatus CreateUser(string userName, string password, string email)
+        {
             ValidationUtil.ValidateRequiredStringValue(userName, "userName");
             ValidationUtil.ValidateRequiredStringValue(password, "password");
             ValidationUtil.ValidateRequiredStringValue(email, "email");
@@ -58,48 +67,59 @@ namespace T4MVCHostMvcApp.Models {
             return status;
         }
 
-        public bool ChangePassword(string userName, string oldPassword, string newPassword) {
+        public bool ChangePassword(string userName, string oldPassword, string newPassword)
+        {
             ValidationUtil.ValidateRequiredStringValue(userName, "userName");
             ValidationUtil.ValidateRequiredStringValue(oldPassword, "oldPassword");
             ValidationUtil.ValidateRequiredStringValue(newPassword, "newPassword");
 
             // The underlying ChangePassword() will throw an exception rather
             // than return false in certain failure scenarios.
-            try {
+            try
+            {
                 MembershipUser currentUser = _provider.GetUser(userName, true /* userIsOnline */);
                 return currentUser.ChangePassword(oldPassword, newPassword);
             }
-            catch (ArgumentException) {
+            catch (ArgumentException)
+            {
                 return false;
             }
-            catch (MembershipPasswordException) {
+            catch (MembershipPasswordException)
+            {
                 return false;
             }
         }
     }
 
-    public interface IFormsAuthenticationService {
+    public interface IFormsAuthenticationService
+    {
         void SignIn(string userName, bool createPersistentCookie);
         void SignOut();
     }
 
-    public class FormsAuthenticationService : IFormsAuthenticationService {
-        public void SignIn(string userName, bool createPersistentCookie) {
+    public class FormsAuthenticationService : IFormsAuthenticationService
+    {
+        public void SignIn(string userName, bool createPersistentCookie)
+        {
             ValidationUtil.ValidateRequiredStringValue(userName, "userName");
 
             FormsAuthentication.SetAuthCookie(userName, createPersistentCookie);
         }
 
-        public void SignOut() {
+        public void SignOut()
+        {
             FormsAuthentication.SignOut();
         }
     }
 
-    internal static class ValidationUtil {
+    internal static class ValidationUtil
+    {
         private const string _stringRequiredErrorMessage = "Value cannot be null or empty.";
 
-        public static void ValidateRequiredStringValue(string value, string parameterName) {
-            if (String.IsNullOrEmpty(value)) {
+        public static void ValidateRequiredStringValue(string value, string parameterName)
+        {
+            if (String.IsNullOrEmpty(value))
+            {
                 throw new ArgumentException(_stringRequiredErrorMessage, parameterName);
             }
         }
@@ -108,7 +128,8 @@ namespace T4MVCHostMvcApp.Models {
 
     #region Models
     [PropertiesMustMatch("NewPassword", "ConfirmPassword", ErrorMessage = "The new password and confirmation password do not match.")]
-    public class ChangePasswordModel {
+    public class ChangePasswordModel
+    {
         [Required]
         [DataType(DataType.Password)]
         [DisplayName("Current password")]
@@ -125,7 +146,8 @@ namespace T4MVCHostMvcApp.Models {
         public string ConfirmPassword { get; set; }
     }
 
-    public class LogOnModel {
+    public class LogOnModel
+    {
         [Required]
         [DisplayName("User name")]
         public string UserName { get; set; }
@@ -137,7 +159,8 @@ namespace T4MVCHostMvcApp.Models {
     }
 
     [PropertiesMustMatch("Password", "ConfirmPassword", ErrorMessage = "The password and confirmation password do not match.")]
-    public class RegisterModel {
+    public class RegisterModel
+    {
         [Required]
         [DisplayName("User name")]
         public string UserName { get; set; }
@@ -161,31 +184,37 @@ namespace T4MVCHostMvcApp.Models {
 
     #region Validation
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
-    public sealed class PropertiesMustMatchAttribute : ValidationAttribute {
+    public sealed class PropertiesMustMatchAttribute : ValidationAttribute
+    {
         private const string _defaultErrorMessage = "'{0}' and '{1}' do not match.";
 
         public PropertiesMustMatchAttribute(string originalProperty, string confirmProperty)
-            : base(_defaultErrorMessage) {
+            : base(_defaultErrorMessage)
+        {
             OriginalProperty = originalProperty;
             ConfirmProperty = confirmProperty;
         }
 
-        public string ConfirmProperty {
+        public string ConfirmProperty
+        {
             get;
             private set;
         }
 
-        public string OriginalProperty {
+        public string OriginalProperty
+        {
             get;
             private set;
         }
 
-        public override string FormatErrorMessage(string name) {
+        public override string FormatErrorMessage(string name)
+        {
             return String.Format(CultureInfo.CurrentUICulture, ErrorMessageString,
                 OriginalProperty, ConfirmProperty);
         }
 
-        public override bool IsValid(object value) {
+        public override bool IsValid(object value)
+        {
             PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(value);
             object originalValue = properties.Find(OriginalProperty, true /* ignoreCase */).GetValue(value);
             object confirmValue = properties.Find(ConfirmProperty, true /* ignoreCase */).GetValue(value);
@@ -194,23 +223,28 @@ namespace T4MVCHostMvcApp.Models {
     }
 
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
-    public sealed class ValidatePasswordLengthAttribute : ValidationAttribute {
+    public sealed class ValidatePasswordLengthAttribute : ValidationAttribute
+    {
         private const string _defaultErrorMessage = "'{0}' must be at least {1} characters long.";
 
         private readonly int _minCharacters = Membership.Provider.MinRequiredPasswordLength;
 
         public ValidatePasswordLengthAttribute()
-            : base(_defaultErrorMessage) {
+            : base(_defaultErrorMessage)
+        {
         }
 
-        public override string FormatErrorMessage(string name) {
+        public override string FormatErrorMessage(string name)
+        {
             return String.Format(CultureInfo.CurrentUICulture, ErrorMessageString,
                 name, _minCharacters);
         }
 
-        public override bool IsValid(object value) {
+        public override bool IsValid(object value)
+        {
             string valueAsString = value as string;
-            if (String.IsNullOrEmpty(valueAsString)) {
+            if (String.IsNullOrEmpty(valueAsString))
+            {
                 return true;
             }
 

@@ -4,13 +4,16 @@ using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc;
 using T4MVCHostMvcApp.Misc;
 
-namespace T4MVCHostMvcApp.Controllers {
+namespace T4MVCHostMvcApp.Controllers
+{
     [HandleError]
-    public partial class HomeController : Controller {
+    public partial class HomeController : Controller
+    {
         [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Scope = "member", Target = "T4MVCHostMvcApp.Controllers.HomeController.#.cctor()")]
         static HomeController() { }
 
-        public virtual ActionResult Index() {
+        public virtual ActionResult Index()
+        {
             //RedirectToAction()
 
             ViewData["Message"] = "Welcome to ASP.NET MVC!";
@@ -21,12 +24,14 @@ namespace T4MVCHostMvcApp.Controllers {
         const string firstConst = "The About";
         const string secondConst = "Action";
         [ActionName(firstConst + " " + secondConst)]
-        public virtual ActionResult About() {
+        public virtual ActionResult About()
+        {
             return RedirectToAction(Actions.Index());
         }
 
         [SuppressMessage("Microsoft.Performance", "CA1804:RemoveUnusedLocals", MessageId = "ageParamName"), SuppressMessage("Microsoft.Performance", "CA1804:RemoveUnusedLocals", MessageId = "nameParamName"), ActionName("New-Name for Blah")]
-        public virtual ActionResult Blah(string name, int age) {
+        public virtual ActionResult Blah(string name, int age)
+        {
             // Just checking that the short syntax for param names works
             string nameParamName = BlahParams.name;
             string ageParamName = BlahParams.age;
@@ -34,66 +39,80 @@ namespace T4MVCHostMvcApp.Controllers {
             return View();
         }
 
-        public virtual void SomeVoidAction() {
+        public virtual void SomeVoidAction()
+        {
         }
 
-        public virtual ViewResult SomeViewResultAction() {
+        public virtual ViewResult SomeViewResultAction()
+        {
             return new ViewResult();
         }
 
-        public virtual JsonResult SomeJsonResultAction() {
+        public virtual JsonResult SomeJsonResultAction()
+        {
             return null;
         }
 
-        public virtual FileContentResult SomeFileContentResultAction() {
+        public virtual FileContentResult SomeFileContentResultAction()
+        {
             return null;
         }
 
-        public virtual FileStreamResult SomeFileStreamResultAction() {
+        public virtual FileStreamResult SomeFileStreamResultAction()
+        {
             return null;
         }
 
-        public virtual FileResult SomeFileResultAction() {
+        public virtual FileResult SomeFileResultAction()
+        {
             return null;
         }
 
-        public virtual MyCustomResult SomeCustomResultAction() {
+        public virtual MyCustomResult SomeCustomResultAction()
+        {
             return null;
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Param"), SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "strings")]
-        public virtual ActionResult ActionWithArrayParam(string[] someStrings) {
+        public virtual ActionResult ActionWithArrayParam(string[] someStrings)
+        {
             return new EmptyResult();
         }
 
         [SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed"), SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Params"), SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "n"), SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "string")]
-        public virtual ActionResult ActionWithAllOptionalParams(string someString = "Hello", int n = 5) {
+        public virtual ActionResult ActionWithAllOptionalParams(string someString = "Hello", int n = 5)
+        {
             return new EmptyResult();
         }
 
         [SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed"), SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Params"), SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "n"), SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "string")]
-        public virtual ActionResult ActionWithSomeOptionalParams(string someString, int n = 5) {
+        public virtual ActionResult ActionWithSomeOptionalParams(string someString, int n = 5)
+        {
             return new EmptyResult();
         }
 
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter"), SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Param"), SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "string")]
-        public virtual ActionResult ActionWithGenericParam<T>(string someString) {
+        public virtual ActionResult ActionWithGenericParam<T>(string someString)
+        {
             return new EmptyResult();
         }
 
         [SuppressMessage("Microsoft.Design", "CA1041:ProvideObsoleteAttributeMessage")]
         [Obsolete]
-        public virtual ActionResult SomeObsoleteAction() {
+        public virtual ActionResult SomeObsoleteAction()
+        {
             return new EmptyResult();
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Param"), SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "event")]
-        public virtual ActionResult ActionWithParamUsingAtSyntax(int @event) {
+        public virtual ActionResult ActionWithParamUsingAtSyntax(int @event)
+        {
             return new EmptyResult();
         }
 
         [Dummy(ActionNameConstants.ActionThatUsesActionNameConstantInAttribute)]
-        public virtual ActionResult ActionThatUsesActionNameConstantInAttribute() {
+        public virtual ActionResult ActionThatUsesActionNameConstantInAttribute()
+        {
             return new EmptyResult();
         }
 
@@ -135,7 +154,8 @@ namespace T4MVCHostMvcApp.Controllers {
 
     public class SomeGenericResult<T> : FileResult
     {
-        public SomeGenericResult(string contentType): base(contentType)
+        public SomeGenericResult(string contentType)
+            : base(contentType)
         {
 
         }
@@ -145,9 +165,11 @@ namespace T4MVCHostMvcApp.Controllers {
         }
     }
 
-    sealed class DummyAttribute : Attribute {
+    sealed class DummyAttribute : Attribute
+    {
         [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "actionName")]
-        public DummyAttribute(string actionName) {
+        public DummyAttribute(string actionName)
+        {
         }
     }
 }

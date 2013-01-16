@@ -1,33 +1,40 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc;
 
-namespace T4MVCHostMvcApp.Areas.Break.Controllers {
+namespace T4MVCHostMvcApp.Areas.Break.Controllers
+{
 
     [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Param")]
-    public class MyParamObject {
+    public class MyParamObject
+    {
         public string Name { get; set; }
         public int Age { get; set; }
     }
 
-    public partial class PostController : MyAbstractBaseController {
+    public partial class PostController : MyAbstractBaseController
+    {
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "s", Scope = "member", Target = "T4MVCHostMvcApp.Areas.Break.Controllers.PostController.#.ctor(System.String)")]
         public PostController(string s)
             : base(s) { }
 
-        public virtual ActionResult Index() {
+        public virtual ActionResult Index()
+        {
             return View();
         }
 
-        public virtual ActionResult ActionWithBindPrefixAttribute([Bind(Prefix = "newParamName")] string fieldName) {
+        public virtual ActionResult ActionWithBindPrefixAttribute([Bind(Prefix = "newParamName")] string fieldName)
+        {
             return View();
         }
 
-        public virtual ActionResult ActionWithBindNoPrefixAttribute([Bind] string fieldName) {
+        public virtual ActionResult ActionWithBindNoPrefixAttribute([Bind] string fieldName)
+        {
             return View();
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "p")]
-        public virtual ActionResult ActionThatTakesAnObject(MyParamObject p) {
+        public virtual ActionResult ActionThatTakesAnObject(MyParamObject p)
+        {
             return View();
         }
 
