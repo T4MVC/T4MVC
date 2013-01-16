@@ -611,6 +611,8 @@ void ProcessControllerType(CodeClass2 type, AreaInfo area, DateTime controllerLa
 
 void ProcessControllerActionMethods(ControllerInfo controllerInfo, CodeClass2 current) {
 
+    bool isAsyncController = IsAsyncController(current);
+
     // We want to process not just the controller class itself, but also its parents, as they
     // may themselves define actions
     for (CodeClass2 type = current; type != null && type.FullName != "System.Web.Mvc.Controller"; type = (CodeClass2)type.Bases.Item(1)) {
@@ -683,7 +685,7 @@ void ProcessControllerActionMethods(ControllerInfo controllerInfo, CodeClass2 cu
 
             // Ignore async completion methods as they can't really be used in T4MVC, and can cause issues.
             // See http://stackoverflow.com/questions/5419173/t4mvc-asynccontroller
-            if (IsAsyncController(type) && method.Name.EndsWith("Completed", StringComparison.OrdinalIgnoreCase))
+            if (isAsyncController && method.Name.EndsWith("Completed", StringComparison.OrdinalIgnoreCase))
                 continue;
 
             // If we haven't yet seen this return type, keep track of it
