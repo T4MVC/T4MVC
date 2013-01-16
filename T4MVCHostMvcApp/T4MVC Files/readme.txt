@@ -49,7 +49,8 @@ KNOWN ISSUES:
 
 HISTORY:
 
-!!! 3.2.2 (1-16-2013):
+!!! 3.3.0 (1-16-2013):
+*  Add support for support for model unbinder providers [url:https://t4mvc.codeplex.com/SourceControl/network/forks/Augi/T4MVCUnbinderProvider/contribution/3879]
 *  Fix handling of "completed" methods [url:https://t4mvc.codeplex.com/SourceControl/network/forks/phw/t4mvc/contribution/3922]
 
 !!! 3.2.1 (12-27-2012):
