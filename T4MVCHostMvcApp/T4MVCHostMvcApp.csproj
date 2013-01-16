@@ -99,6 +99,7 @@
   <ItemGroup>
     <Content Include="ContentStatic\TextFiles\readme.txt" />
     <Compile Include="Controllers\ControllerWithoutSuffix.cs" />
+    <Compile Include="Controllers\SomeAsyncController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModelUnbinderController.cs" />
     <Compile Include="Global.asax.cs">
@@ -223,6 +224,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4MVC Files\SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\SomeAsyncController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4MVC Files\T4CtrlController.generated.cs">

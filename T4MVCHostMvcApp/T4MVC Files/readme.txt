@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.2.2 (1-16-2013):
+*  Fix handling of "completed" methods [url:https://t4mvc.codeplex.com/SourceControl/network/forks/phw/t4mvc/contribution/3922]
+
 !!! 3.2.1 (12-27-2012):
 *  Fix issue with VB projects causing exceptions [url:http://t4mvc.codeplex.com/workitem/7]
 

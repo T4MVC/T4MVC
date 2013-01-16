@@ -81,15 +81,6 @@ namespace T4MVCHostMvcApp.Controllers {
             return new EmptyResult();
         }
 
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public void GetSomethingAsync() {
-        }
-
-        // This async completion method is ignored by T4MVC, as it can't make use of it meaningfully
-        public virtual JsonResult GetSomethingCompleted(string clientDocuments) {
-            return new JsonResult();
-        }
-
         [SuppressMessage("Microsoft.Design", "CA1041:ProvideObsoleteAttributeMessage")]
         [Obsolete]
         public virtual ActionResult SomeObsoleteAction() {
