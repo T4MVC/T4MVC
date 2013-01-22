@@ -202,7 +202,7 @@ namespace <#=controller.Namespace #>
             return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
         }
 
-<#foreach (var method in controller.ActionMethodsUniqueWithoutParameterlessOverload.Where(m => !m.IsCustomFunction)) { #>
+<#foreach (var method in controller.ActionMethodsUniqueWithoutParameterlessOverload) { #>
         [NonAction]
         [<#= GeneratedCode #>, DebuggerNonUserCode]
         public virtual <#=method.ReturnTypeFullName #> <#=method.Name #>()
