@@ -202,12 +202,26 @@ namespace <#=controller.Namespace #>
             return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
         }
 
-<#foreach (var method in controller.ActionMethodsUniqueWithoutParameterlessOverload) { #>
+<#foreach (var method in controller.ActionMethodsUniqueWithoutParameterlessOverload.Where(m => !m.IsCustomFunction)) { #>
         [NonAction]
         [<#= GeneratedCode #>, DebuggerNonUserCode]
         public <#=method.ReturnTypeFullName #> <#=method.Name #>()
         {
             return new T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
+        }
+<#} #>
+<#foreach (var method in controller.CustomActionMethods) { #>
+        [NonAction]
+        [<#= GeneratedCode #>, DebuggerNonUserCode]
+        public <#=method.ReturnTypeFullName #> <#=method.Name #>(<#method.WriteFormalParameters(true, true); #>)
+        {
+            var callInfo = new T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
+<#if (method.Parameters.Count > 0) { #>
+<#foreach (var p in method.Parameters) { #>
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, <#=p.RouteNameExpression #>, <#=p.Name #>);
+<#} #>
+<#}#>
+            return callInfo;
         }
 <#} #>
 
@@ -300,7 +314,7 @@ foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (gr
     {
         public <#=controller.DerivedClassName #>() : base(Dummy.Instance) { }
 
-<#foreach (var method in controller.ActionMethods) { #>
+<#foreach (var method in controller.ActionMethods.Where(m => !m.IsCustomFunction)) { #>
         public override <#=method.ReturnTypeFullName #> <#=method.Name #>(<#method.WriteFormalParameters(true); #>)
         {
             var callInfo = new T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
@@ -720,6 +734,24 @@ void ProcessControllerActionMethods(ControllerInfo controllerInfo, CodeClass2 cu
             // Ignore generic methods
             if (method.IsGeneric)
                 continue;
+
+            if(isAsyncController && settings.SupportAsyncActions && (method.Type.TypeKind == vsCMTypeRef.vsCMTypeRefVoid) && method.Name.EndsWith("Async")) 
+            {
+                //Async methods return void and there could be multiple matching Completed methods, so we will use
+                //the generic ActionResult as the return type for the method.
+                var resultType = Project.CodeModel.CodeTypeFromFullName("System.Web.Mvc.ActionResult");
+                // If we haven't yet seen this return type, keep track of it
+                if (!ResultTypes.ContainsKey(resultType.Name))
+                {
+                    var resTypeInfo = new ResultTypeInfo(resultType);
+                    ResultTypes[resultType.FullName] = resTypeInfo;
+                }
+
+                // Collect misc info about the action method and add it to the collection
+                controllerInfo.ActionMethods.Add(new ActionMethodInfo(method, current, resultType));
+
+                continue;
+            }
 
             // This takes care of avoiding generic types which cause method.Type.CodeType to blow up
             if (method.Type.TypeKind != vsCMTypeRef.vsCMTypeRefCodeType || !(method.Type.CodeType is CodeClass2))
@@ -1340,6 +1372,14 @@ class ControllerInfo
         }
     }
 
+    public IEnumerable<ActionMethodInfo> CustomActionMethods
+    {
+        get
+        {
+            return ActionMethods.Where(m => m.IsCustomFunction);
+        }
+    }
+
     // Return a list of actions without duplicate names (even with multiple overloads)
     public IEnumerable<ActionMethodInfo> ActionMethodsWithUniqueNames
     {
@@ -1449,6 +1489,8 @@ class FunctionInfo
             return;
 
         _method = method;
+        _name = method.Name;
+        _returnType = method.Type.CodeType;
 
         // Build a unique signature for the method, used to avoid duplication
         _signature = method.Name;
@@ -1484,22 +1526,27 @@ class FunctionInfo
                 {
                     Name = p.Name,
                     RouteNameExpression = routeNameExpression,
-                    Type = p.Type.AsString
+                    Type = p.Type.AsString,
+                    DefaultValue = p.DefaultValue
                 });
             _signature += "," + p.Type.AsString;
         }
     }
 
-    public string Name { get { return _method.Name; } }
-    public string ReturnType { get { return _method.Type.CodeType.Name; } }
-    public string ReturnTypeFullName { get { return _method.Type.CodeType.FullName; } }
-    public string ReturnTypeUniqueName { get { return UniqueFullName(_method.Type.CodeType); } }
+    protected string _name;
+    protected CodeType _returnType;
+
+    public string Name { get { return _name; } }
+    public string ReturnType { get { return _returnType.Name; } }
+    public string ReturnTypeFullName { get { return _returnType.FullName; } }
+    public string ReturnTypeUniqueName { get { return UniqueFullName(_returnType); } }
     public bool IsPublic { get { return _method.Access == vsCMAccess.vsCMAccessPublic; } }
     public List<MethodParamInfo> Parameters { get; private set; }
     public bool CanBeCalledWithoutParameters { get; private set; }
+    public bool IsCustomFunction { get { return _returnType.FullName != _method.Type.AsFullName; } }
 
     // Write out all the parameters as part of a method declaration
-    public void WriteFormalParameters(bool first)
+    public void WriteFormalParameters(bool first, bool includeDefaults = false)
     {
         foreach (var p in Parameters)
         {
@@ -1509,6 +1556,8 @@ class FunctionInfo
                 TT.Write(", ");
 
             TT.Write(p.Type + " " + p.Name);
+            if(includeDefaults && (p.DefaultValue != null))
+                TT.Write(" = ", p.DefaultValue);
         }
     }
 
@@ -1523,18 +1572,21 @@ class FunctionInfo
             else
                 TT.Write(", ");
 
-            switch (p.Type)
-            {
-                case "string":
-                    TT.Write("\" \"");
-                    break;
-                case "byte[]":
-                    TT.Write("new byte[0]");
-                    break;
-                default:
-                    TT.Write("default(" + p.Type + ")");
-                    break;
-            }
+            if(p.DefaultValue != null)
+                TT.Write(p.DefaultValue);
+            else
+                switch (p.Type)
+                {
+                    case "string":
+                        TT.Write("\" \"");
+                        break;
+                    case "byte[]":
+                        TT.Write("new byte[0]");
+                        break;
+                    default:
+                        TT.Write("default(" + p.Type + ")");
+                        break;
+                }
         }
     }
 
@@ -1552,9 +1604,14 @@ class FunctionInfo
 // Data structure to collect data about an action method
 class ActionMethodInfo : FunctionInfo
 {
-    public ActionMethodInfo(CodeFunction2 method, CodeClass2 controller)
+    public ActionMethodInfo(CodeFunction2 method, CodeClass2 controller, CodeType asyncType = null)
         : base(method)
     {
+        if(asyncType != null) 
+        {
+            _name = method.Name.Remove(method.Name.Length - 5);
+            _returnType = asyncType;
+        }
         // Normally, the action name is the method name. But if there is an [ActionName] on
         // the method, get the expression from that instead
         ActionNameValueExpression = '"' + Name + '"';
@@ -1608,6 +1665,7 @@ class MethodParamInfo
     public string Name { get; set; }
     public string RouteNameExpression { get; set; }
     public string Type { get; set; }
+    public string DefaultValue { get; set; }
 }
 
 class MvcSettings : XmlSettings
@@ -1634,8 +1692,9 @@ class MvcSettings : XmlSettings
           "EditorTemplates"
         }, "ViewFolder");
         this.GenerateActionResultInterface = true;
-		this.GenerateParamsAsConstantsForActionMethods = false;
-		this.GenerateParamsForActionMethods = true;
+        this.GenerateParamsAsConstantsForActionMethods = false;
+        this.GenerateParamsForActionMethods = true;
+        this.SupportAsyncActions = false;
         this.UseLowercaseRoutes = false;
         this.LinksNamespace = "Links";
         this.AddTimestampToStaticLinks = false;
@@ -1683,6 +1742,9 @@ class MvcSettings : XmlSettings
 
     [System.ComponentModel.Description("If true, the T4MVC action result interface will be generated\r\nIf false, the namespace of the interface must be referenced in the 'ReferencedNamespaces' setting")]
     public bool GenerateActionResultInterface { get; set; }
+
+    [System.ComponentModel.Description("If true, [new] overrides will be created for async actions on AsyncControllers\r\nThis breaks the Go To Definition function for async actions.")]
+    public bool SupportAsyncActions { get; set; }
 
     [System.ComponentModel.Description("If true, use lower case tokens in routes for the area, controller and action names")]
     public bool UseLowercaseRoutes { get; set; }

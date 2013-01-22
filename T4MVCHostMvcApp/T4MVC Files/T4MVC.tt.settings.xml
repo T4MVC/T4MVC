@@ -32,6 +32,9 @@ as it breaks the templated helper code-->
   <!--If true, the T4MVC action result interface will be generated
 If false, the namespace of the interface must be referenced in the 'ReferencedNamespaces' setting-->
   <GenerateActionResultInterface>True</GenerateActionResultInterface>
+  <!--If true, [new] overrides will be created for async actions on AsyncControllers
+This breaks the Go To Definition function for async actions.-->
+  <SupportAsyncActions>False</SupportAsyncActions>
   <!--If true, use lower case tokens in routes for the area, controller and action names-->
   <UseLowercaseRoutes>False</UseLowercaseRoutes>
   <!--The namespace that the links are generated in (e.g. "Links", as in Links.Content.nerd_jpg)-->
