@@ -24,5 +24,14 @@ namespace T4MVCHostMvcApp.Controllers
         {
             return new JsonResult();
         }
+
+        public void ActionWithDefaultsAsync(long? id = null)
+        {
+        }
+
+        public ActionResult ActionWithDefaultsCompleted(object result)
+        {
+            return null;
+        }
     }
 }

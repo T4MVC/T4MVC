@@ -85,13 +85,16 @@ namespace T4MVCHostMvcApp.Controllers
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class T4MVC_SomeAsyncController : T4MVCHostMvcApp.Controllers.SomeAsyncController
+    public partial class T4MVC_SomeAsyncController : T4MVCHostMvcApp.Controllers.SomeAsyncController
     {
         public T4MVC_SomeAsyncController() : base(Dummy.Instance) { }
+
+        partial void SomeActionOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         public override System.Web.Mvc.ActionResult SomeAction()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SomeAction);
+            SomeActionOverride(callInfo);
             return callInfo;
         }
 

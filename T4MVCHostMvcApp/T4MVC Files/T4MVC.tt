@@ -205,7 +205,7 @@ namespace <#=controller.Namespace #>
 <#foreach (var method in controller.ActionMethodsUniqueWithoutParameterlessOverload.Where(m => !m.IsCustomFunction)) { #>
         [NonAction]
         [<#= GeneratedCode #>, DebuggerNonUserCode]
-        public <#=method.ReturnTypeFullName #> <#=method.Name #>()
+        public virtual <#=method.ReturnTypeFullName #> <#=method.Name #>()
         {
             return new T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
         }
@@ -213,7 +213,7 @@ namespace <#=controller.Namespace #>
 <#foreach (var method in controller.CustomActionMethods) { #>
         [NonAction]
         [<#= GeneratedCode #>, DebuggerNonUserCode]
-        public <#=method.ReturnTypeFullName #> <#=method.Name #>(<#method.WriteFormalParameters(true, true); #>)
+        public virtual <#=method.ReturnTypeFullName #> <#=method.Name #>(<#method.WriteFormalParameters(true, true); #>)
         {
             var callInfo = new T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
 <#if (method.Parameters.Count > 0) { #>
@@ -310,11 +310,13 @@ foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (gr
 
 <#if (!controller.NotRealController) { #>
     [<#= GeneratedCode #>, DebuggerNonUserCode]
-    public class <#=controller.DerivedClassName #> : <#=controller.FullClassName #>
+    public partial class <#=controller.DerivedClassName #> : <#=controller.FullClassName #>
     {
         public <#=controller.DerivedClassName #>() : base(Dummy.Instance) { }
 
 <#foreach (var method in controller.ActionMethods.Where(m => !m.IsCustomFunction)) { #>
+        partial void <#=method.Name #>Override(T4MVC_<#=method.ReturnTypeUniqueName #> callInfo<#if (method.Parameters.Count > 0) { #>, <#method.WriteFormalParameters(true); #><#}#>);
+
         public override <#=method.ReturnTypeFullName #> <#=method.Name #>(<#method.WriteFormalParameters(true); #>)
         {
             var callInfo = new T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
@@ -323,6 +325,7 @@ foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (gr
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, <#=p.RouteNameExpression #>, <#=p.Name #>);
 <#} #>
 <#}#>
+            <#=method.Name #>Override(callInfo<#if (method.Parameters.Count > 0) { #><#foreach (var p in method.Parameters) { #>, <#=p.Name #><#}}#>);
             return callInfo;
         }
 
@@ -1556,8 +1559,8 @@ class FunctionInfo
                 TT.Write(", ");
 
             TT.Write(p.Type + " " + p.Name);
-            if(includeDefaults && (p.DefaultValue != null))
-                TT.Write(" = ", p.DefaultValue);
+            if(includeDefaults && !string.IsNullOrEmpty(p.DefaultValue))
+                TT.Write(" = " + p.DefaultValue);
         }
     }
 
@@ -1572,7 +1575,7 @@ class FunctionInfo
             else
                 TT.Write(", ");
 
-            if(p.DefaultValue != null)
+            if(!string.IsNullOrEmpty(p.DefaultValue))
                 TT.Write(p.DefaultValue);
             else
                 switch (p.Type)

@@ -82,13 +82,16 @@ namespace T4MVCHostMvcApp.Controllers
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class T4MVC_T4CtrlController : T4MVCHostMvcApp.Controllers.T4CtrlController
+    public partial class T4MVC_T4CtrlController : T4MVCHostMvcApp.Controllers.T4CtrlController
     {
         public T4MVC_T4CtrlController() : base(Dummy.Instance) { }
+
+        partial void QqqOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         public override System.Web.Mvc.ActionResult Qqq()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Qqq);
+            QqqOverride(callInfo);
             return callInfo;
         }
 
