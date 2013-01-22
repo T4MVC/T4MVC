@@ -615,6 +615,10 @@ void ProcessControllerType(CodeClass2 type, AreaInfo area, DateTime controllerLa
     if (type.IsGeneric)
         return;
 
+    //Ignore references to controllers we create
+    if(area.Controllers.Any(c => c.DerivedClassName == type.Name))
+        return;
+
     // Make sure the class is partial
     if (type.ClassKind != vsCMClassKind.vsCMClassKindPartialClass)
     {
@@ -638,6 +642,10 @@ void ProcessControllerType(CodeClass2 type, AreaInfo area, DateTime controllerLa
         Namespace = type.Namespace != null ? type.Namespace.Name : String.Empty,
         ClassName = type.Name
     };
+
+    //Filter references to controllers we create
+    foreach(var derived in area.Controllers.Where(c => c.ClassName == controllerInfo.DerivedClassName))
+        area.Controllers.Remove(derived);
 
     // Check if the controller has changed since the generated file was last created
     DateTime lastGenerationTime = File.GetLastWriteTime(controllerInfo.GeneratedFileFullPath);

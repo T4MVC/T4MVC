@@ -172,4 +172,13 @@ namespace T4MVCHostMvcApp.Controllers
         {
         }
     }
+
+    partial class T4MVC_HomeController
+    {
+        public override ActionResult Blah()
+        {
+            var callInfo = base.Blah();
+            return callInfo;
+        }
+    }
 }
