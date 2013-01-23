@@ -180,5 +180,10 @@ namespace T4MVCHostMvcApp.Controllers
             var callInfo = base.Blah();
             return callInfo;
         }
+
+        partial void AboutOverride(T4MVC_System_Web_Mvc_ActionResult callInfo)
+        {
+            callInfo.RouteValueDictionary["stub"] = "Extra Text in route";
+        }
     }
 }
