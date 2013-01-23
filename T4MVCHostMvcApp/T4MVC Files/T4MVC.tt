@@ -210,6 +210,14 @@ namespace <#=controller.Namespace #>
             return new T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
         }
 <#} #>
+<#foreach (var method in controller.CustomActionMethodsUniqueWithoutParameterlessOverload) { #>
+        [NonAction]
+        [<#= GeneratedCode #>, DebuggerNonUserCode]
+        public virtual <#=method.ReturnTypeFullName #> <#=method.ActionName #>()
+        {
+            return new T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
+        }
+<#} #>
 <#foreach (var method in controller.CustomActionMethods) { #>
         [NonAction]
         [<#= GeneratedCode #>, DebuggerNonUserCode]
@@ -1367,6 +1375,14 @@ class ControllerInfo
 
     public HashSet<ActionMethodInfo> ActionMethods { get; set; }
 
+    public IEnumerable<ActionMethodInfo> CustomActionMethods
+    {
+        get
+        {
+            return ActionMethods.Where(m => m.IsCustomReturnType);
+        }
+    }
+
     IEnumerable<ActionMethodInfo> ActionMethodsWithNoParameters
     {
         get
@@ -1383,11 +1399,11 @@ class ControllerInfo
         }
     }
 
-    public IEnumerable<ActionMethodInfo> CustomActionMethods
+    public IEnumerable<ActionMethodInfo> CustomActionMethodsUniqueWithoutParameterlessOverload
     {
         get
         {
-            return ActionMethods.Where(m => m.IsCustomReturnType);
+            return CustomActionMethodsWithUniqueNames.Except(ActionMethodsWithNoParameters, new ActionComparer());
         }
     }
 
@@ -1397,6 +1413,15 @@ class ControllerInfo
         get
         {
             return ActionMethods.Distinct(new ActionComparer());
+        }
+    }
+
+    // Return a list of actions without duplicate names (even with multiple overloads)
+    public IEnumerable<ActionMethodInfo> CustomActionMethodsWithUniqueNames
+    {
+        get
+        {
+            return CustomActionMethods.Distinct(new ActionComparer());
         }
     }
 
