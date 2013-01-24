@@ -44,21 +44,6 @@ namespace T4MVCHostMvcApp.Controllers
             return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
         }
 
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult GetSomething()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetSomething);
-            return callInfo;
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult ActionWithDefaults(long? id = null)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithDefaults);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            return callInfo;
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public SomeAsyncController Actions { get { return MVC.SomeAsync; } }
@@ -76,27 +61,15 @@ namespace T4MVCHostMvcApp.Controllers
         public class ActionNamesClass
         {
             public readonly string SomeAction = "SomeAction";
-            public readonly string GetSomething = "GetSomething";
-            public readonly string ActionWithDefaults = "ActionWithDefaults";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string SomeAction = "SomeAction";
-            public const string GetSomething = "GetSomething";
-            public const string ActionWithDefaults = "ActionWithDefaults";
         }
 
 
-        static readonly ActionParamsClass_ActionWithDefaults s_params_ActionWithDefaults = new ActionParamsClass_ActionWithDefaults();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_ActionWithDefaults ActionWithDefaultsParams { get { return s_params_ActionWithDefaults; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ActionWithDefaults
-        {
-            public readonly string id = "id";
-        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }

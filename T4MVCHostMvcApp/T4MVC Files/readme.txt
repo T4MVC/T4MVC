@@ -49,6 +49,10 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.4.0 (1-23-2013):
+* Add optional support for async methods [url:https://t4mvc.codeplex.com/SourceControl/network/forks/mswainatwork/t4mvc/contribution/3958]
+* Generate partial methods to allow custom "overloading" of the return values.
+
 !!! 3.3.0 (1-16-2013):
 *  Add support for support for model unbinder providers [url:https://t4mvc.codeplex.com/SourceControl/network/forks/Augi/T4MVCUnbinderProvider/contribution/3879]
 *  Fix handling of "completed" methods [url:https://t4mvc.codeplex.com/SourceControl/network/forks/phw/t4mvc/contribution/3922]
