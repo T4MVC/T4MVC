@@ -25,10 +25,12 @@ namespace T4MVCHostMvcApp.Controllers
             return new JsonResult();
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed"), SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic"), SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "id")]
         public void ActionWithDefaultsAsync(long? id = null)
         {
         }
 
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic"), SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "result")]
         public ActionResult ActionWithDefaultsCompleted(object result)
         {
             return null;
