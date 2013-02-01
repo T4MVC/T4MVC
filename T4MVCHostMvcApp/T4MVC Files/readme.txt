@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.4.1 (1-31-2013):
+* Make T4MVCHelpers internal to avoid cross project conflicts [url:http://t4mvc.codeplex.com/workitem/17]
+
 !!! 3.4.0 (1-23-2013):
 * Add optional support for async methods [url:https://t4mvc.codeplex.com/SourceControl/network/forks/mswainatwork/t4mvc/contribution/3958]
 * Generate partial methods to allow custom "overloading" of the return values.
