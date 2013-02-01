@@ -1294,7 +1294,7 @@ class ControllerInfo
                 else
                     name += "." + EscapeID(Area.Namespace);
             }
-            return name + "." + Name; ;
+            return name + "." + Name;
         }
     }
 
