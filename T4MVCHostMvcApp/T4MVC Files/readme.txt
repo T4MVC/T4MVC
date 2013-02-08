@@ -50,6 +50,7 @@ KNOWN ISSUES:
 HISTORY:
 
 !!! 3.5.0 (2-08-2013):
+* Sign T4MVCExtensions.dll [url:http://t4mvc.codeplex.com/discussions/432534]
 * Call T4Extension.TimestampString through delegate for unit testing [url:http://t4mvc.codeplex.com/SourceControl/network/forks/rmarcush/t4mvc/contribution/4040]
 
 !!! 3.4.1 (1-31-2013):
