@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.5.0 (2-08-2013):
+* Call T4Extension.TimestampString through delegate for unit testing [url:http://t4mvc.codeplex.com/SourceControl/network/forks/rmarcush/t4mvc/contribution/4040]
+
 !!! 3.4.1 (1-31-2013):
 * Make T4MVCHelpers internal to avoid cross project conflicts [url:http://t4mvc.codeplex.com/workitem/17]
 
