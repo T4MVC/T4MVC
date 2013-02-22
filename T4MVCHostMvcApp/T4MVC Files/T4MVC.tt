@@ -1001,14 +1001,14 @@ if (!settings.ExcludedStaticFileExtensions.Any(extension => projectItem.Name.End
     // if it's a non-minified javascript file
     if (projectItem.Name.EndsWith(".js") && !projectItem.Name.EndsWith(".min.js")) { 
         if (AddTimestampToStaticLink(projectItem)) { #>
-    public static readonly string <#=Sanitize(projectItem.Name)#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=projectItem.Name.Replace(".js", ".min.js")#>") ? Url("<#=projectItem.Name.Replace(".js", ".min.js")#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name#>") : Url("<#=projectItem.Name#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name#>");
+    public static readonly string <#=Sanitize(projectItem.Name)#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=projectItem.Name.Replace(".js", ".min.js")#>") ? Url("<#=projectItem.Name.Replace(".js", ".min.js")#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name.Replace(".js", ".min.js")#>") : Url("<#=projectItem.Name#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name#>");
         <#+} else {#>
     public static readonly string <#=Sanitize(projectItem.Name)#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=projectItem.Name.Replace(".js", ".min.js")#>") ? Url("<#=projectItem.Name.Replace(".js", ".min.js")#>") : Url("<#=projectItem.Name#>");
         <#+}  #>          
 <#+}
     else if (projectItem.Name.EndsWith(".css") && !projectItem.Name.EndsWith(".min.css")) { 
         if (AddTimestampToStaticLink(projectItem)) { #>
-    public static readonly string <#=Sanitize(projectItem.Name)#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=projectItem.Name.Replace(".css", ".min.css")#>") ? Url("<#=projectItem.Name.Replace(".css", ".min.css")#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name#>") : Url("<#=projectItem.Name#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name#>");
+    public static readonly string <#=Sanitize(projectItem.Name)#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=projectItem.Name.Replace(".css", ".min.css")#>") ? Url("<#=projectItem.Name.Replace(".css", ".min.css")#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name.Replace(".css", ".min.css")#>") : Url("<#=projectItem.Name#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name#>");
         <#+} else {#>
     public static readonly string <#=Sanitize(projectItem.Name)#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=projectItem.Name.Replace(".css", ".min.css")#>") ? Url("<#=projectItem.Name.Replace(".css", ".min.css")#>") : Url("<#=projectItem.Name#>");
         <#+}  #> 
