@@ -1184,6 +1184,19 @@ static CodeAttribute2 GetAttribute(CodeElements attributes, string attributeType
     return null;
 }
 
+static CodeAttribute2 GetAttribute(CodeClass2 type, string attributeType)
+{
+    while(type != null) {
+        var attribute = GetAttribute(type.Attributes, attributeType);
+        if(attribute != null)
+            return attribute;
+        if (type.Bases.Count == 0)
+            return null;
+        type = (CodeClass2)type.Bases.Item(1);
+    }
+    return null;
+}
+
 static string UniqueFullName(CodeType codeType)
 {
     var uniqueName = codeType.FullName;
@@ -1660,7 +1673,7 @@ class ActionMethodInfo : FunctionInfo
             ActionNameValueExpression = arg.Value;
         }
 
-        if (GetAttribute(method.Attributes, settings.AttributeIndicatingHttps) != null || GetAttribute(controller.Attributes, settings.AttributeIndicatingHttps) != null)
+        if (GetAttribute(method.Attributes, settings.AttributeIndicatingHttps) != null || GetAttribute(controller, settings.AttributeIndicatingHttps) != null)
         {
             ActionUrlHttps = true;
         }
