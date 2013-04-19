@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.5.x (4-19-2013):
+* Add support for portable areas without a standard area folder
+
 !!! 3.5.2 (3-07-2013):
 * Add support for inherited controller attributes. [url:http://t4mvc.codeplex.com/SourceControl/network/forks/mswainatwork/t4mvc/contribution/4194]
 
