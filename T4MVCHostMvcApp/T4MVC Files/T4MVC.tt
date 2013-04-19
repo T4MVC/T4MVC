@@ -530,17 +530,17 @@ void ProcessAreas(Project project)
     // Get the Areas folder
     ProjectItem areaProjectItem = GetProjectItem(project, settings.AreasFolder);
     
-	//Process areas folder
-	if ( areaProjectItem != null ) 
-	{
-		foreach (ProjectItem item in areaProjectItem.ProjectItems)
-		{
-			if (IsFolder(item))
-			{
-				ProcessArea(item.ProjectItems, item.Name);
-			}
-		}
-	}
+    // Process areas folder
+    if (areaProjectItem != null)
+    {
+        foreach (ProjectItem item in areaProjectItem.ProjectItems)
+        {
+            if (IsFolder(item))
+            {
+                ProcessArea(item.ProjectItems, item.Name);
+            }
+        }
+    }
 
     // Process portable areas
     foreach (string portableArea in settings.PortableAreas)

@@ -49,7 +49,7 @@ KNOWN ISSUES:
 
 HISTORY:
 
-!!! 3.5.x (4-19-2013):
+!!! 3.5.3 (4-19-2013):
 * Add support for portable areas without a standard area folder
 
 !!! 3.5.2 (3-07-2013):
