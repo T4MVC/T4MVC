@@ -49,7 +49,7 @@ KNOWN ISSUES:
 
 HISTORY:
 
-!!! 3.5.x (4-22-2013)
+!!! 3.5.4 (4-22-2013)
 * Make action results internal to avoid cross project conflicts
 
 !!! 3.5.3 (4-19-2013):
