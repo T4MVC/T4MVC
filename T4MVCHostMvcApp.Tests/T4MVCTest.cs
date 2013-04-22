@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -670,6 +671,25 @@ namespace T4MVCHostMvcApp.Tests
             Assert.AreEqual(null, field);
         }
 
+        [TestMethod()]
+        public void TestNoPublicClassesinGlobalNamespace()
+        {
+            Type mvcType = typeof (MVC);
+
+            foreach (Type type in mvcType.Assembly.GetTypes())
+            {
+                //Since we can change the name of this class via the settings file, this one is okay
+                if (type == mvcType)
+                {
+                    continue;
+                }
+
+                if (String.IsNullOrEmpty(type.Namespace) && type.IsPublic)
+                {
+                    Assert.Fail("Public class in global namespace present: {0}", type.FullName);
+                }
+            }
+        }
 
         // HELPER METHODS
 
