@@ -115,6 +115,7 @@ namespace T4MVCHostMvcApp.Controllers
             public readonly string ActionReturningGenericResultString = "ActionReturningGenericResultString";
             public readonly string ActionReturningGenericResultInt = "ActionReturningGenericResultInt";
             public readonly string ActionReturningGenericResultNested = "ActionReturningGenericResultNested";
+            public readonly string SomeTaskBasedAction = "SomeTaskBasedAction";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -139,6 +140,7 @@ namespace T4MVCHostMvcApp.Controllers
             public const string ActionReturningGenericResultString = "ActionReturningGenericResultString";
             public const string ActionReturningGenericResultInt = "ActionReturningGenericResultInt";
             public const string ActionReturningGenericResultNested = "ActionReturningGenericResultNested";
+            public const string SomeTaskBasedAction = "SomeTaskBasedAction";
         }
 
 
@@ -503,6 +505,15 @@ namespace T4MVCHostMvcApp.Controllers
             var callInfo = new T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_Collections_Generic_List_System_Tuple_System_String_System_String_System_Int32(Area, Name, ActionNames.ActionReturningGenericResultNested);
             ActionReturningGenericResultNestedOverride(callInfo);
             return callInfo;
+        }
+
+        partial void SomeTaskBasedActionOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> SomeTaskBasedAction()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SomeTaskBasedAction);
+            SomeTaskBasedActionOverride(callInfo);
+            return System.Threading.Tasks.Task.Factory.StartNew(() => callInfo as ActionResult);
         }
 
     }

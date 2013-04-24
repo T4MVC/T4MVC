@@ -229,7 +229,11 @@ namespace <#=controller.Namespace #>
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, <#=p.RouteNameExpression #>, <#=p.Name #>);
 <#} #>
 <#}#>
+<#if (method.ReturnTypeFullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>") { #>
+            return System.Threading.Tasks.Task.Factory.StartNew(() => callInfo as ActionResult);
+<#} else { #>
             return callInfo;
+<#} #>
         }
 <#} #>
 
@@ -334,7 +338,11 @@ foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (gr
 <#} #>
 <#}#>
             <#=method.Name #>Override(callInfo<#if (method.Parameters.Count > 0) { #><#foreach (var p in method.Parameters) { #>, <#=p.Name #><#}}#>);
+<#if (method.ReturnTypeFullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>") { #>
+            return System.Threading.Tasks.Task.Factory.StartNew(() => callInfo as ActionResult);
+<#} else { #>
             return callInfo;
+<#} #>
         }
 
 <#} #>
@@ -778,10 +786,10 @@ void ProcessControllerActionMethods(ControllerInfo controllerInfo, CodeClass2 cu
             if (method.Type.TypeKind != vsCMTypeRef.vsCMTypeRefCodeType || !(method.Type.CodeType is CodeClass2))
                 continue;
 
-            // We only support action methods that return an ActionResult derived type
-            if (!method.Type.CodeType.get_IsDerivedFrom("System.Web.Mvc.ActionResult"))
+            // We only support action methods that return an ActionResult and Task<ActionResult> derived types
+            if (!method.Type.CodeType.get_IsDerivedFrom("System.Web.Mvc.ActionResult") && method.Type.CodeType.FullName !="System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>")
             {
-                Warning(String.Format("{0} doesn't support {1}.{2} because it doesn't return a supported ActionResult type", T4FileName, type.Name, method.Name));
+                Warning(String.Format("{0} doesn't support {1}.{2} because it doesn't return a supported {3} type", T4FileName, type.Name, method.Name, method.Type.CodeType.FullName));
                 continue;
             }
 
@@ -791,10 +799,10 @@ void ProcessControllerActionMethods(ControllerInfo controllerInfo, CodeClass2 cu
                 continue;
 
             // If we haven't yet seen this return type, keep track of it
-            if (!ResultTypes.ContainsKey(method.Type.CodeType.Name))
+            var resTypeInfo2 = new ResultTypeInfo(method.Type.CodeType);
+            if (!ResultTypes.ContainsKey(resTypeInfo2.FullName))
             {
-                var resTypeInfo = new ResultTypeInfo(method.Type.CodeType);
-                ResultTypes[method.Type.CodeType.FullName] = resTypeInfo;
+                ResultTypes[resTypeInfo2.FullName] = resTypeInfo2;
             }
 
             // Make sure the method is virtual
@@ -1589,10 +1597,12 @@ class FunctionInfo
     public string Name { get { return _method.Name; } }
     public string ReturnType { get { return ReturnTypeImpl.Name; } }
     public string ReturnTypeFullName { get { return ReturnTypeImpl.FullName; } }
-    public string ReturnTypeUniqueName { get { return UniqueFullName(ReturnTypeImpl); } }
+    public string ReturnTypeUniqueName { get { return IsTaskBased ? "System_Web_Mvc_ActionResult" : UniqueFullName(ReturnTypeImpl); } }
     public bool IsPublic { get { return _method.Access == vsCMAccess.vsCMAccessPublic; } }
     public List<MethodParamInfo> Parameters { get; private set; }
     public bool CanBeCalledWithoutParameters { get; private set; }
+	
+    private bool IsTaskBased { get {return ReturnTypeImpl.FullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>"; } }
 
     // Write out all the parameters as part of a method declaration
     public void WriteFormalParameters(bool first, bool includeDefaults = false)
@@ -1707,8 +1717,8 @@ class ResultTypeInfo
     }
 
     public string Name { get { return _codeType.Name; } }
-    public string FullName { get { return _codeType.FullName; } }
-    public string UniqueName { get { return UniqueFullName(_codeType); } }
+    public string FullName { get { return this.IsTaskBased ? "System.Web.Mvc.ActionResult" : _codeType.FullName; } }
+    public string UniqueName { get { return this.IsTaskBased ?  "System_Web_Mvc_ActionResult" : UniqueFullName(_codeType); } }
     public FunctionInfo Constructor { get; set; }
     public IEnumerable<FunctionInfo> AbstractMethods
     {
@@ -1718,6 +1728,8 @@ class ResultTypeInfo
                 f => f.MustImplement).Select(f => new FunctionInfo(f));
         }
     }
+
+    private bool IsTaskBased { get {return _codeType.FullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>"; } }
 }
 
 class MethodParamInfo

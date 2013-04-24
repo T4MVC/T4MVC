@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using T4MVCHostMvcApp.Misc;
-
 namespace T4MVCHostMvcApp.Controllers
 {
+
     [HandleError]
     public partial class HomeController : Controller
     {
@@ -149,6 +150,11 @@ namespace T4MVCHostMvcApp.Controllers
         public virtual SomeGenericResult<List<Tuple<string, string, int>>> ActionReturningGenericResultNested()
         {
             throw new NotImplementedException();
+        }
+
+        public virtual Task<ActionResult> SomeTaskBasedAction()
+        {
+            return Task.FromResult(new EmptyResult() as ActionResult);
         }
     }
 
