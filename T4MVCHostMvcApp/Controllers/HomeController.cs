@@ -156,6 +156,11 @@ namespace T4MVCHostMvcApp.Controllers
         {
             return Task.FromResult(new EmptyResult() as ActionResult);
         }
+
+        public virtual Task<ActionResult> SomeTaskBasedActionWithParams(int id)
+        {
+            return Task.FromResult(new EmptyResult() as ActionResult);
+        }
     }
 
     public class SomeGenericResult<T> : FileResult

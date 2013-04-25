@@ -207,7 +207,12 @@ namespace <#=controller.Namespace #>
         [<#= GeneratedCode #>, DebuggerNonUserCode]
         public virtual <#=method.ReturnTypeFullName #> <#=method.Name #>()
         {
-            return new T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
+            var callInfo = new T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
+<#if (method.ReturnTypeFullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>") { #>
+            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
+<#} else { #>
+            return callInfo;
+<#} #>
         }
 <#} #>
 <#foreach (var method in controller.CustomActionMethodsUniqueWithoutParameterlessOverload) { #>
@@ -230,7 +235,7 @@ namespace <#=controller.Namespace #>
 <#} #>
 <#}#>
 <#if (method.ReturnTypeFullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>") { #>
-            return System.Threading.Tasks.Task.Factory.StartNew(() => callInfo as ActionResult);
+            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
 <#} else { #>
             return callInfo;
 <#} #>
@@ -339,7 +344,7 @@ foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (gr
 <#}#>
             <#=method.Name #>Override(callInfo<#if (method.Parameters.Count > 0) { #><#foreach (var p in method.Parameters) { #>, <#=p.Name #><#}}#>);
 <#if (method.ReturnTypeFullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>") { #>
-            return System.Threading.Tasks.Task.Factory.StartNew(() => callInfo as ActionResult);
+            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
 <#} else { #>
             return callInfo;
 <#} #>

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
+using System.Collections.Specialized;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.VisualStudio.TestTools.UnitTesting.Web;
-using System.Collections.Specialized;
 using T4MVCHostMvcApp.Controllers;
 
 namespace T4MVCHostMvcApp.Tests
@@ -413,6 +411,23 @@ namespace T4MVCHostMvcApp.Tests
             var actionRes = (IT4MVCActionResult)MVC.Home.SomeCustomResultAction();
 
             TestAreaControllerActionNames(actionRes, "", "Home", "SomeCustomResultAction");
+        }
+
+        [TestMethod()]
+        public void TestRouteValuesForSomeTaskBasedActionResultType()
+        {
+            var actionRes = (IT4MVCActionResult)MVC.Home.SomeTaskBasedAction().Result;
+
+            TestAreaControllerActionNames(actionRes, "", "Home", "SomeTaskBasedAction");
+        }
+
+        [TestMethod()]
+        public void TestRouteValuesForSomeTaskBasedActionResultTypeWithParams()
+        {
+            var actionRes = (IT4MVCActionResult)MVC.Home.SomeTaskBasedActionWithParams(3).Result;
+
+            TestAreaControllerActionNames(actionRes, "", "Home", "SomeTaskBasedActionWithParams");
+            TestRouteValue(actionRes, "id", 3);
         }
 
         [TestMethod()]

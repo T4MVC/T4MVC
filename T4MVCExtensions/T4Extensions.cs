@@ -348,6 +348,11 @@ namespace System.Web.Mvc
             return "/" + specificActionUrl;
         }
 
+        public static string JavaScriptReplacableUrl(this UrlHelper urlHelper, Task<ActionResult> taskResult)
+        {
+            return urlHelper.JavaScriptReplacableUrl(taskResult.Result);
+        }
+
         public static string Action(this UrlHelper urlHelper, ActionResult result)
         {
             return urlHelper.Action(result, null, null);
@@ -357,11 +362,26 @@ namespace System.Web.Mvc
         {
             return urlHelper.RouteUrl(null, result.GetRouteValueDictionary(), protocol ?? result.GetT4MVCResult().Protocol, hostName);
         }
+        
+        public static string Action(this UrlHelper urlHelper, Task<ActionResult> taskResult)
+        {
+            return urlHelper.Action(taskResult.Result, null, null);
+        }
+
+        public static string Action(this UrlHelper urlHelper, Task<ActionResult> taskResult, string protocol = null, string hostName = null)
+        {
+            return urlHelper.Action(taskResult.Result, protocol, hostName);
+        }
 
         public static string ActionAbsolute(this UrlHelper urlHelper, ActionResult result)
         {
             return string.Format("{0}{1}", urlHelper.RequestContext.HttpContext.Request.Url.GetLeftPart(UriPartial.Authority),
                 urlHelper.RouteUrl(result.GetRouteValueDictionary()));
+        }
+
+        public static string ActionAbsolute(this UrlHelper urlHelper, Task<ActionResult> taskResult)
+        {
+            return urlHelper.ActionAbsolute(taskResult.Result);
         }
 
         public static string RouteUrl(this UrlHelper urlHelper, ActionResult result)
@@ -384,6 +404,26 @@ namespace System.Web.Mvc
             return urlHelper.RouteUrl(routeName, result.GetRouteValueDictionary(), protocol ?? result.GetT4MVCResult().Protocol, hostName);
         }
 
+        public static string RouteUrl(this UrlHelper urlHelper, Task<ActionResult> taskResult)
+        {
+            return urlHelper.RouteUrl(null, taskResult.Result, null, null);
+        }
+
+        public static string RouteUrl(this UrlHelper urlHelper, string routeName, Task<ActionResult> taskResult)
+        {
+            return urlHelper.RouteUrl(routeName, taskResult.Result, null, null);
+        }
+
+        public static string RouteUrl(this UrlHelper urlHelper, string routeName, Task<ActionResult> taskResult, string protocol)
+        {
+            return urlHelper.RouteUrl(routeName, taskResult.Result, protocol, null);
+        }
+
+        public static string RouteUrl(this UrlHelper urlHelper, string routeName, Task<ActionResult> taskResult, string protocol, string hostName)
+        {
+            return urlHelper.RouteUrl(routeName, taskResult.Result, protocol, hostName);
+        }
+
         public static MvcHtmlString ActionLink(this AjaxHelper ajaxHelper, string linkText, ActionResult result, AjaxOptions ajaxOptions)
         {
             return ajaxHelper.RouteLink(linkText, result.GetRouteValueDictionary(), ajaxOptions);
@@ -397,6 +437,21 @@ namespace System.Web.Mvc
         public static MvcHtmlString ActionLink(this AjaxHelper ajaxHelper, string linkText, ActionResult result, AjaxOptions ajaxOptions, IDictionary<string, object> htmlAttributes)
         {
             return ajaxHelper.RouteLink(linkText, result.GetRouteValueDictionary(), ajaxOptions, htmlAttributes);
+        }
+        
+        public static MvcHtmlString ActionLink(this AjaxHelper ajaxHelper, string linkText, Task<ActionResult> taskResult, AjaxOptions ajaxOptions)
+        {
+            return ajaxHelper.ActionLink(linkText, taskResult.Result, ajaxOptions);
+        }
+
+        public static MvcHtmlString ActionLink(this AjaxHelper ajaxHelper, string linkText, Task<ActionResult> taskResult, AjaxOptions ajaxOptions, object htmlAttributes)
+        {
+            return ajaxHelper.ActionLink(linkText, taskResult.Result, ajaxOptions, htmlAttributes);
+        }
+
+        public static MvcHtmlString ActionLink(this AjaxHelper ajaxHelper, string linkText, Task<ActionResult> taskResult, AjaxOptions ajaxOptions, IDictionary<string, object> htmlAttributes)
+        {
+            return ajaxHelper.ActionLink(linkText, taskResult.Result, ajaxOptions, htmlAttributes);
         }
 
         public static MvcHtmlString RouteLink(this AjaxHelper ajaxHelper, string linkText, string routeName, ActionResult result, AjaxOptions ajaxOptions)
@@ -414,6 +469,21 @@ namespace System.Web.Mvc
             return ajaxHelper.RouteLink(linkText, routeName, result.GetRouteValueDictionary(), ajaxOptions, htmlAttributes);
         }
 
+        public static MvcHtmlString RouteLink(this AjaxHelper ajaxHelper, string linkText, string routeName, Task<ActionResult> taskResult, AjaxOptions ajaxOptions)
+        {
+            return ajaxHelper.RouteLink(linkText, routeName, taskResult.Result, ajaxOptions, null);
+        }
+
+        public static MvcHtmlString RouteLink(this AjaxHelper ajaxHelper, string linkText, string routeName, Task<ActionResult> taskResult, AjaxOptions ajaxOptions, object htmlAttributes)
+        {
+            return ajaxHelper.RouteLink(linkText, routeName, taskResult.Result, ajaxOptions, HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes));
+        }
+
+        public static MvcHtmlString RouteLink(this AjaxHelper ajaxHelper, string linkText, string routeName, Task<ActionResult> taskResult, AjaxOptions ajaxOptions, IDictionary<string, object> htmlAttributes)
+        {
+            return ajaxHelper.RouteLink(linkText, routeName, taskResult.Result, ajaxOptions, htmlAttributes);
+        }
+        
         public static MvcForm BeginForm(this AjaxHelper ajaxHelper, ActionResult result, AjaxOptions ajaxOptions)
         {
             return ajaxHelper.BeginForm(result, ajaxOptions, null);
@@ -429,6 +499,21 @@ namespace System.Web.Mvc
             var callInfo = result.GetT4MVCResult();
             return ajaxHelper.BeginForm(callInfo.Action, callInfo.Controller, callInfo.RouteValueDictionary, ajaxOptions, htmlAttributes);
         }
+        
+        public static MvcForm BeginForm(this AjaxHelper ajaxHelper, Task<ActionResult> taskResult, AjaxOptions ajaxOptions)
+        {
+            return ajaxHelper.BeginForm(taskResult.Result, ajaxOptions, null);
+        }
+
+        public static MvcForm BeginForm(this AjaxHelper ajaxHelper, Task<ActionResult> taskResult, AjaxOptions ajaxOptions, object htmlAttributes)
+        {
+            return BeginForm(ajaxHelper, taskResult.Result, ajaxOptions, HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes));
+        }
+
+        public static MvcForm BeginForm(this AjaxHelper ajaxHelper, Task<ActionResult> taskResult, AjaxOptions ajaxOptions, IDictionary<string, object> htmlAttributes)
+        {
+            return ajaxHelper.BeginForm(taskResult.Result, ajaxOptions, htmlAttributes);
+        }
 
         public static MvcForm BeginRouteForm(this AjaxHelper ajaxHelper, string routeName, ActionResult result, AjaxOptions ajaxOptions)
         {
@@ -443,6 +528,21 @@ namespace System.Web.Mvc
         public static MvcForm BeginRouteForm(this AjaxHelper ajaxHelper, string routeName, ActionResult result, AjaxOptions ajaxOptions, IDictionary<string, object> htmlAttributes)
         {
             return ajaxHelper.BeginRouteForm(routeName, result.GetRouteValueDictionary(), ajaxOptions, htmlAttributes);
+        }
+        
+        public static MvcForm BeginRouteForm(this AjaxHelper ajaxHelper, string routeName, Task<ActionResult> taskResult, AjaxOptions ajaxOptions)
+        {
+            return ajaxHelper.BeginRouteForm(routeName, taskResult.Result, ajaxOptions, null);
+        }
+
+        public static MvcForm BeginRouteForm(this AjaxHelper ajaxHelper, string routeName, Task<ActionResult> taskResult, AjaxOptions ajaxOptions, object htmlAttributes)
+        {
+            return ajaxHelper.BeginRouteForm(routeName, taskResult.Result, ajaxOptions, HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes));
+        }
+
+        public static MvcForm BeginRouteForm(this AjaxHelper ajaxHelper, string routeName, Task<ActionResult> taskResult, AjaxOptions ajaxOptions, IDictionary<string, object> htmlAttributes)
+        {
+            return ajaxHelper.BeginRouteForm(routeName, taskResult.Result, ajaxOptions, htmlAttributes);
         }
 
         public static Route MapRoute(this RouteCollection routes, string name, string url, ActionResult result)
@@ -476,6 +576,36 @@ namespace System.Web.Mvc
             var route = CreateRoute(url, result, defaults, constraints, namespaces);
             routes.Add(name, route);
             return route;
+        }
+
+        public static Route MapRoute(this RouteCollection routes, string name, string url, Task<ActionResult> taskResult)
+        {
+            return MapRoute(routes, name, url, taskResult.Result, null /*namespaces*/);
+        }
+
+        public static Route MapRoute(this RouteCollection routes, string name, string url, Task<ActionResult> taskResult, object defaults)
+        {
+            return MapRoute(routes, name, url, taskResult.Result, defaults, null /*constraints*/, null /*namespaces*/);
+        }
+
+        public static Route MapRoute(this RouteCollection routes, string name, string url, Task<ActionResult> taskResult, string[] namespaces)
+        {
+            return MapRoute(routes, name, url, taskResult.Result, null /*defaults*/, namespaces);
+        }
+
+        public static Route MapRoute(this RouteCollection routes, string name, string url, Task<ActionResult> taskResult, object defaults, object constraints)
+        {
+            return MapRoute(routes, name, url, taskResult.Result, defaults, constraints, null /*namespaces*/);
+        }
+
+        public static Route MapRoute(this RouteCollection routes, string name, string url, Task<ActionResult> taskResult, object defaults, string[] namespaces)
+        {
+            return MapRoute(routes, name, url, taskResult.Result, defaults, null /*constraints*/, namespaces);
+        }
+
+        public static Route MapRoute(this RouteCollection routes, string name, string url, Task<ActionResult> taskResult, object defaults, object constraints, string[] namespaces)
+        {
+            return routes.MapRoute(name, url, taskResult.Result, defaults, constraints, namespaces);
         }
 
         // Note: can't name the AreaRegistrationContext methods 'MapRoute', as that conflicts with the existing methods
@@ -517,6 +647,36 @@ namespace System.Web.Mvc
             bool useNamespaceFallback = (namespaces == null) || (namespaces.Length == 0);
             route.DataTokens["UseNamespaceFallback"] = useNamespaceFallback;
             return route;
+        }
+
+        public static Route MapRouteArea(this AreaRegistrationContext context, string name, string url, Task<ActionResult> taskResult)
+        {
+            return MapRouteArea(context, name, url, taskResult.Result, null /*namespaces*/);
+        }
+
+        public static Route MapRouteArea(this AreaRegistrationContext context, string name, string url, Task<ActionResult> taskResult, object defaults)
+        {
+            return MapRouteArea(context, name, url, taskResult.Result, defaults, null /*constraints*/, null /*namespaces*/);
+        }
+
+        public static Route MapRouteArea(this AreaRegistrationContext context, string name, string url, Task<ActionResult> taskResult, string[] namespaces)
+        {
+            return MapRouteArea(context, name, url, taskResult.Result, null /*defaults*/, namespaces);
+        }
+
+        public static Route MapRouteArea(this AreaRegistrationContext context, string name, string url, Task<ActionResult> taskResult, object defaults, object constraints)
+        {
+            return MapRouteArea(context, name, url, taskResult.Result, defaults, constraints, null /*namespaces*/);
+        }
+
+        public static Route MapRouteArea(this AreaRegistrationContext context, string name, string url, Task<ActionResult> taskResult, object defaults, string[] namespaces)
+        {
+            return MapRouteArea(context, name, url, taskResult.Result, defaults, null /*constraints*/, namespaces);
+        }
+
+        public static Route MapRouteArea(this AreaRegistrationContext context, string name, string url, Task<ActionResult> taskResult, object defaults, object constraints, string[] namespaces)
+        {
+            return context.MapRouteArea(name, url, taskResult.Result, defaults, constraints, namespaces);
         }
 
         private static Route CreateRoute(string url, ActionResult result, object defaults, object constraints, string[] namespaces)

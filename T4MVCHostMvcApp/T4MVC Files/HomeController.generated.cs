@@ -48,37 +48,50 @@ namespace T4MVCHostMvcApp.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Blah()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Blah);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Blah);
+            return callInfo;
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult ActionWithArrayParam()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithArrayParam);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithArrayParam);
+            return callInfo;
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult ActionWithSomeOptionalParams()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithSomeOptionalParams);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithSomeOptionalParams);
+            return callInfo;
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult ActionWithParamUsingAtSyntax()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithParamUsingAtSyntax);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithParamUsingAtSyntax);
+            return callInfo;
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult ActionThatRequiresHttps()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionThatRequiresHttps, "https");
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionThatRequiresHttps, "https");
+            return callInfo;
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult OverloadedActionWithDifferentParams()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OverloadedActionWithDifferentParams);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OverloadedActionWithDifferentParams);
+            return callInfo;
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> SomeTaskBasedActionWithParams()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SomeTaskBasedActionWithParams);
+            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -116,6 +129,7 @@ namespace T4MVCHostMvcApp.Controllers
             public readonly string ActionReturningGenericResultInt = "ActionReturningGenericResultInt";
             public readonly string ActionReturningGenericResultNested = "ActionReturningGenericResultNested";
             public readonly string SomeTaskBasedAction = "SomeTaskBasedAction";
+            public readonly string SomeTaskBasedActionWithParams = "SomeTaskBasedActionWithParams";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -141,6 +155,7 @@ namespace T4MVCHostMvcApp.Controllers
             public const string ActionReturningGenericResultInt = "ActionReturningGenericResultInt";
             public const string ActionReturningGenericResultNested = "ActionReturningGenericResultNested";
             public const string SomeTaskBasedAction = "SomeTaskBasedAction";
+            public const string SomeTaskBasedActionWithParams = "SomeTaskBasedActionWithParams";
         }
 
 
@@ -203,6 +218,14 @@ namespace T4MVCHostMvcApp.Controllers
         {
             public readonly string someString = "someString";
             public readonly string someNumber = "someNumber";
+        }
+        static readonly ActionParamsClass_SomeTaskBasedActionWithParams s_params_SomeTaskBasedActionWithParams = new ActionParamsClass_SomeTaskBasedActionWithParams();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_SomeTaskBasedActionWithParams SomeTaskBasedActionWithParamsParams { get { return s_params_SomeTaskBasedActionWithParams; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_SomeTaskBasedActionWithParams
+        {
+            public readonly string id = "id";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -513,7 +536,17 @@ namespace T4MVCHostMvcApp.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SomeTaskBasedAction);
             SomeTaskBasedActionOverride(callInfo);
-            return System.Threading.Tasks.Task.Factory.StartNew(() => callInfo as ActionResult);
+            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
+        }
+
+        partial void SomeTaskBasedActionWithParamsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> SomeTaskBasedActionWithParams(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SomeTaskBasedActionWithParams);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            SomeTaskBasedActionWithParamsOverride(callInfo, id);
+            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
     }
