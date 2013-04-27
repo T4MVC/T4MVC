@@ -48,43 +48,37 @@ namespace T4MVCHostMvcApp.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Blah()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Blah);
-            return callInfo;
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Blah);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult ActionWithArrayParam()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithArrayParam);
-            return callInfo;
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithArrayParam);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult ActionWithSomeOptionalParams()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithSomeOptionalParams);
-            return callInfo;
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithSomeOptionalParams);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult ActionWithParamUsingAtSyntax()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithParamUsingAtSyntax);
-            return callInfo;
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithParamUsingAtSyntax);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult ActionThatRequiresHttps()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionThatRequiresHttps, "https");
-            return callInfo;
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionThatRequiresHttps, "https");
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult OverloadedActionWithDifferentParams()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OverloadedActionWithDifferentParams);
-            return callInfo;
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OverloadedActionWithDifferentParams);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]

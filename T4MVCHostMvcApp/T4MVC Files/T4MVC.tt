@@ -207,11 +207,11 @@ namespace <#=controller.Namespace #>
         [<#= GeneratedCode #>, DebuggerNonUserCode]
         public virtual <#=method.ReturnTypeFullName #> <#=method.Name #>()
         {
-            var callInfo = new T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
 <#if (method.ReturnTypeFullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>") { #>
+            var callInfo = new T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
 <#} else { #>
-            return callInfo;
+            return new T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
 <#} #>
         }
 <#} #>

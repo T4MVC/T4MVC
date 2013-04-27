@@ -48,43 +48,37 @@ namespace T4MVCHostMvcApp.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult TestUnbindModel()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TestUnbindModel);
-            return callInfo;
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TestUnbindModel);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult TestBaseClass()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TestBaseClass);
-            return callInfo;
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TestBaseClass);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult TestChildClass1()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TestChildClass1);
-            return callInfo;
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TestChildClass1);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult TestChildClass2()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TestChildClass2);
-            return callInfo;
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TestChildClass2);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult TestComplexModel()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TestComplexModel);
-            return callInfo;
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TestComplexModel);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult TestComplexModelWithEnumerable()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TestComplexModelWithEnumerable);
-            return callInfo;
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TestComplexModelWithEnumerable);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]

@@ -45,50 +45,43 @@ namespace T4MVCHostMvcApp.Areas.Break.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult ActionWithBindPrefixAttribute()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithBindPrefixAttribute);
-            return callInfo;
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithBindPrefixAttribute);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult ActionWithBindNoPrefixAttribute()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithBindNoPrefixAttribute);
-            return callInfo;
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithBindNoPrefixAttribute);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult ActionThatTakesAnObject()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionThatTakesAnObject);
-            return callInfo;
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionThatTakesAnObject);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult ActionWithVariousParams()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithVariousParams);
-            return callInfo;
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithVariousParams);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult CompiledControllerVirtualMethod2()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CompiledControllerVirtualMethod2);
-            return callInfo;
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CompiledControllerVirtualMethod2);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult SameProjectBaseControllerMethod()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SameProjectBaseControllerMethod);
-            return callInfo;
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SameProjectBaseControllerMethod);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult CompiledControllerVirtualMethod()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CompiledControllerVirtualMethod);
-            return callInfo;
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CompiledControllerVirtualMethod);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
