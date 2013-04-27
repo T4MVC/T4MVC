@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.6.0 (4-26-2013)
+* Add support for task based actions. [url:https://t4mvc.codeplex.com/SourceControl/network/forks/kev_bite/T4mvcTaskBasedActions/contribution/4564]
+
 !!! 3.5.4 (4-22-2013)
 * Make action results internal to avoid cross project conflicts
 
