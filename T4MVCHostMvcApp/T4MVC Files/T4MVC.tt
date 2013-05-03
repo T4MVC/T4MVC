@@ -111,7 +111,7 @@ namespace <#=settings.T4MVCNamespace #>
 
 <#foreach (var resultType in ResultTypes.Values) { #>
 [<#= GeneratedCode #>, DebuggerNonUserCode]
-internal class T4MVC_<#=resultType.UniqueName #> : <#=resultType.FullName #>, IT4MVCActionResult
+internal partial class T4MVC_<#=resultType.UniqueName #> : <#=resultType.FullName #>, IT4MVCActionResult
 {
     public T4MVC_<#=resultType.UniqueName #>(string area, string controller, string action, string protocol = null): base(<#resultType.Constructor.WriteNonEmptyParameterValues(true); #>)
     {
