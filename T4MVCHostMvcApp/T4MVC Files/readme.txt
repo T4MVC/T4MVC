@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.6.1 (5-03-2013)
+* Make actionresult classes partial. [url:https://t4mvc.codeplex.com/SourceControl/network/forks/duncans/T4MVC/contribution/4632]
+
 !!! 3.6.0 (4-26-2013)
 * Add support for task based actions. [url:https://t4mvc.codeplex.com/SourceControl/network/forks/kev_bite/T4mvcTaskBasedActions/contribution/4564]
 

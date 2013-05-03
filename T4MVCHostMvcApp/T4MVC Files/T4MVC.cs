@@ -65,7 +65,7 @@ namespace T4MVC
 }
 
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-internal class T4MVC_System_Web_Mvc_ActionResult : System.Web.Mvc.ActionResult, IT4MVCActionResult
+internal partial class T4MVC_System_Web_Mvc_ActionResult : System.Web.Mvc.ActionResult, IT4MVCActionResult
 {
     public T4MVC_System_Web_Mvc_ActionResult(string area, string controller, string action, string protocol = null): base()
     {
@@ -80,7 +80,7 @@ internal class T4MVC_System_Web_Mvc_ActionResult : System.Web.Mvc.ActionResult, 
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-internal class T4MVC_System_Web_Mvc_ViewResult : System.Web.Mvc.ViewResult, IT4MVCActionResult
+internal partial class T4MVC_System_Web_Mvc_ViewResult : System.Web.Mvc.ViewResult, IT4MVCActionResult
 {
     public T4MVC_System_Web_Mvc_ViewResult(string area, string controller, string action, string protocol = null): base()
     {
@@ -93,7 +93,7 @@ internal class T4MVC_System_Web_Mvc_ViewResult : System.Web.Mvc.ViewResult, IT4M
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-internal class T4MVC_System_Web_Mvc_JsonResult : System.Web.Mvc.JsonResult, IT4MVCActionResult
+internal partial class T4MVC_System_Web_Mvc_JsonResult : System.Web.Mvc.JsonResult, IT4MVCActionResult
 {
     public T4MVC_System_Web_Mvc_JsonResult(string area, string controller, string action, string protocol = null): base()
     {
@@ -106,7 +106,7 @@ internal class T4MVC_System_Web_Mvc_JsonResult : System.Web.Mvc.JsonResult, IT4M
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-internal class T4MVC_System_Web_Mvc_FileContentResult : System.Web.Mvc.FileContentResult, IT4MVCActionResult
+internal partial class T4MVC_System_Web_Mvc_FileContentResult : System.Web.Mvc.FileContentResult, IT4MVCActionResult
 {
     public T4MVC_System_Web_Mvc_FileContentResult(string area, string controller, string action, string protocol = null): base(new byte[0], " ")
     {
@@ -119,7 +119,7 @@ internal class T4MVC_System_Web_Mvc_FileContentResult : System.Web.Mvc.FileConte
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-internal class T4MVC_System_Web_Mvc_FileStreamResult : System.Web.Mvc.FileStreamResult, IT4MVCActionResult
+internal partial class T4MVC_System_Web_Mvc_FileStreamResult : System.Web.Mvc.FileStreamResult, IT4MVCActionResult
 {
     public T4MVC_System_Web_Mvc_FileStreamResult(string area, string controller, string action, string protocol = null): base(default(System.IO.Stream), " ")
     {
@@ -132,7 +132,7 @@ internal class T4MVC_System_Web_Mvc_FileStreamResult : System.Web.Mvc.FileStream
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-internal class T4MVC_System_Web_Mvc_FileResult : System.Web.Mvc.FileResult, IT4MVCActionResult
+internal partial class T4MVC_System_Web_Mvc_FileResult : System.Web.Mvc.FileResult, IT4MVCActionResult
 {
     public T4MVC_System_Web_Mvc_FileResult(string area, string controller, string action, string protocol = null): base(" ")
     {
@@ -147,7 +147,7 @@ internal class T4MVC_System_Web_Mvc_FileResult : System.Web.Mvc.FileResult, IT4M
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-internal class T4MVC_T4MVCHostMvcApp_Misc_MyCustomResult : T4MVCHostMvcApp.Misc.MyCustomResult, IT4MVCActionResult
+internal partial class T4MVC_T4MVCHostMvcApp_Misc_MyCustomResult : T4MVCHostMvcApp.Misc.MyCustomResult, IT4MVCActionResult
 {
     public T4MVC_T4MVCHostMvcApp_Misc_MyCustomResult(string area, string controller, string action, string protocol = null): base(" ", default(int), default(T4MVCHostMvcApp.Misc.Animal))
     {
@@ -160,7 +160,7 @@ internal class T4MVC_T4MVCHostMvcApp_Misc_MyCustomResult : T4MVCHostMvcApp.Misc.
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-internal class T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_String : T4MVCHostMvcApp.Controllers.SomeGenericResult<System.String>, IT4MVCActionResult
+internal partial class T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_String : T4MVCHostMvcApp.Controllers.SomeGenericResult<System.String>, IT4MVCActionResult
 {
     public T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_String(string area, string controller, string action, string protocol = null): base(" ")
     {
@@ -173,7 +173,7 @@ internal class T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_String
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-internal class T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_Int32 : T4MVCHostMvcApp.Controllers.SomeGenericResult<System.Int32>, IT4MVCActionResult
+internal partial class T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_Int32 : T4MVCHostMvcApp.Controllers.SomeGenericResult<System.Int32>, IT4MVCActionResult
 {
     public T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_Int32(string area, string controller, string action, string protocol = null): base(" ")
     {
@@ -186,7 +186,7 @@ internal class T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_Int32 
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-internal class T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_Collections_Generic_List_System_Tuple_System_String_System_String_System_Int32 : T4MVCHostMvcApp.Controllers.SomeGenericResult<System.Collections.Generic.List<System.Tuple<System.String,System.String,System.Int32>>>, IT4MVCActionResult
+internal partial class T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_Collections_Generic_List_System_Tuple_System_String_System_String_System_Int32 : T4MVCHostMvcApp.Controllers.SomeGenericResult<System.Collections.Generic.List<System.Tuple<System.String,System.String,System.Int32>>>, IT4MVCActionResult
 {
     public T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_Collections_Generic_List_System_Tuple_System_String_System_String_System_Int32(string area, string controller, string action, string protocol = null): base(" ")
     {
