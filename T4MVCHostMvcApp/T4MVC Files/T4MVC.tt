@@ -17,7 +17,7 @@ Please use in accordance to the MvcContrib license (http://mvccontrib.codeplex.c
 #>
 <#@ template language="C#" debug="true" hostspecific="true" #>
 <#@ assembly name="System.Core" #>
-<#@ assembly name="Microsoft.VisualStudio.Shell.Interop.8.0" #>
+<#@ assembly name="Microsoft.VisualStudio.Shell.Interop" #>
 <#@ assembly name="EnvDTE" #>
 <#@ assembly name="EnvDTE80" #>
 <#@ assembly name="VSLangProj" #>
@@ -499,7 +499,7 @@ void PrepareDataToRender(TextTransformation tt)
     var serviceProvider = Host as IServiceProvider;
     if (serviceProvider != null)
     {
-        Dte = serviceProvider.GetService(typeof(SDTE)) as DTE;
+		Dte = (EnvDTE.DTE)serviceProvider.GetService(typeof(EnvDTE.DTE));
     }
 
     // Fail if we couldn't get the DTE. This can happen when trying to run in TextTransform.exe
@@ -530,7 +530,7 @@ Project GetProjectContainingT4File(DTE dte)
 
     // If the .tt file is not opened, open it
     if (projectItem.Document == null)
-        projectItem.Open(Constants.vsViewKindCode);
+        projectItem.Open(EnvDTE.Constants.vsViewKindCode);
 
     return projectItem.ContainingProject;
 }
@@ -872,13 +872,13 @@ void AddViewsRecursive(ProjectItems items, ViewsFolderInfo viewsFolder, bool use
     // Go through all the files in the subfolder to get the view names
     foreach (ProjectItem item in items)
     {
-        if (item.Kind == Constants.vsProjectItemKindPhysicalFile)
+        if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFile)
         {
             if (Path.GetExtension(item.Name).Equals(".master", StringComparison.OrdinalIgnoreCase))
                 continue;   // ignore master files
             viewsFolder.AddView(item, useNonQualifiedViewNames);
         }
-        else if (item.Kind == Constants.vsProjectItemKindPhysicalFolder)
+        else if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFolder)
         {
             string folderName = Path.GetFileName(item.Name);
             if (folderName.Equals("App_LocalResources", StringComparison.OrdinalIgnoreCase))
@@ -1233,7 +1233,7 @@ static string UniqueFullName(CodeType codeType)
 // Return whether a ProjectItem is a folder and not a file
 static bool IsFolder(ProjectItem item)
 {
-    return (item.Kind == Constants.vsProjectItemKindPhysicalFolder);
+    return (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFolder);
 }
 
 static string MakeClassName(string ns, string classname)
@@ -2072,7 +2072,7 @@ abstract class XmlSettings : XmlSettingsBase
         var serviceProvider = host as IServiceProvider;
         if (serviceProvider != null)
         {
-            this.DTE = serviceProvider.GetService(typeof(SDTE)) as DTE;
+			this.DTE = (EnvDTE.DTE)serviceProvider.GetService(typeof(EnvDTE.DTE));
         }
 
         // Fail if we couldn't get the DTE. This can happen when trying to run in TextTransform.exe
@@ -2085,7 +2085,7 @@ abstract class XmlSettings : XmlSettingsBase
 
         // If the .tt file is not opened, open it
         if (this.ProjectItem.Document == null)
-            this.ProjectItem.Open(Constants.vsViewKindCode);
+            this.ProjectItem.Open(EnvDTE.Constants.vsViewKindCode);
 
         this.Project = this.ProjectItem.ContainingProject;
 
@@ -2306,6 +2306,7 @@ class Manager
         private EnvDTE.DTE dte;
         private Action<String> checkOutAction;
         private Action<IEnumerable<String>> projectSyncAction;
+		private IVsQueryEditQuerySave2 queryEditSave;
 
         public override String DefaultProjectNamespace
         {
@@ -2355,6 +2356,7 @@ class Manager
             templateProjectItem = dte.Solution.FindProjectItem(host.TemplateFile);
             checkOutAction = (String fileName) => dte.SourceControl.CheckOutItem(fileName);
             projectSyncAction = (IEnumerable<String> keepFileNames) => ProjectSync(templateProjectItem, keepFileNames);
+			queryEditSave = (IVsQueryEditQuerySave2)hostServiceProvider.GetService(typeof(SVsQueryEditQuerySave));
         }
 
         private static void ProjectSync(EnvDTE.ProjectItem templateProjectItem, IEnumerable<String> keepFileNames)
@@ -2378,9 +2380,14 @@ class Manager
 
         private void CheckoutFileIfRequired(String fileName)
         {
-            var sc = dte.SourceControl;
-            if (sc != null && sc.IsItemUnderSCC(fileName) && !sc.IsItemCheckedOut(fileName))
-                checkOutAction.EndInvoke(checkOutAction.BeginInvoke(fileName, null, null));
+			if (queryEditSave != null) {
+				uint pfEditVerdict;
+				queryEditSave.QuerySaveFile(fileName, 0, null, out pfEditVerdict);
+            } else {
+				var sc = dte.SourceControl;
+				if (sc != null && sc.IsItemUnderSCC(fileName) && !sc.IsItemCheckedOut(fileName)) 
+					checkOutAction.EndInvoke(checkOutAction.BeginInvoke(fileName, null, null));
+            }
         }
     }
 }
