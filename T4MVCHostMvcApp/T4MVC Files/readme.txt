@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.6.3 (5-08-2013)
+* Fix assembly signing
+
 !!! 3.6.2 (5-07-2013)
 * Avoid identifier conflict when content file names are similar. [url:https://t4mvc.codeplex.com/discussions/441214]
 
