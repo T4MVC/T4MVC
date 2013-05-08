@@ -253,6 +253,9 @@ namespace Links
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
         }
     
+        public static readonly string Hello_World_txt = Url("Hello World.txt");
+        public static readonly string Hello_World_txt_ = Url("Hello$World.txt");
+        public static readonly string Hello_World_txt__ = Url("Hello+World.txt");
         public static readonly string Site_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Site.min.css") ? Url("Site.min.css") : Url("Site.css");
              
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -265,6 +268,9 @@ namespace Links
                 private const string URLPATH = "~/Content/SomeRandomName/SomeRandomName";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string Hello_World_txt = Url("Hello World.txt");
+                public static readonly string Hello_World_txt_ = Url("Hello$World.txt");
+                public static readonly string Hello_World_txt__ = Url("Hello+World.txt");
                 public static readonly string SomeRandomName_txt = Url("SomeRandomName.txt");
             }
         

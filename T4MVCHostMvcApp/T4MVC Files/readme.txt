@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.6.2 (5-07-2013)
+* Avoid identifier conflict when content file names are similar. [url:https://t4mvc.codeplex.com/discussions/441214]
+
 !!! 3.6.1 (5-03-2013)
 * Make actionresult classes partial. [url:https://t4mvc.codeplex.com/SourceControl/network/forks/duncans/T4MVC/contribution/4632]
 

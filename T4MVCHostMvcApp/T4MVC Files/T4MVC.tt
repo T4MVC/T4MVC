@@ -1,6 +1,6 @@
 ﻿<#
 /*
-T4MVC Version 3.6.1
+T4MVC Version 3.6.2
 Find latest version and documentation at http://mvccontrib.codeplex.com/wikipage?title=T4MVC
 Discuss on StackOverflow or on Codeplex (https://t4mvc.codeplex.com/discussions)
 
@@ -968,7 +968,7 @@ void ProcessStaticFiles(Project project, string folder)
 void ProcessStaticFilesRecursive(ProjectItem projectItem, string path)
 {
     int nestedLevel = BuildClassStructureForProvidedPath(path);
-    ProcessStaticFilesRecursive(projectItem, path, false /*hasSameNameAsParent*/);
+    ProcessStaticFilesRecursive(projectItem, path, new HashSet<String>());
     for(int i = 0; i < nestedLevel; ++i) {#>
 }
 <#+
@@ -976,19 +976,21 @@ void ProcessStaticFilesRecursive(ProjectItem projectItem, string path)
     }
 }
 
-void ProcessStaticFilesRecursive(ProjectItem projectItem, string path, bool hasSameNameAsParent)
+void ProcessStaticFilesRecursive(ProjectItem projectItem, string path, HashSet<String> nameSet)
 {
+    // The passed in HashSet is to guarantee uniqueness with our parent and siblings
+    string name = SanitizeWithNoConflicts(projectItem.Name, nameSet);
+
+    // This HashSet is to guarantee uniqueness of our direct children
+    // We add our own name to it to avoid class name conflicts (http://mvccontrib.codeplex.com/workitem/7153)
+    var childrenNameSet = new HashSet<String>();
+    childrenNameSet.Add(name);
+
     if (IsFolder(projectItem))
     {
-        string className = EscapeID(Sanitize(projectItem.Name));
-        // If the folder name is the same as the parent, add a modifier to avoid class name conflicts
-        // http://mvccontrib.codeplex.com/workitem/7153
-        if (hasSameNameAsParent)
-        {
-            className += "_";
-        } #>
+        #>
     [<#= GeneratedCode #>, DebuggerNonUserCode]
-    public static class <#=className #> {
+    public static class <#=EscapeID(name)#> {
         private const string URLPATH = "<#=path#>/<#=projectItem.Name#>";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
@@ -1001,7 +1003,7 @@ foreach (ProjectItem item in projectItem.ProjectItems)
     ProcessStaticFilesRecursive(
         item,
         path + "/" + projectItem.Name,
-        item.Name == projectItem.Name);
+        childrenNameSet);
 }
 
 PopIndent();
@@ -1017,24 +1019,24 @@ if (!settings.ExcludedStaticFileExtensions.Any(extension => projectItem.Name.End
     if (projectItem.Name.EndsWith(".js") && !projectItem.Name.EndsWith(".min.js")) { 
         string minifiedName = projectItem.Name.Replace(".js", ".min.js");
         if (AddTimestampToStaticLink(projectItem)) { #>
-    public static readonly string <#=Sanitize(projectItem.Name)#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=minifiedName#>") : Url("<#=projectItem.Name#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name#>");
+    public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=minifiedName#>") : Url("<#=projectItem.Name#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name#>");
         <#+} else {#>
-    public static readonly string <#=Sanitize(projectItem.Name)#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>") : Url("<#=projectItem.Name#>");
+    public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>") : Url("<#=projectItem.Name#>");
         <#+}  #>          
 <#+}
     else if (projectItem.Name.EndsWith(".css") && !projectItem.Name.EndsWith(".min.css")) { 
         string minifiedName = projectItem.Name.Replace(".css", ".min.css");
         if (AddTimestampToStaticLink(projectItem)) { #>
-    public static readonly string <#=Sanitize(projectItem.Name)#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=minifiedName#>") : Url("<#=projectItem.Name#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name#>");
+    public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=minifiedName#>") : Url("<#=projectItem.Name#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name#>");
         <#+} else {#>
-    public static readonly string <#=Sanitize(projectItem.Name)#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>") : Url("<#=projectItem.Name#>");
+    public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>") : Url("<#=projectItem.Name#>");
         <#+}  #> 
 <#+}
     else if (AddTimestampToStaticLink(projectItem)) { #>
-    public static readonly string <#=Sanitize(projectItem.Name)#> = Url("<#=projectItem.Name#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name#>");
+    public static readonly string <#=name#> = Url("<#=projectItem.Name#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name#>");
 <#+}
     else { #>
-    public static readonly string <#=Sanitize(projectItem.Name)#> = Url("<#=projectItem.Name#>");
+    public static readonly string <#=name#> = Url("<#=projectItem.Name#>");
 <#+}
 } #>
 <#+
@@ -1042,7 +1044,7 @@ if (!settings.ExcludedStaticFileExtensions.Any(extension => projectItem.Name.End
 // Just register them on the same path as their parent item
 foreach (ProjectItem item in projectItem.ProjectItems)
 {
-    ProcessStaticFilesRecursive(item, path, false);
+    ProcessStaticFilesRecursive(item, path, childrenNameSet);
 }
     }
 }
@@ -1238,6 +1240,20 @@ static string MakeClassName(string ns, string classname)
 {
     return String.IsNullOrEmpty(ns) ? classname :
         String.IsNullOrEmpty(classname) ? ns : ns + "." + codeProvider.CreateEscapedIdentifier(classname);
+}
+
+static string SanitizeWithNoConflicts(string token, HashSet<string> names)
+{
+    string name = Sanitize(token);
+
+    while (names.Contains(name))
+    {
+        name += "_";
+    }
+
+    names.Add(name);
+
+    return name;
 }
 
 static string Sanitize(string token)

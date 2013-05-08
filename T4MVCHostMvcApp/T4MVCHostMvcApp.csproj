@@ -121,10 +121,16 @@
     <Content Include="Content\StyleSheet.min.css" />
     <Content Include="Content\SomeRandomName\SomeRandomName\SomeRandomName.txt" />
     <Content Include="Content\StyleSheet.css" />
+    <Content Include="Content\SomeRandomName\SomeRandomName\Hello World.txt" />
+    <Content Include="Content\SomeRandomName\SomeRandomName\Hello%24World.txt" />
+    <Content Include="Content\SomeRandomName\SomeRandomName\Hello+World.txt" />
     <Content Include="Global.asax" />
     <Content Include="SomePortableArea\Views\Home\SomeHomeView.txt" />
     <Content Include="T4MVC Files\readme.txt" />
     <None Include="T4MVC Files\T4MVC.tt.settings.xml" />
+    <Content Include="Content\Hello World.txt" />
+    <Content Include="Content\Hello+World.txt" />
+    <Content Include="Content\Hello%24World.txt" />
     <Content Include="Views\Home\DisplayTemplates\SomeDisplayTemplate.ascx" />
     <Content Include="Views\Home\DuplicateControl.ascx" />
     <Content Include="Views\Home\EditorTemplates\SomeEditorTemplate.ascx" />
