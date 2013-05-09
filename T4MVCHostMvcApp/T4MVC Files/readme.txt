@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.6.4 (5-08-2013)
+* Added support for checking files out with Perforce P4VS. [url:https://t4mvc.codeplex.com/discussions/442992]
+
 !!! 3.6.3 (5-08-2013)
 * Fix assembly signing
 
