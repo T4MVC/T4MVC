@@ -1,6 +1,6 @@
 ﻿<#
 /*
-T4MVC Version 3.6.4
+T4MVC Version 3.6.5
 Find latest version and documentation at http://mvccontrib.codeplex.com/wikipage?title=T4MVC
 Discuss on StackOverflow or on Codeplex (https://t4mvc.codeplex.com/discussions)
 
@@ -1732,8 +1732,11 @@ class ResultTypeInfo
     {
         _codeType = codeType;
 
-        var ctor = _codeType.Members.OfType<CodeFunction2>().FirstOrDefault(
-            f => f.FunctionKind == vsCMFunction.vsCMFunctionConstructor);
+        // Use the constructor with the least number of parameters
+        var ctor = _codeType.Members.OfType<CodeFunction2>()
+            .Where(f => f.FunctionKind == vsCMFunction.vsCMFunctionConstructor)
+            .OrderBy(f => f.Parameters.Count)
+            .FirstOrDefault();
         Constructor = new FunctionInfo(ctor);
     }
 
