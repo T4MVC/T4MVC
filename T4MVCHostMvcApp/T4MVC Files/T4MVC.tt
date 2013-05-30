@@ -133,7 +133,7 @@ internal partial class T4MVC_<#=resultType.UniqueName #> : <#=resultType.FullNam
 namespace <#=settings.LinksNamespace #>
 {
 <#
-foreach (string folder in settings.StaticFilesFolders) {
+foreach (string folder in settings.StaticFilesFolders.Concat(GetStaticFilesViewFolders())) {
     ProcessStaticFiles(Project, folder);
 }
 #>
@@ -947,6 +947,19 @@ RenderViewsRecursive(subFolder, controller);
 PopIndent();
 
 WriteLine("}");
+    }
+}
+
+IEnumerable<string> GetStaticFilesViewFolders()
+{
+    if (settings.AddAllViewsFoldersToStaticFilesFolders)
+    {
+        foreach (var area in Areas)
+        {
+            yield return area.Name == null ?
+                settings.ViewsRootFolder :
+                settings.AreasFolder + "\\" + area.Name + "\\" + settings.ViewsRootFolder;
+        }
     }
 }
 
@@ -1853,6 +1866,9 @@ class MvcSettings : XmlSettings
 
     [System.ComponentModel.Description("Folders containing static files for which links are generated (e.g. Links.Scripts.Map_js)")]
     public XmlStringArray StaticFilesFolders { get; set; }
+
+    [System.ComponentModel.Description("If true, static file helpers are generated for all view folders. See https://t4mvc.codeplex.com/discussions/445358")]
+    public bool AddAllViewsFoldersToStaticFilesFolders { get; set; }
 
     [System.ComponentModel.Description("Static files to exclude from the generated links")]
     public XmlStringArray ExcludedStaticFileExtensions { get; set; }

@@ -50,6 +50,8 @@ See http://mvccontrib.codeplex.com/workitem/7163 for potential issues with this 
     <FileFolder>Content</FileFolder>
     <FileFolder>ContentStatic\TextFiles</FileFolder>
   </StaticFilesFolders>
+  <!--If true, static file helpers are generated for all view folders. See https://t4mvc.codeplex.com/discussions/445358-->
+  <AddAllViewsFoldersToStaticFilesFolders>True</AddAllViewsFoldersToStaticFilesFolders>
   <!--Static files to exclude from the generated links-->
   <ExcludedStaticFileExtensions>
     <Extension>.cs</Extension>
