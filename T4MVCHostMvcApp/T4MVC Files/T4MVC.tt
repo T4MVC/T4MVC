@@ -874,8 +874,10 @@ void AddViewsRecursive(ProjectItems items, ViewsFolderInfo viewsFolder, bool use
     {
         if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFile)
         {
-            if (Path.GetExtension(item.Name).Equals(".master", StringComparison.OrdinalIgnoreCase))
-                continue;   // ignore master files
+            // Ignore some extensions that are normally not views
+            if (settings.ExcludedViewExtensions.Any(extension => Path.GetExtension(item.Name).Equals(extension, StringComparison.OrdinalIgnoreCase)))
+                continue;
+
             viewsFolder.AddView(item, useNonQualifiedViewNames);
         }
         else if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFolder)
@@ -1035,7 +1037,7 @@ if (!settings.ExcludedStaticFileExtensions.Any(extension => projectItem.Name.End
     public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=minifiedName#>") : Url("<#=projectItem.Name#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name#>");
         <#+} else {#>
     public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>") : Url("<#=projectItem.Name#>");
-        <#+}  #>          
+<#+}  #>
 <#+}
     else if (projectItem.Name.EndsWith(".css") && !projectItem.Name.EndsWith(".min.css")) { 
         string minifiedName = projectItem.Name.Replace(".css", ".min.css");
@@ -1811,12 +1813,17 @@ class MvcSettings : XmlSettings
             "Scripts",
             "Content",
         }, "FileFolder");
-        this.ExcludedStaticFileExtensions = new XmlStringArray(new string[] {   
+        this.ExcludedStaticFileExtensions = new XmlStringArray(new string[] {
             ".cs",
             ".cshtml",
             ".aspx",
             ".ascx"
-        }, "Extension");  
+        }, "Extension");
+        this.ExcludedViewExtensions = new XmlStringArray(new string[] {
+            ".master",
+            ".js",
+            ".css"
+        }, "Extension");
         this.AttributeIndicatingHttps = "System.Web.Mvc.RequireHttpsAttribute";
         this.GenerateSecureLinksInDebugMode = false;
         this.ParamsPropertySuffix = "Params";
@@ -1875,6 +1882,9 @@ class MvcSettings : XmlSettings
 
     [System.ComponentModel.Description("Static files to exclude from the generated links")]
     public XmlStringArray ExcludedStaticFileExtensions { get; set; }
+
+    [System.ComponentModel.Description("Files to exclude from the generated views")]
+    public XmlStringArray ExcludedViewExtensions { get; set; }
 
     [System.ComponentModel.Description("When creating links with T4MVC, it can force them to HTTPS if the action method you are linking to requires Http.")]
     public string AttributeIndicatingHttps { get; set; }
