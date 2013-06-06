@@ -55,6 +55,9 @@ See http://mvccontrib.codeplex.com/workitem/7163 for potential issues with this 
   <!--Static files to exclude from the generated links-->
   <ExcludedStaticFileExtensions>
     <Extension>.cs</Extension>
+    <Extension>.cshtml</Extension>
+    <Extension>.aspx</Extension>
+    <Extension>.ascx</Extension>
   </ExcludedStaticFileExtensions>
   <!--When creating links with T4MVC, it can force them to HTTPS if the action method you are linking to requires Http.-->
   <AttributeIndicatingHttps>System.Web.Mvc.RequireHttpsAttribute</AttributeIndicatingHttps>

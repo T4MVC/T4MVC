@@ -1812,7 +1812,10 @@ class MvcSettings : XmlSettings
             "Content",
         }, "FileFolder");
         this.ExcludedStaticFileExtensions = new XmlStringArray(new string[] {   
-            ".cs"  
+            ".cs",
+            ".cshtml",
+            ".aspx",
+            ".ascx"
         }, "Extension");  
         this.AttributeIndicatingHttps = "System.Web.Mvc.RequireHttpsAttribute";
         this.GenerateSecureLinksInDebugMode = false;

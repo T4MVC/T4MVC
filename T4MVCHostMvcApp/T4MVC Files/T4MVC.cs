@@ -317,7 +317,6 @@ namespace Links
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
             public static readonly string _7_Some_Home_View_Hello_txt = Url("7 Some Home.View-Hello.txt");
-            public static readonly string About_aspx = Url("About.aspx");
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public static class App_LocalResources {
                 private const string URLPATH = "~/Views/Home/App_LocalResources";
@@ -338,19 +337,15 @@ namespace Links
                 private const string URLPATH = "~/Views/Home/DisplayTemplates";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                public static readonly string SomeDisplayTemplate_ascx = Url("SomeDisplayTemplate.ascx");
             }
         
-            public static readonly string DuplicateControl_ascx = Url("DuplicateControl.ascx");
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public static class EditorTemplates {
                 private const string URLPATH = "~/Views/Home/EditorTemplates";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                public static readonly string SomeEditorTemplate_ascx = Url("SomeEditorTemplate.ascx");
             }
         
-            public static readonly string Index_aspx = Url("Index.aspx");
             public static readonly string Qqq_txt = Url("Qqq.txt");
             public static readonly string QqQ_txt2 = Url("QqQ.txt2");
             public static readonly string Qqq_txt3 = Url("Qqq.txt3");
@@ -395,7 +390,6 @@ namespace Links
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
             public static readonly string Abcd_txt = Url("Abcd.txt");
-            public static readonly string DuplicateControl_ascx = Url("DuplicateControl.ascx");
         }
     
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -403,11 +397,6 @@ namespace Links
             private const string URLPATH = "~/Views/Shared";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-            public static readonly string AnotherPartial_ascx = Url("AnotherPartial.ascx");
-            public static readonly string DuplicateControl_ascx = Url("DuplicateControl.ascx");
-            public static readonly string DuplicateControl1_ascx = Url("DuplicateControl1.ascx");
-            public static readonly string Error_aspx = Url("Error.aspx");
-            public static readonly string LogOnUserControl_ascx = Url("LogOnUserControl.ascx");
             public static readonly string Site_Master = Url("Site.Master");
         }
     
@@ -467,7 +456,6 @@ namespace Links
                         private const string URLPATH = "~/Areas/Home/Views/Home/EditorTemplates";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                        public static readonly string SomeAreaEditorTemplate_ascx = Url("SomeAreaEditorTemplate.ascx");
                     }
                 
                     public static readonly string SomeHomeView_txt = Url("SomeHomeView.txt");
