@@ -139,6 +139,7 @@
     <Content Include="Views\Shared\AnotherPartial.ascx" />
     <Content Include="Views\Shared\DuplicateControl.ascx" />
     <Content Include="Views\Shared\DuplicateControl1.ascx" />
+    <Content Include="Views\Shared\Hello.js" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />

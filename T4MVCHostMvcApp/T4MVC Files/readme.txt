@@ -49,6 +49,10 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.7.0 (6-16-2013)
+* New AddAllViewsFoldersToStaticFilesFolders flag to include view folder files as static files (off by default) [url:https://t4mvc.codeplex.com/discussions/445358]
+* New ExcludedViewExtensions setting to not treat certain file extensions as views
+
 !!! 3.6.5 (5-19-2013)
 * Use Controller constructor with least number of params. [url:https://t4mvc.codeplex.com/workitem/22]
 
