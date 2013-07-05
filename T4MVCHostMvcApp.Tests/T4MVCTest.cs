@@ -638,6 +638,15 @@ namespace T4MVCHostMvcApp.Tests
             TestRouteValue(actionRes, "tst", "2");
         }
 
+        [TestMethod]
+        public void AddRouteValue_Does_Not_Throw_When_Adding_Existing_Key()
+        {
+            var actionResult = MVC.Home.Index();
+    
+            var actionResult1 = actionResult.AddRouteValue("foo", "bar1");
+            var actionResult2 = actionResult.AddRouteValue("foo", "bar2"); 
+        }
+
         #endregion
 
         // STATIC FILES TESTS

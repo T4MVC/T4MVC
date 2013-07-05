@@ -11,7 +11,7 @@ namespace System.Web.Mvc
     {
         public void UnbindModel(RouteValueDictionary routeValueDictionary, string routeName, object routeValue)
         {
-            routeValueDictionary.Add(routeName, routeValue);
+            routeValueDictionary[routeName] =  routeValue;
         }
     }
 }
