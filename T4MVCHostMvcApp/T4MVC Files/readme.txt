@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.7.1 (7-05-2013)
+* Fixed bug where AddRouteValue() throws ArgumentException if route value has already been added. [url:https://t4mvc.codeplex.com/workitem/25]
+
 !!! 3.7.0 (6-16-2013)
 * New AddAllViewsFoldersToStaticFilesFolders flag to include view folder files as static files (off by default) [url:https://t4mvc.codeplex.com/discussions/445358]
 * New ExcludedViewExtensions setting to not treat certain file extensions as views
