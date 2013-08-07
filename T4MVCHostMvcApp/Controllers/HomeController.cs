@@ -162,6 +162,11 @@ namespace T4MVCHostMvcApp.Controllers
         {
             return Task.FromResult(new EmptyResult() as ActionResult);
         }
+
+        public virtual ViewResultBase SomeAbstractResult()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class SomeGenericResult<T> : FileResult

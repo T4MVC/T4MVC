@@ -118,7 +118,7 @@ internal partial class T4MVC_<#=resultType.UniqueName #> : <#=resultType.FullNam
         this.InitMVCT4Result(area, controller, action, protocol);
     }
     <#foreach (var method in resultType.AbstractMethods) { #> 
-    <#=method.IsPublic ? "public" : "protected" #> override void <#=method.Name #>(<#method.WriteFormalParameters(true); #>) { }
+    <#=method.IsPublic ? "public" : "protected" #> override <#=method.ReturnType#> <#=method.Name #>(<#method.WriteFormalParameters(true); #>) {<# if(method.ReturnType != "void") {#> return default(<#=method.ReturnType#>); <#} #> }
     <#} #>
 
     public string Controller { get; set; }
@@ -773,12 +773,12 @@ void ProcessControllerActionMethods(ControllerInfo controllerInfo, CodeClass2 cu
             {
                 //Async methods return void and there could be multiple matching Completed methods, so we will use
                 //the generic ActionResult as the return type for the method.
-                var resultType = Project.CodeModel.CodeTypeFromFullName("System.Web.Mvc.ActionResult");
+                var resultType = Project.CodeModel.CreateCodeTypeRef("System.Web.Mvc.ActionResult");
                 // If we haven't yet seen this return type, keep track of it
-                if (!ResultTypes.ContainsKey(resultType.Name))
+                if (!ResultTypes.ContainsKey(resultType.AsFullName))
                 {
                     var resTypeInfo = new ResultTypeInfo(resultType);
-                    ResultTypes[resultType.FullName] = resTypeInfo;
+                    ResultTypes[resultType.AsFullName] = resTypeInfo;
                 }
 
                 // Collect misc info about the action method and add it to the collection
@@ -804,7 +804,7 @@ void ProcessControllerActionMethods(ControllerInfo controllerInfo, CodeClass2 cu
                 continue;
 
             // If we haven't yet seen this return type, keep track of it
-            var resTypeInfo2 = new ResultTypeInfo(method.Type.CodeType);
+            var resTypeInfo2 = new ResultTypeInfo(method.Type);
             if (!ResultTypes.ContainsKey(resTypeInfo2.FullName))
             {
                 ResultTypes[resTypeInfo2.FullName] = resTypeInfo2;
@@ -1229,6 +1229,11 @@ static CodeAttribute2 GetAttribute(CodeClass2 type, string attributeType)
     return null;
 }
 
+static string UniqueFullName(CodeTypeRef codeType)
+{
+	return UniqueFullName(codeType.CodeType);
+}
+
 static string UniqueFullName(CodeType codeType)
 {
     var uniqueName = codeType.FullName;
@@ -1628,17 +1633,17 @@ class FunctionInfo
         }
     }
 
-    protected virtual CodeType ReturnTypeImpl { get { return _method.Type.CodeType; } }
+    protected virtual CodeTypeRef ReturnTypeImpl { get { return _method.Type; } }
 
     public string Name { get { return _method.Name; } }
-    public string ReturnType { get { return ReturnTypeImpl.Name; } }
-    public string ReturnTypeFullName { get { return ReturnTypeImpl.FullName; } }
+    public string ReturnType { get { return ReturnTypeImpl.AsString; } }
+    public string ReturnTypeFullName { get { return ReturnTypeImpl.AsFullName; } }
     public string ReturnTypeUniqueName { get { return IsTaskBased ? "System_Web_Mvc_ActionResult" : UniqueFullName(ReturnTypeImpl); } }
     public bool IsPublic { get { return _method.Access == vsCMAccess.vsCMAccessPublic; } }
     public List<MethodParamInfo> Parameters { get; private set; }
     public bool CanBeCalledWithoutParameters { get; private set; }
 
-    private bool IsTaskBased { get {return ReturnTypeImpl.FullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>"; } }
+    private bool IsTaskBased { get {return ReturnTypeImpl.AsFullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>"; } }
 
     // Write out all the parameters as part of a method declaration
     public void WriteFormalParameters(bool first, bool includeDefaults = false)
@@ -1701,7 +1706,7 @@ class FunctionInfo
 // Data structure to collect data about an action method
 class ActionMethodInfo : FunctionInfo
 {
-    public ActionMethodInfo(CodeFunction2 method, CodeClass2 controller, CodeType asyncType = null)
+    public ActionMethodInfo(CodeFunction2 method, CodeClass2 controller, CodeTypeRef asyncType = null)
         : base(method)
     {
         if(asyncType != null) 
@@ -1728,8 +1733,8 @@ class ActionMethodInfo : FunctionInfo
     }
 
     string _actionName;
-    CodeType _returnType;
-    protected override CodeType ReturnTypeImpl { get { return _returnType ?? base.ReturnTypeImpl; } }
+    CodeTypeRef _returnType;
+    protected override CodeTypeRef ReturnTypeImpl { get { return _returnType ?? base.ReturnTypeImpl; } }
 
     public string ActionName { get { return _actionName ?? base.Name; } }
     public string ActionNameValueExpression { get; set; }
@@ -1742,33 +1747,33 @@ class ActionMethodInfo : FunctionInfo
 // Data about an ActionResult derived type
 class ResultTypeInfo
 {
-    CodeType _codeType;
-    public ResultTypeInfo(CodeType codeType)
+    CodeTypeRef _codeType;
+    public ResultTypeInfo(CodeTypeRef codeType)
     {
         _codeType = codeType;
 
         // Use the constructor with the least number of parameters
-        var ctor = _codeType.Members.OfType<CodeFunction2>()
+        var ctor = _codeType.CodeType.Members.OfType<CodeFunction2>()
             .Where(f => f.FunctionKind == vsCMFunction.vsCMFunctionConstructor)
             .OrderBy(f => f.Parameters.Count)
             .FirstOrDefault();
         Constructor = new FunctionInfo(ctor);
     }
 
-    public string Name { get { return _codeType.Name; } }
-    public string FullName { get { return this.IsTaskBased ? "System.Web.Mvc.ActionResult" : _codeType.FullName; } }
+    public string Name { get { return _codeType.AsString; } }
+    public string FullName { get { return this.IsTaskBased ? "System.Web.Mvc.ActionResult" : _codeType.AsFullName; } }
     public string UniqueName { get { return this.IsTaskBased ?  "System_Web_Mvc_ActionResult" : UniqueFullName(_codeType); } }
     public FunctionInfo Constructor { get; set; }
     public IEnumerable<FunctionInfo> AbstractMethods
     {
         get
         {
-            return _codeType.Members.OfType<CodeFunction2>().Where(
+            return _codeType.CodeType.Members.OfType<CodeFunction2>().Where(
                 f => f.MustImplement).Select(f => new FunctionInfo(f));
         }
     }
 
-    private bool IsTaskBased { get {return _codeType.FullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>"; } }
+    private bool IsTaskBased { get {return _codeType.AsFullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>"; } }
 }
 
 class MethodParamInfo

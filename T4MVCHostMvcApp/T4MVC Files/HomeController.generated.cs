@@ -124,6 +124,7 @@ namespace T4MVCHostMvcApp.Controllers
             public readonly string ActionReturningGenericResultNested = "ActionReturningGenericResultNested";
             public readonly string SomeTaskBasedAction = "SomeTaskBasedAction";
             public readonly string SomeTaskBasedActionWithParams = "SomeTaskBasedActionWithParams";
+            public readonly string SomeAbstractResult = "SomeAbstractResult";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -150,6 +151,7 @@ namespace T4MVCHostMvcApp.Controllers
             public const string ActionReturningGenericResultNested = "ActionReturningGenericResultNested";
             public const string SomeTaskBasedAction = "SomeTaskBasedAction";
             public const string SomeTaskBasedActionWithParams = "SomeTaskBasedActionWithParams";
+            public const string SomeAbstractResult = "SomeAbstractResult";
         }
 
 
@@ -541,6 +543,15 @@ namespace T4MVCHostMvcApp.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             SomeTaskBasedActionWithParamsOverride(callInfo, id);
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
+        }
+
+        partial void SomeAbstractResultOverride(T4MVC_System_Web_Mvc_ViewResultBase callInfo);
+
+        public override System.Web.Mvc.ViewResultBase SomeAbstractResult()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ViewResultBase(Area, Name, ActionNames.SomeAbstractResult);
+            SomeAbstractResultOverride(callInfo);
+            return callInfo;
         }
 
     }
