@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.7.2 (8-07-2013)
+* Fix abstract view result method generation. [url:https://t4mvc.codeplex.com/workitem/23]
+
 !!! 3.7.1 (7-05-2013)
 * Fixed bug where AddRouteValue() throws ArgumentException if route value has already been added. [url:https://t4mvc.codeplex.com/workitem/25]
 
