@@ -13,6 +13,13 @@ namespace T4MVCHostMvcApp.Controllers
         [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Scope = "member", Target = "T4MVCHostMvcApp.Controllers.HomeController.#.cctor()")]
         static HomeController() { }
 
+        public virtual async Task<ActionResult> AsyncTask()
+        {
+            await Task.Run(() => System.Diagnostics.Debug.WriteLine("ignored"));
+
+            return View(new object());
+        }
+
         public virtual ActionResult Index()
         {
             //RedirectToAction()

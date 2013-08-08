@@ -803,8 +803,12 @@ void ProcessControllerActionMethods(ControllerInfo controllerInfo, CodeClass2 cu
             if (isAsyncController && method.Name.EndsWith("Completed", StringComparison.OrdinalIgnoreCase))
                 continue;
 
+            var methodType = method.Type;
+            if(method.Type.CodeType.FullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>")
+                methodType = Project.CodeModel.CreateCodeTypeRef("System.Web.Mvc.ActionResult");
+
             // If we haven't yet seen this return type, keep track of it
-            var resTypeInfo2 = new ResultTypeInfo(method.Type);
+            var resTypeInfo2 = new ResultTypeInfo(methodType);
             if (!ResultTypes.ContainsKey(resTypeInfo2.FullName))
             {
                 ResultTypes[resTypeInfo2.FullName] = resTypeInfo2;

@@ -103,6 +103,7 @@ namespace T4MVCHostMvcApp.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
+            public readonly string AsyncTask = "AsyncTask";
             public readonly string Index = "Index";
             public readonly string About = firstConst + " " + secondConst;
             public readonly string Blah = "New-Name for Blah";
@@ -130,6 +131,7 @@ namespace T4MVCHostMvcApp.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
+            public const string AsyncTask = "AsyncTask";
             public const string Index = "Index";
             public const string About = firstConst + " " + secondConst;
             public const string Blah = "New-Name for Blah";
@@ -334,6 +336,15 @@ namespace T4MVCHostMvcApp.Controllers
     public partial class T4MVC_HomeController : T4MVCHostMvcApp.Controllers.HomeController
     {
         public T4MVC_HomeController() : base(Dummy.Instance) { }
+
+        partial void AsyncTaskOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> AsyncTask()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AsyncTask);
+            AsyncTaskOverride(callInfo);
+            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
+        }
 
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
