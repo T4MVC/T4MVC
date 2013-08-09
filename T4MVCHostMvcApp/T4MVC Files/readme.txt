@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.7.3 (8-09-2013)
+* Fix issue 23 - support for 'async Task<ActionResult>' methods. [url:https://t4mvc.codeplex.com/SourceControl/network/forks/mswainatwork/t4mvc/contribution/5154]
+
 !!! 3.7.2 (8-07-2013)
 * Fix abstract view result method generation. [url:https://t4mvc.codeplex.com/workitem/23]
 
