@@ -116,6 +116,7 @@ namespace T4MVCHostMvcApp.Controllers
             public readonly string ActionWithArrayParam = "ActionWithArrayParam";
             public readonly string ActionWithAllOptionalParams = "ActionWithAllOptionalParams";
             public readonly string ActionWithSomeOptionalParams = "ActionWithSomeOptionalParams";
+            public readonly string ActionWithOptionalParamDefaultingToNull = "ActionWithOptionalParamDefaultingToNull";
             public readonly string ActionWithParamUsingAtSyntax = "ActionWithParamUsingAtSyntax";
             public readonly string ActionThatUsesActionNameConstantInAttribute = "ActionThatUsesActionNameConstantInAttribute";
             public readonly string ActionThatRequiresHttps = "ActionThatRequiresHttps";
@@ -144,6 +145,7 @@ namespace T4MVCHostMvcApp.Controllers
             public const string ActionWithArrayParam = "ActionWithArrayParam";
             public const string ActionWithAllOptionalParams = "ActionWithAllOptionalParams";
             public const string ActionWithSomeOptionalParams = "ActionWithSomeOptionalParams";
+            public const string ActionWithOptionalParamDefaultingToNull = "ActionWithOptionalParamDefaultingToNull";
             public const string ActionWithParamUsingAtSyntax = "ActionWithParamUsingAtSyntax";
             public const string ActionThatUsesActionNameConstantInAttribute = "ActionThatUsesActionNameConstantInAttribute";
             public const string ActionThatRequiresHttps = "ActionThatRequiresHttps";
@@ -190,6 +192,14 @@ namespace T4MVCHostMvcApp.Controllers
         public class ActionParamsClass_ActionWithSomeOptionalParams
         {
             public readonly string someString = "someString";
+            public readonly string n = "n";
+        }
+        static readonly ActionParamsClass_ActionWithOptionalParamDefaultingToNull s_params_ActionWithOptionalParamDefaultingToNull = new ActionParamsClass_ActionWithOptionalParamDefaultingToNull();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ActionWithOptionalParamDefaultingToNull ActionWithOptionalParamDefaultingToNullParams { get { return s_params_ActionWithOptionalParamDefaultingToNull; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ActionWithOptionalParamDefaultingToNull
+        {
             public readonly string n = "n";
         }
         static readonly ActionParamsClass_ActionWithParamUsingAtSyntax s_params_ActionWithParamUsingAtSyntax = new ActionParamsClass_ActionWithParamUsingAtSyntax();
@@ -458,6 +468,16 @@ namespace T4MVCHostMvcApp.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someString", someString);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
             ActionWithSomeOptionalParamsOverride(callInfo, someString, n);
+            return callInfo;
+        }
+
+        partial void ActionWithOptionalParamDefaultingToNullOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? n);
+
+        public override System.Web.Mvc.ActionResult ActionWithOptionalParamDefaultingToNull(int? n)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithOptionalParamDefaultingToNull);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
+            ActionWithOptionalParamDefaultingToNullOverride(callInfo, n);
             return callInfo;
         }
 

@@ -288,8 +288,8 @@ namespace T4MVCHostMvcApp.Tests
             var actionRes = (IT4MVCActionResult)MVC.Home.Blah();
 
             TestAreaControllerActionNames(actionRes, "", "Home", "New-Name for Blah");
-            TestRouteValue(actionRes, "name", null);
-            TestRouteValue(actionRes, "age", null);
+            TestNoRouteValue(actionRes, "name");
+            TestNoRouteValue(actionRes, "age");
         }
 
         [TestMethod()]
@@ -308,6 +308,23 @@ namespace T4MVCHostMvcApp.Tests
             var actionRes = (IT4MVCActionResult)MVC.Home.ActionWithSomeOptionalParams();
 
             TestAreaControllerActionNames(actionRes, "", "Home", "ActionWithSomeOptionalParams");
+            TestNoRouteValue(actionRes, "n");
+        }
+
+        [TestMethod()]
+        public void TestOptionalParamWhenNotPassingItIn()
+        {
+            var actionRes = (IT4MVCActionResult)MVC.Home.ActionWithSomeOptionalParams("Hello");
+
+            TestRouteValue(actionRes, "someString", "Hello");
+            TestRouteValue(actionRes, "n", 5);
+        }
+
+        [TestMethod()]
+        public void TestOptionalParamWithNullValue()
+        {
+            var actionRes = (IT4MVCActionResult)MVC.Home.ActionWithOptionalParamDefaultingToNull(null);
+
             TestRouteValue(actionRes, "n", null);
         }
 
@@ -743,7 +760,13 @@ namespace T4MVCHostMvcApp.Tests
 
         private void TestRouteValue(IT4MVCActionResult actionResult, string name, object value)
         {
+            Assert.IsTrue(actionResult.RouteValueDictionary.ContainsKey(name));
             Assert.AreEqual(value, actionResult.RouteValueDictionary[name]);
+        }
+
+        private void TestNoRouteValue(IT4MVCActionResult actionResult, string name)
+        {
+            Assert.IsFalse(actionResult.RouteValueDictionary.ContainsKey(name));
         }
 
         private static string ProcessVirtualPath(string virtualPath)
