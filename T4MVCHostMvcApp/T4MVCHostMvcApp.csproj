@@ -127,6 +127,7 @@
     <Content Include="Global.asax" />
     <Content Include="SomePortableArea\Views\Home\SomeHomeView.txt" />
     <Content Include="T4MVC Files\readme.txt" />
+    <Content Include="T4MVC Files\install.ps1" />
     <None Include="T4MVC Files\T4MVC.tt.settings.xml" />
     <Content Include="Content\Hello World.txt" />
     <Content Include="Content\Hello+World.txt" />

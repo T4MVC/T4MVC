@@ -18,5 +18,6 @@
   <files>
     <file src="T4MVC.tt" target="Content" />
     <file src="T4MVC.tt.hooks.t4" target="Content" />
+    <file src="install.ps1" target="tools" />
   </files>
 </package>
