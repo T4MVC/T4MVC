@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.7.4 (9-19-2013)
+* Set buildaction of t4 files to none. [url:https://t4mvc.codeplex.com/SourceControl/network/forks/duncans/T4MVC/contribution/5356]
+
 !!! 3.7.3 (8-09-2013)
 * Fix issue 23 - support for 'async Task<ActionResult>' methods. [url:https://t4mvc.codeplex.com/SourceControl/network/forks/mswainatwork/t4mvc/contribution/5154]
 
