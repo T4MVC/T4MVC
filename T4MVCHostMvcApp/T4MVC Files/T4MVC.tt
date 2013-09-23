@@ -1109,7 +1109,6 @@ void ProcessBundleFilesRecursive(ProjectItem projectItem, string path, HashSet<S
     if (IsFolder(projectItem))
     {
         #>
-    [<#= GeneratedCode #>, DebuggerNonUserCode]
     public static partial class <#=EscapeID(name)#> {
 		public static partial class Assets {
 <#+
@@ -1180,7 +1179,6 @@ int BuildBundleClassStructureForProvidedPath(string path)
 		 
 		#>
 
-    [<#= GeneratedCode #>, DebuggerNonUserCode]
     public static partial class <#=className #> {
 		public static partial class Assets { 
        
