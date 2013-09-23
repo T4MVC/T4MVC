@@ -32,6 +32,7 @@ public static partial class MVC
     public static FeatureFolderAreaClass FeatureFolderArea { get { return s_FeatureFolderArea; } }
     static readonly HomeClass s_Home = new HomeClass();
     public static HomeClass HomeArea { get { return s_Home; } }
+    public static T4MVCHostMvcApp.Controllers.DefaultController Default = new T4MVCHostMvcApp.Controllers.T4MVC_DefaultController();
     public static T4MVCHostMvcApp.Controllers.HomeController Home = new T4MVCHostMvcApp.Controllers.T4MVC_HomeController();
     public static T4MVCHostMvcApp.Controllers.ModelUnbinderController ModelUnbinder = new T4MVCHostMvcApp.Controllers.T4MVC_ModelUnbinderController();
     public static T4MVCHostMvcApp.Controllers.SomeAsyncController SomeAsync = new T4MVCHostMvcApp.Controllers.T4MVC_SomeAsyncController();
@@ -330,6 +331,17 @@ namespace Links
         }
     
     }
+
+    public static partial class ContentStatic {
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class Scripts {
+            private const string URLPATH = "~/ContentStatic/Scripts";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            public static readonly string SomeOtherScript_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/SomeOtherScript.min.js") ? Url("SomeOtherScript.min.js") : Url("SomeOtherScript.js");
+        }
+    
+    }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public static class Views {
         private const string URLPATH = "~/Views";
@@ -574,13 +586,257 @@ namespace Links
         
         }
     }
+    
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public static partial class Bundles
     {
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public static partial class Scripts {}
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public static partial class Styles {}
+        public static partial class Scripts 
+        {
+            public static class Assets
+            {
+                    public const string jquery_1_3_2_js = "~/Scripts/jquery-1.3.2.js"; 
+                    public const string jquery_1_3_2_min_js = "~/Scripts/jquery-1.3.2.min.js"; 
+                    public const string jquery_validate_js = "~/Scripts/jquery.validate.js"; 
+                    public const string jquery_validate_min_js = "~/Scripts/jquery.validate.min.js"; 
+                    public const string MicrosoftAjax_debug_js = "~/Scripts/MicrosoftAjax.debug.js"; 
+                    public const string MicrosoftAjax_js = "~/Scripts/MicrosoftAjax.js"; 
+                    public const string MicrosoftMvcAjax_debug_js = "~/Scripts/MicrosoftMvcAjax.debug.js"; 
+                    public const string MicrosoftMvcAjax_js = "~/Scripts/MicrosoftMvcAjax.js"; 
+            }
+        }
+        public static partial class Content 
+        {
+            public static partial class @default 
+            {
+                public static class Assets
+                {
+                }
+            }
+            public static partial class Empty_Folder 
+            {
+                public static class Assets
+                {
+                }
+            }
+            public static partial class SomeRandomName 
+            {
+                public static partial class SomeRandomName_ 
+                {
+                    public static class Assets
+                    {
+                    }
+                }
+                public static class Assets
+                {
+                }
+            }
+            public static partial class Sub_Content_folder_test 
+            {
+                public static class Assets
+                {
+                }
+            }
+            public static class Assets
+            {
+                    public const string Site_css = "~/Content/Site.css";
+                    public const string StyleSheet_css = "~/Content/StyleSheet.css";
+                    public const string StyleSheet_min_css = "~/Content/StyleSheet.min.css";
+            }
+        }
+        public static partial class ContentStatic 
+        {
+            public static partial class TextFiles 
+            {
+                public static class Assets
+                {
+                }
+            }
+         	
+        }
+        public static partial class ContentStatic 
+        {
+            public static partial class Scripts 
+            {
+                public static class Assets
+                {
+                        public const string SomeOtherScript_js = "~/ContentStatic/Scripts/SomeOtherScript.js"; 
+                }
+            }
+         	
+        }
+        public static partial class Views 
+        {
+            public static partial class Home 
+            {
+                public static partial class App_LocalResources 
+                {
+                    public static class Assets
+                    {
+                    }
+                }
+                public static partial class @default 
+                {
+                    public static class Assets
+                    {
+                    }
+                }
+                public static partial class DisplayTemplates 
+                {
+                    public static class Assets
+                    {
+                    }
+                }
+                public static partial class EditorTemplates 
+                {
+                    public static class Assets
+                    {
+                    }
+                }
+                public static partial class SomeName 
+                {
+                    public static partial class SomeName_ 
+                    {
+                        public static class Assets
+                        {
+                        }
+                    }
+                    public static class Assets
+                    {
+                    }
+                }
+                public static partial class Sub_Home 
+                {
+                    public static partial class Nested_Sub 
+                    {
+                        public static class Assets
+                        {
+                        }
+                    }
+                    public static class Assets
+                    {
+                    }
+                }
+                public static class Assets
+                {
+                }
+            }
+            public static partial class NoControllerMatchingFolder 
+            {
+                public static class Assets
+                {
+                }
+            }
+            public static partial class Shared 
+            {
+                public static class Assets
+                {
+                        public const string Hello_js = "~/Views/Shared/Hello.js"; 
+                }
+            }
+            public static class Assets
+            {
+            }
+        }
+        public static partial class Features 
+        {
+            public static partial class Contact 
+            {
+                public static class Assets
+                {
+                }
+            }
+         	
+        }
+        public static partial class Features 
+        {
+            public static partial class Pictures 
+            {
+                public static class Assets
+                {
+                }
+            }
+         	
+        }
+        public static partial class Areas 
+        {
+            public static partial class @break 
+            {
+                public static partial class Views 
+                {
+                    public static partial class Shared 
+                    {
+                        public static class Assets
+                        {
+                        }
+                    }
+                    public static class Assets
+                    {
+                    }
+                }
+             	
+            }
+         	
+        }
+        public static partial class Areas 
+        {
+            public static partial class FeatureFolderArea 
+            {
+                public static partial class FeatureFoo 
+                {
+                    public static class Assets
+                    {
+                    }
+                }
+             	
+            }
+         	
+        }
+        public static partial class Areas 
+        {
+            public static partial class FeatureFolderArea 
+            {
+                public static partial class SharedViews 
+                {
+                    public static class Assets
+                    {
+                    }
+                }
+             	
+            }
+         	
+        }
+        public static partial class Areas 
+        {
+            public static partial class Home 
+            {
+                public static partial class Views 
+                {
+                    public static partial class Home 
+                    {
+                        public static partial class EditorTemplates 
+                        {
+                            public static class Assets
+                            {
+                            }
+                        }
+                        public static class Assets
+                        {
+                        }
+                    }
+                    public static partial class Shared 
+                    {
+                        public static class Assets
+                        {
+                        }
+                    }
+                    public static class Assets
+                    {
+                    }
+                }
+             	
+            }
+         	
+        }
     }
 }
 

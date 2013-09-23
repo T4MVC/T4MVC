@@ -61,6 +61,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PublicAssemblies\EnvDTE.dll</HintPath>
@@ -98,6 +101,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
@@ -125,6 +131,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PublicAssemblies\VSLangProj.dll</HintPath>
     </Reference>
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\Linked Files\SomeLinkedFile.txt">
@@ -134,10 +143,13 @@
     <Content Include="Areas\FeatureFolderArea\InvalidFile.txt" />
     <Content Include="Areas\FeatureFolderArea\SharedViews\SharedView.txt" />
     <Content Include="Areas\Home\Content\Home.css" />
+    <Content Include="ContentStatic\Scripts\SomeOtherScript.js" />
     <Content Include="ContentStatic\TextFiles\readme.txt" />
     <Compile Include="Areas\FeatureFolderArea\FeatureFoo\FeatureFooController.cs" />
     <Content Include="Areas\FeatureFolderArea\FeatureFoo\Index.txt" />
+    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Controllers\ControllerWithoutSuffix.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\SomeAsyncController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModelUnbinderController.cs" />
@@ -171,7 +183,9 @@
     <Content Include="Features\Contact\Index.txt" />
     <Content Include="Features\Pictures\Index.txt" />
     <Content Include="Features\Pictures\Detail.txt" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="T4MVC Files\T4MVC.tt.settings.xml">
       <SubType>Designer</SubType>
     </None>
@@ -187,7 +201,9 @@
     <Content Include="Views\Shared\DuplicateControl.ascx" />
     <Content Include="Views\Shared\DuplicateControl1.ascx" />
     <Content Include="Views\Shared\Hello.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />
     <Content Include="Scripts\jquery-1.3.2.min.js" />
@@ -271,6 +287,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4MVC Files\FeatureFolderArea.SharedViewsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\DefaultController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4MVC Files\Home.HomeController.generated.cs">
