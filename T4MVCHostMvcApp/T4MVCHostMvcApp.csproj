@@ -143,6 +143,7 @@
     <Content Include="Areas\FeatureFolderArea\InvalidFile.txt" />
     <Content Include="Areas\FeatureFolderArea\SharedViews\SharedView.txt" />
     <Content Include="Areas\Home\Content\Home.css" />
+    <Content Include="ContentStatic\Scripts\SomeOtherScript.js" />
     <Content Include="ContentStatic\TextFiles\readme.txt" />
     <Compile Include="Areas\FeatureFolderArea\FeatureFoo\FeatureFooController.cs" />
     <Content Include="Areas\FeatureFolderArea\FeatureFoo\Index.txt" />
@@ -183,6 +184,9 @@
     <Content Include="Features\Pictures\Index.txt" />
     <Content Include="Features\Pictures\Detail.txt" />
     <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="T4MVC Files\T4MVC.tt.settings.xml">
       <SubType>Designer</SubType>
     </None>
@@ -198,7 +202,9 @@
     <Content Include="Views\Shared\DuplicateControl.ascx" />
     <Content Include="Views\Shared\DuplicateControl1.ascx" />
     <Content Include="Views\Shared\Hello.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />
     <Content Include="Scripts\jquery-1.3.2.min.js" />

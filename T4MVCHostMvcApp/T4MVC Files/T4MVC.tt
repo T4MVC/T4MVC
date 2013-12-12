@@ -146,15 +146,20 @@ foreach (string folder in settings.StaticFilesFolders
     ProcessStaticFiles(Project, folder);
 }
 
-	#>
-	[<#= GeneratedCode #>, DebuggerNonUserCode]
-    public static partial class Bundles
-	{
-        <# 
-			foreach (string folder in settings.StaticFilesFolders.Concat(GetStaticFilesViewFolders())) {
-				ProcessBundles(Project, folder);
-			}		
-		#>
+PushIndent("    ");
+#>
+
+[<#= GeneratedCode #>, DebuggerNonUserCode]
+public static partial class Bundles
+{
+<#
+			
+		foreach (string folder in settings.StaticFilesFolders.Concat(GetStaticFilesViewFolders())) {
+			ProcessBundles(Project, folder);
+		}		
+	
+		PopIndent();
+#>
     }
 }
 
@@ -1087,13 +1092,13 @@ void ProcessBundleFilesRecursive(ProjectItem projectItem, string path)
 {
     int nestedLevel = BuildBundleClassStructureForProvidedPath(path);
     ProcessBundleFilesRecursive(projectItem, path, new HashSet<String>());
-    for(int i = 0; i < nestedLevel; ++i) {#>
-	}
+    for(int i = 0; i < nestedLevel; ++i) 
+	{ 
+#> 	
 }
 <#+
-    PopIndent();
+		PopIndent();
     }
-	
 }
 
 void ProcessBundleFilesRecursive(ProjectItem projectItem, string path, HashSet<String> nameSet)
@@ -1106,54 +1111,83 @@ void ProcessBundleFilesRecursive(ProjectItem projectItem, string path, HashSet<S
     var childrenNameSet = new HashSet<String>();
     childrenNameSet.Add(name);
 
+	var files = new List<ProjectItem>();
+
     if (IsFolder(projectItem))
     {
-        #>
-    public static partial class <#=EscapeID(name)#> {
-		public static partial class Assets {
-<#+
-PushIndent("    ");
-PushIndent("    ");
-
-// Recurse into all the items in the folder
-foreach (ProjectItem item in projectItem.ProjectItems)
-{
-    ProcessBundleFilesRecursive(
-        item,
-        path + "/" + projectItem.Name,
-        childrenNameSet);
-}
-
-PopIndent();
-PopIndent();
+		PushIndent("    ");
 #>
-		}
-	}
-
-<#+
-}
-    else { #>
-<#+
-if (!settings.ExcludedStaticFileExtensions.Any(extension => projectItem.Name.EndsWith(extension, StringComparison.OrdinalIgnoreCase))) {
-    var bundleAssetPath = String.Format("{0}/{1}", path, projectItem.Name);
-	
-	// if it's a non-minified javascript file
-    if (projectItem.Name.EndsWith(".js")  && !projectItem.Name.Contains("-vsdoc")) {#>
-    public const string <#=name#> = "<#=bundleAssetPath#>"; 
-<#+}
-    else if (projectItem.Name.EndsWith(".css")) { #>
-    public const string <#=name#> = "<#=bundleAssetPath#>";
-<#+}
-   
-} #>
-<#+
-// Non folder items may also have children (virtual folders, Class.cs -> Class.Designer.cs, template output)
-// Just register them on the same path as their parent item
-foreach (ProjectItem item in projectItem.ProjectItems)
+public static partial class <#=EscapeID(name)#> 
 {
-    ProcessBundleFilesRecursive(item, path, childrenNameSet);
+<#+
+		// Recurse into all the items in the folder
+		foreach (ProjectItem item in projectItem.ProjectItems)
+		{
+			if (IsFolder(item))
+            {
+				ProcessBundleFilesRecursive(
+					item,
+					path + "/" + projectItem.Name,
+					childrenNameSet);
+            }
+
+			if (IsFile(item))
+            {
+				files.Add(item);
+			}
+		}
+
+		BuildBundleConstants(files, path + "/" + projectItem.Name, childrenNameSet);
+#>
 }
+<#+	
+		PopIndent();
+	}    
+}
+
+void BuildBundleConstants(List<ProjectItem> projectItems, string path, HashSet<String> childrenNameSet)
+{
+	PushIndent("    ");
+#>
+public static class Assets
+{
+<#+
+    PushIndent("    ");
+	foreach (var projectItem in projectItems)
+    {
+		// The passed in HashSet is to guarantee uniqueness with our parent and siblings
+		string name = SanitizeWithNoConflicts(projectItem.Name, childrenNameSet);
+
+		if (!settings.ExcludedStaticFileExtensions.Any(extension => projectItem.Name.EndsWith(extension, StringComparison.OrdinalIgnoreCase))) {
+			var bundleAssetPath = String.Format("{0}/{1}", path, projectItem.Name);
+	
+			// if it's a non-minified javascript file
+			if (projectItem.Name.EndsWith(".js")  && !projectItem.Name.Contains("-vsdoc")) 
+			{
+#>
+	public const string <#=name#> = "<#=bundleAssetPath#>"; 
+<#+
+			}
+			else if (projectItem.Name.EndsWith(".css")) 
+			{ 
+#>
+	public const string <#=name#> = "<#=bundleAssetPath#>";
+<#+
+			}
+		} 
+
+		// Non folder items may also have children (virtual folders, Class.cs -> Class.Designer.cs, template output)
+		// Just register them on the same path as their parent item
+		foreach (ProjectItem item in projectItem.ProjectItems)
+		{
+			ProcessBundleFilesRecursive(item, path, childrenNameSet);
+		}	 
     }
+	PopIndent();
+#>
+}
+<#+	
+	PopIndent();
 }
 
 int BuildBundleClassStructureForProvidedPath(string path)
@@ -1176,16 +1210,13 @@ int BuildBundleClassStructureForProvidedPath(string path)
         {
             virtualPathesForStaticFiles.Add(currentPath);
 		}
-		 
-		#>
-
-    public static partial class <#=className #> {
-		public static partial class Assets { 
-       
+		
+		PushIndent("    "); 
+#>
+public static partial class <#=className #> 
+{
 <#+
-
-        PushIndent("    ");
-        parentFolder = folder;
+		parentFolder = folder;
     }
     return folders.Length;
 }
@@ -1545,6 +1576,12 @@ static bool IsFeatureFolderArea(string areaName, ProjectItem areaFolder)
         return settings.FeatureFolderAreas.Contains("*") || settings.FeatureFolderAreas.Contains(areaFolder.Name);
     }
 }
+
+static bool IsFile(ProjectItem item)
+{
+	return (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFile);
+}
+
 
 static string MakeClassName(string ns, string classname)
 {
