@@ -22,7 +22,7 @@ using System.Web.Routing;
 using T4MVC;
 
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-public static class MVC
+public static partial class MVC
 {
     static readonly breakClass s_break = new breakClass();
     public static breakClass @break { get { return s_break; } }
