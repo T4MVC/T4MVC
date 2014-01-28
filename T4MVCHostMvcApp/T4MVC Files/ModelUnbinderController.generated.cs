@@ -185,8 +185,10 @@ namespace T4MVCHostMvcApp.Controllers
     {
         public T4MVC_ModelUnbinderController() : base(Dummy.Instance) { }
 
+        [NonAction]
         partial void TestUnbindModelOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, T4MVCHostMvcApp.Controllers.UnbindModel model);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult TestUnbindModel(T4MVCHostMvcApp.Controllers.UnbindModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TestUnbindModel);
@@ -195,8 +197,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void TestBaseClassOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, T4MVCHostMvcApp.Controllers.BaseEntity entity);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult TestBaseClass(T4MVCHostMvcApp.Controllers.BaseEntity entity)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TestBaseClass);
@@ -205,8 +209,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void TestChildClass1Override(T4MVC_System_Web_Mvc_ActionResult callInfo, T4MVCHostMvcApp.Controllers.UserEntity user);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult TestChildClass1(T4MVCHostMvcApp.Controllers.UserEntity user)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TestChildClass1);
@@ -215,8 +221,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void TestChildClass2Override(T4MVC_System_Web_Mvc_ActionResult callInfo, T4MVCHostMvcApp.Controllers.AnotherChildEntity child);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult TestChildClass2(T4MVCHostMvcApp.Controllers.AnotherChildEntity child)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TestChildClass2);
@@ -225,8 +233,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void TestComplexModelOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, T4MVCHostMvcApp.Controllers.ComplexModel model);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult TestComplexModel(T4MVCHostMvcApp.Controllers.ComplexModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TestComplexModel);
@@ -235,8 +245,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void TestComplexModelWithEnumerableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, T4MVCHostMvcApp.Controllers.ComplexModelWithEnumerable model);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult TestComplexModelWithEnumerable(T4MVCHostMvcApp.Controllers.ComplexModelWithEnumerable model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TestComplexModelWithEnumerable);
@@ -245,8 +257,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ParameterlessActionOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult ParameterlessAction()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ParameterlessAction);

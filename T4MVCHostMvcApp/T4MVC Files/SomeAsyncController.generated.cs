@@ -89,8 +89,10 @@ namespace T4MVCHostMvcApp.Controllers
     {
         public T4MVC_SomeAsyncController() : base(Dummy.Instance) { }
 
+        [NonAction]
         partial void SomeActionOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult SomeAction()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SomeAction);

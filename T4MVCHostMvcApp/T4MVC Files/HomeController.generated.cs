@@ -347,8 +347,10 @@ namespace T4MVCHostMvcApp.Controllers
     {
         public T4MVC_HomeController() : base(Dummy.Instance) { }
 
+        [NonAction]
         partial void AsyncTaskOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> AsyncTask()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AsyncTask);
@@ -356,8 +358,10 @@ namespace T4MVCHostMvcApp.Controllers
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
+        [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Index()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
@@ -365,8 +369,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void AboutOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult About()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.About);
@@ -374,8 +380,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void BlahOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string name, int age);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Blah(string name, int age)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Blah);
@@ -385,8 +393,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void SomeViewResultActionOverride(T4MVC_System_Web_Mvc_ViewResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.ViewResult SomeViewResultAction()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.SomeViewResultAction);
@@ -394,8 +404,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void SomeJsonResultActionOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.JsonResult SomeJsonResultAction()
         {
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.SomeJsonResultAction);
@@ -403,8 +415,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void SomeFileContentResultActionOverride(T4MVC_System_Web_Mvc_FileContentResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.FileContentResult SomeFileContentResultAction()
         {
             var callInfo = new T4MVC_System_Web_Mvc_FileContentResult(Area, Name, ActionNames.SomeFileContentResultAction);
@@ -412,8 +426,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void SomeFileStreamResultActionOverride(T4MVC_System_Web_Mvc_FileStreamResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.FileStreamResult SomeFileStreamResultAction()
         {
             var callInfo = new T4MVC_System_Web_Mvc_FileStreamResult(Area, Name, ActionNames.SomeFileStreamResultAction);
@@ -421,8 +437,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void SomeFileResultActionOverride(T4MVC_System_Web_Mvc_FileResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.FileResult SomeFileResultAction()
         {
             var callInfo = new T4MVC_System_Web_Mvc_FileResult(Area, Name, ActionNames.SomeFileResultAction);
@@ -430,8 +448,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void SomeCustomResultActionOverride(T4MVC_T4MVCHostMvcApp_Misc_MyCustomResult callInfo);
 
+        [NonAction]
         public override T4MVCHostMvcApp.Misc.MyCustomResult SomeCustomResultAction()
         {
             var callInfo = new T4MVC_T4MVCHostMvcApp_Misc_MyCustomResult(Area, Name, ActionNames.SomeCustomResultAction);
@@ -439,8 +459,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ActionWithArrayParamOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string[] someStrings);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult ActionWithArrayParam(string[] someStrings)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithArrayParam);
@@ -449,8 +471,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ActionWithAllOptionalParamsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string someString, int n);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult ActionWithAllOptionalParams(string someString, int n)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithAllOptionalParams);
@@ -460,8 +484,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ActionWithSomeOptionalParamsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string someString, int n);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult ActionWithSomeOptionalParams(string someString, int n)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithSomeOptionalParams);
@@ -471,8 +497,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ActionWithOptionalParamDefaultingToNullOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? n);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult ActionWithOptionalParamDefaultingToNull(int? n)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithOptionalParamDefaultingToNull);
@@ -481,8 +509,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ActionWithParamUsingAtSyntaxOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int @event);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult ActionWithParamUsingAtSyntax(int @event)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithParamUsingAtSyntax);
@@ -491,8 +521,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ActionThatUsesActionNameConstantInAttributeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult ActionThatUsesActionNameConstantInAttribute()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionThatUsesActionNameConstantInAttribute);
@@ -500,8 +532,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ActionThatRequiresHttpsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string someString);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult ActionThatRequiresHttps(string someString)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionThatRequiresHttps, "https");
@@ -510,8 +544,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void OverloadedActionWithDifferentParamsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string someString);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult OverloadedActionWithDifferentParams(string someString)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OverloadedActionWithDifferentParams);
@@ -520,8 +556,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void OverloadedActionWithDifferentParamsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int someNumber);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult OverloadedActionWithDifferentParams(int someNumber)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OverloadedActionWithDifferentParams);
@@ -530,8 +568,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ActionReturningGenericResultStringOverride(T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_String callInfo);
 
+        [NonAction]
         public override T4MVCHostMvcApp.Controllers.SomeGenericResult<System.String> ActionReturningGenericResultString()
         {
             var callInfo = new T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_String(Area, Name, ActionNames.ActionReturningGenericResultString);
@@ -539,8 +579,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ActionReturningGenericResultIntOverride(T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_Int32 callInfo);
 
+        [NonAction]
         public override T4MVCHostMvcApp.Controllers.SomeGenericResult<System.Int32> ActionReturningGenericResultInt()
         {
             var callInfo = new T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_Int32(Area, Name, ActionNames.ActionReturningGenericResultInt);
@@ -548,8 +590,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ActionReturningGenericResultNestedOverride(T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_Collections_Generic_List_System_Tuple_System_String_System_String_System_Int32 callInfo);
 
+        [NonAction]
         public override T4MVCHostMvcApp.Controllers.SomeGenericResult<System.Collections.Generic.List<System.Tuple<System.String,System.String,System.Int32>>> ActionReturningGenericResultNested()
         {
             var callInfo = new T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_Collections_Generic_List_System_Tuple_System_String_System_String_System_Int32(Area, Name, ActionNames.ActionReturningGenericResultNested);
@@ -557,8 +601,10 @@ namespace T4MVCHostMvcApp.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void SomeTaskBasedActionOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> SomeTaskBasedAction()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SomeTaskBasedAction);
@@ -566,8 +612,10 @@ namespace T4MVCHostMvcApp.Controllers
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
+        [NonAction]
         partial void SomeTaskBasedActionWithParamsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
+        [NonAction]
         public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> SomeTaskBasedActionWithParams(int id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SomeTaskBasedActionWithParams);
@@ -576,8 +624,10 @@ namespace T4MVCHostMvcApp.Controllers
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
+        [NonAction]
         partial void SomeAbstractResultOverride(T4MVC_System_Web_Mvc_ViewResultBase callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.ViewResultBase SomeAbstractResult()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ViewResultBase(Area, Name, ActionNames.SomeAbstractResult);

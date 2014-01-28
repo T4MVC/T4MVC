@@ -200,8 +200,10 @@ namespace T4MVCHostMvcApp.Areas.Break.Controllers
     {
         public T4MVC_PostController() : base(Dummy.Instance) { }
 
+        [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Index()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
@@ -209,8 +211,10 @@ namespace T4MVCHostMvcApp.Areas.Break.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ActionWithBindPrefixAttributeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string fieldName);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult ActionWithBindPrefixAttribute(string fieldName)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithBindPrefixAttribute);
@@ -219,8 +223,10 @@ namespace T4MVCHostMvcApp.Areas.Break.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ActionWithBindNoPrefixAttributeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string fieldName);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult ActionWithBindNoPrefixAttribute(string fieldName)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithBindNoPrefixAttribute);
@@ -229,8 +235,10 @@ namespace T4MVCHostMvcApp.Areas.Break.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ActionThatTakesAnObjectOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, T4MVCHostMvcApp.Areas.Break.Controllers.MyParamObject p);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult ActionThatTakesAnObject(T4MVCHostMvcApp.Areas.Break.Controllers.MyParamObject p)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionThatTakesAnObject);
@@ -239,8 +247,10 @@ namespace T4MVCHostMvcApp.Areas.Break.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ActionWithVariousParamsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string myString, int someInt, object someObject);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult ActionWithVariousParams(string myString, int someInt, object someObject)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithVariousParams);
@@ -251,8 +261,10 @@ namespace T4MVCHostMvcApp.Areas.Break.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void CompiledControllerVirtualMethod2Override(T4MVC_System_Web_Mvc_ActionResult callInfo, string s);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult CompiledControllerVirtualMethod2(string s)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CompiledControllerVirtualMethod2);
@@ -261,8 +273,10 @@ namespace T4MVCHostMvcApp.Areas.Break.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void SameProjectBaseControllerMethodOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string s);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult SameProjectBaseControllerMethod(string s)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SameProjectBaseControllerMethod);
@@ -271,8 +285,10 @@ namespace T4MVCHostMvcApp.Areas.Break.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void CompiledControllerVirtualMethodOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int n);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult CompiledControllerVirtualMethod(int n)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CompiledControllerVirtualMethod);

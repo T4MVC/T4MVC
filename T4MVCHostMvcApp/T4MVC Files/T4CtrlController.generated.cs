@@ -86,8 +86,10 @@ namespace T4MVCHostMvcApp.Controllers
     {
         public T4MVC_T4CtrlController() : base(Dummy.Instance) { }
 
+        [NonAction]
         partial void QqqOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Qqq()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Qqq);
