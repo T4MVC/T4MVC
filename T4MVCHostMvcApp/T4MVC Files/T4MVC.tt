@@ -67,7 +67,7 @@ using <#=referencedNamespace #>;
 <#manager.EndBlock(); #>
 
 [<#= GeneratedCode #>, DebuggerNonUserCode]
-public static class <#=settings.HelpersPrefix #>
+public static partial class <#=settings.HelpersPrefix #>
 {
 <#if (settings.IncludeAreasToken) { #>
 public static class Areas
