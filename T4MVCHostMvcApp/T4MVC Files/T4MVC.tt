@@ -332,8 +332,10 @@ foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (gr
         public <#=controller.DerivedClassName #>() : base(Dummy.Instance) { }
 
 <#foreach (var method in controller.ActionMethods.Where(m => !m.IsCustomReturnType)) { #>
+        [NonAction]
         partial void <#=method.Name #>Override(T4MVC_<#=method.ReturnTypeUniqueName #> callInfo<#if (method.Parameters.Count > 0) { #>, <#method.WriteFormalParameters(true); #><#}#>);
 
+        [NonAction]
         public override <#=method.ReturnTypeFullName #> <#=method.Name #>(<#method.WriteFormalParameters(true); #>)
         {
             var callInfo = new T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
