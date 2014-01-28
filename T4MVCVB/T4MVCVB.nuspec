@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>T4MVCVB</id>
+    <version>3.7.4</version>
+    <authors>David Ebbo</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>T4MVCVB is a T4 template that generates strongly typed helpers for ASP.NET MVC written in VB.</description>
+    <summary>T4MVCVB is a T4 template that generates strongly typed helpers for ASP.NET MVC written in VB.</summary>
+    <language>en-US</language>
+    <licenseUrl>http://mvccontrib.codeplex.com/license</licenseUrl>
+    <projectUrl>http://t4mvc.codeplex.com/</projectUrl>
+    <tags>t4 mvc t4mvc t4mvcvb</tags>
+    <dependencies>
+      <dependency id="T4MVCExtensions" version="3.7.4" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="T4MVCVB.tt" target="Content" />
+    <file src="T4MVCVB.tt.hooks.t4" target="Content" />
+    <file src="install.ps1" target="tools" />
+  </files>
+</package>
