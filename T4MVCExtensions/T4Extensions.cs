@@ -748,7 +748,9 @@ namespace System.Web.Mvc
                 filtered.CopyTo(result.GetRouteValueDictionary());
             }
             else
-                nameValueCollection.CopyTo(result.GetRouteValueDictionary());
+            {
+                nameValueCollection.CopyTo(result.GetRouteValueDictionary(), replaceEntries: true);
+            }
             return result;
         }
 

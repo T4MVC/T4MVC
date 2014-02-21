@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.7.6 (2-20-2014)
+* Allow AddRouteValues to override values. [url:https://t4mvc.codeplex.com/workitem/39]
+
 !!! 3.7.5 (1-28-2014)
 * Make statuc MVC class partial. [url:https://t4mvc.codeplex.com/SourceControl/network/forks/garyhunt/T4MVCpartial/contribution/6116]
 * Mark action overloads as NonAction. [url:https://t4mvc.codeplex.com/SourceControl/network/forks/garyhunt/T4MVCNonAction/contribution/6118]
