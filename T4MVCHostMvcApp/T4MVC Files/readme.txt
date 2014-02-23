@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.7.7 (2-23-2014)
+* Fix signing issue in 3.7.6. [url:https://t4mvc.codeplex.com/discussions/533445]
+
 !!! 3.7.6 (2-20-2014)
 * Allow AddRouteValues to override values. [url:https://t4mvc.codeplex.com/workitem/39]
 
