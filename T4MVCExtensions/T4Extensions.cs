@@ -345,7 +345,7 @@ namespace System.Web.Mvc
 
             if (String.IsNullOrEmpty(specificActionUrl))
                 return urlHelper.RouteUrl(null, result.GetRouteValueDictionary());
-            return "/" + specificActionUrl;
+            return urlHelper.Content("~/" + specificActionUrl);
         }
 
         public static string JavaScriptReplacableUrl(this UrlHelper urlHelper, Task<ActionResult> taskResult)
