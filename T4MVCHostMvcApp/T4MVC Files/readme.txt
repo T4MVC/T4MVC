@@ -49,6 +49,11 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.8.0 (3-2-2014)
+* Add RedirectToAction overload that takes Task<ActionResult>. [url:https://t4mvc.codeplex.com/discussions/535761]
+* Fix JavaScriptReplacableUrl to correctly use ~/. [url:https://t4mvc.codeplex.com/discussions/405911]
+* Rename JavaScriptReplacableUrl to JavaScriptReplaceableUrl. I know, small breaking change, but not widely used. Live with it!
+
 !!! 3.7.7 (2-23-2014)
 * Fix signing issue in 3.7.6. [url:https://t4mvc.codeplex.com/discussions/533445]
 
