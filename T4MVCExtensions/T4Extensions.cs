@@ -316,7 +316,7 @@ namespace System.Web.Mvc
         /// <summary>
         /// If specific route can be found, return that route with the parameter tokens in route string.
         /// </summary>
-        public static string JavaScriptReplacableUrl(this UrlHelper urlHelper, ActionResult result)
+        public static string JavaScriptReplaceableUrl(this UrlHelper urlHelper, ActionResult result)
         {
             var rvd = result.GetRouteValueDictionary();
             string area = string.Empty;
@@ -348,9 +348,9 @@ namespace System.Web.Mvc
             return urlHelper.Content("~/" + specificActionUrl);
         }
 
-        public static string JavaScriptReplacableUrl(this UrlHelper urlHelper, Task<ActionResult> taskResult)
+        public static string JavaScriptReplaceableUrl(this UrlHelper urlHelper, Task<ActionResult> taskResult)
         {
-            return urlHelper.JavaScriptReplacableUrl(taskResult.Result);
+            return urlHelper.JavaScriptReplaceableUrl(taskResult.Result);
         }
 
         public static string Action(this UrlHelper urlHelper, ActionResult result)
