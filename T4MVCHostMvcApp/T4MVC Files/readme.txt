@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.8.1 (3-6-2014)
+* Improve support for Typescript files. [url:https://t4mvc.codeplex.com/workitem/34]
+
 !!! 3.8.0 (3-2-2014)
 * Add RedirectToAction overload that takes Task<ActionResult>. [url:https://t4mvc.codeplex.com/discussions/535761]
 * Fix JavaScriptReplacableUrl to correctly use ~/. [url:https://t4mvc.codeplex.com/discussions/405911]

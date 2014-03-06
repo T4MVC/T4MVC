@@ -1,6 +1,6 @@
 ﻿<#
 /*
-T4MVC Version 3.8.0
+T4MVC Version 3.8.1
 Find latest version and documentation at http://mvccontrib.codeplex.com/wikipage?title=T4MVC
 Discuss on StackOverflow or on Codeplex (https://t4mvc.codeplex.com/discussions)
 
@@ -1049,8 +1049,18 @@ PopIndent();
     else { #>
 <#+
 if (!settings.ExcludedStaticFileExtensions.Any(extension => projectItem.Name.EndsWith(extension, StringComparison.OrdinalIgnoreCase))) {
+    // if it's a Typescript file
+    if (projectItem.Name.EndsWith(".ts")) {
+        string tsJavascriptName =  projectItem.Name.Replace(".ts", ".js");
+        string minifiedName = projectItem.Name.Replace(".ts", ".min.js");
+        if (AddTimestampToStaticLink(projectItem)) { #>
+    public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=minifiedName#>") : Url("<#=tsJavascriptName#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=tsJavascriptName#>");
+        <#+} else {#>
+    public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>") : Url("<#=tsJavascriptName#>");
+<#+}  #>
+<#+}
     // if it's a non-minified javascript file
-    if (projectItem.Name.EndsWith(".js") && !projectItem.Name.EndsWith(".min.js")) { 
+    else if (projectItem.Name.EndsWith(".js") && !projectItem.Name.EndsWith(".min.js")) {
         string minifiedName = projectItem.Name.Replace(".js", ".min.js");
         if (AddTimestampToStaticLink(projectItem)) { #>
     public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=minifiedName#>") : Url("<#=projectItem.Name#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name#>");
