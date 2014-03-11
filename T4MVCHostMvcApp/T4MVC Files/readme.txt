@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.8.2 (3-10-2014)
+* Fix issue with linked files. [url:https://t4mvc.codeplex.com/workitem/41]
+
 !!! 3.8.1 (3-6-2014)
 * Improve support for Typescript files. [url:https://t4mvc.codeplex.com/workitem/34]
 

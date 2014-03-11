@@ -355,6 +355,7 @@ namespace Links
             public static readonly string Qqq_txt = Url("Qqq.txt");
             public static readonly string QqQ_txt2 = Url("QqQ.txt2");
             public static readonly string Qqq_txt3 = Url("Qqq.txt3");
+            public static readonly string SomeLinkedFile_txt = Url("SomeLinkedFile.txt");
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public static class SomeName {
                 private const string URLPATH = "~/Views/Home/SomeName";

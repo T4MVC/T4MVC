@@ -99,6 +99,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\Linked Files\SomeLinkedFile.txt">
+      <Link>Views\Home\SomeLinkedFile.txt</Link>
+    </Content>
     <Content Include="ContentStatic\TextFiles\readme.txt" />
     <Compile Include="Controllers\ControllerWithoutSuffix.cs" />
     <Compile Include="Controllers\SomeAsyncController.cs" />

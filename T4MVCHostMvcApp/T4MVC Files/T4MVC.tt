@@ -1,6 +1,6 @@
 ﻿<#
 /*
-T4MVC Version 3.8.1
+T4MVC Version 3.8.2
 Find latest version and documentation at http://mvccontrib.codeplex.com/wikipage?title=T4MVC
 Discuss on StackOverflow or on Codeplex (https://t4mvc.codeplex.com/discussions)
 
@@ -1183,8 +1183,10 @@ static bool IsAsyncController(CodeClass2 type)
 static string GetVirtualPath(ProjectItem item)
 {
     string fileFullPath = item.get_FileNames(0);
+
+    // Ignore files that are not under the app root (e.g. they could be linked files)
     if (!fileFullPath.StartsWith(AppRoot, StringComparison.OrdinalIgnoreCase))
-        throw new Exception(string.Format("File {0} is not under app root {1}. Please report issue.", fileFullPath, AppRoot));
+        return null;
 
     // Make a virtual path from the physical path
     return "~/" + fileFullPath.Substring(AppRoot.Length).Replace('\\', '/');
@@ -1596,7 +1598,11 @@ class ViewsFolderInfo
             viewFieldName = Sanitize(viewName);
  
         HasNonQualifiedViewNames = HasNonQualifiedViewNames | useNonQualifiedViewName;
-        Views[viewFieldName] = useNonQualifiedViewName ? Path.GetFileNameWithoutExtension(viewName) : GetVirtualPath(item);
+        string virtualPath = GetVirtualPath(item);
+        if (virtualPath != null)
+        {
+	        Views[viewFieldName] = useNonQualifiedViewName ? Path.GetFileNameWithoutExtension(viewName) : virtualPath;
+        }
     }
 
     public bool HasNonQualifiedViewNames { get; private set; }
