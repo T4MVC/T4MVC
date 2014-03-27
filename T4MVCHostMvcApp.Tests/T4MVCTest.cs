@@ -262,6 +262,25 @@ namespace T4MVCHostMvcApp.Tests
             Assert.AreEqual("SomeAreaEditorTemplate", MVC.HomeArea.Home.Views.EditorTemplates.SomeAreaEditorTemplate);
         }
 
+        [TestMethod()]
+        public void TestFeatureFolderAreaNames()
+        {
+            Assert.AreEqual("FeatureFolderArea", MVC.FeatureFolderArea.Name);
+            Assert.AreEqual("FeatureFoo", MVC.FeatureFolderArea.FeatureFoo.Name);
+            Assert.AreEqual("Index", MVC.FeatureFolderArea.FeatureFoo.ActionNames.Index);
+            Assert.AreEqual("Foobar", MVC.FeatureFolderArea.FeatureFoo.ActionNames.Foobar);
+            Assert.AreEqual("~/Areas/FeatureFolderArea/FeatureFoo/Index.txt", MVC.FeatureFolderArea.FeatureFoo.Views.Index);
+            Assert.AreEqual("~/Areas/FeatureFolderArea/FeatureFoo/Foobar.txt", MVC.FeatureFolderArea.FeatureFoo.Views.Foobar);
+            Assert.AreEqual("~/Areas/FeatureFolderArea/SharedViews/SharedView.txt", MVC.FeatureFolderArea.SharedViews.Views.SharedView);
+        }
+
+        [TestMethod()]
+        public void TestFeatureFolderAreaLinks()
+        {
+            Assert.AreEqual("/Areas/FeatureFolderArea/FeatureFoo/Foobar.txt", Links.Areas.FeatureFolderArea.FeatureFoo.Foobar_txt);
+            Assert.AreEqual("/Areas/FeatureFolderArea/SharedViews/SharedView.txt", Links.Areas.FeatureFolderArea.SharedViews.SharedView_txt);
+        }
+
         // ROUTE VALUES TESTS
 
         [TestMethod()]

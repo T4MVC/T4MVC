@@ -102,7 +102,12 @@
     <Content Include="..\Linked Files\SomeLinkedFile.txt">
       <Link>Views\Home\SomeLinkedFile.txt</Link>
     </Content>
+    <Content Include="Areas\FeatureFolderArea\FeatureFoo\Foobar.txt" />
+    <Content Include="Areas\FeatureFolderArea\InvalidFile.txt" />
+    <Content Include="Areas\FeatureFolderArea\SharedViews\SharedView.txt" />
     <Content Include="ContentStatic\TextFiles\readme.txt" />
+    <Compile Include="Areas\FeatureFolderArea\FeatureFoo\FeatureFooController.cs" />
+    <Content Include="Areas\FeatureFolderArea\FeatureFoo\Index.txt" />
     <Compile Include="Controllers\ControllerWithoutSuffix.cs" />
     <Compile Include="Controllers\SomeAsyncController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -219,6 +224,12 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4MVC Files\break.SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\FeatureFolderArea.FeatureFooController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\FeatureFolderArea.SharedViewsController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4MVC Files\Home.HomeController.generated.cs">

@@ -27,6 +27,8 @@ public static partial class MVC
 {
     static readonly breakClass s_break = new breakClass();
     public static breakClass @break { get { return s_break; } }
+    static readonly FeatureFolderAreaClass s_FeatureFolderArea = new FeatureFolderAreaClass();
+    public static FeatureFolderAreaClass FeatureFolderArea { get { return s_FeatureFolderArea; } }
     static readonly HomeClass s_Home = new HomeClass();
     public static HomeClass HomeArea { get { return s_Home; } }
     public static T4MVCHostMvcApp.Controllers.HomeController Home = new T4MVCHostMvcApp.Controllers.T4MVC_HomeController();
@@ -45,6 +47,13 @@ namespace T4MVC
         public readonly string Name = "break";
         public T4MVCHostMvcApp.Areas.Break.Controllers.PostController Post = new T4MVCHostMvcApp.Areas.Break.Controllers.T4MVC_PostController();
         public T4MVC.@break.SharedController Shared = new T4MVC.@break.SharedController();
+    }
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public class FeatureFolderAreaClass
+    {
+        public readonly string Name = "FeatureFolderArea";
+        public T4MVCHostMvcApp.Areas.FeatureFolderArea.FeatureFoo.FeatureFooController FeatureFoo = new T4MVCHostMvcApp.Areas.FeatureFolderArea.FeatureFoo.T4MVC_FeatureFooController();
+        public T4MVC.FeatureFolderArea.SharedViewsController SharedViews = new T4MVC.FeatureFolderArea.SharedViewsController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class HomeClass
@@ -437,6 +446,39 @@ namespace Links
                 }
             
                 public static readonly string Web_config = Url("Web.config");
+            }
+        
+        }
+    }
+
+    public static partial class Areas {
+    
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static partial class FeatureFolderArea {
+            private const string URLPATH = "~/Areas/FeatureFolderArea";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class FeatureFoo {
+                private const string URLPATH = "~/Areas/FeatureFolderArea/FeatureFoo";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string Foobar_txt = Url("Foobar.txt");
+                public static readonly string Index_txt = Url("Index.txt");
+            }
+        
+        }
+    }
+
+    public static partial class Areas {
+    
+        public static partial class FeatureFolderArea {
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class SharedViews {
+                private const string URLPATH = "~/Areas/FeatureFolderArea/SharedViews";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string SharedView_txt = Url("SharedView.txt");
             }
         
         }

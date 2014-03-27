@@ -19,6 +19,11 @@ e.g. Assume the Area is called Blog and the Controller is Post:
 - When false use MVC.Blog.Post.etc...
 - When true use MVC.Areas.Blog.Post.etc...-->
   <IncludeAreasToken>False</IncludeAreasToken>
+  <!--Names of areas which follow the FeatureFolder convention (controllers and views are placed within the same folder). 
+Use <Area>*</Area> if you only use Areas with FeatureFolders-->
+  <FeatureFolderAreas>
+    <Area>FeatureFolderArea</Area>
+  </FeatureFolderAreas>
   <!--The folder under the project that contains the controllers-->
   <ControllersFolder>Controllers</ControllersFolder>
   <!--The folder under the project that contains the views-->
@@ -61,6 +66,7 @@ See http://mvccontrib.codeplex.com/workitem/7163 for potential issues with this 
   </ExcludedStaticFileExtensions>
   <!--Files to exclude from the generated views-->
   <ExcludedViewExtensions>
+    <Extension>.cs</Extension>
     <Extension>.master</Extension>
     <Extension>.js</Extension>
     <Extension>.css</Extension>

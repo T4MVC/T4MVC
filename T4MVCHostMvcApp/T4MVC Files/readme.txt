@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.8.3 (3-27-2014)
+* Added support for "FeatureFolder"-Convention where controllers and views are placed within one folder instead of separate ones. [url: http://t4mvc.codeplex.com/discussions/479224]
+
 !!! 3.8.2 (3-10-2014)
 * Fix issue with linked files. [url:https://t4mvc.codeplex.com/workitem/41]
 
