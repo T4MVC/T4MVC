@@ -9,6 +9,8 @@ namespace T4MVCHostMvcApp.Areas.FeatureFolderArea.FeatureFoo
             return View();
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Foobar")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "param")]
         public virtual ActionResult Foobar(string param)
         {
             return View();
