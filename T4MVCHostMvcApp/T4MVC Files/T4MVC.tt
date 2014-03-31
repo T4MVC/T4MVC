@@ -534,6 +534,10 @@ void PrepareDataToRender(TextTransformation tt)
     // Get the path of the root folder of the app
     AppRoot = Path.GetDirectoryName(Project.FullName) + '\\';
 
+    // Process controllers and views from project root
+    ProcessProjectRoot(Project);
+
+    // Process controllers and views from areas.
     ProcessAreas(Project);
 }
 
@@ -550,11 +554,29 @@ Project GetProjectContainingT4File(DTE dte)
     return projectItem.ContainingProject;
 }
 
+void ProcessProjectRoot(Project project)
+{
+    var area = new AreaInfo() { Name = null };
+
+    // process controllers and views from their folders
+    ProcessAreaControllers(project.ProjectItems, area, null);
+    ProcessAreaViews(project.ProjectItems, area, null);
+
+    // does the project root contain a folder which follows the "feature folder" convention?
+    // If yes, controllers and views from there are added to the existing default area. 
+    // this means, if you use both conventions, you cannot have two controllers with the same name!
+    ProjectItem featureFolderItem = GetProjectItem(project, settings.FeatureFolderRootArea);
+    if (featureFolderItem != null)
+    {
+        ProcessArea(featureFolderItem, area);
+    }
+    
+    Areas.Add(area);
+    DefaultArea = area;
+}
+
 void ProcessAreas(Project project)
 {
-    // Process the default area
-    ProcessArea(project.ProjectItems, null);
-
     // Get the Areas folder
     ProjectItem areaProjectItem = GetProjectItem(project, settings.AreasFolder);
     
@@ -565,7 +587,7 @@ void ProcessAreas(Project project)
         {
             if (IsFolder(item))
             {
-                ProcessArea(item.ProjectItems, item);
+                ProcessArea(item, null);
             }
         }
     }
@@ -580,25 +602,26 @@ void ProcessAreas(Project project)
 
         if (IsFolder(portableAreaProjectItem))
         {
-            ProcessArea(portableAreaProjectItem.ProjectItems, portableAreaProjectItem);
+            ProcessArea(portableAreaProjectItem, null);
         }
     }
 }
 
-void ProcessArea(ProjectItems areaFolderItems, ProjectItem areaFolder)
+void ProcessArea(ProjectItem areaFolder, AreaInfo existingArea)
 {
-    var area = new AreaInfo() { Name = (areaFolder != null ? areaFolder.Name : null) };
-    ProcessAreaControllers(areaFolderItems, area, areaFolder);
-    ProcessAreaViews(areaFolderItems, area, areaFolder);
-    Areas.Add(area);
+    var area = existingArea ?? new AreaInfo() { Name = areaFolder.Name };
+    area.IsFeatureFolderArea = IsFeatureFolderArea(area.Name, areaFolder);
 
-    if (String.IsNullOrEmpty(area.Name))
-        DefaultArea = area;
+    ProcessAreaControllers(areaFolder.ProjectItems, area, areaFolder);
+    ProcessAreaViews(areaFolder.ProjectItems, area, areaFolder);
+
+    if (existingArea == null)
+        Areas.Add(area);
 }
 
 void ProcessAreaControllers(ProjectItems areaFolderItems, AreaInfo area, ProjectItem areaFolder)
 {
-    if (areaFolder != null && IsFeatureFolderArea(area.Name))
+    if (area.IsFeatureFolderArea)
     {
         // Every folder within the area might contain controllers when using "FeatureFolders".
         ProcessControllersRecursive(areaFolder, area);
@@ -618,7 +641,7 @@ void ProcessAreaViews(ProjectItems areaFolderItems, AreaInfo area, ProjectItem a
 {
     ProjectItem viewsProjectItem;
 
-    if (areaFolder != null && IsFeatureFolderArea(area.Name))
+    if (area.IsFeatureFolderArea)
     {
         // For "FeatureFolders", we don't have to search for a "Views"-folder since the area directly contains the feature-folders holding the views.
         viewsProjectItem = areaFolder;
@@ -996,16 +1019,30 @@ IEnumerable<string> GetStaticFilesViewFolders()
         foreach (var area in Areas)
         {
             if (area.Name == null)
+            {
+                // project root
+
                 yield return settings.ViewsRootFolder;
 
-            if (IsFeatureFolderArea(area.Name))
-            {
-                foreach (var controller in area.Controllers)
-                    yield return settings.AreasFolder + "\\" + area.Name + "\\" + controller.Name;
+                if (area.IsFeatureFolderArea)
+                {
+                    foreach (var controller in area.Controllers)
+                        yield return settings.FeatureFolderRootArea + "\\" + controller.Name;
+                }
             }
             else
             {
-                yield return settings.AreasFolder + "\\" + area.Name + "\\" + settings.ViewsRootFolder;
+                // areas
+
+                if (area.IsFeatureFolderArea)
+                {
+                    foreach (var controller in area.Controllers)
+                        yield return settings.AreasFolder + "\\" + area.Name + "\\" + controller.Name;
+                }
+                else
+                {
+                    yield return settings.AreasFolder + "\\" + area.Name + "\\" + settings.ViewsRootFolder;
+                }
             }
         }
     }
@@ -1314,12 +1351,22 @@ static bool IsFolder(ProjectItem item)
     return (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFolder);
 }
 
-static bool IsFeatureFolderArea(string folderName)
+static bool IsFeatureFolderArea(string areaName, ProjectItem areaFolder)
 {
-    if (String.IsNullOrEmpty(folderName))
+    // default-area with regular convention?
+    if (areaFolder == null)
         return false;
 
-    return settings.FeatureFolderAreas.Contains("*") || settings.FeatureFolderAreas.Contains(folderName);
+    if (String.IsNullOrEmpty(areaName))
+    {
+        // Are we looking at the "Features" folder in the project root?
+        return areaFolder.Name == settings.FeatureFolderRootArea;
+    }
+    else
+    {
+        // is it a FeatureFolder area?
+        return settings.FeatureFolderAreas.Contains("*") || settings.FeatureFolderAreas.Contains(areaFolder.Name);
+    }
 }
 
 static string MakeClassName(string ns, string classname)
@@ -1374,6 +1421,7 @@ class AreaInfo
 
     public string Name { get; set; }
     public HashSet<ControllerInfo> Controllers { get; set; }
+    public bool IsFeatureFolderArea { get; set; }
 
     public string Namespace
     {
@@ -1897,6 +1945,7 @@ class MvcSettings : XmlSettings
             ".ascx"
         }, "Extension");
         this.ExcludedViewExtensions = new XmlStringArray(new string[] {
+            ".cs",
             ".master",
             ".js",
             ".css"
@@ -1923,6 +1972,9 @@ class MvcSettings : XmlSettings
 
     [System.ComponentModel.Description("You can list folders containing portable areas here")]
     public IEnumerable<string> PortableAreas { get; set; }
+
+    [System.ComponentModel.Description("Name of folder in your project root that follows the FeatureFolder convention (controllers and views are placed within the same folder)")]
+    public string FeatureFolderRootArea { get; set; }
 
     [System.ComponentModel.Description("Names of areas which follow the FeatureFolder convention (controllers and views are placed within the same folder).\r\nUse <Area>*</Area> if you only use Areas with FeatureFolders")]
     public IEnumerable<string> FeatureFolderAreas { get; set; }

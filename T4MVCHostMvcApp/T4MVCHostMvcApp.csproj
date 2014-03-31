@@ -112,6 +112,8 @@
     <Compile Include="Controllers\SomeAsyncController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModelUnbinderController.cs" />
+    <Compile Include="Features\Contact\ContactController.cs" />
+    <Compile Include="Features\Pictures\PicturesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -136,6 +138,9 @@
     <Content Include="SomePortableArea\Views\Home\SomeHomeView.txt" />
     <Content Include="T4MVC Files\readme.txt" />
     <Content Include="T4MVC Files\install.ps1" />
+    <Content Include="Features\Contact\Index.txt" />
+    <Content Include="Features\Pictures\Index.txt" />
+    <Content Include="Features\Pictures\Detail.txt" />
     <None Include="T4MVC Files\T4MVC.tt.settings.xml" />
     <Content Include="Content\Hello World.txt" />
     <Content Include="Content\Hello+World.txt" />
@@ -226,6 +231,9 @@
     <Compile Include="T4MVC Files\break.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="T4MVC Files\ContactController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="T4MVC Files\FeatureFolderArea.FeatureFooController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -245,6 +253,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4MVC Files\NoControllerMatchingFolderController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\PicturesController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4MVC Files\SharedController.generated.cs">

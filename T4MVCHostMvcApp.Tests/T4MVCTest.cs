@@ -263,6 +263,17 @@ namespace T4MVCHostMvcApp.Tests
         }
 
         [TestMethod()]
+        public void TestFeatureFolderDefaultArea()
+        {
+            Assert.AreEqual("", MVC.Pictures.Area);
+            Assert.AreEqual("Index", MVC.Pictures.ActionNames.Index);
+            Assert.AreEqual("Detail", MVC.Pictures.ActionNames.Detail);
+            Assert.AreEqual("~/Features/Pictures/Index.txt", MVC.Pictures.Views.Index);
+            Assert.AreEqual("Index", MVC.Pictures.Views.ViewNames.Index);
+            Assert.AreEqual("/Features/Pictures/Index.txt", Links.Features.Pictures.Index_txt);
+        }
+
+        [TestMethod()]
         public void TestFeatureFolderAreaNames()
         {
             Assert.AreEqual("FeatureFolderArea", MVC.FeatureFolderArea.Name);

@@ -14,16 +14,18 @@
   <PortableAreas>
     <!--<Area></Area>-->
   </PortableAreas>
+  <!--Name of folder in your project root that follows the FeatureFolder convention (controllers and views are placed within the same folder)-->
+  <FeatureFolderRootArea>Features</FeatureFolderRootArea>
+  <!--Names of areas which follow the FeatureFolder convention (controllers and views are placed within the same folder).
+Use <Area>*</Area> if you only use Areas with FeatureFolders-->
+  <FeatureFolderAreas>
+    <Area>FeatureFolderArea</Area>
+  </FeatureFolderAreas>
   <!--Choose whether you want to include an 'Areas' token when referring to areas.
 e.g. Assume the Area is called Blog and the Controller is Post:
 - When false use MVC.Blog.Post.etc...
 - When true use MVC.Areas.Blog.Post.etc...-->
   <IncludeAreasToken>False</IncludeAreasToken>
-  <!--Names of areas which follow the FeatureFolder convention (controllers and views are placed within the same folder). 
-Use <Area>*</Area> if you only use Areas with FeatureFolders-->
-  <FeatureFolderAreas>
-    <Area>FeatureFolderArea</Area>
-  </FeatureFolderAreas>
   <!--The folder under the project that contains the controllers-->
   <ControllersFolder>Controllers</ControllersFolder>
   <!--The folder under the project that contains the views-->

@@ -37,6 +37,8 @@ public static partial class MVC
     public static T4MVCHostMvcApp.Controllers.T4CtrlController T4Ctrl = new T4MVCHostMvcApp.Controllers.T4MVC_T4CtrlController();
     public static T4MVC.NoControllerMatchingFolderController NoControllerMatchingFolder = new T4MVC.NoControllerMatchingFolderController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
+    public static T4MVCHostMvcApp.Features.Contact.ContactController Contact = new T4MVCHostMvcApp.Features.Contact.T4MVC_ContactController();
+    public static T4MVCHostMvcApp.Features.Pictures.PicturesController Pictures = new T4MVCHostMvcApp.Features.Pictures.T4MVC_PicturesController();
 }
 
 namespace T4MVC
@@ -420,6 +422,33 @@ namespace Links
         public static readonly string Web_config = Url("Web.config");
     }
 
+
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public static partial class Features {
+        private const string URLPATH = "~/Features";
+        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class Contact {
+            private const string URLPATH = "~/Features/Contact";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            public static readonly string Index_txt = Url("Index.txt");
+        }
+    
+    }
+
+    public static partial class Features {
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class Pictures {
+            private const string URLPATH = "~/Features/Pictures";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            public static readonly string Detail_txt = Url("Detail.txt");
+            public static readonly string Index_txt = Url("Index.txt");
+        }
+    
+    }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public static partial class Areas {

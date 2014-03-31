@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.9.1 (4-1-2014)
+* It's now possible to specify a folder from the project root that follows the "FeatureFolder"-convention (Settings-value: "FeatureFolderRootArea").
+
 !!! 3.9.0 (3-27-2014)
 * Added support for "FeatureFolder"-Convention where controllers and views are placed within one folder instead of separate ones. [url: http://t4mvc.codeplex.com/discussions/479224]
 
