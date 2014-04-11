@@ -565,12 +565,15 @@ void ProcessProjectRoot(Project project)
     // does the project root contain a folder which follows the "feature folder" convention?
     // If yes, controllers and views from there are added to the existing default area. 
     // this means, if you use both conventions, you cannot have two controllers with the same name!
-    ProjectItem featureFolderItem = GetProjectItem(project, settings.FeatureFolderRootArea);
-    if (featureFolderItem != null)
+    if (!String.IsNullOrEmpty(settings.FeatureFolderRootArea)) 
     {
-        ProcessArea(featureFolderItem, area);
+        ProjectItem featureFolderItem = GetProjectItem(project, settings.FeatureFolderRootArea);
+        if (featureFolderItem != null)
+        {
+            ProcessArea(featureFolderItem, area);
+        }
     }
-    
+
     Areas.Add(area);
     DefaultArea = area;
 }
