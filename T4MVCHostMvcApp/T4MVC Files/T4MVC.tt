@@ -853,7 +853,8 @@ void ProcessControllerActionMethods(ControllerInfo controllerInfo, CodeClass2 cu
             // We only support action methods that return an ActionResult and Task<ActionResult> derived types
             if (!method.Type.CodeType.get_IsDerivedFrom("System.Web.Mvc.ActionResult") && method.Type.CodeType.FullName !="System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>")
             {
-                Warning(String.Format("{0} doesn't support {1}.{2} because it doesn't return a supported {3} type", T4FileName, type.Name, method.Name, method.Type.CodeType.FullName));
+                // Comment out warning, as it's more annoying than helpful
+                //Warning(String.Format("{0} doesn't support {1}.{2} because it doesn't return a supported {3} type", T4FileName, type.Name, method.Name, method.Type.CodeType.FullName));
                 continue;
             }
 
