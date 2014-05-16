@@ -207,13 +207,13 @@ Namespace <#=controller.Namespace #>
 
 		<<#= GeneratedCode #>, DebuggerNonUserCode()>
 		Protected Overloads Function RedirectToAction(result as ActionResult) as RedirectToRouteResult
-			Dim callInfo = result.GetT4MVCResult()
+			Dim callInfo As IT4MVCActionResult = result.GetT4MVCResult()
             Return RedirectToRoute(callInfo.RouteValueDictionary)
 		End Function
 
 		<<#= GeneratedCode #>, DebuggerNonUserCode()>
 		Protected Overloads Function RedirectToActionPermanent(result as ActionResult) as RedirectToRouteResult
-			Dim callInfo = result.GetT4MVCResult()
+			Dim callInfo As IT4MVCActionResult = result.GetT4MVCResult()
             Return RedirectToRoutePermanent(callInfo.RouteValueDictionary)
 		End Function
 
@@ -222,10 +222,10 @@ Namespace <#=controller.Namespace #>
         <<#= GeneratedCode #>, DebuggerNonUserCode()>
         Public Overridable Function <#=method.Name #>() as <#=method.ReturnTypeFullName #>
 <#if (method.ReturnTypeFullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>") { #>
-            Dim callInfo = new T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>)
+            Dim callInfo As New T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>)
             Return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult)
 <#} else { #>
-            Return new T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>)
+            Return New T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>)
 <#} #>
         End Function
 <#} #>
@@ -240,7 +240,7 @@ Namespace <#=controller.Namespace #>
         <NonAction>
         <<#= GeneratedCode #>, DebuggerNonUserCode()>
         Public Overridable Function <#=method.ActionName #>(<#method.WriteFormalParameters(true, true); #>) As <#=method.ReturnTypeFullName #>
-            Dim callInfo = new T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>)
+            Dim callInfo As New T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>)
 <#if (method.Parameters.Count > 0) { #>
 <#foreach (var p in method.Parameters) { #>
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, <#=p.RouteNameExpression #>, <#=p.Name #>)
@@ -363,7 +363,7 @@ foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (gr
 
 		End Sub
         Public Overrides Function <#=method.Name #>(<#method.WriteFormalParameters(true); #>) as <#=method.ReturnTypeFullName #> 
-            Dim callInfo = new T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>)
+            Dim callInfo As New T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>)
 <#if (method.Parameters.Count > 0) { #>
 <#foreach (var p in method.Parameters) { #>
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, <#=p.RouteNameExpression #>, <#=p.Name #>)
@@ -1042,11 +1042,11 @@ void ProcessStaticFilesRecursive(ProjectItem projectItem, string path, HashSet<S
         #>
 	<<#= GeneratedCode #>, DebuggerNonUserCode()>
 	Public Class <#=EscapeID(name)#>
-		Private Const URLPATH as String = "<#=path#>/<#=projectItem.Name#>"
-		Public Shared Function URL() as String
+		Private Const URLPATH As String = "<#=path#>/<#=projectItem.Name#>"
+		Public Shared Function URL() As String
 			Return T4MVCHelpers.ProcessVirtualPath(URLPATH)
 		End Function
-		Public Shared Function URL(fileName as String)
+		Public Shared Function URL(fileName As String) As String
 			Return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName)
 		End Function
 <#+

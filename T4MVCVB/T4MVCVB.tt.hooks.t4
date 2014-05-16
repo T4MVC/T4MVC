@@ -24,7 +24,7 @@ Friend Class T4MVCHelpers
     '      return "http://localhost" + path + "?foo=bar";
     Private Shared Function ProcessVirtualPathDefault(virtualPath As String) As String
         'The path that comes in starts with ~/ and must first be made absolute
-        Dim path = VirtualPathUtility.ToAbsolute(virtualPath)
+        Dim path As String = VirtualPathUtility.ToAbsolute(virtualPath)
         
         ' Add your own modifications here before returning the path
         Return path
