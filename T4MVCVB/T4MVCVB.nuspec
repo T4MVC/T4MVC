@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>T4MVCVB</id>
-    <version>3.7.4</version>
+    <version>3.7.5</version>
     <authors>David Ebbo</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>T4MVCVB is a T4 template that generates strongly typed helpers for ASP.NET MVC written in VB.</description>

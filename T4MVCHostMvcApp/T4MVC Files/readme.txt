@@ -49,9 +49,6 @@ KNOWN ISSUES:
 
 HISTORY:
 
-!!! 3.9.3 (?-2014)
-* Type of variables and functions generated in VB is made explicit. [url:https://t4mvc.codeplex.com/workitem/45]
-
 !!! 3.9.2 (?-2014)
 * Remove warning about methods not returning supported types. [url:http://stackoverflow.com/questions/3312824/how-can-you-get-t4-to-skip-transforming-for-custom-methods/3315118?noredirect=1]
 
