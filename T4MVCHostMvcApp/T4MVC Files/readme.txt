@@ -49,8 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
-!!! 3.9.2 (?-2014)
-* Remove warning about methods not returning supported types. [url:http://stackoverflow.com/questions/3312824/how-can-you-get-t4-to-skip-transforming-for-custom-methods/3315118?noredirect=1]
+!!! 3.9.2 (8-7-2014)
+* Remove warning about methods not returning supported types. [url:http://stackoverflow.com/questions/3312824/how-can-you-get-t4-to-skip-transforming-for-custom-methods/3315118]
+* Add pragma to ignore CLS compliance warnings. [url:https://t4mvc.codeplex.com/workitem/49]
 
 !!! 3.9.1 (4-1-2014)
 * It's now possible to specify a folder from the project root that follows the "FeatureFolder"-convention (Settings-value: "FeatureFolderRootArea").

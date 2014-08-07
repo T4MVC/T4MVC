@@ -141,7 +141,9 @@
     <Content Include="Features\Contact\Index.txt" />
     <Content Include="Features\Pictures\Index.txt" />
     <Content Include="Features\Pictures\Detail.txt" />
-    <None Include="T4MVC Files\T4MVC.tt.settings.xml" />
+    <None Include="T4MVC Files\T4MVC.tt.settings.xml">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Content\Hello World.txt" />
     <Content Include="Content\Hello+World.txt" />
     <Content Include="Content\Hello%24World.txt" />
