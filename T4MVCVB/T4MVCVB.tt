@@ -1,6 +1,6 @@
 ﻿<#
 /*
-T4MVCVB Version 3.7.5
+T4MVCVB Version 3.7.6
 Find latest version and documentation at http://mvccontrib.codeplex.com/wikipage?title=T4MVC
 Discuss on StackOverflow or on Codeplex (https://t4mvc.codeplex.com/discussions)
 
@@ -74,7 +74,7 @@ Imports System.Web.Routing
 	var dteProject = (EnvDTE.Project)activeSolutionProjects.GetValue(0);
 	var defaultNamespace = dteProject.Properties.Item("DefaultNamespace").Value;
 #>
-Imports <#= defaultNamespace #>.<#=settings.T4MVCNamespace #>
+Imports <#=String.IsNullOrEmpty(defaultNamespace.ToString()) ? "" : defaultNamespace + "."  #><#=settings.T4MVCNamespace#>
 <#foreach (var referencedNamespace in settings.ReferencedNamespaces) { #>
 Imports <#=referencedNamespace #>
 <#} #>
