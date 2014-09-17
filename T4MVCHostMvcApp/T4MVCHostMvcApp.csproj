@@ -106,6 +106,7 @@
     <Content Include="Areas\FeatureFolderArea\FeatureFoo\Foobar.txt" />
     <Content Include="Areas\FeatureFolderArea\InvalidFile.txt" />
     <Content Include="Areas\FeatureFolderArea\SharedViews\SharedView.txt" />
+    <Content Include="Areas\Home\Content\Home.css" />
     <Content Include="ContentStatic\TextFiles\readme.txt" />
     <Compile Include="Areas\FeatureFolderArea\FeatureFoo\FeatureFooController.cs" />
     <Content Include="Areas\FeatureFolderArea\FeatureFoo\Index.txt" />
