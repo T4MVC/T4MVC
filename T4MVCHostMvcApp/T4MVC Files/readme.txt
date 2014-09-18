@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.10.0 (9-18-2014)
+* Add support links in Areas. [url:https://t4mvc.codeplex.com/SourceControl/network/forks/MatthewSteeples/LinksInAreas/contribution/7468]
+
 !!! 3.9.2 (8-7-2014)
 * Remove warning about methods not returning supported types. [url:http://stackoverflow.com/questions/3312824/how-can-you-get-t4-to-skip-transforming-for-custom-methods/3315118]
 * Add pragma to ignore CLS compliance warnings. [url:https://t4mvc.codeplex.com/workitem/49]
