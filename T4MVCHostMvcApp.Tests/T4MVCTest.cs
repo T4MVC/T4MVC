@@ -735,6 +735,12 @@ namespace T4MVCHostMvcApp.Tests
         }
 
         [TestMethod()]
+        public void TestCssFileInHomeArea()
+        {
+            Assert.AreEqual("/Areas/Home/Content/Home.css", Links.Areas.Home.Content.Home_css);
+        }
+
+        [TestMethod()]
         public void TestNoLinkGeneratedForIgnoredExtension()
         {
             var field = typeof(Links.Content).GetField("ShouldNotBeALink_cs");
