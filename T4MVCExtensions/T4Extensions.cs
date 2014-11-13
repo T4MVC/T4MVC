@@ -344,7 +344,10 @@ namespace System.Web.Mvc
                                      select r.Url).FirstOrDefault();
 
             if (String.IsNullOrEmpty(specificActionUrl))
+            {
                 return urlHelper.RouteUrl(null, result.GetRouteValueDictionary());
+            }
+
             return urlHelper.Content("~/" + specificActionUrl);
         }
 
