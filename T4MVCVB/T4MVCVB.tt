@@ -1746,11 +1746,11 @@ class FunctionInfo
             {
                 switch (p.Type)
                 {
-                    case "string":
-                        TT.Write("\" \"");
+                    case "String":
+                        TT.Write("String.Empty");
                         break;
-                    case "byte[]":
-                        TT.Write("new byte[0]");
+                    case "Byte()":
+                        TT.Write("New Byte() {}");
                         break;
                     default:
                         //TT.Write("default(" + p.Type + ")");
