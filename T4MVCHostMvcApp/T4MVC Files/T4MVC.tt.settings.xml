@@ -30,6 +30,8 @@ e.g. Assume the Area is called Blog and the Controller is Post:
   <ControllersFolder>Controllers</ControllersFolder>
   <!--The folder under the project that contains the views-->
   <ViewsRootFolder>Views</ViewsRootFolder>
+  <!--A regex which identifies a controller's filename, or the default suffix of 'Controller$'-->
+  <ControllerNamePattern>Controller$</ControllerNamePattern>
   <!--Views in DisplayTemplates and EditorTemplates folders shouldn't be fully qualifed
 as it breaks the templated helper code-->
   <NonQualifiedViewFolders>

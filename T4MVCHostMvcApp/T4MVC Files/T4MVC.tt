@@ -1235,7 +1235,9 @@ ProjectItem GetProjectItem(ProjectItems items, string subPath)
 static bool IsController(CodeClass2 type)
 {
     // Ignore any class which name doesn't end with "Controller"
-    if (!type.FullName.EndsWith(ControllerSuffix)) return false;
+  //if (!type.FullName.EndsWith(ControllerSuffix)) return false;
+    var regex = new Regex(settings.ControllerNamePattern);
+    if (!regex.IsMatch(type.FullName)) return false;
 
     for (; type.FullName != "System.Web.Mvc.Controller"; type = (CodeClass2)type.Bases.Item(1))
     {
@@ -1516,7 +1518,10 @@ class ControllerInfo
         get
         {
             // Trim the Controller suffix
-            return ClassName.Substring(0, ClassName.Length - ControllerSuffix.Length);
+          //return ClassName.Substring(0, ClassName.Length - ControllerSuffix.Length);
+            var regex = new Regex(settings.ControllerNamePattern);
+            var match = regex.Match(ClassName).Value;
+            return ClassName.Substring(0, ClassName.Length - match.Length);
         }
     }
 
@@ -1934,6 +1939,7 @@ class MvcSettings : XmlSettings
         this.IncludeAreasToken = false;
         this.ControllersFolder = "Controllers";
         this.ViewsRootFolder = "Views";
+        this.ControllerNamePattern = "Controller$";
         this.NonQualifiedViewFolders = new XmlStringArray(new string[] {
           "DisplayTemplates",
           "EditorTemplates"
@@ -1998,6 +2004,9 @@ class MvcSettings : XmlSettings
 
     [System.ComponentModel.Description("The folder under the project that contains the views")]
     public string ViewsRootFolder { get; set; }
+
+    [System.ComponentModel.Description("A regex which identifies a controller's filename, or the default suffix of 'Controller$'")]
+    public string ControllerNamePattern { get; set; }
 
     [System.ComponentModel.Description("Views in DisplayTemplates and EditorTemplates folders shouldn't be fully qualifed\r\nas it breaks the templated helper code")]
     public XmlStringArray  NonQualifiedViewFolders { get; set; }
