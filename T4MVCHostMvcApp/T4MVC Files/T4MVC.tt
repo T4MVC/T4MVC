@@ -1234,10 +1234,8 @@ ProjectItem GetProjectItem(ProjectItems items, string subPath)
 
 static bool IsController(CodeClass2 type)
 {
-    // Ignore any class which name doesn't end with "Controller"
-  //if (!type.FullName.EndsWith(ControllerSuffix)) return false;
-    var regex = new Regex(settings.ControllerNamePattern);
-    if (!regex.IsMatch(type.FullName)) return false;
+    // Ignore any class with a name that doesn't match the regex pattern
+    if (!Regex.IsMatch(type.Name, settings.ControllerNamePattern)) return false;
 
     for (; type.FullName != "System.Web.Mvc.Controller"; type = (CodeClass2)type.Bases.Item(1))
     {
@@ -1517,11 +1515,8 @@ class ControllerInfo
     {
         get
         {
-            // Trim the Controller suffix
-          //return ClassName.Substring(0, ClassName.Length - ControllerSuffix.Length);
-            var regex = new Regex(settings.ControllerNamePattern);
-            var match = regex.Match(ClassName).Value;
-            return ClassName.Substring(0, ClassName.Length - match.Length);
+            // Trim the controller regex pattern
+            return Regex.Replace(ClassName, settings.ControllerNamePattern, "");
         }
     }
 
