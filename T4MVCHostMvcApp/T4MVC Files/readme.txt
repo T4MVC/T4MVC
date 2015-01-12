@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.11.0 (1-12-2015)
+* Add "ControllerNamePattern" config option. [url:http://t4mvc.codeplex.com/discussions/577301]
+
 !!! 3.10.0 (9-18-2014)
 * Add support links in Areas. [url:https://t4mvc.codeplex.com/SourceControl/network/forks/MatthewSteeples/LinksInAreas/contribution/7468]
 
