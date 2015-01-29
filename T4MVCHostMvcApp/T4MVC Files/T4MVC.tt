@@ -45,7 +45,8 @@ Please use in accordance to the MvcContrib license (http://mvccontrib.codeplex.c
 // to the .tt file (i.e. the T4 template) and save it to regenerate this file.
 
 // Make sure the compiler doesn't complain about missing Xml comments and CLS compliance
-#pragma warning disable 1591, 3008, 3009
+// 0108: suppress "Foo hides inherited member Foo. Use the new keyword if hiding was intended." when a controller and its abstract parent are both processed
+#pragma warning disable 1591, 3008, 3009, 0108
 #region T4MVC
 
 using System;
@@ -417,7 +418,7 @@ namespace System.Web.Mvc {
 
 <#manager.StartFooter(); #>
 #endregion T4MVC
-#pragma warning restore 1591, 3008, 3009
+#pragma warning restore 1591, 3008, 3009, 0108
 <#manager.EndBlock(); #>
 <#settings.SaveChanges(manager); #>
 <#manager.Process(settings.SplitIntoMultipleFiles); #>
@@ -700,8 +701,8 @@ void ProcessControllerType(CodeClass2 type, AreaInfo area, DateTime controllerLa
     if (!IsController(type))
         return;
 
-    // Don't process generic classes (their concrete derived classes will be processed)
-    if (type.IsGeneric)
+    // Only process "processable" controllers
+    if (!IsProcessableController(type))
         return;
 
     //Ignore references to controllers we create
@@ -751,7 +752,11 @@ void ProcessControllerType(CodeClass2 type, AreaInfo area, DateTime controllerLa
     if (type.IsAbstract)
     {
         // If it's abstract, set a flag and don't process action methods (derived classes will)
-        target.IsAbstract = true;
+        if (!HasControllerAttribute(type))
+            target.IsAbstract = true;
+        // ...unless it has the [T4MVC] attribute, then process all the action methods in the controller
+        else
+          ProcessControllerActionMethods(target, type);
     }
     else
     {
@@ -1234,9 +1239,6 @@ ProjectItem GetProjectItem(ProjectItems items, string subPath)
 
 static bool IsController(CodeClass2 type)
 {
-    // Ignore any class with a name that doesn't match the regex pattern
-    if (!Regex.IsMatch(type.Name, settings.ControllerNamePattern)) return false;
-
     for (; type.FullName != "System.Web.Mvc.Controller"; type = (CodeClass2)type.Bases.Item(1))
     {
         if (type.Bases.Count == 0)
@@ -1253,6 +1255,42 @@ static bool IsAsyncController(CodeClass2 type)
             return false;
     }
     return true;
+}
+
+static bool IsProcessableController(CodeClass2 type)
+{
+  // try get the [T4MVC] attribute
+  var attribute = GetAttribute(type.Attributes, "System.Web.Mvc.T4MVCAttribute");
+
+  // if [T4MVC(false)] was specified, then ignore this controller
+  if ((attribute != null) && (attribute.Value == "false")) return false;
+
+  // if [T4MVC] or [T4MVC(true)] was specified, then process this controller
+  if ((attribute != null) && (attribute.Value == "" || attribute.Value == "true")) return true;
+
+  // ...else attribute was not specified
+
+  // ignore any class whose name doesn't end with "Controller"
+  if (!type.FullName.EndsWith(ControllerSuffix)) return false;
+
+  // don't process a generic controller (its concrete derived classes will be processed)
+  if (type.IsGeneric)
+    return false;
+
+  return true;
+}
+
+static bool HasControllerAttribute(CodeClass2 type)
+{
+  // try get the [T4MVC] attribute
+  var attribute = GetAttribute(type.Attributes, "System.Web.Mvc.T4MVCAttribute");
+
+  // see whether [T4MVC] or [T4MVC(true)] were specified
+  if (attribute != null)
+    if (attribute.Value == "" || attribute.Value == "true")
+      return true;
+
+  return false;
 }
 
 static string GetVirtualPath(ProjectItem item)
@@ -1515,8 +1553,8 @@ class ControllerInfo
     {
         get
         {
-            // Trim the controller regex pattern
-            return Regex.Replace(ClassName, settings.ControllerNamePattern, "");
+            // remove controller suffix (if it exists)
+            return ClassName.Replace(ControllerSuffix, "");
         }
     }
 
@@ -1934,7 +1972,6 @@ class MvcSettings : XmlSettings
         this.IncludeAreasToken = false;
         this.ControllersFolder = "Controllers";
         this.ViewsRootFolder = "Views";
-        this.ControllerNamePattern = "Controller$";
         this.NonQualifiedViewFolders = new XmlStringArray(new string[] {
           "DisplayTemplates",
           "EditorTemplates"
@@ -1999,9 +2036,6 @@ class MvcSettings : XmlSettings
 
     [System.ComponentModel.Description("The folder under the project that contains the views")]
     public string ViewsRootFolder { get; set; }
-
-    [System.ComponentModel.Description("A regex which identifies a controller's filename, or the default suffix of 'Controller$'")]
-    public string ControllerNamePattern { get; set; }
 
     [System.ComponentModel.Description("Views in DisplayTemplates and EditorTemplates folders shouldn't be fully qualifed\r\nas it breaks the templated helper code")]
     public XmlStringArray  NonQualifiedViewFolders { get; set; }
