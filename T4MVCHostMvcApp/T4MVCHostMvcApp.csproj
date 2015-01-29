@@ -114,6 +114,7 @@
     <Compile Include="Controllers\SomeAsyncController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModelUnbinderController.cs" />
+    <Compile Include="Controllers\TestAttributeControllers.cs" />
     <Compile Include="Features\Contact\ContactController.cs" />
     <Compile Include="Features\Pictures\PicturesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -274,6 +275,24 @@
     <Compile Include="T4MVC Files\T4MVC.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\TestAttribute_YES_Abstract2Controller.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\TestAttribute_YES_ControllerName3.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\TestAttribute_YES_DerivedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\TestAttribute_YES_Name1Controller.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\TestAttribute_YES_Processed1Controller.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\TestAttribute_YES_Processed2Controller.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Views\Home\Sub Home\T4View.cs">
