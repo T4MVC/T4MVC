@@ -24,13 +24,10 @@ using System.Web.Routing;
 using T4MVC;
 namespace T4MVCHostMvcApp.Controllers
 {
-    public partial class TestAttribute_YES_Processed2Controller
+    public partial class TestAttributeYesAbstract2Controller
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public TestAttribute_YES_Processed2Controller() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected TestAttribute_YES_Processed2Controller(Dummy d) { }
+        protected TestAttributeYesAbstract2Controller(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -60,13 +57,13 @@ namespace T4MVCHostMvcApp.Controllers
 
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public TestAttribute_YES_Processed2Controller Actions { get { return MVC.TestAttribute_YES_Processed2; } }
+        public TestAttributeYesAbstract2Controller Actions { get { return MVC.TestAttributeYesAbstract2; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "TestAttribute_YES_Processed2";
+        public readonly string Name = "TestAttributeYesAbstract2";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "TestAttribute_YES_Processed2";
+        public const string NameConst = "TestAttributeYesAbstract2";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -74,11 +71,13 @@ namespace T4MVCHostMvcApp.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
+            public readonly string DoStuff = "DoStuff";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
+            public const string DoStuff = "DoStuff";
         }
 
 
@@ -97,9 +96,20 @@ namespace T4MVCHostMvcApp.Controllers
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_TestAttribute_YES_Processed2Controller : T4MVCHostMvcApp.Controllers.TestAttribute_YES_Processed2Controller
+    public partial class T4MVC_TestAttributeYesAbstract2Controller : T4MVCHostMvcApp.Controllers.TestAttributeYesAbstract2Controller
     {
-        public T4MVC_TestAttribute_YES_Processed2Controller() : base(Dummy.Instance) { }
+        public T4MVC_TestAttributeYesAbstract2Controller() : base(Dummy.Instance) { }
+
+        [NonAction]
+        partial void DoStuffOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult DoStuff()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DoStuff);
+            DoStuffOverride(callInfo);
+            return callInfo;
+        }
 
     }
 }

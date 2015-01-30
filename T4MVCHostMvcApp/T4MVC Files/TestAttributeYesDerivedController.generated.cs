@@ -24,13 +24,13 @@ using System.Web.Routing;
 using T4MVC;
 namespace T4MVCHostMvcApp.Controllers
 {
-    public partial class TestAttribute_YES_Abstract2Controller
+    public partial class TestAttributeYesDerivedController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public TestAttribute_YES_Abstract2Controller() { }
+        public TestAttributeYesDerivedController() { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected TestAttribute_YES_Abstract2Controller(Dummy d) { }
+        protected TestAttributeYesDerivedController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -60,13 +60,13 @@ namespace T4MVCHostMvcApp.Controllers
 
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public TestAttribute_YES_Abstract2Controller Actions { get { return MVC.TestAttribute_YES_Abstract2; } }
+        public TestAttributeYesDerivedController Actions { get { return MVC.TestAttributeYesDerived; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "TestAttribute_YES_Abstract2";
+        public readonly string Name = "TestAttributeYesDerived";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "TestAttribute_YES_Abstract2";
+        public const string NameConst = "TestAttributeYesDerived";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -74,13 +74,13 @@ namespace T4MVCHostMvcApp.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string dostuff = "dostuff";
+            public readonly string DoStuff = "DoStuff";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string dostuff = "dostuff";
+            public const string DoStuff = "DoStuff";
         }
 
 
@@ -99,18 +99,18 @@ namespace T4MVCHostMvcApp.Controllers
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_TestAttribute_YES_Abstract2Controller : T4MVCHostMvcApp.Controllers.TestAttribute_YES_Abstract2Controller
+    public partial class T4MVC_TestAttributeYesDerivedController : T4MVCHostMvcApp.Controllers.TestAttributeYesDerivedController
     {
-        public T4MVC_TestAttribute_YES_Abstract2Controller() : base(Dummy.Instance) { }
+        public T4MVC_TestAttributeYesDerivedController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void dostuffOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void DoStuffOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult dostuff()
+        public override System.Web.Mvc.ActionResult DoStuff()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.dostuff);
-            dostuffOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DoStuff);
+            DoStuffOverride(callInfo);
             return callInfo;
         }
 
