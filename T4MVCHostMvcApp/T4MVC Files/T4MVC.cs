@@ -4,7 +4,8 @@
 // to the .tt file (i.e. the T4 template) and save it to regenerate this file.
 
 // Make sure the compiler doesn't complain about missing Xml comments and CLS compliance
-#pragma warning disable 1591, 3008, 3009
+// 0108: suppress "Foo hides inherited member Foo. Use the new keyword if hiding was intended." when a controller and its abstract parent are both processed
+#pragma warning disable 1591, 3008, 3009, 0108
 #region T4MVC
 
 using System;
@@ -35,7 +36,13 @@ public static partial class MVC
     public static T4MVCHostMvcApp.Controllers.ModelUnbinderController ModelUnbinder = new T4MVCHostMvcApp.Controllers.T4MVC_ModelUnbinderController();
     public static T4MVCHostMvcApp.Controllers.SomeAsyncController SomeAsync = new T4MVCHostMvcApp.Controllers.T4MVC_SomeAsyncController();
     public static T4MVCHostMvcApp.Controllers.T4CtrlController T4Ctrl = new T4MVCHostMvcApp.Controllers.T4MVC_T4CtrlController();
-    public static T4MVC.NoControllerMatchingFolderController NoControllerMatchingFolder = new T4MVC.NoControllerMatchingFolderController();
+    public static T4MVC.NoControllerMatchingFolderController NoMatchingFolder = new T4MVC.NoControllerMatchingFolderController();
+    public static T4MVCHostMvcApp.Controllers.TestAttributeYesName1Controller TestAttributeYesName1 = new T4MVCHostMvcApp.Controllers.T4MVC_TestAttributeYesName1Controller();
+    public static T4MVCHostMvcApp.Controllers.TestAttributeYesControllerName3 TestAttributeYesName3 = new T4MVCHostMvcApp.Controllers.T4MVC_TestAttributeYesControllerName3();
+    public static T4MVCHostMvcApp.Controllers.TestAttributeYesProcessed1Controller TestAttributeYesProcessed1 = new T4MVCHostMvcApp.Controllers.T4MVC_TestAttributeYesProcessed1Controller();
+    public static T4MVCHostMvcApp.Controllers.TestAttributeYesProcessed2Controller TestAttributeYesProcessed2 = new T4MVCHostMvcApp.Controllers.T4MVC_TestAttributeYesProcessed2Controller();
+    public static T4MVCHostMvcApp.Controllers.TestAttributeYesAbstract2Controller TestAttributeYesAbstract2 = new T4MVCHostMvcApp.Controllers.T4MVC_TestAttributeYesAbstract2Controller();
+    public static T4MVCHostMvcApp.Controllers.TestAttributeYesDerivedController TestAttributeYesDerived = new T4MVCHostMvcApp.Controllers.T4MVC_TestAttributeYesDerivedController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
     public static T4MVCHostMvcApp.Features.Contact.ContactController Contact = new T4MVCHostMvcApp.Features.Contact.T4MVC_ContactController();
     public static T4MVCHostMvcApp.Features.Pictures.PicturesController Pictures = new T4MVCHostMvcApp.Features.Pictures.T4MVC_PicturesController();
@@ -607,6 +614,6 @@ internal static class T4MVCHelpers {
 
 
 #endregion T4MVC
-#pragma warning restore 1591, 3008, 3009
+#pragma warning restore 1591, 3008, 3009, 0108
 
 
