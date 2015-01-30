@@ -756,7 +756,7 @@ void ProcessControllerType(CodeClass2 type, AreaInfo area, DateTime controllerLa
             target.IsAbstract = true;
         // ...unless it has the [T4MVC] attribute, then process all the action methods in the controller
         else
-          ProcessControllerActionMethods(target, type);
+            ProcessControllerActionMethods(target, type);
     }
     else
     {
@@ -1259,38 +1259,38 @@ static bool IsAsyncController(CodeClass2 type)
 
 static bool IsProcessableController(CodeClass2 type)
 {
-  // try get the [T4MVC] attribute
-  var attribute = GetAttribute(type.Attributes, "System.Web.Mvc.T4MVCAttribute");
+    // try get the [T4MVC] attribute
+    var attribute = GetAttribute(type.Attributes, "System.Web.Mvc.T4MVCAttribute");
 
-  // if [T4MVC(false)] was specified, then ignore this controller
-  if ((attribute != null) && (attribute.Value == "false")) return false;
+    // if [T4MVC(false)] was specified, then ignore this controller
+    if ((attribute != null) && (attribute.Value == "false")) return false;
 
-  // if [T4MVC] or [T4MVC(true)] was specified, then process this controller
-  if ((attribute != null) && (attribute.Value == "" || attribute.Value == "true")) return true;
+    // if [T4MVC] or [T4MVC(true)] was specified, then process this controller
+    if ((attribute != null) && (attribute.Value == "" || attribute.Value == "true")) return true;
 
-  // ...else attribute was not specified
+    // ...else attribute was not specified
 
-  // ignore any class whose name doesn't end with "Controller"
-  if (!type.FullName.EndsWith(ControllerSuffix)) return false;
+    // ignore any class whose name doesn't end with "Controller"
+    if (!type.FullName.EndsWith(ControllerSuffix)) return false;
 
-  // don't process a generic controller (its concrete derived classes will be processed)
-  if (type.IsGeneric)
-    return false;
+    // don't process a generic controller (its concrete derived classes will be processed)
+    if (type.IsGeneric)
+        return false;
 
-  return true;
+    return true;
 }
 
 static bool HasControllerAttribute(CodeClass2 type)
 {
-  // try get the [T4MVC] attribute
-  var attribute = GetAttribute(type.Attributes, "System.Web.Mvc.T4MVCAttribute");
+    // try get the [T4MVC] attribute
+    var attribute = GetAttribute(type.Attributes, "System.Web.Mvc.T4MVCAttribute");
 
-  // see whether [T4MVC] or [T4MVC(true)] were specified
-  if (attribute != null)
-    if (attribute.Value == "" || attribute.Value == "true")
-      return true;
+    // see whether [T4MVC] or [T4MVC(true)] were specified
+    if (attribute != null)
+        if (attribute.Value == "" || attribute.Value == "true")
+            return true;
 
-  return false;
+    return false;
 }
 
 static string GetVirtualPath(ProjectItem item)

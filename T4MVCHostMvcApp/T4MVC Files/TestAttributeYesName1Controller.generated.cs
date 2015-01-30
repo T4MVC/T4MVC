@@ -24,13 +24,13 @@ using System.Web.Routing;
 using T4MVC;
 namespace T4MVCHostMvcApp.Controllers
 {
-    public partial class TestAttribute_YES_Processed1Controller
+    public partial class TestAttributeYesName1Controller
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public TestAttribute_YES_Processed1Controller() { }
+        public TestAttributeYesName1Controller() { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected TestAttribute_YES_Processed1Controller(Dummy d) { }
+        protected TestAttributeYesName1Controller(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -60,13 +60,13 @@ namespace T4MVCHostMvcApp.Controllers
 
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public TestAttribute_YES_Processed1Controller Actions { get { return MVC.TestAttribute_YES_Processed1; } }
+        public TestAttributeYesName1Controller Actions { get { return MVC.TestAttributeYesName1; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "TestAttribute_YES_Processed1";
+        public readonly string Name = "TestAttributeYesName1";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "TestAttribute_YES_Processed1";
+        public const string NameConst = "TestAttributeYesName1";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -97,9 +97,9 @@ namespace T4MVCHostMvcApp.Controllers
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_TestAttribute_YES_Processed1Controller : T4MVCHostMvcApp.Controllers.TestAttribute_YES_Processed1Controller
+    public partial class T4MVC_TestAttributeYesName1Controller : T4MVCHostMvcApp.Controllers.TestAttributeYesName1Controller
     {
-        public T4MVC_TestAttribute_YES_Processed1Controller() : base(Dummy.Instance) { }
+        public T4MVC_TestAttributeYesName1Controller() : base(Dummy.Instance) { }
 
     }
 }
