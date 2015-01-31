@@ -67,4 +67,30 @@ namespace T4MVCHostMvcApp.Controllers {
     }
 
 
+
+    // test generic controllers ..........................................................................
+
+    // this controller should not be processed, as it's generic and the attribute was not applied
+    public partial class TestAttributeNoGenericXController<T> : Controller {
+        public virtual ActionResult DoStuffX() { return View(); }
+    }
+
+    // this controller should not be processed, as it's generic and the attribute was not applied
+    public partial class TestAttributeNoGenericY1Controller<T> : TestAttributeNoGenericXController<T> {
+        public virtual ActionResult DoStuffY() { return View(); }
+    }
+
+    // this controller should be processed since the attribute was applied
+    [T4MVC]
+    public partial class TestAttributeYesGenericY2Controller<T> : TestAttributeNoGenericXController<T> {
+        public virtual ActionResult DoStuffY() { return View(); }
+    }
+
+    // this controller should always be processed, even without the attribute
+    public partial class TestAttributeYesGenericZController : TestAttributeNoGenericY1Controller<DateTime> {
+        public virtual ActionResult DoStuffZ() { return View(); }
+    }
+
+
+
 }

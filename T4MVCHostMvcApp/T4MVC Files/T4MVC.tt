@@ -186,7 +186,7 @@ namespace <#=controller.Namespace #>
 namespace <#=controller.Namespace #>
 {
 <#} #>
-    public <#if (!controller.NotRealController) { #>partial <#} #>class <#=controller.ClassName #>
+    public <#if (!controller.NotRealController) { #>partial <#} #>class <#=controller.ClassName + controller.GenericSuffix #>
     {
 <#if (!controller.NotRealController) { #>
 <#if (!controller.HasExplicitConstructor) { #>
@@ -264,7 +264,7 @@ namespace <#=controller.Namespace #>
 <#} #>
 
         [<#= GeneratedCode #>, DebuggerNonUserCode]
-        public <#=controller.ClassName #> Actions { get { return <#=controller.T4MVCControllerFullName #>; } }
+        public <#=controller.ClassName + controller.GenericSuffix #> Actions { get { return <#=controller.T4MVCControllerFullName #>; } }
         [<#= GeneratedCode #>]
         public readonly string Area = "<#=ProcessAreaOrControllerName(controller.AreaName) #>";
         [<#= GeneratedCode #>]
@@ -348,7 +348,7 @@ foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (gr
 
 <#if (!controller.NotRealController) { #>
     [<#= GeneratedCode #>, DebuggerNonUserCode]
-    public partial class <#=controller.DerivedClassName #> : <#=controller.FullClassName #>
+    public partial class <#=controller.DerivedClassName + controller.GenericSuffix #> : <#=controller.FullClassName + controller.GenericSuffix #>
     {
         public <#=controller.DerivedClassName #>() : base(Dummy.Instance) { }
 
@@ -726,11 +726,14 @@ void ProcessControllerType(CodeClass2 type, AreaInfo area, DateTime controllerLa
     }
 
     // Collect misc info about the controller class and add it to the collection
+    var index = type.FullName.IndexOf("<");
+    var genericSuffix = (index > 0) ? type.FullName.Substring(index) : String.Empty;  // will be "<T,F,Etc>" for a generic class, or "" for non-generic classes
     var controllerInfo = new ControllerInfo
     {
         Area = area,
         Namespace = type.Namespace != null ? type.Namespace.Name : String.Empty,
-        ClassName = type.Name
+        ClassName = type.Name,
+        GenericSuffix = genericSuffix
     };
 
     //Filter references to controllers we create
@@ -1549,6 +1552,7 @@ class ControllerInfo
     public bool GeneratedCodeIsUpToDate { get; set; }
 
     public string ClassName { get; set; }
+    public string GenericSuffix { get; set; }   // this equals "<T,F,Etc>" if class is generic, or "" if it is not
     public string Name
     {
         get

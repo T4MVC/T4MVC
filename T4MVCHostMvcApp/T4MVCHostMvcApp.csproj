@@ -314,6 +314,12 @@
     <Compile Include="T4MVC Files\TestAttributeYesDerivedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="T4MVC Files\TestAttributeYesGenericY2Controller.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\TestAttributeYesGenericZController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="T4MVC Files\TestAttributeYesName1Controller.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>

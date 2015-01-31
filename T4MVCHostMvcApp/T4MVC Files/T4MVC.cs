@@ -42,6 +42,8 @@ public static partial class MVC
     public static T4MVCHostMvcApp.Controllers.TestAttributeYesProcessed2Controller TestAttributeYesProcessed2 = new T4MVCHostMvcApp.Controllers.T4MVC_TestAttributeYesProcessed2Controller();
     public static T4MVCHostMvcApp.Controllers.TestAttributeYesAbstract2Controller TestAttributeYesAbstract2 = new T4MVCHostMvcApp.Controllers.T4MVC_TestAttributeYesAbstract2Controller();
     public static T4MVCHostMvcApp.Controllers.TestAttributeYesDerivedController TestAttributeYesDerived = new T4MVCHostMvcApp.Controllers.T4MVC_TestAttributeYesDerivedController();
+    public static T4MVCHostMvcApp.Controllers.TestAttributeYesGenericY2Controller TestAttributeYesGenericY2 = new T4MVCHostMvcApp.Controllers.T4MVC_TestAttributeYesGenericY2Controller();
+    public static T4MVCHostMvcApp.Controllers.TestAttributeYesGenericZController TestAttributeYesGenericZ = new T4MVCHostMvcApp.Controllers.T4MVC_TestAttributeYesGenericZController();
     public static T4MVC.NoControllerMatchingFolderController NoMatchingFolder = new T4MVC.NoControllerMatchingFolderController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
     public static T4MVCHostMvcApp.Features.Contact.ContactController Contact = new T4MVCHostMvcApp.Features.Contact.T4MVC_ContactController();
