@@ -250,8 +250,8 @@ namespace T4MVCHostMvcApp.Tests
         [TestMethod()]
         public void TestViewFolderWithNoMatchingController()
         {
-            Assert.AreEqual("~/Views/NoControllerMatchingFolder/Abcd.txt", MVC.NoControllerMatchingFolder.Views.Abcd);
-            Assert.AreEqual("Abcd", MVC.NoControllerMatchingFolder.Views.ViewNames.Abcd);
+            Assert.AreEqual("~/Views/NoControllerMatchingFolder/Abcd.txt", MVC.NoMatchingFolder.Views.Abcd);
+            Assert.AreEqual("Abcd", MVC.NoMatchingFolder.Views.ViewNames.Abcd);
         }
 
         [TestMethod()]

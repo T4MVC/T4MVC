@@ -36,13 +36,13 @@ public static partial class MVC
     public static T4MVCHostMvcApp.Controllers.ModelUnbinderController ModelUnbinder = new T4MVCHostMvcApp.Controllers.T4MVC_ModelUnbinderController();
     public static T4MVCHostMvcApp.Controllers.SomeAsyncController SomeAsync = new T4MVCHostMvcApp.Controllers.T4MVC_SomeAsyncController();
     public static T4MVCHostMvcApp.Controllers.T4CtrlController T4Ctrl = new T4MVCHostMvcApp.Controllers.T4MVC_T4CtrlController();
-    public static T4MVC.NoControllerMatchingFolderController NoMatchingFolder = new T4MVC.NoControllerMatchingFolderController();
     public static T4MVCHostMvcApp.Controllers.TestAttributeYesName1Controller TestAttributeYesName1 = new T4MVCHostMvcApp.Controllers.T4MVC_TestAttributeYesName1Controller();
     public static T4MVCHostMvcApp.Controllers.TestAttributeYesControllerName3 TestAttributeYesName3 = new T4MVCHostMvcApp.Controllers.T4MVC_TestAttributeYesControllerName3();
     public static T4MVCHostMvcApp.Controllers.TestAttributeYesProcessed1Controller TestAttributeYesProcessed1 = new T4MVCHostMvcApp.Controllers.T4MVC_TestAttributeYesProcessed1Controller();
     public static T4MVCHostMvcApp.Controllers.TestAttributeYesProcessed2Controller TestAttributeYesProcessed2 = new T4MVCHostMvcApp.Controllers.T4MVC_TestAttributeYesProcessed2Controller();
     public static T4MVCHostMvcApp.Controllers.TestAttributeYesAbstract2Controller TestAttributeYesAbstract2 = new T4MVCHostMvcApp.Controllers.T4MVC_TestAttributeYesAbstract2Controller();
     public static T4MVCHostMvcApp.Controllers.TestAttributeYesDerivedController TestAttributeYesDerived = new T4MVCHostMvcApp.Controllers.T4MVC_TestAttributeYesDerivedController();
+    public static T4MVC.NoControllerMatchingFolderController NoMatchingFolder = new T4MVC.NoControllerMatchingFolderController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
     public static T4MVCHostMvcApp.Features.Contact.ContactController Contact = new T4MVCHostMvcApp.Features.Contact.T4MVC_ContactController();
     public static T4MVCHostMvcApp.Features.Pictures.PicturesController Pictures = new T4MVCHostMvcApp.Features.Pictures.T4MVC_PicturesController();
