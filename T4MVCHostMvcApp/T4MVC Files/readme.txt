@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.12.0 (1-30-2015)
+* Add [T4MVC] attribute for controllers. [url:https://github.com/T4MVC/T4MVC/pull/3]
+
 !!! 3.11.0 (1-12-2015)
 * Add "ControllerNamePattern" config option. [url:http://t4mvc.codeplex.com/discussions/577301]
 
