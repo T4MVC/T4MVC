@@ -183,7 +183,6 @@
     <Content Include="Features\Contact\Index.txt" />
     <Content Include="Features\Pictures\Index.txt" />
     <Content Include="Features\Pictures\Detail.txt" />
-    <Content Include="packages.config" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
