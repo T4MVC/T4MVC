@@ -136,13 +136,13 @@ namespace <#=settings.LinksNamespace #>
 {
 <#
 var inAreas = Areas
-	.Where(a => !string.IsNullOrEmpty(a.Name))
-	.SelectMany(a => settings.StaticFilesFolders.Select(b => settings.AreasFolder + "\\" + a.Name + "\\" + b));
+    .Where(a => !string.IsNullOrEmpty(a.Name))
+    .SelectMany(a => settings.StaticFilesFolders.Select(b => settings.AreasFolder + "\\" + a.Name + "\\" + b));
 
 foreach (string folder in settings.StaticFilesFolders
-	.Concat(GetStaticFilesViewFolders())
-	.Concat(inAreas)
-	) {
+    .Concat(GetStaticFilesViewFolders())
+    .Concat(inAreas)
+    ) {
     ProcessStaticFiles(Project, folder);
 }
 
@@ -265,7 +265,7 @@ namespace <#=controller.Namespace #>
 <#if (method.ReturnTypeFullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>") { #>
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
 <#} else { #>
-		    return callInfo;
+            return callInfo;
 <#} #>
         }
 <#} #>
@@ -1534,7 +1534,7 @@ static CodeAttribute2 GetAttribute(CodeClass2 type, string attributeType)
 
 static string UniqueFullName(CodeTypeRef codeType)
 {
-	return UniqueFullName(codeType.CodeType);
+    return UniqueFullName(codeType.CodeType);
 }
 
 static string UniqueFullName(CodeType codeType)
@@ -1579,7 +1579,7 @@ static bool IsFeatureFolderArea(string areaName, ProjectItem areaFolder)
 
 static bool IsFile(ProjectItem item)
 {
-	return (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFile);
+    return (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFile);
 }
 
 
@@ -1898,7 +1898,7 @@ class ViewsFolderInfo
         string virtualPath = GetVirtualPath(item);
         if (virtualPath != null)
         {
-	        Views[viewFieldName] = useNonQualifiedViewName ? Path.GetFileNameWithoutExtension(viewName) : virtualPath;
+            Views[viewFieldName] = useNonQualifiedViewName ? Path.GetFileNameWithoutExtension(viewName) : virtualPath;
         }
     }
 
