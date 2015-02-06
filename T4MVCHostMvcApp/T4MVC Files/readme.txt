@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.13.1 (2-6-2015)
+* Add support for static bundle assets classes. [url:https://github.com/T4MVC/T4MVC/pull/7]
+
 !!! 3.12.0 (1-30-2015)
 * Add [T4MVC] attribute for controllers. [url:https://github.com/T4MVC/T4MVC/pull/3]
 

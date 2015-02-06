@@ -594,14 +594,14 @@ namespace Links
         {
             public static class Assets
             {
-                    public const string jquery_1_3_2_js = "~/Scripts/jquery-1.3.2.js"; 
-                    public const string jquery_1_3_2_min_js = "~/Scripts/jquery-1.3.2.min.js"; 
-                    public const string jquery_validate_js = "~/Scripts/jquery.validate.js"; 
-                    public const string jquery_validate_min_js = "~/Scripts/jquery.validate.min.js"; 
-                    public const string MicrosoftAjax_debug_js = "~/Scripts/MicrosoftAjax.debug.js"; 
-                    public const string MicrosoftAjax_js = "~/Scripts/MicrosoftAjax.js"; 
-                    public const string MicrosoftMvcAjax_debug_js = "~/Scripts/MicrosoftMvcAjax.debug.js"; 
-                    public const string MicrosoftMvcAjax_js = "~/Scripts/MicrosoftMvcAjax.js"; 
+                public const string jquery_1_3_2_js = "~/Scripts/jquery-1.3.2.js"; 
+                public const string jquery_1_3_2_min_js = "~/Scripts/jquery-1.3.2.min.js"; 
+                public const string jquery_validate_js = "~/Scripts/jquery.validate.js"; 
+                public const string jquery_validate_min_js = "~/Scripts/jquery.validate.min.js"; 
+                public const string MicrosoftAjax_debug_js = "~/Scripts/MicrosoftAjax.debug.js"; 
+                public const string MicrosoftAjax_js = "~/Scripts/MicrosoftAjax.js"; 
+                public const string MicrosoftMvcAjax_debug_js = "~/Scripts/MicrosoftMvcAjax.debug.js"; 
+                public const string MicrosoftMvcAjax_js = "~/Scripts/MicrosoftMvcAjax.js"; 
             }
         }
         public static partial class Content 
@@ -638,9 +638,9 @@ namespace Links
             }
             public static class Assets
             {
-                    public const string Site_css = "~/Content/Site.css";
-                    public const string StyleSheet_css = "~/Content/StyleSheet.css";
-                    public const string StyleSheet_min_css = "~/Content/StyleSheet.min.css";
+                public const string Site_css = "~/Content/Site.css";
+                public const string StyleSheet_css = "~/Content/StyleSheet.css";
+                public const string StyleSheet_min_css = "~/Content/StyleSheet.min.css";
             }
         }
         public static partial class ContentStatic 
@@ -659,7 +659,7 @@ namespace Links
             {
                 public static class Assets
                 {
-                        public const string SomeOtherScript_js = "~/ContentStatic/Scripts/SomeOtherScript.js"; 
+                    public const string SomeOtherScript_js = "~/ContentStatic/Scripts/SomeOtherScript.js"; 
                 }
             }
          	
@@ -730,7 +730,7 @@ namespace Links
             {
                 public static class Assets
                 {
-                        public const string Hello_js = "~/Views/Shared/Hello.js"; 
+                    public const string Hello_js = "~/Views/Shared/Hello.js"; 
                 }
             }
             public static class Assets
