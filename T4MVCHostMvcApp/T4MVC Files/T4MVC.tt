@@ -1456,9 +1456,20 @@ static string GetVirtualPath(ProjectItem item)
 {
     string fileFullPath = item.get_FileNames(0);
 
-    // Ignore files that are not under the app root (e.g. they could be linked files)
+    // update full path for files that are not under the app root (e.g. they could be linked files)
     if (!fileFullPath.StartsWith(AppRoot, StringComparison.OrdinalIgnoreCase))
-        return null;
+    {
+        try
+        {
+            fileFullPath = ((ProjectItem)item.Collection.Parent).Properties.Item("FullPath").Value.ToString() + item.Name;
+        }
+        catch
+        {
+            return null;
+        }
+        if (!fileFullPath.StartsWith(AppRoot, StringComparison.OrdinalIgnoreCase))
+            return null;
+    }
 
     // Make a virtual path from the physical path
     return "~/" + fileFullPath.Substring(AppRoot.Length).Replace('\\', '/');
