@@ -1467,8 +1467,6 @@ static string GetVirtualPath(ProjectItem item)
         {
             return null;
         }
-        if (!fileFullPath.StartsWith(AppRoot, StringComparison.OrdinalIgnoreCase))
-            return null;
     }
 
     // Make a virtual path from the physical path

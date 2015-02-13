@@ -292,6 +292,12 @@ namespace T4MVCHostMvcApp.Tests
             Assert.AreEqual("/Areas/FeatureFolderArea/SharedViews/SharedView.txt", Links.Areas.FeatureFolderArea.SharedViews.SharedView_txt);
         }
 
+        [TestMethod()]
+        public void TestLinkedView()
+        {
+            Assert.AreEqual("~/Views/Home/SomeLinkedFile.txt", MVC.Home.Views.SomeLinkedFile);
+        }
+
         // ROUTE VALUES TESTS
 
         [TestMethod()]

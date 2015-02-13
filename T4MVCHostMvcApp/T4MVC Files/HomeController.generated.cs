@@ -266,6 +266,7 @@ namespace T4MVCHostMvcApp.Controllers
                 public readonly string Qqq = "Qqq";
                 public readonly string QqQ = "QqQ";
                 public readonly string Qqq_txt3 = "Qqq_txt3";
+                public readonly string SomeLinkedFile = "SomeLinkedFile";
             }
             public readonly string _7_Some_Home_View_Hello = "~/Views/Home/7 Some Home.View-Hello.txt";
             public readonly string About = "~/Views/Home/About.aspx";
@@ -274,6 +275,7 @@ namespace T4MVCHostMvcApp.Controllers
             public readonly string Qqq = "~/Views/Home/Qqq.txt";
             public readonly string QqQ = "~/Views/Home/QqQ.txt2";
             public readonly string Qqq_txt3 = "~/Views/Home/Qqq.txt3";
+            public readonly string SomeLinkedFile = "~/Views/Home/SomeLinkedFile.txt";
             static readonly _defaultClass s_default = new _defaultClass();
             public _defaultClass @default { get { return s_default; } }
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
