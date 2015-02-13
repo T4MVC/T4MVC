@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.14.0 (2-13-2015)
+* Add support for linked files. [url:https://github.com/T4MVC/T4MVC/pull/13]
+
 !!! 3.13.1 (2-6-2015)
 * Add support for static bundle assets classes. [url:https://github.com/T4MVC/T4MVC/pull/7]
 
