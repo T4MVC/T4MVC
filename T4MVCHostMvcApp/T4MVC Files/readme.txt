@@ -1,5 +1,5 @@
 ﻿T4MVC readme file
-Find latest version and documentation at https://t4mvc.codeplex.com/
+Find latest version and documentation at https://github.com/T4MVC/T4MVC
 Discuss on StackOverflow or on the MVC forum (http://forums.asp.net/1146.aspx)
 
 Maintained by David Ebbo, with much feedback from the MVC community (thanks all!)
