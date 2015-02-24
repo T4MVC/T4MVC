@@ -334,9 +334,11 @@ namespace System.Web.Mvc
             string action = token.ToString();
 
             var specificActionUrl = (from r in RouteTable.Routes.OfType<Route>()
-                                     where r.DataTokens != null && r.Defaults != null
-                                     && r.DataTokens.Any(dt => string.Compare(dt.Key, "area", StringComparison.InvariantCultureIgnoreCase) == 0
-                                         && string.Compare(dt.Value.ToString(), area, StringComparison.InvariantCultureIgnoreCase) == 0)
+                                     where r.Defaults != null
+                                     && ((string.IsNullOrEmpty(area) 
+                                        && (r.DataTokens == null || !r.DataTokens.Any(dt => string.Compare(dt.Key, "area", StringComparison.InvariantCultureIgnoreCase) == 0)))
+                                        || (r.DataTokens != null && r.DataTokens.Any(dt => string.Compare(dt.Key, "area", StringComparison.InvariantCultureIgnoreCase) == 0 
+                                            && string.Compare(dt.Value.ToString(), area, StringComparison.InvariantCultureIgnoreCase) == 0)))
                                      && r.Defaults.Any(dt => string.Compare(dt.Key, "controller", StringComparison.InvariantCultureIgnoreCase) == 0
                                          && string.Compare(dt.Value.ToString(), controller, StringComparison.InvariantCultureIgnoreCase) == 0)
                                      && r.Defaults.Any(dt => string.Compare(dt.Key, "action", StringComparison.InvariantCultureIgnoreCase) == 0
