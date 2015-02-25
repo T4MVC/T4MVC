@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.14.1 (2-24-2015)
+* Adds area checks to JavaScriptReplaceableUrl. [url:https://github.com/T4MVC/T4MVC/issues/14]
+
 !!! 3.14.0 (2-13-2015)
 * Add support for linked files. [url:https://github.com/T4MVC/T4MVC/pull/13]
 
