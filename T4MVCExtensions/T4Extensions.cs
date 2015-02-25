@@ -333,17 +333,13 @@ namespace System.Web.Mvc
                 throw new Exception("T4MVC JavascriptReplacableUrl could not locate action in source dictionary");
             string action = token.ToString();
 
-            var specificActionUrl = (from r in RouteTable.Routes.OfType<Route>()
-                                     where r.Defaults != null
-                                     && ((string.IsNullOrEmpty(area) 
-                                        && (r.DataTokens == null || !r.DataTokens.Any(dt => string.Compare(dt.Key, "area", StringComparison.InvariantCultureIgnoreCase) == 0)))
-                                        || (r.DataTokens != null && r.DataTokens.Any(dt => string.Compare(dt.Key, "area", StringComparison.InvariantCultureIgnoreCase) == 0 
-                                            && string.Compare(dt.Value.ToString(), area, StringComparison.InvariantCultureIgnoreCase) == 0)))
-                                     && r.Defaults.Any(dt => string.Compare(dt.Key, "controller", StringComparison.InvariantCultureIgnoreCase) == 0
-                                         && string.Compare(dt.Value.ToString(), controller, StringComparison.InvariantCultureIgnoreCase) == 0)
-                                     && r.Defaults.Any(dt => string.Compare(dt.Key, "action", StringComparison.InvariantCultureIgnoreCase) == 0
-                                         && string.Compare(dt.Value.ToString(), action, StringComparison.InvariantCultureIgnoreCase) == 0)
-                                     select r.Url).FirstOrDefault();
+            // This matches the ActionResult to a specific route (so we can get the exact URL)
+            string specificActionUrl = RouteTable.Routes.OfType<Route>()
+                .Where(r => r.DataTokens.CompareValue("area", area)
+                    && r.Defaults.CompareValue("controller", controller)
+                    && r.Defaults.CompareValue("action", action))
+                .Select(r => r.Url)
+                .FirstOrDefault();
 
             if (String.IsNullOrEmpty(specificActionUrl))
             {
@@ -351,6 +347,33 @@ namespace System.Web.Mvc
             }
 
             return urlHelper.Content("~/" + specificActionUrl);
+        }
+
+        // This compares a specified value with that in a RouteValueDictionary for a given key
+        // while ignoring null dictionaries if the match value is also null or whitespace
+        private static bool CompareValue(this RouteValueDictionary dictionary, string key, string value)
+        {
+            // Normalize the value to null if empty or whitespace
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                value = null;
+            }
+
+            // Do we actually have the RouteValueDictionary
+            if (dictionary == null)
+            {
+                // No dictionary, match if the value is also null or whitespace
+                return value == null;
+            }
+            else
+            {
+                // Match if the value is null or whitespace and the key is not in the dictionary
+                // or if the key is in the dictionary and matches the value
+                return string.Compare(value, dictionary
+                    .Where(kvp => string.Compare(kvp.Key, key, StringComparison.InvariantCultureIgnoreCase) == 0)
+                    .Select(kvp => kvp.Value.ToString())
+                    .FirstOrDefault(), StringComparison.InvariantCultureIgnoreCase) == 0;
+            }
         }
 
         public static string JavaScriptReplaceableUrl(this UrlHelper urlHelper, Task<ActionResult> taskResult)
