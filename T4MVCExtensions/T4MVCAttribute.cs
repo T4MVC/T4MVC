@@ -1,21 +1,20 @@
 ﻿using System;
 
-namespace System.Web.Mvc {
+namespace System.Web.Mvc
+{
+    [AttributeUsage(AttributeTargets.Class)]
+    public class T4MVCAttribute : Attribute
+    {
+        public T4MVCAttribute()
+            : this(true)
+        {
+        }
 
-  [AttributeUsage(AttributeTargets.Class)]
-  public class T4MVCAttribute : Attribute {
+        public T4MVCAttribute(bool process)
+        {
+            Process = process;
+        }
 
-
-    public T4MVCAttribute() : this(true) {
+        public bool Process { get; private set; }
     }
-
-    public T4MVCAttribute(bool process) {
-      Process = process;
-    }
-
-
-    public bool Process { get; private set; }
-
-
-  }
 }
