@@ -1108,7 +1108,8 @@ void ProcessBundleFilesRecursive(ProjectItem projectItem, string path, HashSet<S
 
     // This HashSet is to guarantee uniqueness of our direct children
     // We add our own name to it to avoid class name conflicts (http://mvccontrib.codeplex.com/workitem/7153)
-    var childrenNameSet = new HashSet<String>();
+    var childrenNameSet = new HashSet<String>(StringComparer.OrdinalIgnoreCase);
+    childrenNameSet.Add("Assets");
     childrenNameSet.Add(name);
 
     var files = new List<ProjectItem>();
