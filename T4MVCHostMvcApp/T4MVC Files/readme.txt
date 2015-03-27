@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.14.2 (3-27-2015)
+* The term 'Assets' is added as a used keyword to avoid class name collision. [url:https://github.com/T4MVC/T4MVC/pull/20]
+
 !!! 3.14.1 (2-24-2015)
 * Adds area checks to JavaScriptReplaceableUrl. [url:https://github.com/T4MVC/T4MVC/issues/14]
 
