@@ -18,9 +18,9 @@ and that's just the beginning!
 
 *   **Install** T4MVC in your MVC app using [NuGet](http://nuget.org)
 *   **Watch**: watch an 8 minute [intro video on Channel 9](http://channel9.msdn.com/posts/jongalloway/Jon-Takes-Five-with-David-Ebbo-on-T4MVC/)
-*   **Learn**: visit the [Documentation page](https://t4mvc.codeplex.com/documentation)
+*   **Learn**: visit the [Documentation page](https://github.com/T4MVC/T4MVC/wiki/Documentation)
 *   **Install** a VS Extension to automatically rerun T4MVC on build. You can use [AutoT4MVC](http://visualstudiogallery.msdn.microsoft.com/8d820b76-9fc4-429f-a95f-e68ed7d3111a) or [Chirpy](http://chirpy.codeplex.com/).
-*   **Discuss**: Discuss it on [https://t4mvc.codeplex.com/discussions](https://t4mvc.codeplex.com/discussions)
+*   **Discuss**: Discuss it on [GitHub](https://github.com/T4MVC/T4MVC/issues)
 *   **Contribute**: learn how on the [Contributor page](/wikipage?title=T4MVC_contrib&amp;referringTitle=Home "T4MVC_contrib&amp;referringTitle=Home")
 *   **News**: [Follow David Ebbo on Twitter](http://twitter.com/davidebbo/) to get T4MVC announcements.
 *   **History &amp; release notes**: [change history](/wikipage?title=T4MVC_History&amp;referringTitle=Home "T4MVC_History&amp;referringTitle=Home")
