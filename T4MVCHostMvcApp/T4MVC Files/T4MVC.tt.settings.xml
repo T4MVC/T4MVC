@@ -46,6 +46,8 @@ This breaks the Go To Definition function for async actions.-->
   <UseLowercaseRoutes>False</UseLowercaseRoutes>
   <!--The namespace that the links are generated in (e.g. "Links", as in Links.Content.nerd_jpg)-->
   <LinksNamespace>Links</LinksNamespace>
+  <!-- The namespace that raw URLS used for bundles are generated -->
+  <AssetsNamespace>Assets</AssetsNamespace>
   <!--If true, links to static files include a query string containing the file's last change time.
 This way, when the static file changes, the link changes and guarantees that the client will re-request the resource.
 e.g. when true, the link looks like: "/Content/nerd.jpg?2009-09-04T12:25:48"
