@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.15.0 (4-21-2015)
+* Add AssetsNamespace setting. [url:https://github.com/T4MVC/T4MVC/pull/22]
+
 !!! 3.14.2 (3-27-2015)
 * The term 'Assets' is added as a used keyword to avoid class name collision. [url:https://github.com/T4MVC/T4MVC/pull/20]
 
