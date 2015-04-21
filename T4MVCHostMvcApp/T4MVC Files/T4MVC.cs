@@ -651,7 +651,6 @@ namespace Links
                 {
                 }
             }
-         	
         }
         public static partial class ContentStatic 
         {
@@ -662,7 +661,6 @@ namespace Links
                     public const string SomeOtherScript_js = "~/ContentStatic/Scripts/SomeOtherScript.js"; 
                 }
             }
-         	
         }
         public static partial class Views 
         {
@@ -745,7 +743,6 @@ namespace Links
                 {
                 }
             }
-         	
         }
         public static partial class Features 
         {
@@ -755,7 +752,6 @@ namespace Links
                 {
                 }
             }
-         	
         }
         public static partial class Areas 
         {
@@ -773,9 +769,7 @@ namespace Links
                     {
                     }
                 }
-             	
             }
-         	
         }
         public static partial class Areas 
         {
@@ -787,9 +781,7 @@ namespace Links
                     {
                     }
                 }
-             	
             }
-         	
         }
         public static partial class Areas 
         {
@@ -801,9 +793,7 @@ namespace Links
                     {
                     }
                 }
-             	
             }
-         	
         }
         public static partial class Areas 
         {
@@ -833,9 +823,7 @@ namespace Links
                     {
                     }
                 }
-             	
             }
-         	
         }
     }
 }

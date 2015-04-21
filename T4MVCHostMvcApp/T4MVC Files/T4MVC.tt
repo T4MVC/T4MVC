@@ -156,7 +156,7 @@ public static partial class Bundles
             
         foreach (string folder in settings.StaticFilesFolders.Concat(GetStaticFilesViewFolders())) {
             ProcessBundles(Project, folder);
-        }		
+        }
     
         PopIndent();
 #>
@@ -1094,7 +1094,7 @@ void ProcessBundleFilesRecursive(ProjectItem projectItem, string path)
     ProcessBundleFilesRecursive(projectItem, path, new HashSet<String>());
     for(int i = 0; i < nestedLevel; ++i) 
     { 
-#> 	
+#>
 }
 <#+
         PopIndent();
@@ -1142,7 +1142,7 @@ public static partial class <#=EscapeID(name)#>
         BuildBundleConstants(files, path + "/" + projectItem.Name, childrenNameSet);
 #>
 }
-<#+	
+<#+
         PopIndent();
     }    
 }
@@ -1183,12 +1183,12 @@ public const string <#=name#> = "<#=bundleAssetPath#>";
         foreach (ProjectItem item in projectItem.ProjectItems)
         {
             ProcessBundleFilesRecursive(item, path, childrenNameSet);
-        }	 
+        } 
     }
     PopIndent();
 #>
 }
-<#+	
+<#+
     PopIndent();
 }
 
@@ -2158,7 +2158,7 @@ class MvcSettings : XmlSettings
         this.SupportAsyncActions = false;
         this.UseLowercaseRoutes = false;
         this.LinksNamespace = "Links";
-		this.AssetsNamespace = "Assets";
+        this.AssetsNamespace = "Assets";
         this.AddTimestampToStaticLinks = false;
         this.StaticFilesFolders = new XmlStringArray(new string[] {
             "Scripts",
@@ -2229,9 +2229,8 @@ class MvcSettings : XmlSettings
     [System.ComponentModel.Description("The namespace that the links are generated in (e.g. \"Links\", as in Links.Content.nerd_jpg)")]
     public string LinksNamespace { get; set; }
 
-	[System.ComponentModel.Description("The namespace that raw URLS used for bundles are generated")]
+    [System.ComponentModel.Description("The namespace that raw URLS used for bundles are generated")]
     public string AssetsNamespace { get; set; }
-
 
     [System.ComponentModel.Description("If true, links to static files include a query string containing the file's last change time.\r\nThis way, when the static file changes, the link changes and guarantees that the client will re-request the resource.\r\ne.g. when true, the link looks like: \"/Content/nerd.jpg?2009-09-04T12:25:48\"\r\nSee http://mvccontrib.codeplex.com/workitem/7163 for potential issues with this feature")]
     public bool AddTimestampToStaticLinks { get; set; }
