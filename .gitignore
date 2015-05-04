@@ -7,5 +7,6 @@ TestResults
 *.psess
 *.suo
 *.nupkg
+.vs
 _Resharper*
 *DotSettings*
