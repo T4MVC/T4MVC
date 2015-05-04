@@ -1,6 +1,6 @@
 ﻿<#
 /*
-T4MVC Version 3.15.1
+T4MVC Version 3.15.2
 Find latest version and documentation at https://github.com/T4MVC/T4MVC/wiki/Documentation
 Discuss on StackOverflow or on GitHub (https://github.com/T4MVC/T4MVC/issues)
 
@@ -1485,21 +1485,21 @@ static IEnumerable<CodeFunction2> GetMethods(CodeClass2 codeClass)
 {
     // Only look at regular method (e.g. ignore things like contructors)
     return codeClass.Members.OfType<CodeFunction2>()
-        .Where(f => f.FunctionKind == vsCMFunction.vsCMFunctionFunction);
+        .Where(f => TestFunctionKind(f, vsCMFunction.vsCMFunctionFunction));
 }
 
 // Check if the class has any explicit constructor
 static bool HasExplicitConstructor(CodeClass2 codeClass)
 {
     return codeClass.Members.OfType<CodeFunction2>().Any(
-        f => !f.IsShared && f.FunctionKind == vsCMFunction.vsCMFunctionConstructor);
+        f => !f.IsShared && TestFunctionKind(f, vsCMFunction.vsCMFunctionConstructor));
 }
 
 // Check if the class has a default (i.e. no params) constructor
 static bool HasExplicitDefaultConstructor(CodeClass2 codeClass)
 {
     return codeClass.Members.OfType<CodeFunction2>().Any(
-        f => !f.IsShared && f.FunctionKind == vsCMFunction.vsCMFunctionConstructor && f.Parameters.Count == 0);
+        f => !f.IsShared && TestFunctionKind(f, vsCMFunction.vsCMFunctionConstructor) && f.Parameters.Count == 0);
 }
 
 // Find a method with a given name
@@ -1541,6 +1541,19 @@ static CodeAttribute2 GetAttribute(CodeClass2 type, string attributeType)
         type = (CodeClass2)type.Bases.Item(1);
     }
     return null;
+}
+
+static bool TestFunctionKind(CodeFunction2 f, vsCMFunction kind)
+{
+    try
+    {
+        return f.FunctionKind == kind;
+    }
+    catch
+    {
+        // FunctionKind blows up in some cases. Just ignore.
+        return false;
+    }
 }
 
 static string UniqueFullName(CodeTypeRef codeType)
@@ -2097,23 +2110,10 @@ class ResultTypeInfo
 
         // Use the constructor with the least number of parameters
         var ctor = _codeType.CodeType.Members.OfType<CodeFunction2>()
-            .Where(IsConstructor)
+            .Where(f => TestFunctionKind(f, vsCMFunction.vsCMFunctionConstructor))
             .OrderBy(f => f.Parameters.Count)
             .FirstOrDefault();
         Constructor = new FunctionInfo(ctor);
-    }
-
-    bool IsConstructor(CodeFunction2 f)
-    {
-        try
-        {
-            return f.FunctionKind == vsCMFunction.vsCMFunctionConstructor;
-        }
-        catch
-        {
-            // FunctionKind blows up in some cases. Just ignore.
-            return false;
-        }
     }
 
     public string Name { get { return _codeType.AsString; } }
