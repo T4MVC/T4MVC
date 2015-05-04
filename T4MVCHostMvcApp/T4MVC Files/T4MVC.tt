@@ -1,6 +1,6 @@
 ﻿<#
 /*
-T4MVC Version 3.15.0
+T4MVC Version 3.15.1
 Find latest version and documentation at https://github.com/T4MVC/T4MVC/wiki/Documentation
 Discuss on StackOverflow or on GitHub (https://github.com/T4MVC/T4MVC/issues)
 
@@ -2097,10 +2097,23 @@ class ResultTypeInfo
 
         // Use the constructor with the least number of parameters
         var ctor = _codeType.CodeType.Members.OfType<CodeFunction2>()
-            .Where(f => f.FunctionKind == vsCMFunction.vsCMFunctionConstructor)
+            .Where(IsConstructor)
             .OrderBy(f => f.Parameters.Count)
             .FirstOrDefault();
         Constructor = new FunctionInfo(ctor);
+    }
+
+    bool IsConstructor(CodeFunction2 f)
+    {
+        try
+        {
+            return f.FunctionKind == vsCMFunction.vsCMFunctionConstructor;
+        }
+        catch
+        {
+            // FunctionKind blows up in some cases. Just ignore.
+            return false;
+        }
     }
 
     public string Name { get { return _codeType.AsString; } }

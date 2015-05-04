@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.15.1 (5-03-2015)
+* Fix issue in VS2015 with FunctionKind blowing up. [url:https://github.com/T4MVC/T4MVC/issues/24]
+
 !!! 3.15.0 (4-21-2015)
 * Add AssetsNamespace setting. [url:https://github.com/T4MVC/T4MVC/pull/22]
 
