@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.15.3 (5-08-2015)
+* Fix logic that strips 'controller' suffix. [url:https://github.com/T4MVC/T4MVC/issues/27]
+
 !!! 3.15.2 (5-04-2015)
 * Cover more cases of the FunctionKind issue. [url:https://github.com/T4MVC/T4MVC/issues/25]
 

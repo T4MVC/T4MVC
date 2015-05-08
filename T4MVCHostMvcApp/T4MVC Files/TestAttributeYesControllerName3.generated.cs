@@ -60,13 +60,13 @@ namespace T4MVCHostMvcApp.Controllers
 
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public TestAttributeYesControllerName3 Actions { get { return MVC.TestAttributeYesName3; } }
+        public TestAttributeYesControllerName3 Actions { get { return MVC.TestAttributeYesControllerName3; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "TestAttributeYesName3";
+        public readonly string Name = "TestAttributeYesControllerName3";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "TestAttributeYesName3";
+        public const string NameConst = "TestAttributeYesControllerName3";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
