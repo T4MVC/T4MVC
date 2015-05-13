@@ -8,8 +8,8 @@
     <description>T4MVCVB is a T4 template that generates strongly typed helpers for ASP.NET MVC written in VB.</description>
     <summary>T4MVCVB is a T4 template that generates strongly typed helpers for ASP.NET MVC written in VB.</summary>
     <language>en-US</language>
-    <licenseUrl>http://mvccontrib.codeplex.com/license</licenseUrl>
-    <projectUrl>http://t4mvc.codeplex.com/</projectUrl>
+    <licenseUrl>https://github.com/T4MVC/T4MVC/blob/master/License.txt</licenseUrl>
+    <projectUrl>https://github.com/T4MVC/T4MVC</projectUrl>
     <tags>t4 mvc t4mvc t4mvcvb</tags>
     <dependencies>
       <dependency id="T4MVCExtensions" version="3.7.4" />
