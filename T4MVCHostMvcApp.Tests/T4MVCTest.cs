@@ -334,8 +334,8 @@ namespace T4MVCHostMvcApp.Tests
             var actionRes = (IT4MVCActionResult)MVC.Home.ActionWithAllOptionalParams();
 
             TestAreaControllerActionNames(actionRes, "", "Home", "ActionWithAllOptionalParams");
-            TestRouteValue(actionRes, "someString", "Hello");
-            TestRouteValue(actionRes, "n", 5);
+            TestNoRouteValue(actionRes, "someString");
+            TestNoRouteValue(actionRes, "n");
         }
 
         [TestMethod()]
@@ -350,10 +350,19 @@ namespace T4MVCHostMvcApp.Tests
         [TestMethod()]
         public void TestOptionalParamWhenNotPassingItIn()
         {
+            var actionRes = (IT4MVCActionResult)MVC.Home.ActionWithSomeOptionalParams("Hello", 7);
+
+            TestRouteValue(actionRes, "someString", "Hello");
+            TestRouteValue(actionRes, "n", 7);
+        }
+
+        [TestMethod()]
+        public void TestOptionalParamWhenPassingInNonDefaultValue()
+        {
             var actionRes = (IT4MVCActionResult)MVC.Home.ActionWithSomeOptionalParams("Hello");
 
             TestRouteValue(actionRes, "someString", "Hello");
-            TestRouteValue(actionRes, "n", 5);
+            TestNoRouteValue(actionRes, "n");
         }
 
         [TestMethod()]
@@ -361,7 +370,7 @@ namespace T4MVCHostMvcApp.Tests
         {
             var actionRes = (IT4MVCActionResult)MVC.Home.ActionWithOptionalParamDefaultingToNull(null);
 
-            TestRouteValue(actionRes, "n", null);
+            TestNoRouteValue(actionRes, "n");
         }
 
         [TestMethod()]
