@@ -1301,6 +1301,16 @@ if (!settings.ExcludedStaticFileExtensions.Any(extension => projectItem.Name.End
     public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>") : Url("<#=tsJavascriptName#>");
 <#+}  #>
 <#+}
+    // if it's a Typescript JSX file
+    else if (projectItem.Name.EndsWith(".tsx")) {
+        string tsJavascriptName =  projectItem.Name.Replace(".tsx", ".js");
+        string minifiedName = projectItem.Name.Replace(".tsx", ".min.js");
+        if (AddTimestampToStaticLink(projectItem)) { #>
+    public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=minifiedName#>") : Url("<#=tsJavascriptName#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=tsJavascriptName#>");
+        <#+} else {#>
+    public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>") : Url("<#=tsJavascriptName#>");
+<#+}  #>
+<#+}
     // if it's a non-minified javascript file
     else if (projectItem.Name.EndsWith(".js") && !projectItem.Name.EndsWith(".min.js")) {
         string minifiedName = projectItem.Name.Replace(".js", ".min.js");
