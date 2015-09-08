@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.16.0 (9-08-2015)
+* Added support for TypeScript JSX files. [url:https://github.com/T4MVC/T4MVC/pull/45]
+
 !!! 3.15.4 (5-27-2015)
 * Updated pragmas to avoid unnecessary warnings. [url:https://github.com/T4MVC/T4MVC/pull/33]
 
