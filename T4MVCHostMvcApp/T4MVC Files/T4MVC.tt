@@ -1290,47 +1290,33 @@ PopIndent();
 }
     else { #>
 <#+
+    var mapping = new Dictionary<string, Tuple<string, string>>();
+	mapping.Add(".ts", Tuple.Create(".js", ".min.js"));
+	mapping.Add(".tsx", Tuple.Create(".js", ".min.js"));
+	mapping.Add(".js", Tuple.Create(".js", ".min.js"));
+	mapping.Add(".css", Tuple.Create(".css", ".min.css"));
+
 if (!settings.ExcludedStaticFileExtensions.Any(extension => projectItem.Name.EndsWith(extension, StringComparison.OrdinalIgnoreCase))) {
-    // if it's a Typescript file
-    if (projectItem.Name.EndsWith(".ts")) {
-        string tsJavascriptName =  projectItem.Name.Replace(".ts", ".js");
-        string minifiedName = projectItem.Name.Replace(".ts", ".min.js");
+
+	var extension = projectItem.Name.Substring(projectItem.Name.LastIndexOf("."));
+
+	if(mapping.ContainsKey(extension))
+	{
+		var map = mapping[extension];
+
+		if (!projectItem.Name.EndsWith(map.Item2)) {
+		string nonMinifiedName = projectItem.Name.Replace(extension, map.Item1);
+        string minifiedName = projectItem.Name.Replace(extension, map.Item2);
         if (AddTimestampToStaticLink(projectItem)) { #>
-    public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=minifiedName#>") : Url("<#=tsJavascriptName#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=tsJavascriptName#>");
+    public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=minifiedName#>") : Url("<#=nonMinifiedName#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=nonMinifiedName#>");
         <#+} else {#>
-    public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>") : Url("<#=tsJavascriptName#>");
+    public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>") : Url("<#=nonMinifiedName#>");
 <#+}  #>
 <#+}
-    // if it's a Typescript JSX file
-    else if (projectItem.Name.EndsWith(".tsx")) {
-        string tsJavascriptName =  projectItem.Name.Replace(".tsx", ".js");
-        string minifiedName = projectItem.Name.Replace(".tsx", ".min.js");
-        if (AddTimestampToStaticLink(projectItem)) { #>
-    public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=minifiedName#>") : Url("<#=tsJavascriptName#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=tsJavascriptName#>");
-        <#+} else {#>
-    public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>") : Url("<#=tsJavascriptName#>");
-<#+}  #>
+    else { #>
+    public static readonly string <#=name#> = Url("<#=projectItem.Name#>");
 <#+}
-    // if it's a non-minified javascript file
-    else if (projectItem.Name.EndsWith(".js") && !projectItem.Name.EndsWith(".min.js")) {
-        string minifiedName = projectItem.Name.Replace(".js", ".min.js");
-        if (AddTimestampToStaticLink(projectItem)) { #>
-    public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=minifiedName#>") : Url("<#=projectItem.Name#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name#>");
-        <#+} else {#>
-    public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>") : Url("<#=projectItem.Name#>");
-<#+}  #>
-<#+}
-    else if (projectItem.Name.EndsWith(".css") && !projectItem.Name.EndsWith(".min.css")) { 
-        string minifiedName = projectItem.Name.Replace(".css", ".min.css");
-        if (AddTimestampToStaticLink(projectItem)) { #>
-    public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=minifiedName#>") : Url("<#=projectItem.Name#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name#>");
-        <#+} else {#>
-    public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>") : Url("<#=projectItem.Name#>");
-        <#+}  #> 
-<#+}
-    else if (AddTimestampToStaticLink(projectItem)) { #>
-    public static readonly string <#=name#> = Url("<#=projectItem.Name#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name#>");
-<#+}
+	}
     else { #>
     public static readonly string <#=name#> = Url("<#=projectItem.Name#>");
 <#+}
