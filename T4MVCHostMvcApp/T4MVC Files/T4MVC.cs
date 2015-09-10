@@ -283,7 +283,6 @@ namespace Links
         public static readonly string Hello_World_txt_ = Url("Hello$World.txt");
         public static readonly string Hello_World_txt__ = Url("Hello+World.txt");
         public static readonly string Site_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Site.min.css") ? Url("Site.min.css") : Url("Site.css");
-             
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class SomeRandomName {
             private const string URLPATH = "~/Content/SomeRandomName";
@@ -303,7 +302,6 @@ namespace Links
         }
     
         public static readonly string StyleSheet_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/StyleSheet.min.css") ? Url("StyleSheet.min.css") : Url("StyleSheet.css");
-             
         public static readonly string StyleSheet_min_css = Url("StyleSheet.min.css");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class Sub_Content_folder_test {
@@ -582,7 +580,6 @@ namespace Links
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                 public static readonly string Home_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Home.min.css") ? Url("Home.min.css") : Url("Home.css");
-                     
             }
         
         }
