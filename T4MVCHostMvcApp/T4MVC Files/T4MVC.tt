@@ -2458,7 +2458,7 @@ class XmlStringArray : XmlSettingsBase, IEnumerable<string>
     }
 }
 
-/// This is the base class for the standard settings, the main settigns class should inherit from this
+/// This is the base class for the standard settings, the main settings class should inherit from this
 /// one since it provides the methods to interact with the T4 system and EnvDTE. Sub-properties can
 /// just inherit from XmlSettingsBase.
 abstract class XmlSettings : XmlSettingsBase
