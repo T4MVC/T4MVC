@@ -33,8 +33,8 @@ Please use in accordance to the Apache license (http://mvccontrib.codeplex.com/l
 <#@ import namespace="EnvDTE80" #>
 <#@ import namespace="Microsoft.VisualStudio.TextTemplating" #>
 <# // To debug, uncomment the next two lines !! 
-// System.Diagnostics.Debugger.Launch();
-// System.Diagnostics.Debugger.Break();
+//System.Diagnostics.Debugger.Launch();
+//System.Diagnostics.Debugger.Break();
 #>
 <#settings=MvcSettings.Load(Host);#>
 <#PrepareDataToRender(this); #>
@@ -371,7 +371,7 @@ foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (gr
 <#if (method.Parameters.Count > 0) { #>
 <#foreach (var p in method.Parameters) { #>
 <# if (p.DefaultValue != null) { #>
-            if (<#=p.Name #> != <#=p.DefaultValue#>)
+            if (<#=p.Name #> != <#=SanitizeDefaultValue(p.DefaultValue, p.Type)#>)
     <# } #>
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, <#=p.RouteNameExpression #>, <#=p.Name #>);
 <#} #>
@@ -1651,6 +1651,23 @@ static string Sanitize(string token)
 static string EscapeID(string id)
 {
     return codeProvider.CreateEscapedIdentifier(id);
+}
+
+static string SanitizeDefaultValue(string defaultValue, string type)
+{
+	// Normalize default values that are
+	// 1. default(T) for some type T
+	// 2. The parameterless constructor of a value type
+	if (Regex.IsMatch(defaultValue, @"^\s*default\s*\(.*?\)"))
+    {
+		defaultValue = string.Format("default({0})", type);
+    }
+	else if(Regex.IsMatch(defaultValue, @"^\s*new\s*.*?\s*\(\s*\)"))
+    {
+		defaultValue = string.Format("new {0}()", type);
+    }
+
+	return defaultValue;
 }
 
 // Data structure to collect data about an area
