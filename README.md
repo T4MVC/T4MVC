@@ -23,8 +23,7 @@ and that's just the beginning!
 *   **Discuss**: Discuss it on [GitHub](https://github.com/T4MVC/T4MVC/issues)
 *   **Contribute**: learn how on the [Contributor page](/wikipage?title=T4MVC_contrib&amp;referringTitle=Home "T4MVC_contrib&amp;referringTitle=Home")
 *   **News**: [Follow David Ebbo on Twitter](http://twitter.com/davidebbo/) to get T4MVC announcements.
-*   **History &amp; release notes**: [change history](/wikipage?title=T4MVC_History&amp;referringTitle=Home "T4MVC_History&amp;referringTitle=Home")
-*   **Known issues**: find the list of known issues [here](/wikipage?title=T4MVC_KnownIssues&amp;referringTitle=Home "T4MVC_KnownIssues&amp;referringTitle=Home")
+*   **History &amp; release notes**: [change history](T4MVCHostMvcApp/T4MVC%20Files/readme.txt)
 *   **Twitter quotes**: cool things people are saying on Twitter [here](/wikipage?title=T4MVC_Twitter&amp;referringTitle=Home "T4MVC_Twitter&amp;referringTitle=Home")
 
 T4MVC is part of the [MvcContrib](http://mvccontrib.codeplex.com) project, which is part of the [Outercurve Foundation](http://www.outercurve.org/)
