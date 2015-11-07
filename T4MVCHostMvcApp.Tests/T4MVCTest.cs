@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Threading;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -371,6 +372,38 @@ namespace T4MVCHostMvcApp.Tests
             var actionRes = (IT4MVCActionResult)MVC.Home.ActionWithOptionalParamDefaultingToNull(null);
 
             TestNoRouteValue(actionRes, "n");
+        }
+
+        [TestMethod()]
+        public void TestOptionalParamWithDefaultValue()
+        {
+            var actionRes = (IT4MVCActionResult)MVC.Home.ActionWithOptionalParamDefaultingToDefaultValue(default(CancellationToken));
+
+            TestNoRouteValue(actionRes, "cancellationToken");
+        }
+
+        [TestMethod()]
+        public void TestOptionalParamWithDefaultValueContainingSpaces()
+        {
+            var actionRes = (IT4MVCActionResult)MVC.Home.ActionWithOptionalParamDefaultingToDefaultValueWithSpaces(default(CancellationToken));
+
+            TestNoRouteValue(actionRes, "cancellationToken");
+        }
+
+        [TestMethod()]
+        public void TestOptionalParamWithDefaultValueAndFullyQualifiedTypeName()
+        {
+            var actionRes = (IT4MVCActionResult)MVC.Home.ActionWithOptionalParamDefaultingToDefaultValueWithFullyQualifiedTypeName(default(CancellationToken));
+
+            TestNoRouteValue(actionRes, "cancellationToken");
+        }
+
+        [TestMethod()]
+        public void TestOptionalParamWithConstructedDefaultValue()
+        {
+            var actionRes = (IT4MVCActionResult)MVC.Home.ActionWithOptionalParamDefaultingToConstructedDefaultValue(default(CancellationToken));
+
+            TestNoRouteValue(actionRes, "cancellationToken");
         }
 
         [TestMethod()]

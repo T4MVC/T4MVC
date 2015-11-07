@@ -132,6 +132,10 @@ namespace T4MVCHostMvcApp.Controllers
             public readonly string ActionWithAllOptionalParams = "ActionWithAllOptionalParams";
             public readonly string ActionWithSomeOptionalParams = "ActionWithSomeOptionalParams";
             public readonly string ActionWithOptionalParamDefaultingToNull = "ActionWithOptionalParamDefaultingToNull";
+            public readonly string ActionWithOptionalParamDefaultingToDefaultValue = "ActionWithOptionalParamDefaultingToDefaultValue";
+            public readonly string ActionWithOptionalParamDefaultingToDefaultValueWithFullyQualifiedTypeName = "ActionWithOptionalParamDefaultingToDefaultValueWithFullyQualifiedTypeName";
+            public readonly string ActionWithOptionalParamDefaultingToDefaultValueWithSpaces = "ActionWithOptionalParamDefaultingToDefaultValueWithSpaces";
+            public readonly string ActionWithOptionalParamDefaultingToConstructedDefaultValue = "ActionWithOptionalParamDefaultingToConstructedDefaultValue";
             public readonly string ActionWithParamUsingAtSyntax = "ActionWithParamUsingAtSyntax";
             public readonly string ActionThatUsesActionNameConstantInAttribute = "ActionThatUsesActionNameConstantInAttribute";
             public readonly string ActionThatRequiresHttps = "ActionThatRequiresHttps";
@@ -161,6 +165,10 @@ namespace T4MVCHostMvcApp.Controllers
             public const string ActionWithAllOptionalParams = "ActionWithAllOptionalParams";
             public const string ActionWithSomeOptionalParams = "ActionWithSomeOptionalParams";
             public const string ActionWithOptionalParamDefaultingToNull = "ActionWithOptionalParamDefaultingToNull";
+            public const string ActionWithOptionalParamDefaultingToDefaultValue = "ActionWithOptionalParamDefaultingToDefaultValue";
+            public const string ActionWithOptionalParamDefaultingToDefaultValueWithFullyQualifiedTypeName = "ActionWithOptionalParamDefaultingToDefaultValueWithFullyQualifiedTypeName";
+            public const string ActionWithOptionalParamDefaultingToDefaultValueWithSpaces = "ActionWithOptionalParamDefaultingToDefaultValueWithSpaces";
+            public const string ActionWithOptionalParamDefaultingToConstructedDefaultValue = "ActionWithOptionalParamDefaultingToConstructedDefaultValue";
             public const string ActionWithParamUsingAtSyntax = "ActionWithParamUsingAtSyntax";
             public const string ActionThatUsesActionNameConstantInAttribute = "ActionThatUsesActionNameConstantInAttribute";
             public const string ActionThatRequiresHttps = "ActionThatRequiresHttps";
@@ -216,6 +224,38 @@ namespace T4MVCHostMvcApp.Controllers
         public class ActionParamsClass_ActionWithOptionalParamDefaultingToNull
         {
             public readonly string n = "n";
+        }
+        static readonly ActionParamsClass_ActionWithOptionalParamDefaultingToDefaultValue s_params_ActionWithOptionalParamDefaultingToDefaultValue = new ActionParamsClass_ActionWithOptionalParamDefaultingToDefaultValue();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ActionWithOptionalParamDefaultingToDefaultValue ActionWithOptionalParamDefaultingToDefaultValueParams { get { return s_params_ActionWithOptionalParamDefaultingToDefaultValue; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ActionWithOptionalParamDefaultingToDefaultValue
+        {
+            public readonly string cancellationToken = "cancellationToken";
+        }
+        static readonly ActionParamsClass_ActionWithOptionalParamDefaultingToDefaultValueWithFullyQualifiedTypeName s_params_ActionWithOptionalParamDefaultingToDefaultValueWithFullyQualifiedTypeName = new ActionParamsClass_ActionWithOptionalParamDefaultingToDefaultValueWithFullyQualifiedTypeName();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ActionWithOptionalParamDefaultingToDefaultValueWithFullyQualifiedTypeName ActionWithOptionalParamDefaultingToDefaultValueWithFullyQualifiedTypeNameParams { get { return s_params_ActionWithOptionalParamDefaultingToDefaultValueWithFullyQualifiedTypeName; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ActionWithOptionalParamDefaultingToDefaultValueWithFullyQualifiedTypeName
+        {
+            public readonly string cancellationToken = "cancellationToken";
+        }
+        static readonly ActionParamsClass_ActionWithOptionalParamDefaultingToDefaultValueWithSpaces s_params_ActionWithOptionalParamDefaultingToDefaultValueWithSpaces = new ActionParamsClass_ActionWithOptionalParamDefaultingToDefaultValueWithSpaces();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ActionWithOptionalParamDefaultingToDefaultValueWithSpaces ActionWithOptionalParamDefaultingToDefaultValueWithSpacesParams { get { return s_params_ActionWithOptionalParamDefaultingToDefaultValueWithSpaces; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ActionWithOptionalParamDefaultingToDefaultValueWithSpaces
+        {
+            public readonly string cancellationToken = "cancellationToken";
+        }
+        static readonly ActionParamsClass_ActionWithOptionalParamDefaultingToConstructedDefaultValue s_params_ActionWithOptionalParamDefaultingToConstructedDefaultValue = new ActionParamsClass_ActionWithOptionalParamDefaultingToConstructedDefaultValue();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ActionWithOptionalParamDefaultingToConstructedDefaultValue ActionWithOptionalParamDefaultingToConstructedDefaultValueParams { get { return s_params_ActionWithOptionalParamDefaultingToConstructedDefaultValue; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ActionWithOptionalParamDefaultingToConstructedDefaultValue
+        {
+            public readonly string cancellationToken = "cancellationToken";
         }
         static readonly ActionParamsClass_ActionWithParamUsingAtSyntax s_params_ActionWithParamUsingAtSyntax = new ActionParamsClass_ActionWithParamUsingAtSyntax();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -531,6 +571,58 @@ namespace T4MVCHostMvcApp.Controllers
         }
 
         [NonAction]
+        partial void ActionWithOptionalParamDefaultingToDefaultValueOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Threading.CancellationToken cancellationToken);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ActionWithOptionalParamDefaultingToDefaultValue(System.Threading.CancellationToken cancellationToken)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithOptionalParamDefaultingToDefaultValue);
+            if (cancellationToken != default(System.Threading.CancellationToken))
+                ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "cancellationToken", cancellationToken);
+            ActionWithOptionalParamDefaultingToDefaultValueOverride(callInfo, cancellationToken);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ActionWithOptionalParamDefaultingToDefaultValueWithFullyQualifiedTypeNameOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Threading.CancellationToken cancellationToken);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ActionWithOptionalParamDefaultingToDefaultValueWithFullyQualifiedTypeName(System.Threading.CancellationToken cancellationToken)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithOptionalParamDefaultingToDefaultValueWithFullyQualifiedTypeName);
+            if (cancellationToken != default(System.Threading.CancellationToken))
+                ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "cancellationToken", cancellationToken);
+            ActionWithOptionalParamDefaultingToDefaultValueWithFullyQualifiedTypeNameOverride(callInfo, cancellationToken);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ActionWithOptionalParamDefaultingToDefaultValueWithSpacesOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Threading.CancellationToken cancellationToken);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ActionWithOptionalParamDefaultingToDefaultValueWithSpaces(System.Threading.CancellationToken cancellationToken)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithOptionalParamDefaultingToDefaultValueWithSpaces);
+            if (cancellationToken != default(System.Threading.CancellationToken))
+                ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "cancellationToken", cancellationToken);
+            ActionWithOptionalParamDefaultingToDefaultValueWithSpacesOverride(callInfo, cancellationToken);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ActionWithOptionalParamDefaultingToConstructedDefaultValueOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Threading.CancellationToken cancellationToken);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ActionWithOptionalParamDefaultingToConstructedDefaultValue(System.Threading.CancellationToken cancellationToken)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithOptionalParamDefaultingToConstructedDefaultValue);
+            if (cancellationToken != new System.Threading.CancellationToken())
+                ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "cancellationToken", cancellationToken);
+            ActionWithOptionalParamDefaultingToConstructedDefaultValueOverride(callInfo, cancellationToken);
+            return callInfo;
+        }
+
+        [NonAction]
         partial void ActionWithParamUsingAtSyntaxOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int @event);
 
         [NonAction]
@@ -615,7 +707,7 @@ namespace T4MVCHostMvcApp.Controllers
         partial void ActionReturningGenericResultNestedOverride(T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_Collections_Generic_List_System_Tuple_System_String_System_String_System_Int32 callInfo);
 
         [NonAction]
-        public override T4MVCHostMvcApp.Controllers.SomeGenericResult<System.Collections.Generic.List<System.Tuple<System.String,System.String,System.Int32>>> ActionReturningGenericResultNested()
+        public override T4MVCHostMvcApp.Controllers.SomeGenericResult<System.Collections.Generic.List<System.Tuple<System.String, System.String, System.Int32>>> ActionReturningGenericResultNested()
         {
             var callInfo = new T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_Collections_Generic_List_System_Tuple_System_String_System_String_System_Int32(Area, Name, ActionNames.ActionReturningGenericResultNested);
             ActionReturningGenericResultNestedOverride(callInfo);
