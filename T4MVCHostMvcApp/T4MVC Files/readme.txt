@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.16.1 (11-08-2015)
+* Don't add default params to routes. [url:https://github.com/T4MVC/T4MVC/issues/44]
+
 !!! 3.16.0 (9-08-2015)
 * Added support for TypeScript JSX files. [url:https://github.com/T4MVC/T4MVC/pull/45]
 

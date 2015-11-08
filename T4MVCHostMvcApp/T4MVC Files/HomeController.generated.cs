@@ -495,8 +495,10 @@ namespace T4MVCHostMvcApp.Controllers
         public override System.Web.Mvc.ActionResult ActionWithAllOptionalParams(string someString, int n)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithAllOptionalParams);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someString", someString);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
+            if (someString != "Hello")
+                ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someString", someString);
+            if (n != 5)
+                ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
             ActionWithAllOptionalParamsOverride(callInfo, someString, n);
             return callInfo;
         }
@@ -509,7 +511,8 @@ namespace T4MVCHostMvcApp.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithSomeOptionalParams);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someString", someString);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
+            if (n != 5)
+                ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
             ActionWithSomeOptionalParamsOverride(callInfo, someString, n);
             return callInfo;
         }
@@ -521,7 +524,8 @@ namespace T4MVCHostMvcApp.Controllers
         public override System.Web.Mvc.ActionResult ActionWithOptionalParamDefaultingToNull(int? n)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithOptionalParamDefaultingToNull);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
+            if (n != null)
+                ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
             ActionWithOptionalParamDefaultingToNullOverride(callInfo, n);
             return callInfo;
         }
