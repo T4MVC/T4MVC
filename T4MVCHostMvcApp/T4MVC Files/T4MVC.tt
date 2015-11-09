@@ -371,7 +371,7 @@ foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (gr
 <#if (method.Parameters.Count > 0) { #>
 <#foreach (var p in method.Parameters) { #>
 <# if (p.DefaultValue != null) { #>
-            if (<#=p.Name #> != <#=SanitizeDefaultValue(p.DefaultValue, p.Type)#>)
+            if (!<#=p.Name #>.Equals(<#=SanitizeDefaultValue(p.DefaultValue, p.Type)#>))
     <# } #>
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, <#=p.RouteNameExpression #>, <#=p.Name #>);
 <#} #>

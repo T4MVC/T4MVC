@@ -535,9 +535,9 @@ namespace T4MVCHostMvcApp.Controllers
         public override System.Web.Mvc.ActionResult ActionWithAllOptionalParams(string someString, int n)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithAllOptionalParams);
-            if (someString != "Hello")
+            if (!someString.Equals("Hello"))
                 ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someString", someString);
-            if (n != 5)
+            if (!n.Equals(5))
                 ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
             ActionWithAllOptionalParamsOverride(callInfo, someString, n);
             return callInfo;
@@ -551,7 +551,7 @@ namespace T4MVCHostMvcApp.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithSomeOptionalParams);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someString", someString);
-            if (n != 5)
+            if (!n.Equals(5))
                 ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
             ActionWithSomeOptionalParamsOverride(callInfo, someString, n);
             return callInfo;
@@ -564,7 +564,7 @@ namespace T4MVCHostMvcApp.Controllers
         public override System.Web.Mvc.ActionResult ActionWithOptionalParamDefaultingToNull(int? n)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithOptionalParamDefaultingToNull);
-            if (n != null)
+            if (!n.Equals(null))
                 ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
             ActionWithOptionalParamDefaultingToNullOverride(callInfo, n);
             return callInfo;
@@ -577,7 +577,7 @@ namespace T4MVCHostMvcApp.Controllers
         public override System.Web.Mvc.ActionResult ActionWithOptionalParamDefaultingToDefaultValue(System.Threading.CancellationToken cancellationToken)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithOptionalParamDefaultingToDefaultValue);
-            if (cancellationToken != default(System.Threading.CancellationToken))
+            if (!cancellationToken.Equals(default(System.Threading.CancellationToken)))
                 ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "cancellationToken", cancellationToken);
             ActionWithOptionalParamDefaultingToDefaultValueOverride(callInfo, cancellationToken);
             return callInfo;
@@ -590,7 +590,7 @@ namespace T4MVCHostMvcApp.Controllers
         public override System.Web.Mvc.ActionResult ActionWithOptionalParamDefaultingToDefaultValueWithFullyQualifiedTypeName(System.Threading.CancellationToken cancellationToken)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithOptionalParamDefaultingToDefaultValueWithFullyQualifiedTypeName);
-            if (cancellationToken != default(System.Threading.CancellationToken))
+            if (!cancellationToken.Equals(default(System.Threading.CancellationToken)))
                 ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "cancellationToken", cancellationToken);
             ActionWithOptionalParamDefaultingToDefaultValueWithFullyQualifiedTypeNameOverride(callInfo, cancellationToken);
             return callInfo;
@@ -603,7 +603,7 @@ namespace T4MVCHostMvcApp.Controllers
         public override System.Web.Mvc.ActionResult ActionWithOptionalParamDefaultingToDefaultValueWithSpaces(System.Threading.CancellationToken cancellationToken)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithOptionalParamDefaultingToDefaultValueWithSpaces);
-            if (cancellationToken != default(System.Threading.CancellationToken))
+            if (!cancellationToken.Equals(default(System.Threading.CancellationToken)))
                 ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "cancellationToken", cancellationToken);
             ActionWithOptionalParamDefaultingToDefaultValueWithSpacesOverride(callInfo, cancellationToken);
             return callInfo;
@@ -616,7 +616,7 @@ namespace T4MVCHostMvcApp.Controllers
         public override System.Web.Mvc.ActionResult ActionWithOptionalParamDefaultingToConstructedDefaultValue(System.Threading.CancellationToken cancellationToken)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithOptionalParamDefaultingToConstructedDefaultValue);
-            if (cancellationToken != new System.Threading.CancellationToken())
+            if (!cancellationToken.Equals(new System.Threading.CancellationToken()))
                 ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "cancellationToken", cancellationToken);
             ActionWithOptionalParamDefaultingToConstructedDefaultValueOverride(callInfo, cancellationToken);
             return callInfo;
