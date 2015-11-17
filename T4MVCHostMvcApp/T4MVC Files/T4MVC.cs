@@ -44,7 +44,7 @@ public static partial class MVC
     public static T4MVCHostMvcApp.Controllers.TestAttributeYesProcessed2Controller TestAttributeYesProcessed2 = new T4MVCHostMvcApp.Controllers.T4MVC_TestAttributeYesProcessed2Controller();
     public static T4MVCHostMvcApp.Controllers.TestAttributeYesAbstract2Controller TestAttributeYesAbstract2 = new T4MVCHostMvcApp.Controllers.T4MVC_TestAttributeYesAbstract2Controller();
     public static T4MVCHostMvcApp.Controllers.TestAttributeYesDerivedController TestAttributeYesDerived = new T4MVCHostMvcApp.Controllers.T4MVC_TestAttributeYesDerivedController();
-    public static T4MVC.NoControllerMatchingFolderController NoControllerMatchingFolder = new T4MVC.NoControllerMatchingFolderController();
+    public static T4MVC.NoControllerMatchingFolder_FooController NoControllerMatchingFolder_Foo = new T4MVC.NoControllerMatchingFolder_FooController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
     public static T4MVCHostMvcApp.Features.Contact.ContactController Contact = new T4MVCHostMvcApp.Features.Contact.T4MVC_ContactController();
     public static T4MVCHostMvcApp.Features.Pictures.PicturesController Pictures = new T4MVCHostMvcApp.Features.Pictures.T4MVC_PicturesController();
@@ -421,8 +421,8 @@ namespace Links
         }
     
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public static class NoControllerMatchingFolder {
-            private const string URLPATH = "~/Views/NoControllerMatchingFolder";
+        public static class NoControllerMatchingFolder_Foo {
+            private const string URLPATH = "~/Views/NoControllerMatchingFolder.Foo";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
             public static readonly string Abcd_txt = Url("Abcd.txt");
@@ -716,7 +716,7 @@ namespace Links
                 {
                 }
             }
-            public static partial class NoControllerMatchingFolder 
+            public static partial class NoControllerMatchingFolder_Foo 
             {
                 public static class Assets
                 {

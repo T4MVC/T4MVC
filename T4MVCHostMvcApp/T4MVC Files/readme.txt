@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.16.2 (11-17-2015)
+* Fix case where view folder name has period. [url:https://github.com/T4MVC/T4MVC/issues/51]
+
 !!! 3.16.1 (11-08-2015)
 * Don't add default params to routes. [url:https://github.com/T4MVC/T4MVC/issues/44]
 

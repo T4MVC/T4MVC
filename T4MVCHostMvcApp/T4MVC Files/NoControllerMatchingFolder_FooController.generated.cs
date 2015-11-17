@@ -25,7 +25,7 @@ using System.Web.Routing;
 using T4MVC;
 namespace T4MVC
 {
-    public class NoControllerMatchingFolderController
+    public class NoControllerMatchingFolder_FooController
     {
 
         static readonly ViewsClass s_views = new ViewsClass();
@@ -41,8 +41,8 @@ namespace T4MVC
                 public readonly string Abcd = "Abcd";
                 public readonly string DuplicateControl = "DuplicateControl";
             }
-            public readonly string Abcd = "~/Views/NoControllerMatchingFolder/Abcd.txt";
-            public readonly string DuplicateControl = "~/Views/NoControllerMatchingFolder/DuplicateControl.ascx";
+            public readonly string Abcd = "~/Views/NoControllerMatchingFolder.Foo/Abcd.txt";
+            public readonly string DuplicateControl = "~/Views/NoControllerMatchingFolder.Foo/DuplicateControl.ascx";
         }
     }
 

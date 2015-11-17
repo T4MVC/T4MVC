@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>T4MVC</id>
-    <version>3.16.1</version>
+    <version>3.16.2</version>
     <authors>David Ebbo</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>T4MVC is a T4 template that generates strongly typed helpers for ASP.NET MVC.</description>
@@ -12,7 +12,7 @@
     <projectUrl>https://github.com/T4MVC/T4MVC</projectUrl>
     <tags>t4 mvc t4mvc</tags>
     <dependencies>
-      <dependency id="T4MVCExtensions" version="3.16.1" />
+      <dependency id="T4MVCExtensions" version="3.16.2" />
     </dependencies>
   </metadata>
   <files>

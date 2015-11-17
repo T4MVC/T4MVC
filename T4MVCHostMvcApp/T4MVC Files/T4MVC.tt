@@ -1,6 +1,6 @@
 ﻿<#
 /*
-T4MVC Version 3.16.1
+T4MVC Version 3.16.2
 Find latest version and documentation at https://github.com/T4MVC/T4MVC/wiki/Documentation
 Discuss on StackOverflow or on GitHub (https://github.com/T4MVC/T4MVC/issues)
 
@@ -940,7 +940,7 @@ void ProcessAllViews(ProjectItem viewsProjectItem, AreaInfo area)
                 Area = area,
                 NotRealController = true,
                 Namespace = MakeClassName(settings.T4MVCNamespace, area.Name),
-                ClassName = item.Name + ControllerSuffix
+                ClassName = Sanitize(item.Name) + ControllerSuffix
             };
             area.Controllers.Add(controller);
         }

@@ -196,7 +196,7 @@
     <Content Include="Views\Home\DuplicateControl.ascx" />
     <Content Include="Views\Home\EditorTemplates\SomeEditorTemplate.ascx" />
     <Content Include="Views\Home\SomeName\SomeName\SomeName.txt" />
-    <Content Include="Views\NoControllerMatchingFolder\DuplicateControl.ascx" />
+    <Content Include="Views\NoControllerMatchingFolder.Foo\DuplicateControl.ascx" />
     <Content Include="Views\Shared\AnotherPartial.ascx" />
     <Content Include="Views\Shared\DuplicateControl.ascx" />
     <Content Include="Views\Shared\DuplicateControl1.ascx" />
@@ -247,7 +247,7 @@
     <Content Include="Views\Home\Sub Home\Nested-Sub\99 Super~Nested-View.txt" />
     <Content Include="Views\Home\Sub Home\Qqq.txt" />
     <Content Include="Views\Home\Sub Home\string.txt" />
-    <Content Include="Views\NoControllerMatchingFolder\Abcd.txt" />
+    <Content Include="Views\NoControllerMatchingFolder.Foo\Abcd.txt" />
     <None Include="Content\Sub Content-folder.test\SomeT4.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SomeT41.txt</LastGenOutput>
@@ -283,13 +283,13 @@
     <Compile Include="T4MVC Files\ContactController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="T4MVC Files\DefaultController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="T4MVC Files\FeatureFolderArea.FeatureFooController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4MVC Files\FeatureFolderArea.SharedViewsController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="T4MVC Files\DefaultController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4MVC Files\Home.HomeController.generated.cs">
@@ -304,7 +304,7 @@
     <Compile Include="T4MVC Files\ModelUnbinderController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="T4MVC Files\NoControllerMatchingFolderController.generated.cs">
+    <Compile Include="T4MVC Files\NoControllerMatchingFolder_FooController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4MVC Files\PicturesController.generated.cs">
