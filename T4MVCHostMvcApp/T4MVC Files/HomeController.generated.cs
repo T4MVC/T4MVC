@@ -145,6 +145,8 @@ namespace T4MVCHostMvcApp.Controllers
             public readonly string ActionReturningGenericResultNested = "ActionReturningGenericResultNested";
             public readonly string SomeTaskBasedAction = "SomeTaskBasedAction";
             public readonly string SomeTaskBasedActionWithParams = "SomeTaskBasedActionWithParams";
+            public readonly string ActionUsingPrivateFieldForDefaultValue = "ActionUsingPrivateFieldForDefaultValue";
+            public readonly string ActionUsingEnumDeclaredInOtherNamespace = "ActionUsingEnumDeclaredInOtherNamespace";
             public readonly string SomeAbstractResult = "SomeAbstractResult";
         }
 
@@ -178,6 +180,8 @@ namespace T4MVCHostMvcApp.Controllers
             public const string ActionReturningGenericResultNested = "ActionReturningGenericResultNested";
             public const string SomeTaskBasedAction = "SomeTaskBasedAction";
             public const string SomeTaskBasedActionWithParams = "SomeTaskBasedActionWithParams";
+            public const string ActionUsingPrivateFieldForDefaultValue = "ActionUsingPrivateFieldForDefaultValue";
+            public const string ActionUsingEnumDeclaredInOtherNamespace = "ActionUsingEnumDeclaredInOtherNamespace";
             public const string SomeAbstractResult = "SomeAbstractResult";
         }
 
@@ -289,6 +293,22 @@ namespace T4MVCHostMvcApp.Controllers
         public class ActionParamsClass_SomeTaskBasedActionWithParams
         {
             public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_ActionUsingPrivateFieldForDefaultValue s_params_ActionUsingPrivateFieldForDefaultValue = new ActionParamsClass_ActionUsingPrivateFieldForDefaultValue();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ActionUsingPrivateFieldForDefaultValue ActionUsingPrivateFieldForDefaultValueParams { get { return s_params_ActionUsingPrivateFieldForDefaultValue; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ActionUsingPrivateFieldForDefaultValue
+        {
+            public readonly string rate = "rate";
+        }
+        static readonly ActionParamsClass_ActionUsingEnumDeclaredInOtherNamespace s_params_ActionUsingEnumDeclaredInOtherNamespace = new ActionParamsClass_ActionUsingEnumDeclaredInOtherNamespace();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ActionUsingEnumDeclaredInOtherNamespace ActionUsingEnumDeclaredInOtherNamespaceParams { get { return s_params_ActionUsingEnumDeclaredInOtherNamespace; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ActionUsingEnumDeclaredInOtherNamespace
+        {
+            public readonly string jobType = "jobType";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -535,10 +555,8 @@ namespace T4MVCHostMvcApp.Controllers
         public override System.Web.Mvc.ActionResult ActionWithAllOptionalParams(string someString, int n)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithAllOptionalParams);
-            if (!someString.Equals("Hello"))
-                ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someString", someString);
-            if (!n.Equals(5))
-                ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someString", someString);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
             ActionWithAllOptionalParamsOverride(callInfo, someString, n);
             return callInfo;
         }
@@ -551,8 +569,7 @@ namespace T4MVCHostMvcApp.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithSomeOptionalParams);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "someString", someString);
-            if (!n.Equals(5))
-                ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
             ActionWithSomeOptionalParamsOverride(callInfo, someString, n);
             return callInfo;
         }
@@ -564,8 +581,7 @@ namespace T4MVCHostMvcApp.Controllers
         public override System.Web.Mvc.ActionResult ActionWithOptionalParamDefaultingToNull(int? n)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithOptionalParamDefaultingToNull);
-            if (!n.Equals(null))
-                ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "n", n);
             ActionWithOptionalParamDefaultingToNullOverride(callInfo, n);
             return callInfo;
         }
@@ -577,8 +593,7 @@ namespace T4MVCHostMvcApp.Controllers
         public override System.Web.Mvc.ActionResult ActionWithOptionalParamDefaultingToDefaultValue(System.Threading.CancellationToken cancellationToken)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithOptionalParamDefaultingToDefaultValue);
-            if (!cancellationToken.Equals(default(System.Threading.CancellationToken)))
-                ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "cancellationToken", cancellationToken);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "cancellationToken", cancellationToken);
             ActionWithOptionalParamDefaultingToDefaultValueOverride(callInfo, cancellationToken);
             return callInfo;
         }
@@ -590,8 +605,7 @@ namespace T4MVCHostMvcApp.Controllers
         public override System.Web.Mvc.ActionResult ActionWithOptionalParamDefaultingToDefaultValueWithFullyQualifiedTypeName(System.Threading.CancellationToken cancellationToken)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithOptionalParamDefaultingToDefaultValueWithFullyQualifiedTypeName);
-            if (!cancellationToken.Equals(default(System.Threading.CancellationToken)))
-                ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "cancellationToken", cancellationToken);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "cancellationToken", cancellationToken);
             ActionWithOptionalParamDefaultingToDefaultValueWithFullyQualifiedTypeNameOverride(callInfo, cancellationToken);
             return callInfo;
         }
@@ -603,8 +617,7 @@ namespace T4MVCHostMvcApp.Controllers
         public override System.Web.Mvc.ActionResult ActionWithOptionalParamDefaultingToDefaultValueWithSpaces(System.Threading.CancellationToken cancellationToken)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithOptionalParamDefaultingToDefaultValueWithSpaces);
-            if (!cancellationToken.Equals(default(System.Threading.CancellationToken)))
-                ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "cancellationToken", cancellationToken);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "cancellationToken", cancellationToken);
             ActionWithOptionalParamDefaultingToDefaultValueWithSpacesOverride(callInfo, cancellationToken);
             return callInfo;
         }
@@ -616,8 +629,7 @@ namespace T4MVCHostMvcApp.Controllers
         public override System.Web.Mvc.ActionResult ActionWithOptionalParamDefaultingToConstructedDefaultValue(System.Threading.CancellationToken cancellationToken)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionWithOptionalParamDefaultingToConstructedDefaultValue);
-            if (!cancellationToken.Equals(new System.Threading.CancellationToken()))
-                ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "cancellationToken", cancellationToken);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "cancellationToken", cancellationToken);
             ActionWithOptionalParamDefaultingToConstructedDefaultValueOverride(callInfo, cancellationToken);
             return callInfo;
         }
@@ -735,6 +747,30 @@ namespace T4MVCHostMvcApp.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             SomeTaskBasedActionWithParamsOverride(callInfo, id);
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
+        }
+
+        [NonAction]
+        partial void ActionUsingPrivateFieldForDefaultValueOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, double rate);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ActionUsingPrivateFieldForDefaultValue(double rate)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionUsingPrivateFieldForDefaultValue);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "rate", rate);
+            ActionUsingPrivateFieldForDefaultValueOverride(callInfo, rate);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ActionUsingEnumDeclaredInOtherNamespaceOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, SomeNamespace.JobType jobType);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ActionUsingEnumDeclaredInOtherNamespace(SomeNamespace.JobType jobType)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActionUsingEnumDeclaredInOtherNamespace);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "jobType", jobType);
+            ActionUsingEnumDeclaredInOtherNamespaceOverride(callInfo, jobType);
+            return callInfo;
         }
 
         [NonAction]

@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.16.3 (11-18-2015)
+* Disable 'Don't add default params to routes' change. [url:https://github.com/T4MVC/T4MVC/issues/49]
+
 !!! 3.16.2 (11-17-2015)
 * Fix case where view folder name has period. [url:https://github.com/T4MVC/T4MVC/issues/51]
 

@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using SomeNamespace;
 using T4MVCHostMvcApp.Misc;
 namespace T4MVCHostMvcApp.Controllers
 {
@@ -201,6 +202,20 @@ namespace T4MVCHostMvcApp.Controllers
             return Task.FromResult(new EmptyResult() as ActionResult);
         }
 
+        const double multipleRate = 1.2;
+
+        [SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+        public virtual ActionResult ActionUsingPrivateFieldForDefaultValue(double rate = multipleRate)
+        {
+            throw new NotImplementedException();
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+        public virtual ActionResult ActionUsingEnumDeclaredInOtherNamespace(JobType jobType = JobType.First)
+        {
+            return View();
+        }
+
         public virtual ViewResultBase SomeAbstractResult()
         {
             throw new NotImplementedException();
@@ -240,5 +255,14 @@ namespace T4MVCHostMvcApp.Controllers
         {
             callInfo.RouteValueDictionary["stub"] = "Extra Text in route";
         }
+    }
+}
+
+namespace SomeNamespace
+{
+    public enum JobType
+    {
+        First,
+        Second
     }
 }
