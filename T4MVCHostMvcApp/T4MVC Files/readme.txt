@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.16.4 (11-19-2015)
+* Fix missing cache-busters from other assets. [url:https://github.com/T4MVC/T4MVC/pull/52]
+
 !!! 3.16.3 (11-18-2015)
 * Disable 'Don't add default params to routes' change. [url:https://github.com/T4MVC/T4MVC/issues/49]
 
