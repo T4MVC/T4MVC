@@ -1291,21 +1291,21 @@ PopIndent();
     else { #>
 <#+
     var mapping = new Dictionary<string, Tuple<string, string>>();
-	mapping.Add(".ts", Tuple.Create(".js", ".min.js"));
-	mapping.Add(".tsx", Tuple.Create(".js", ".min.js"));
-	mapping.Add(".js", Tuple.Create(".js", ".min.js"));
-	mapping.Add(".css", Tuple.Create(".css", ".min.css"));
+    mapping.Add(".ts", Tuple.Create(".js", ".min.js"));
+    mapping.Add(".tsx", Tuple.Create(".js", ".min.js"));
+    mapping.Add(".js", Tuple.Create(".js", ".min.js"));
+    mapping.Add(".css", Tuple.Create(".css", ".min.css"));
 
 if (!settings.ExcludedStaticFileExtensions.Any(extension => projectItem.Name.EndsWith(extension, StringComparison.OrdinalIgnoreCase))) {
 
-	var extension = projectItem.Name.Substring(projectItem.Name.LastIndexOf("."));
+    var extension = projectItem.Name.Substring(projectItem.Name.LastIndexOf("."));
 
-	if(mapping.ContainsKey(extension))
-	{
-		var map = mapping[extension];
+    if(mapping.ContainsKey(extension))
+    {
+        var map = mapping[extension];
 
-		if (!projectItem.Name.EndsWith(map.Item2)) {
-		string nonMinifiedName = projectItem.Name.Replace(extension, map.Item1);
+        if (!projectItem.Name.EndsWith(map.Item2)) {
+        string nonMinifiedName = projectItem.Name.Replace(extension, map.Item1);
         string minifiedName = projectItem.Name.Replace(extension, map.Item2);
         if (AddTimestampToStaticLink(projectItem)) { #>
     public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=minifiedName#>") : Url("<#=nonMinifiedName#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=nonMinifiedName#>");
