@@ -1313,10 +1313,16 @@ if (!settings.ExcludedStaticFileExtensions.Any(extension => projectItem.Name.End
     public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>") : Url("<#=nonMinifiedName#>");
 <#+}  #>
 <#+}
+else if (AddTimestampToStaticLink(projectItem)) { #>
+    public static readonly string <#=name#> = Url("<#=projectItem.Name#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name#>");
+<#+}
     else { #>
     public static readonly string <#=name#> = Url("<#=projectItem.Name#>");
 <#+}
-	}
+    }
+    else if (AddTimestampToStaticLink(projectItem)) { #>
+    public static readonly string <#=name#> = Url("<#=projectItem.Name#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name#>");
+<#+}
     else { #>
     public static readonly string <#=name#> = Url("<#=projectItem.Name#>");
 <#+}
