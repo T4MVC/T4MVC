@@ -1298,7 +1298,7 @@ PopIndent();
 
 if (!settings.ExcludedStaticFileExtensions.Any(extension => projectItem.Name.EndsWith(extension, StringComparison.OrdinalIgnoreCase))) {
 
-    var extension = projectItem.Name.Substring(projectItem.Name.LastIndexOf("."));
+    var extension = Path.GetExtension(projectItem.Name);
 
     if(mapping.ContainsKey(extension))
     {
