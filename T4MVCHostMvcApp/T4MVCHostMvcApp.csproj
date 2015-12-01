@@ -34,6 +34,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -170,6 +171,7 @@
       <SubType>Designer</SubType>
     </CodeAnalysisDictionary>
     <Content Include="Areas\Home\Views\Home\EditorTemplates\SomeAreaEditorTemplate.ascx" />
+    <None Include="Content\FileWithNoExtension" />
     <Content Include="Content\StyleSheet.min.css" />
     <Content Include="Content\SomeRandomName\SomeRandomName\SomeRandomName.txt" />
     <Content Include="Content\StyleSheet.css" />

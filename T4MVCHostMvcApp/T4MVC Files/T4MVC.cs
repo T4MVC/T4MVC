@@ -279,6 +279,7 @@ namespace Links
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
         }
     
+        public static readonly string FileWithNoExtension = Url("FileWithNoExtension");
         public static readonly string Hello_World_txt = Url("Hello World.txt");
         public static readonly string Hello_World_txt_ = Url("Hello$World.txt");
         public static readonly string Hello_World_txt__ = Url("Hello+World.txt");

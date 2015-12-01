@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.16.5 (11-30-2015)
+* Fix exception with extensionless files. [url:https://github.com/T4MVC/T4MVC/pull/53]
+
 !!! 3.16.4 (11-19-2015)
 * Fix missing cache-busters from other assets. [url:https://github.com/T4MVC/T4MVC/pull/52]
 
