@@ -2036,7 +2036,12 @@ class FunctionInfo
             else
                 TT.Write(", ");
 
-            TT.Write(p.Type + " " + p.Name);
+            var parameterName = p.Name;
+            if (string.IsNullOrWhiteSpace(parameterName) &&
+                p.Type == "System.Web.Mvc.ControllerContext") 
+                parameterName = "context";
+
+            TT.Write(p.Type + " " + parameterName );
             if(includeDefaults && !string.IsNullOrEmpty(p.DefaultValue))
                 TT.Write(" = " + p.DefaultValue);
         }
