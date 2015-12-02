@@ -2029,6 +2029,7 @@ class FunctionInfo
     // Write out all the parameters as part of a method declaration
     public void WriteFormalParameters(bool first, bool includeDefaults = false)
     {
+        int counter = 0;
         foreach (var p in Parameters)
         {
             if (first)
@@ -2037,9 +2038,13 @@ class FunctionInfo
                 TT.Write(", ");
 
             var parameterName = p.Name;
-            if (string.IsNullOrWhiteSpace(parameterName) &&
-                p.Type == "System.Web.Mvc.ControllerContext") 
-                parameterName = "context";
+            if (string.IsNullOrWhiteSpace(parameterName))
+            {
+                if (counter++ > 0)
+                    parameterName = "context" + counter;
+                else
+                    parameterName = "context";
+            }
 
             TT.Write(p.Type + " " + parameterName );
             if(includeDefaults && !string.IsNullOrEmpty(p.DefaultValue))
@@ -2164,7 +2169,27 @@ class ResultTypeInfo
 
 class MethodParamInfo
 {
-    public string Name { get; set; }
+    static int counter = 0;
+
+    string name;
+    public string Name 
+	{ 
+	    get 
+	    { 
+	        return name; 
+	    }
+	    set
+	    {
+	        if (string.IsNullOrEmpty(value))
+	        {
+	            name = "var" + counter++;
+	        }
+	        else
+	        {
+	            name = value;
+	        }
+	    }
+	}
     public string RouteNameExpression { get; set; }
     public string Type { get; set; }
     public string DefaultValue { get; set; }
