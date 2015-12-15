@@ -12,7 +12,7 @@ http://blog.davidebbo.com/ (previously: http://blogs.msdn.com/davidebb)
 
 Related blog posts: http://blogs.msdn.com/davidebb/archive/tags/T4MVC/default.aspx
 
-Please use in accordance to the Apache license (http://mvccontrib.codeplex.com/license)
+Please use in accordance to the license (https://github.com/T4MVC/T4MVC/blob/master/License.txt)
 */
 #>
 <#@ template language="C#" debug="true" hostspecific="true" #>
