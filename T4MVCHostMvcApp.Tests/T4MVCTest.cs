@@ -534,6 +534,17 @@ namespace T4MVCHostMvcApp.Tests
         }
 
         [TestMethod()]
+        public void TestRouteValuesForTaskBasedActionsWithNonDefaultTypes()
+        {
+            var actionRes = (IT4MVCActionResult)MVC.Home.ActionWithJsonResult().Result;
+            TestAreaControllerActionNames(actionRes, "", "Home", "ActionWithJsonResult");
+
+            actionRes = (IT4MVCActionResult)MVC.Home.ActionWithPartialResult(3).Result;
+            TestAreaControllerActionNames(actionRes, "", "Home", "ActionWithPartialResult");
+            TestRouteValue(actionRes, "id", 3);
+        }
+
+        [TestMethod()]
         public void TestRouteValuesWithAddedValues()
         {
             var actionRes = (IT4MVCActionResult)MVC.Home.Index().AddRouteValues(new { foo1 = "bar", foo2 = 234 });

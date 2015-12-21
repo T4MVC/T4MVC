@@ -102,6 +102,13 @@ namespace T4MVCHostMvcApp.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SomeTaskBasedActionWithParams);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Threading.Tasks.Task<System.Web.Mvc.PartialViewResult> ActionWithPartialResult()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.ActionWithPartialResult);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.PartialViewResult);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public HomeController Actions { get { return MVC.Home; } }
@@ -145,6 +152,8 @@ namespace T4MVCHostMvcApp.Controllers
             public readonly string ActionReturningGenericResultNested = "ActionReturningGenericResultNested";
             public readonly string SomeTaskBasedAction = "SomeTaskBasedAction";
             public readonly string SomeTaskBasedActionWithParams = "SomeTaskBasedActionWithParams";
+            public readonly string ActionWithJsonResult = "ActionWithJsonResult";
+            public readonly string ActionWithPartialResult = "ActionWithPartialResult";
             public readonly string ActionUsingPrivateFieldForDefaultValue = "ActionUsingPrivateFieldForDefaultValue";
             public readonly string ActionUsingEnumDeclaredInOtherNamespace = "ActionUsingEnumDeclaredInOtherNamespace";
             public readonly string SomeAbstractResult = "SomeAbstractResult";
@@ -180,6 +189,8 @@ namespace T4MVCHostMvcApp.Controllers
             public const string ActionReturningGenericResultNested = "ActionReturningGenericResultNested";
             public const string SomeTaskBasedAction = "SomeTaskBasedAction";
             public const string SomeTaskBasedActionWithParams = "SomeTaskBasedActionWithParams";
+            public const string ActionWithJsonResult = "ActionWithJsonResult";
+            public const string ActionWithPartialResult = "ActionWithPartialResult";
             public const string ActionUsingPrivateFieldForDefaultValue = "ActionUsingPrivateFieldForDefaultValue";
             public const string ActionUsingEnumDeclaredInOtherNamespace = "ActionUsingEnumDeclaredInOtherNamespace";
             public const string SomeAbstractResult = "SomeAbstractResult";
@@ -291,6 +302,14 @@ namespace T4MVCHostMvcApp.Controllers
         public ActionParamsClass_SomeTaskBasedActionWithParams SomeTaskBasedActionWithParamsParams { get { return s_params_SomeTaskBasedActionWithParams; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_SomeTaskBasedActionWithParams
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_ActionWithPartialResult s_params_ActionWithPartialResult = new ActionParamsClass_ActionWithPartialResult();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ActionWithPartialResult ActionWithPartialResultParams { get { return s_params_ActionWithPartialResult; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ActionWithPartialResult
         {
             public readonly string id = "id";
         }
@@ -747,6 +766,29 @@ namespace T4MVCHostMvcApp.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             SomeTaskBasedActionWithParamsOverride(callInfo, id);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
+
+        [NonAction]
+        partial void ActionWithJsonResultOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.JsonResult> ActionWithJsonResult()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ActionWithJsonResult);
+            ActionWithJsonResultOverride(callInfo);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.JsonResult);
+        }
+
+        [NonAction]
+        partial void ActionWithPartialResultOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo, int id);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.PartialViewResult> ActionWithPartialResult(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.ActionWithPartialResult);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ActionWithPartialResultOverride(callInfo, id);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.PartialViewResult);
         }
 
         [NonAction]

@@ -202,6 +202,16 @@ namespace T4MVCHostMvcApp.Controllers
             return Task.FromResult(new EmptyResult() as ActionResult);
         }
 
+        public virtual Task<JsonResult> ActionWithJsonResult()
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual Task<PartialViewResult> ActionWithPartialResult(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         const double multipleRate = 1.2;
 
         [SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
