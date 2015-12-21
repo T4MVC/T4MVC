@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DefaultModelUnbinder.cs" />
+    <Compile Include="GenericT4Extensions.cs" />
     <Compile Include="IModelUnbinder.cs" />
     <Compile Include="IModelUnbinderProvider.cs" />
     <Compile Include="IT4MVCActionResult.cs" />

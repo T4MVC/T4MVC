@@ -12,7 +12,7 @@ http://blog.davidebbo.com/ (previously: http://blogs.msdn.com/davidebb)
 
 Related blog posts: http://blogs.msdn.com/davidebb/archive/tags/T4MVC/default.aspx
 
-Please use in accordance to the license (https://github.com/T4MVC/T4MVC/blob/master/License.txt)
+Please use in accordance to the license (https://github.com/T4MVC/T4MVC/blob/master/License.txt) 
 */
 #>
 <#@ template language="C#" debug="true" hostspecific="true" #>
@@ -236,9 +236,9 @@ namespace <#=controller.Namespace #>
         [<#= GeneratedCode #>, DebuggerNonUserCode]
         public virtual <#=method.ReturnTypeFullName #> <#=method.Name #>()
         {
-<#if (method.ReturnTypeFullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>") { #>
+<#if (method.IsTaskBased) { #>
             var callInfo = new T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
+            return System.Threading.Tasks.Task.FromResult(callInfo as <#=method.TaskActionTypeFullName #>);
 <#} else { #>
             return new T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>);
 <#} #>
@@ -263,8 +263,8 @@ namespace <#=controller.Namespace #>
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, <#=p.RouteNameExpression #>, <#=p.Name #>);
 <#} #>
 <#}#>
-<#if (method.ReturnTypeFullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>") { #>
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
+<#if (method.IsTaskBased) { #>
+            return System.Threading.Tasks.Task.FromResult(callInfo as <#=method.TaskActionTypeFullName #>);
 <#} else { #>
             return callInfo;
 <#} #>
@@ -374,8 +374,8 @@ foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (gr
 <#} #>
 <#}#>
             <#=method.Name #>Override(callInfo<#if (method.Parameters.Count > 0) { #><#foreach (var p in method.Parameters) { #>, <#=p.Name #><#}}#>);
-<#if (method.ReturnTypeFullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>") { #>
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
+<#if (method.IsTaskBased) { #>
+            return System.Threading.Tasks.Task.FromResult(callInfo as <#=method.TaskActionTypeFullName #>);
 <#} else { #>
             return callInfo;
 <#} #>
@@ -449,6 +449,39 @@ static string T4Folder;
 static string GeneratedCode = @"GeneratedCode(""T4MVC"", ""2.0"")";
 static Microsoft.CSharp.CSharpCodeProvider codeProvider = new Microsoft.CSharp.CSharpCodeProvider();
 List<string> virtualPathesForStaticFiles = new List<string>();
+
+static CodeTypeRef TryCreateActionResultDerivedCodeTypeRef(CodeType codeType) {
+	return codeType.get_IsDerivedFrom("System.Web.Mvc.ActionResult")
+		? Project.CodeModel.CreateCodeTypeRef(codeType.FullName)
+		: null;
+}
+
+enum ActionTypeMatch {
+	None = 0,
+	Direct = 1,
+	TaskBased = 2
+}
+
+static ActionTypeMatch TryGetActionType(CodeType codeType, out CodeTypeRef actionTypeRef) {	
+	// check for task based
+	Match match = Regex.Match(codeType.FullName, "^System.Threading.Tasks.Task<(.+)>$");
+    if (match == null || !match.Success) {
+		actionTypeRef = TryCreateActionResultDerivedCodeTypeRef(codeType);		
+		return actionTypeRef != null
+			? ActionTypeMatch.Direct
+			: ActionTypeMatch.None;
+    } else {
+		CodeTypeRef typeRef = Project.CodeModel.CreateCodeTypeRef(match.Groups[1].Value);
+		if (typeRef.CodeType.get_IsDerivedFrom("System.Web.Mvc.ActionResult"))
+			actionTypeRef = typeRef;
+		else
+			actionTypeRef = null;
+		return actionTypeRef != null
+			? ActionTypeMatch.TaskBased
+			: ActionTypeMatch.None;    
+    }
+}
+
 
 IEnumerable<ControllerInfo> GetControllers()
 {
@@ -871,7 +904,9 @@ void ProcessControllerActionMethods(ControllerInfo controllerInfo, CodeClass2 cu
                 continue;
 
             // We only support action methods that return an ActionResult and Task<ActionResult> derived types
-            if (!method.Type.CodeType.get_IsDerivedFrom("System.Web.Mvc.ActionResult") && method.Type.CodeType.FullName !="System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>")
+			CodeTypeRef methodType;
+			ActionTypeMatch match = TryGetActionType(method.Type.CodeType, out methodType);
+            if (match == ActionTypeMatch.None)
             {
                 // Comment out warning, as it's more annoying than helpful
                 //Warning(String.Format("{0} doesn't support {1}.{2} because it doesn't return a supported {3} type", T4FileName, type.Name, method.Name, method.Type.CodeType.FullName));
@@ -882,10 +917,6 @@ void ProcessControllerActionMethods(ControllerInfo controllerInfo, CodeClass2 cu
             // See http://stackoverflow.com/questions/5419173/t4mvc-asynccontroller
             if (isAsyncController && method.Name.EndsWith("Completed", StringComparison.OrdinalIgnoreCase))
                 continue;
-
-            var methodType = method.Type;
-            if(method.Type.CodeType.FullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>")
-                methodType = Project.CodeModel.CreateCodeTypeRef("System.Web.Mvc.ActionResult");
 
             // If we haven't yet seen this return type, keep track of it
             var resTypeInfo2 = new ResultTypeInfo(methodType);
@@ -911,7 +942,7 @@ void ProcessControllerActionMethods(ControllerInfo controllerInfo, CodeClass2 cu
             }
 
             // Collect misc info about the action method and add it to the collection
-            controllerInfo.ActionMethods.Add(new ActionMethodInfo(method, current));
+            controllerInfo.ActionMethods.Add(new ActionMethodInfo(method, current, null, match == ActionTypeMatch.TaskBased ?  methodType : null));
         }
     }
 }
@@ -1962,10 +1993,13 @@ class FunctionInfo
 {
     protected CodeFunction2 _method;
     private string _signature;
+	protected CodeTypeRef _taskActionType;
 
-    public FunctionInfo(CodeFunction2 method)
+    public FunctionInfo(CodeFunction2 method, CodeTypeRef taskActionType = null)
     {
-        Parameters = new List<MethodParamInfo>();
+        _taskActionType = taskActionType;
+		
+		Parameters = new List<MethodParamInfo>();
 
         // Can be null when an custom ActionResult has no ctor
         if (method == null)
@@ -2019,12 +2053,12 @@ class FunctionInfo
     public string Name { get { return _method.Name; } }
     public string ReturnType { get { return ReturnTypeImpl.AsString; } }
     public string ReturnTypeFullName { get { return ReturnTypeImpl.AsFullName; } }
-    public string ReturnTypeUniqueName { get { return IsTaskBased ? "System_Web_Mvc_ActionResult" : UniqueFullName(ReturnTypeImpl); } }
+    public string ReturnTypeUniqueName { get { return IsTaskBased ?  UniqueFullName(_taskActionType) : UniqueFullName(ReturnTypeImpl); } }
     public bool IsPublic { get { return _method.Access == vsCMAccess.vsCMAccessPublic; } }
     public List<MethodParamInfo> Parameters { get; private set; }
     public bool CanBeCalledWithoutParameters { get; private set; }
 
-    private bool IsTaskBased { get {return ReturnTypeImpl.AsFullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>"; } }
+    public bool IsTaskBased { get {return _taskActionType != null; } }
 
     // Write out all the parameters as part of a method declaration
     public void WriteFormalParameters(bool first, bool includeDefaults = false)
@@ -2087,15 +2121,19 @@ class FunctionInfo
 // Data structure to collect data about an action method
 class ActionMethodInfo : FunctionInfo
 {
-    public ActionMethodInfo(CodeFunction2 method, CodeClass2 controller, CodeTypeRef asyncType = null)
-        : base(method)
+    public ActionMethodInfo(CodeFunction2 method, CodeClass2 controller, CodeTypeRef asyncType = null, CodeTypeRef taskActionType = null)
+        : base(method, taskActionType)
     {
-        if(asyncType != null) 
-        {
-            // Remove the Async from the end of the name to match the actual Action routing would use.
-            // This also separates the Action Calls from the implementation
-            _actionName = method.Name.Remove(method.Name.Length - 5);
-            _returnType = asyncType;
+		if (taskActionType != null) {
+			_taskActionType = taskActionType;
+        } else {
+			if(asyncType != null) 
+			{
+				// Remove the Async from the end of the name to match the actual Action routing would use.
+				// This also separates the Action Calls from the implementation
+				_actionName = method.Name.Remove(method.Name.Length - 5);
+				_returnType = asyncType;
+			}
         }
         // Normally, the action name is the method name. But if there is an [ActionName] on
         // the method, get the expression from that instead
@@ -2115,7 +2153,15 @@ class ActionMethodInfo : FunctionInfo
 
     string _actionName;
     CodeTypeRef _returnType;
-    protected override CodeTypeRef ReturnTypeImpl { get { return _returnType ?? base.ReturnTypeImpl; } }
+    protected override CodeTypeRef ReturnTypeImpl { 
+		get { 
+			if (IsTaskBased)
+				return Project.CodeModel.CreateCodeTypeRef("System.Threading.Tasks.Task<" + _taskActionType.AsFullName + ">");
+			return _returnType ?? base.ReturnTypeImpl; 
+		}
+	}
+
+	public string TaskActionTypeFullName { get { return IsTaskBased ? _taskActionType.AsFullName : null; } }
 
     public string ActionName { get { return _actionName ?? base.Name; } }
     public string ActionNameValueExpression { get; set; }
@@ -2154,7 +2200,12 @@ class ResultTypeInfo
         }
     }
 
-    private bool IsTaskBased { get {return _codeType.AsFullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>"; } }
+    private bool IsTaskBased { 
+		get {
+			CodeTypeRef methodType;			
+			return TryGetActionType(_codeType.CodeType, out methodType) == ActionTypeMatch.TaskBased;
+		} 
+	}
 }
 
 class MethodParamInfo
