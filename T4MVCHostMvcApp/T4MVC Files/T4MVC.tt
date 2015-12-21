@@ -1417,15 +1417,18 @@ ProjectItem GetProjectItem(ProjectItems items, string subPath)
     {
         try
         {
-            // ProjectItems.Item() throws when it doesn't exist, so catch the exception
+            // ProjectItems.Item() sometimes throws when it doesn't exist, so catch the exception
             // to return null instead.
             current = items.Item(name);
+
+            if (current == null) return null;
         }
         catch
         {
             // If any chunk couldn't be found, fail
             return null;
         }
+
         items = current.ProjectItems;
     }
 
