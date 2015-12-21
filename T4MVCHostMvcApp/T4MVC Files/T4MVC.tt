@@ -12,7 +12,7 @@ http://blog.davidebbo.com/ (previously: http://blogs.msdn.com/davidebb)
 
 Related blog posts: http://blogs.msdn.com/davidebb/archive/tags/T4MVC/default.aspx
 
-Please use in accordance to the license (https://github.com/T4MVC/T4MVC/blob/master/License.txt) 
+Please use in accordance to the license (https://github.com/T4MVC/T4MVC/blob/master/License.txt)
 */
 #>
 <#@ template language="C#" debug="true" hostspecific="true" #>
@@ -451,34 +451,34 @@ static Microsoft.CSharp.CSharpCodeProvider codeProvider = new Microsoft.CSharp.C
 List<string> virtualPathesForStaticFiles = new List<string>();
 
 static CodeTypeRef TryCreateActionResultDerivedCodeTypeRef(CodeType codeType) {
-	return codeType.get_IsDerivedFrom("System.Web.Mvc.ActionResult")
-		? Project.CodeModel.CreateCodeTypeRef(codeType.FullName)
-		: null;
+    return codeType.get_IsDerivedFrom("System.Web.Mvc.ActionResult")
+        ? Project.CodeModel.CreateCodeTypeRef(codeType.FullName)
+        : null;
 }
 
 enum ActionTypeMatch {
-	None = 0,
-	Direct = 1,
-	TaskBased = 2
+    None = 0,
+    Direct = 1,
+    TaskBased = 2
 }
 
-static ActionTypeMatch TryGetActionType(CodeType codeType, out CodeTypeRef actionTypeRef) {	
-	// check for task based
-	Match match = Regex.Match(codeType.FullName, "^System.Threading.Tasks.Task<(.+)>$");
+static ActionTypeMatch TryGetActionType(CodeType codeType, out CodeTypeRef actionTypeRef) {
+    // check for task based
+    Match match = Regex.Match(codeType.FullName, "^System.Threading.Tasks.Task<(.+)>$");
     if (match == null || !match.Success) {
-		actionTypeRef = TryCreateActionResultDerivedCodeTypeRef(codeType);		
-		return actionTypeRef != null
-			? ActionTypeMatch.Direct
-			: ActionTypeMatch.None;
+        actionTypeRef = TryCreateActionResultDerivedCodeTypeRef(codeType);
+        return actionTypeRef != null
+            ? ActionTypeMatch.Direct
+            : ActionTypeMatch.None;
     } else {
-		CodeTypeRef typeRef = Project.CodeModel.CreateCodeTypeRef(match.Groups[1].Value);
-		if (typeRef.CodeType.get_IsDerivedFrom("System.Web.Mvc.ActionResult"))
-			actionTypeRef = typeRef;
-		else
-			actionTypeRef = null;
-		return actionTypeRef != null
-			? ActionTypeMatch.TaskBased
-			: ActionTypeMatch.None;    
+        CodeTypeRef typeRef = Project.CodeModel.CreateCodeTypeRef(match.Groups[1].Value);
+        if (typeRef.CodeType.get_IsDerivedFrom("System.Web.Mvc.ActionResult"))
+            actionTypeRef = typeRef;
+        else
+            actionTypeRef = null;
+        return actionTypeRef != null
+            ? ActionTypeMatch.TaskBased
+            : ActionTypeMatch.None;
     }
 }
 
@@ -904,8 +904,8 @@ void ProcessControllerActionMethods(ControllerInfo controllerInfo, CodeClass2 cu
                 continue;
 
             // We only support action methods that return an ActionResult and Task<ActionResult> derived types
-			CodeTypeRef methodType;
-			ActionTypeMatch match = TryGetActionType(method.Type.CodeType, out methodType);
+            CodeTypeRef methodType;
+            ActionTypeMatch match = TryGetActionType(method.Type.CodeType, out methodType);
             if (match == ActionTypeMatch.None)
             {
                 // Comment out warning, as it's more annoying than helpful
@@ -1993,13 +1993,13 @@ class FunctionInfo
 {
     protected CodeFunction2 _method;
     private string _signature;
-	protected CodeTypeRef _taskActionType;
+    protected CodeTypeRef _taskActionType;
 
     public FunctionInfo(CodeFunction2 method, CodeTypeRef taskActionType = null)
     {
         _taskActionType = taskActionType;
-		
-		Parameters = new List<MethodParamInfo>();
+
+        Parameters = new List<MethodParamInfo>();
 
         // Can be null when an custom ActionResult has no ctor
         if (method == null)
@@ -2124,16 +2124,16 @@ class ActionMethodInfo : FunctionInfo
     public ActionMethodInfo(CodeFunction2 method, CodeClass2 controller, CodeTypeRef asyncType = null, CodeTypeRef taskActionType = null)
         : base(method, taskActionType)
     {
-		if (taskActionType != null) {
-			_taskActionType = taskActionType;
+        if (taskActionType != null) {
+            _taskActionType = taskActionType;
         } else {
-			if(asyncType != null) 
-			{
-				// Remove the Async from the end of the name to match the actual Action routing would use.
-				// This also separates the Action Calls from the implementation
-				_actionName = method.Name.Remove(method.Name.Length - 5);
-				_returnType = asyncType;
-			}
+            if(asyncType != null)
+            {
+                // Remove the Async from the end of the name to match the actual Action routing would use.
+                // This also separates the Action Calls from the implementation
+                _actionName = method.Name.Remove(method.Name.Length - 5);
+                _returnType = asyncType;
+            }
         }
         // Normally, the action name is the method name. But if there is an [ActionName] on
         // the method, get the expression from that instead
@@ -2154,14 +2154,14 @@ class ActionMethodInfo : FunctionInfo
     string _actionName;
     CodeTypeRef _returnType;
     protected override CodeTypeRef ReturnTypeImpl { 
-		get { 
-			if (IsTaskBased)
-				return Project.CodeModel.CreateCodeTypeRef("System.Threading.Tasks.Task<" + _taskActionType.AsFullName + ">");
-			return _returnType ?? base.ReturnTypeImpl; 
-		}
-	}
+        get {
+            if (IsTaskBased)
+                return Project.CodeModel.CreateCodeTypeRef("System.Threading.Tasks.Task<" + _taskActionType.AsFullName + ">");
+            return _returnType ?? base.ReturnTypeImpl;
+        }
+    }
 
-	public string TaskActionTypeFullName { get { return IsTaskBased ? _taskActionType.AsFullName : null; } }
+    public string TaskActionTypeFullName { get { return IsTaskBased ? _taskActionType.AsFullName : null; } }
 
     public string ActionName { get { return _actionName ?? base.Name; } }
     public string ActionNameValueExpression { get; set; }
@@ -2201,11 +2201,11 @@ class ResultTypeInfo
     }
 
     private bool IsTaskBased { 
-		get {
-			CodeTypeRef methodType;			
-			return TryGetActionType(_codeType.CodeType, out methodType) == ActionTypeMatch.TaskBased;
-		} 
-	}
+        get {
+            CodeTypeRef methodType;
+            return TryGetActionType(_codeType.CodeType, out methodType) == ActionTypeMatch.TaskBased;
+        }
+    }
 }
 
 class MethodParamInfo
