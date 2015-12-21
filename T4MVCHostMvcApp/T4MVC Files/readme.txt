@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.17.0 (12-21-2015)
+* Improved support for task based actions. [url:https://github.com/T4MVC/T4MVC/pull/58]
+
 !!! 3.16.5 (11-30-2015)
 * Fix exception with extensionless files. [url:https://github.com/T4MVC/T4MVC/pull/53]
 
