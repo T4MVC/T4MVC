@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Threading.Tasks;
 using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
@@ -236,6 +237,36 @@ namespace System.Web.Mvc {
 
         public static Route MapRouteArea<TActionResult>(this AreaRegistrationContext context, string name, string url, Task<TActionResult> taskResult, object defaults, object constraints, string[] namespaces) where TActionResult : ActionResult {
             return T4Extensions.MapRouteArea(context, name, url, taskResult.Result, defaults, constraints, namespaces);
+        }
+
+
+        public static TActionResult AddRouteValues<TActionResult>(this TActionResult result, object routeValues) where TActionResult : ActionResult {
+            return (TActionResult)T4Extensions.AddRouteValues(result, new RouteValueDictionary(routeValues));
+        }
+        public static TActionResult AddRouteValues<TActionResult>(this TActionResult result, RouteValueDictionary routeValues) where TActionResult : ActionResult {
+            return (TActionResult)T4Extensions.AddRouteValues(result, routeValues);
+
+        }
+        public static TActionResult AddRouteValues<TActionResult>(this TActionResult result, NameValueCollection nameValueCollection) where TActionResult : ActionResult {
+            return (TActionResult)T4Extensions.AddRouteValues(result, nameValueCollection);
+        }
+        public static TActionResult AddRouteValue<TActionResult>(this TActionResult result, string name, object value) where TActionResult : ActionResult {
+            return (TActionResult)T4Extensions.AddRouteValue(result, name, value);
+
+        }
+
+
+        public static Task<TResult> AddRouteValues<TResult>(this Task<TResult> action, object routeValues) where TResult : ActionResult {
+            return AddRouteValues(action, new RouteValueDictionary(routeValues));
+        }
+        public static Task<TResult> AddRouteValues<TResult>(this Task<TResult> action, RouteValueDictionary routeValues) where TResult : ActionResult {
+            return action.ContinueWith(t => t.Result.AddRouteValues(routeValues), TaskContinuationOptions.OnlyOnRanToCompletion | TaskContinuationOptions.ExecuteSynchronously);
+        }
+        public static Task<TResult> AddRouteValues<TResult>(this Task<TResult> action, NameValueCollection nameValueCollection) where TResult : ActionResult {
+            return action.ContinueWith(t => t.Result.AddRouteValues(nameValueCollection), TaskContinuationOptions.OnlyOnRanToCompletion | TaskContinuationOptions.ExecuteSynchronously);
+        }
+        public static Task<TResult> AddRouteValue<TResult>(this Task<TResult> action, string name, object value) where TResult : ActionResult {
+            return action.ContinueWith(t => t.Result.AddRouteValue(name, value), TaskContinuationOptions.OnlyOnRanToCompletion | TaskContinuationOptions.ExecuteSynchronously);
         }
     }
 
