@@ -1,6 +1,6 @@
 pushd T4MVCExtensions
 msbuild /p:Configuration=Release
-nuget pack -symbols -Prop Configuration=Release
+nuget pack -symbols -Prop Configuration=Release T4MVCExtensions.csproj
 move *.nupkg ..
 popd
 
