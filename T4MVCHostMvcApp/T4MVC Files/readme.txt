@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.17.1 (12-29-2015)
+* More helpers for derived and/or task based actions. [url:https://github.com/T4MVC/T4MVC/pull/61]
+
 !!! 3.17.0 (12-21-2015)
 * Improved support for task based actions. [url:https://github.com/T4MVC/T4MVC/pull/58]
 
