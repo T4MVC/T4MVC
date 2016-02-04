@@ -279,7 +279,7 @@ namespace <#=controller.Namespace #>
         public readonly string Name = "<#=ProcessAreaOrControllerName(controller.Name) #>";
         [<#= GeneratedCode #>]
         public const string NameConst = "<#=ProcessAreaOrControllerName(controller.Name) #>";
-
+		[<#= GeneratedCode #>]
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [<#= GeneratedCode #>, DebuggerNonUserCode]
         public ActionNamesClass ActionNames { get { return s_actions; } }
