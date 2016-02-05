@@ -1,6 +1,6 @@
 ﻿<#
 /*
-T4MVC Version 3.17.1
+T4MVC Version 3.17.2
 Find latest version and documentation at https://github.com/T4MVC/T4MVC/wiki/Documentation
 Discuss on StackOverflow or on GitHub (https://github.com/T4MVC/T4MVC/issues)
 
@@ -279,7 +279,7 @@ namespace <#=controller.Namespace #>
         public readonly string Name = "<#=ProcessAreaOrControllerName(controller.Name) #>";
         [<#= GeneratedCode #>]
         public const string NameConst = "<#=ProcessAreaOrControllerName(controller.Name) #>";
-		[<#= GeneratedCode #>]
+        [<#= GeneratedCode #>]
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [<#= GeneratedCode #>, DebuggerNonUserCode]
         public ActionNamesClass ActionNames { get { return s_actions; } }
