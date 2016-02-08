@@ -1,11 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CAE9486F-6151-4675-9C2F-0C1D9BBC7149}"
 	ProjectSection(SolutionItems) = preProject
 		CustomDictionary.xml = CustomDictionary.xml
+		T4MVCExtensions.AspNetCore\global.json = T4MVCExtensions.AspNetCore\global.json
 		t4mvc.ruleset = t4mvc.ruleset
 		T4MVC.vsmdi = T4MVC.vsmdi
 		TestRunConfig1.testrunconfig = TestRunConfig1.testrunconfig
@@ -16,6 +17,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4MVCHostMvcApp.Tests", "T4MVCHostMvcApp.Tests\T4MVCHostMvcApp.Tests.csproj", "{13728C99-3510-44F7-9244-77C350A1B1AB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4MVCExtensions", "T4MVCExtensions\T4MVCExtensions.csproj", "{1FFAE4B4-95C4-4879-8A25-BE332A527B75}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "T4MVCExtensions.AspNetCore", "T4MVCExtensions.AspNetCore\T4MVCExtensions.AspNetCore.xproj", "{A10E4E5A-3355-485D-96F4-B27BB8A9B0FA}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "T4MVCHost.AspNetCore", "T4MVCHost.AspNetCore\T4MVCHost.AspNetCore.xproj", "{FC7759A1-B55E-4F21-B450-AE11AF001A15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +40,14 @@ Global
 		{1FFAE4B4-95C4-4879-8A25-BE332A527B75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FFAE4B4-95C4-4879-8A25-BE332A527B75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FFAE4B4-95C4-4879-8A25-BE332A527B75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A10E4E5A-3355-485D-96F4-B27BB8A9B0FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A10E4E5A-3355-485D-96F4-B27BB8A9B0FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A10E4E5A-3355-485D-96F4-B27BB8A9B0FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A10E4E5A-3355-485D-96F4-B27BB8A9B0FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC7759A1-B55E-4F21-B450-AE11AF001A15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC7759A1-B55E-4F21-B450-AE11AF001A15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC7759A1-B55E-4F21-B450-AE11AF001A15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC7759A1-B55E-4F21-B450-AE11AF001A15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
