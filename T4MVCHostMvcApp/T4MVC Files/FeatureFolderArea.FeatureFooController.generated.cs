@@ -74,7 +74,7 @@ namespace T4MVCHostMvcApp.Areas.FeatureFolderArea.FeatureFoo
         public readonly string Name = "FeatureFoo";
         [GeneratedCode("T4MVC", "2.0")]
         public const string NameConst = "FeatureFoo";
-
+        [GeneratedCode("T4MVC", "2.0")]
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionNamesClass ActionNames { get { return s_actions; } }

@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.17.2 (2-5-2016)
+* Add GeneratedCodeAttribute for static field. [url:https://github.com/T4MVC/T4MVC/pull/63]
+
 !!! 3.17.1 (12-29-2015)
 * More helpers for derived and/or task based actions. [url:https://github.com/T4MVC/T4MVC/pull/61]
 
