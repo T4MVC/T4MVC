@@ -738,7 +738,7 @@ namespace T4MVCHostMvcApp.Controllers
         partial void ActionReturningGenericResultNestedOverride(T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_Collections_Generic_List_System_Tuple_System_String_System_String_System_Int32 callInfo);
 
         [NonAction]
-        public override T4MVCHostMvcApp.Controllers.SomeGenericResult<System.Collections.Generic.List<System.Tuple<System.String, System.String, System.Int32>>> ActionReturningGenericResultNested()
+        public override T4MVCHostMvcApp.Controllers.SomeGenericResult<System.Collections.Generic.List<System.Tuple<System.String,System.String,System.Int32>>> ActionReturningGenericResultNested()
         {
             var callInfo = new T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_Collections_Generic_List_System_Tuple_System_String_System_String_System_Int32(Area, Name, ActionNames.ActionReturningGenericResultNested);
             ActionReturningGenericResultNestedOverride(callInfo);
