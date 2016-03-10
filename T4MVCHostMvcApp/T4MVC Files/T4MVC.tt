@@ -154,8 +154,10 @@ PushIndent("    ");
 public static partial class Bundles
 {
 <#
-            
-        foreach (string folder in settings.StaticFilesFolders.Concat(GetStaticFilesViewFolders())) {
+	foreach (string folder in settings.StaticFilesFolders
+		.Concat(GetStaticFilesViewFolders())
+		.Concat(inAreas)
+		) {
             ProcessBundles(Project, folder);
         }
     

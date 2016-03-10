@@ -808,6 +808,18 @@ namespace T4MVCHostMvcApp.Tests
         }
 
         [TestMethod()]
+        public void TestBundleFile()
+        {
+            Assert.AreEqual("~/Content/Site.css", Links.Bundles.Content.Assets.Site_css);
+        }
+
+        [TestMethod()]
+        public void TestBundleFileInHomeArea()
+        {
+            Assert.AreEqual("~/Areas/Home/Content/Home.css", Links.Bundles.Areas.Home.Content.Assets.Home_css);
+        }
+
+        [TestMethod()]
         public void TestNoLinkGeneratedForIgnoredExtension()
         {
             var field = typeof(Links.Content).GetField("ShouldNotBeALink_cs");

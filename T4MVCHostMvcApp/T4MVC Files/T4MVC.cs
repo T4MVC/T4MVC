@@ -207,7 +207,7 @@ internal partial class T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_Syste
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-internal partial class T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_Collections_Generic_List_System_Tuple_System_String_System_String_System_Int32 : T4MVCHostMvcApp.Controllers.SomeGenericResult<System.Collections.Generic.List<System.Tuple<System.String, System.String, System.Int32>>>, IT4MVCActionResult
+internal partial class T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_Collections_Generic_List_System_Tuple_System_String_System_String_System_Int32 : T4MVCHostMvcApp.Controllers.SomeGenericResult<System.Collections.Generic.List<System.Tuple<System.String,System.String,System.Int32>>>, IT4MVCActionResult
 {
     public T4MVC_T4MVCHostMvcApp_Controllers_SomeGenericResult_System_Collections_Generic_List_System_Tuple_System_String_System_String_System_Int32(string area, string controller, string action, string protocol = null): base(" ")
     {
@@ -833,6 +833,19 @@ namespace Links
                     }
                     public static class Assets
                     {
+                    }
+                }
+            }
+        }
+        public static partial class Areas 
+        {
+            public static partial class Home 
+            {
+                public static partial class Content 
+                {
+                    public static class Assets
+                    {
+                        public const string Home_css = "~/Areas/Home/Content/Home.css";
                     }
                 }
             }
