@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 3.17.3 (3-10-2016)
+* Add missing bundle files for area. [url:https://github.com/T4MVC/T4MVC/pull/71]
+
 !!! 3.17.2 (2-5-2016)
 * Add GeneratedCodeAttribute for static field. [url:https://github.com/T4MVC/T4MVC/pull/63]
 
