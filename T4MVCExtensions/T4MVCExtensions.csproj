@@ -81,6 +81,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="T4Extensions.cs" />
     <Compile Include="T4MVCAttribute.cs" />
+    <Compile Include="T4TypeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
