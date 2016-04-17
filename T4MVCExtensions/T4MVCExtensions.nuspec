@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>T4MVCExtensions</id>
-    <version>3.17.3</version>
+    <version>3.17.4</version>
     <authors>$author$</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
