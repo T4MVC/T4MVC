@@ -131,7 +131,7 @@ Partial Friend Class T4MVC_<#=resultType.UniqueName #>
 		Me.InitMVCT4Result(area, controller, action, protocol)
 	End Sub
     <#foreach (var method in resultType.AbstractMethods) { #> 
-		<# if(method.ReturnType != "System.Void") {#>
+		<# if(method.ReturnType != "System.Void" && method.ReturnType != "Void") {#>
 			<#=method.IsPublic ? "Public" : "Protected" #> Overrides Function <#=method.Name #>(<#method.WriteFormalParameters(true); #>) As <#=method.ReturnType#>
 				Return Default(<#=method.ReturnType#>)
 			End Function
