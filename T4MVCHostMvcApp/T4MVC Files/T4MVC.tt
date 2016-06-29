@@ -1300,9 +1300,9 @@ void ProcessStaticFilesRecursive(ProjectItem projectItem, string path, HashSet<S
         #>
     [<#= GeneratedCode #>, DebuggerNonUserCode]
     public static class <#=EscapeID(name)#> {
-        private const string URLPATH = "<#=path#>/<#=projectItem.Name#>";
-        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+        public const string UrlPath = "<#=path#>/<#=projectItem.Name#>";
+        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
 <#+
 PushIndent("    ");
 
@@ -1341,20 +1341,20 @@ if (!settings.ExcludedStaticFileExtensions.Any(extension => projectItem.Name.End
         string nonMinifiedName = projectItem.Name.Replace(extension, map.Item1);
         string minifiedName = projectItem.Name.Replace(extension, map.Item2);
         if (AddTimestampToStaticLink(projectItem)) { #>
-    public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=minifiedName#>") : Url("<#=nonMinifiedName#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=nonMinifiedName#>");
+    public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/<#=minifiedName#>") ? Url("<#=minifiedName#>")+"?"+T4MVCHelpers.TimestampString(UrlPath + "/<#=minifiedName#>") : Url("<#=nonMinifiedName#>")+"?"+T4MVCHelpers.TimestampString(UrlPath + "/<#=nonMinifiedName#>");
         <#+} else {#>
-    public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/<#=minifiedName#>") ? Url("<#=minifiedName#>") : Url("<#=nonMinifiedName#>");
+    public static readonly string <#=name#> = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/<#=minifiedName#>") ? Url("<#=minifiedName#>") : Url("<#=nonMinifiedName#>");
 <#+}  #>
 <#+}
 else if (AddTimestampToStaticLink(projectItem)) { #>
-    public static readonly string <#=name#> = Url("<#=projectItem.Name#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name#>");
+    public static readonly string <#=name#> = Url("<#=projectItem.Name#>")+"?"+T4MVCHelpers.TimestampString(UrlPath + "/<#=projectItem.Name#>");
 <#+}
     else { #>
     public static readonly string <#=name#> = Url("<#=projectItem.Name#>");
 <#+}
     }
     else if (AddTimestampToStaticLink(projectItem)) { #>
-    public static readonly string <#=name#> = Url("<#=projectItem.Name#>")+"?"+T4MVCHelpers.TimestampString(URLPATH + "/<#=projectItem.Name#>");
+    public static readonly string <#=name#> = Url("<#=projectItem.Name#>")+"?"+T4MVCHelpers.TimestampString(UrlPath + "/<#=projectItem.Name#>");
 <#+}
     else { #>
     public static readonly string <#=name#> = Url("<#=projectItem.Name#>");
@@ -1392,9 +1392,9 @@ int BuildClassStructureForProvidedPath(string path)
 
     [<#= GeneratedCode #>, DebuggerNonUserCode]
     public static partial class <#=className #> {
-        private const string URLPATH = "<#=currentPath#>";
-        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+        public const string UrlPath = "<#=currentPath#>";
+        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
 <#+     } else {
             #>
 
