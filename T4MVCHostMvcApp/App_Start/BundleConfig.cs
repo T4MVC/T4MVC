@@ -10,7 +10,7 @@ namespace T4MVCHostMvcApp.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle(Links.Bundles.Scripts.jquery).Include("~/scripts/jquery-{version}.js"));
-            bundles.Add(new StyleBundle(Links.Bundles.Styles.bootstrap).Include("~/styles/bootstrap*.css"));
+            //bundles.Add(new StyleBundle(Links.Bundles.Styles.bootstrap).Include("~/styles/bootstrap*.css")); // ignore bootstrap for now
             bundles.Add(new StyleBundle(Links.Bundles.Styles.common).Include(Links.Bundles.Content.Assets.Site_css));
 
         }

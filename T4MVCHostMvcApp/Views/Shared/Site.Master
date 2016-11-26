@@ -5,7 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
-    <%= Styles.Render(Links.Bundles.Content.Styles) %>
+    <%= Styles.Render(Links.Bundles.Styles.common) %>
+    <%= Styles.Render(Links.Bundles.Styles.bootstrap) %>
 </head>
 
 <body>
