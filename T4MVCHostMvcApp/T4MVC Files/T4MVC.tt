@@ -102,6 +102,35 @@ namespace <#=settings.T4MVCNamespace #>
 <#} #>
 }
 
+//Create a MVC.Views class that will hold constant fields to view names
+public static partial class <#=settings.HelpersPrefix #>
+{
+	public static partial class Views
+	{
+	//Add the default area controllers as static classes
+<#foreach (var controller in DefaultArea.GetControllers()) { #>
+		public static partial class <#=controller.Name #>
+		{
+<#RenderStaticViews(controller);#>
+		}
+<#} #>
+		
+	//Add the each area's controllers as static classes
+<#foreach (var area in Areas.Where(a => !string.IsNullOrEmpty(a.Name))) { #>
+		public static class <#=area.Name #>
+		{
+<#foreach (var controller in area.GetControllers()) { #>
+			public static partial class <#=controller.Name #>
+			{
+<#RenderStaticViews(controller);#>
+			}
+<#} #>
+		}
+<#} #>
+	}
+}
+
+
 namespace <#=settings.T4MVCNamespace #>
 {
     [<#= GeneratedCode #>, DebuggerNonUserCode]
@@ -1009,6 +1038,49 @@ void AddViewsRecursive(ProjectItems items, ViewsFolderInfo viewsFolder, bool use
             AddViewsRecursive(item.ProjectItems, subViewFolder, folderShouldUseNonQualifiedViewNames);
         }
     }
+}
+
+void RenderStaticViews(ControllerInfo controller)
+{
+    PushIndent("            ");
+    RenderStaticViewsRecursive(controller.ViewsFolder, controller);
+    PopIndent();
+}
+void RenderStaticViewsRecursive(ViewsFolderInfo viewsFolder, ControllerInfo controller)
+{
+	if(!viewsFolder.HasNonQualifiedViewNames)
+	{
+#>
+public static partial class ViewNames
+{
+<#+
+    PushIndent("    ");
+    foreach (var viewPair in viewsFolder.Views)
+    {
+		WriteLine("public const string " + EscapeID(Sanitize(viewPair.Key)) + " = \"" + viewPair.Key + "\";");
+	}
+    PopIndent();
+#>
+}
+<#+}
+    foreach (var viewPair in viewsFolder.Views)
+    {
+		WriteLine("public const string " + EscapeID(Sanitize(viewPair.Key)) + " = \"" + viewPair.Value + "\";");
+	}
+    foreach (var subFolder in viewsFolder.SubFolders)
+    {
+        var name = Sanitize(subFolder.Name);
+#>
+[<#= GeneratedCode #>, DebuggerNonUserCode]
+public static partial class <#=name#>
+{
+<#+
+		PushIndent("    ");
+		RenderStaticViewsRecursive(subFolder, controller);
+		PopIndent();
+
+		WriteLine("}");
+	}
 }
 
 void RenderControllerViews(ControllerInfo controller)
