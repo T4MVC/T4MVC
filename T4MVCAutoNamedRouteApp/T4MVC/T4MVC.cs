@@ -27,12 +27,20 @@ using T4MVC;
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 public static partial class MVC
 {
+    static readonly testClass s_test = new testClass();
+    public static testClass test { get { return s_test; } }
     public static T4MVCAutoNamedRouteApp.Controllers.HomeController Home = new T4MVCAutoNamedRouteApp.Controllers.T4MVC_HomeController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 
 namespace T4MVC
 {
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public class testClass
+    {
+        public readonly string Name = "test";
+        public T4MVC.test.SharedController Shared = new T4MVC.test.SharedController();
+    }
 }
 
 namespace T4MVC
@@ -119,6 +127,35 @@ namespace Links
         public static readonly string Web_config = Url("Web.config");
     }
 
+
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public static partial class Areas {
+        public const string UrlPath = "~/Areas";
+        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+    
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static partial class test {
+            public const string UrlPath = "~/Areas/test";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Views {
+                public const string UrlPath = "~/Areas/test/Views";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Shared {
+                    public const string UrlPath = "~/Areas/test/Views/Shared";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                }
+            
+                public static readonly string web_config = Url("web.config");
+            }
+        
+        }
+    }
     
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public static partial class Bundles
@@ -167,6 +204,24 @@ namespace Links
             }
             public static class Assets
             {
+            }
+        }
+        public static partial class Areas 
+        {
+            public static partial class test 
+            {
+                public static partial class Views 
+                {
+                    public static partial class Shared 
+                    {
+                        public static class Assets
+                        {
+                        }
+                    }
+                    public static class Assets
+                    {
+                    }
+                }
             }
         }
     }

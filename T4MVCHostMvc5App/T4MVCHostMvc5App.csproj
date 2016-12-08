@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{61125CF8-D85F-4E7D-91BD-944894501376}</ProjectGuid>
+    <ProjectGuid>{5BE905AE-C635-4B10-9E5E-158A2F5A2673}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>T4MVCAutoNamedRouteApp</RootNamespace>
-    <AssemblyName>T4MVCAutoNamedRouteApp</AssemblyName>
+    <RootNamespace>T4MVCHostMvc5App</RootNamespace>
+    <AssemblyName>T4MVCHostMvc5App</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -49,6 +49,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="SomeClassLibrary">
+      <HintPath>..\lib\SomeClassLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -120,37 +123,160 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Areas\test\testAreaRegistration.cs" />
+    <Compile Include="Areas\break\Controllers\MyAbstractBaseController.cs" />
+    <Compile Include="Areas\break\Controllers\PostController.cs" />
+    <Compile Include="Areas\FeatureFolderArea\FeatureFoo\FeatureFooController.cs" />
+    <Compile Include="Areas\Home\Controllers\HomeController.cs" />
+    <Compile Include="Content\ShouldNotBeALink.cs" />
+    <Compile Include="Controllers\ControllerWithoutSuffix.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ModelUnbinderController.cs" />
+    <Compile Include="Controllers\SomeAsyncController.cs" />
+    <Compile Include="Controllers\SubCtrls\SubSub\T4Ctrl1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>T4Ctrl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TestAttributeControllers.cs" />
+    <Compile Include="Features\Contact\ContactController.cs" />
+    <Compile Include="Features\Pictures\PicturesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Misc\MyCustomResult.cs" />
+    <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="T4MVC\HomeController.generated.cs">
+    <Compile Include="SomePortableArea\Controllers\HomeController.cs" />
+    <Compile Include="T4MVC Files\break.MyAbstractBaseController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="T4MVC\SharedController.generated.cs">
+    <Compile Include="T4MVC Files\break.PostController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="T4MVC\T4MVC.cs">
+    <Compile Include="T4MVC Files\break.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\ContactController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\DefaultController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\FeatureFolderArea.FeatureFooController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\FeatureFolderArea.SharedViewsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\Home.HomeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\Home.SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\HomeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\ModelUnbinderController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\NoControllerMatchingFolder_FooController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\PicturesController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\SomeAsyncController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\T4CtrlController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\T4MVC.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="T4MVC\test.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\TestAttributeYesAbstract2Controller.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\TestAttributeYesControllerName3.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\TestAttributeYesDerivedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\TestAttributeYesName1Controller.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\TestAttributeYesProcessed1Controller.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC Files\TestAttributeYesProcessed2Controller.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\Sub Home\T4View1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>T4View.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\Linked Files\SomeLinkedFile.txt">
+      <Link>Views\Home\SomeLinkedFile.txt</Link>
+    </Content>
+    <Content Include="Areas\break\Views\Shared\SharedAreaView.txt" />
+    <Content Include="Areas\FeatureFolderArea\FeatureFoo\Foobar.txt" />
+    <Content Include="Areas\FeatureFolderArea\FeatureFoo\Index.txt" />
+    <Content Include="Areas\FeatureFolderArea\InvalidFile.txt" />
+    <Content Include="Areas\FeatureFolderArea\SharedViews\SharedView.txt" />
+    <Content Include="Areas\Home\Content\Home.css" />
+    <Content Include="Areas\Home\Views\Home\EditorTemplates\SomeAreaEditorTemplate.ascx" />
+    <Content Include="Areas\Home\Views\Home\SomeHomeView.txt" />
+    <Content Include="ContentStatic\Scripts\SomeOtherScript.js" />
+    <Content Include="ContentStatic\TextFiles\readme.txt" />
+    <Content Include="Content\7 My.Text-File Space.txt" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\default\Zzz.txt" />
+    <Content Include="Content\Hello World.txt" />
+    <Content Include="Content\Hello%24World.txt" />
+    <Content Include="Content\Hello+World.txt" />
+    <Content Include="Content\SomeRandomName\SomeRandomName\Hello World.txt" />
+    <Content Include="Content\SomeRandomName\SomeRandomName\Hello%24World.txt" />
+    <Content Include="Content\SomeRandomName\SomeRandomName\Hello+World.txt" />
+    <Content Include="Content\SomeRandomName\SomeRandomName\SomeRandomName.txt" />
+    <None Include="Content\Sub Content-folder.test\SomeT4.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SomeT42.txt</LastGenOutput>
+    </None>
+    <Content Include="Content\Sub Content-folder.test\SomeT4.txt" />
+    <Content Include="Content\Sub Content-folder.test\SomeT42.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SomeT4.tt</DependentUpon>
+    </Content>
+    <None Include="Controllers\SubCtrls\SubSub\T4Ctrl.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>T4Ctrl1.cs</LastGenOutput>
+    </None>
     <Content Include="favicon.ico" />
+    <Content Include="Features\Contact\Index.txt" />
+    <Content Include="Features\Pictures\Detail.txt" />
+    <Content Include="Features\Pictures\Index.txt" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Areas\test\Views\web.config" />
+    <Content Include="Areas\break\Views\Web.config" />
+    <Content Include="Areas\Home\Views\Web.config" />
+    <None Include="Content\FileWithNoExtension" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -163,14 +289,32 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="T4MVC\T4MVC.tt.hooks.t4" />
-    <Content Include="T4MVC\T4MVC.tt.settings.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="T4MVC\T4MVC.tt">
+    <Content Include="SomePortableArea\Views\Home\SomeHomeView.txt" />
+    <Content Include="T4MVC Files\readme.txt" />
+    <None Include="T4MVC Files\T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
-    </Content>
+    </None>
+    <None Include="T4MVC Files\T4MVC.tt.settings.xml" />
+    <Content Include="Views\Home\7 Some Home.View-Hello.txt" />
+    <Content Include="Views\Home\App_LocalResources\Qqq.txt" />
+    <None Include="Views\Home\DisplayTemplates\SomeDisplayTemplate.cshtml" />
+    <None Include="Views\Home\EditorTemplates\SomeEditorTemplate.cshtml" />
+    <Content Include="Views\Home\Qqq.txt" />
+    <Content Include="Views\Home\SomeName\SomeName\SomeName.txt" />
+    <Content Include="Views\Home\Sub Home\Nested-Sub\99 Super~Nested-View.txt" />
+    <Content Include="Views\Home\Sub Home\Qqq.txt" />
+    <Content Include="Views\Home\Sub Home\string.txt" />
+    <None Include="Views\Home\Sub Home\T4View.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>T4View1.cs</LastGenOutput>
+    </None>
+    <Content Include="Views\NoControllerMatchingFolder.Foo\Abcd.txt" />
+    <None Include="Views\NoControllerMatchingFolder.Foo\_DuplicateControl.cshtml" />
+    <None Include="Views\Shared\_AnotherPartial.cshtml" />
+    <None Include="Views\Shared\_DuplicateControl.cshtml" />
+    <None Include="Views\Shared\_DuplicateControl1.cshtml" />
+    <Content Include="Views\Shared\Hello.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -185,13 +329,21 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="T4MVC Files\install.ps1" />
+    <None Include="T4MVC Files\T4MVC.nuspec" />
+    <None Include="T4MVC Files\T4MVC.tt.hooks.t4" />
+    <Content Include="Views\Home\_DuplicateControl.cshtml" />
+    <Content Include="Views\Home\QqQ.txt2" />
+    <Content Include="Views\Home\Qqq.txt3" />
+    <Content Include="Views\Shared\_LogOnUserControl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\test\Controllers\" />
-    <Folder Include="Areas\test\Models\" />
-    <Folder Include="Areas\test\Views\Shared\" />
-    <Folder Include="Models\" />
+    <Folder Include="Areas\break\Models\" />
+    <Folder Include="Areas\Home\Models\" />
+    <Folder Include="Areas\Home\Views\Shared\" />
+    <Folder Include="Content\Empty Folder\" />
+    <Folder Include="Views\Home\default\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -226,9 +378,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>60293</DevelopmentServerPort>
+          <DevelopmentServerPort>64129</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:60293/</IISUrl>
+          <IISUrl>http://localhost:64129/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
