@@ -164,6 +164,7 @@ namespace T4MVCHostMvc5App.Controllers
             public readonly string ActionUsingEnumDeclaredInOtherNamespace = "ActionUsingEnumDeclaredInOtherNamespace";
             public readonly string SomeAbstractResult = "SomeAbstractResult";
             public readonly string AutoNamedAction = "AutoNamedAction";
+            public readonly string ManyControllers = "ManyControllers";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -202,6 +203,7 @@ namespace T4MVCHostMvc5App.Controllers
             public const string ActionUsingEnumDeclaredInOtherNamespace = "ActionUsingEnumDeclaredInOtherNamespace";
             public const string SomeAbstractResult = "SomeAbstractResult";
             public const string AutoNamedAction = "AutoNamedAction";
+            public const string ManyControllers = "ManyControllers";
         }
 
 
@@ -358,8 +360,8 @@ namespace T4MVCHostMvc5App.Controllers
                 public readonly string _DuplicateControl = "_DuplicateControl";
                 public readonly string _7_Some_Home_View_Hello = "7 Some Home.View-Hello";
                 public readonly string About = "About";
-                public readonly string Contact = "Contact";
                 public readonly string Index = "Index";
+                public readonly string ManyControllers = "ManyControllers";
                 public readonly string Qqq = "Qqq";
                 public readonly string QqQ = "QqQ";
                 public readonly string Qqq_txt3 = "Qqq_txt3";
@@ -368,8 +370,8 @@ namespace T4MVCHostMvc5App.Controllers
             public readonly string _DuplicateControl = "~/Views/Home/_DuplicateControl.cshtml";
             public readonly string _7_Some_Home_View_Hello = "~/Views/Home/7 Some Home.View-Hello.txt";
             public readonly string About = "~/Views/Home/About.cshtml";
-            public readonly string Contact = "~/Views/Home/Contact.cshtml";
             public readonly string Index = "~/Views/Home/Index.cshtml";
+            public readonly string ManyControllers = "~/Views/Home/ManyControllers.cshtml";
             public readonly string Qqq = "~/Views/Home/Qqq.txt";
             public readonly string QqQ = "~/Views/Home/QqQ.txt2";
             public readonly string Qqq_txt3 = "~/Views/Home/Qqq.txt3";
@@ -853,6 +855,17 @@ namespace T4MVCHostMvc5App.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AutoNamedAction);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             AutoNamedActionOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ManyControllersOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ManyControllers()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ManyControllers);
+            ManyControllersOverride(callInfo);
             return callInfo;
         }
 

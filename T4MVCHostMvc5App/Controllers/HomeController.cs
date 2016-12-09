@@ -237,6 +237,11 @@ namespace T4MVCHostMvc5App.Controllers
         {
             return View();
         }
+
+        public virtual ActionResult ManyControllers()
+        {
+            return View();
+        }
     }
 
     public class SomeGenericResult<T> : FileResult

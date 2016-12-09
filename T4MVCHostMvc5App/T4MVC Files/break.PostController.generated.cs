@@ -88,12 +88,6 @@ namespace T4MVCHostMvc5App.Areas.Break.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult AutoNamedAction()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AutoNamedAction);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult SameProjectBaseControllerMethod()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SameProjectBaseControllerMethod);
@@ -126,7 +120,6 @@ namespace T4MVCHostMvc5App.Areas.Break.Controllers
             public readonly string ActionThatTakesAnObject = "ActionThatTakesAnObject";
             public readonly string ActionWithVariousParams = "ActionWithVariousParams";
             public readonly string CompiledControllerVirtualMethod2 = "CompiledControllerVirtualMethod2";
-            public readonly string AutoNamedAction = "AutoNamedAction";
             public readonly string SameProjectBaseControllerMethod = "SameProjectBaseControllerMethod";
             public readonly string CompiledControllerVirtualMethod = "CompiledControllerVirtualMethod";
         }
@@ -140,7 +133,6 @@ namespace T4MVCHostMvc5App.Areas.Break.Controllers
             public const string ActionThatTakesAnObject = "ActionThatTakesAnObject";
             public const string ActionWithVariousParams = "ActionWithVariousParams";
             public const string CompiledControllerVirtualMethod2 = "CompiledControllerVirtualMethod2";
-            public const string AutoNamedAction = "AutoNamedAction";
             public const string SameProjectBaseControllerMethod = "SameProjectBaseControllerMethod";
             public const string CompiledControllerVirtualMethod = "CompiledControllerVirtualMethod";
         }
@@ -187,14 +179,6 @@ namespace T4MVCHostMvc5App.Areas.Break.Controllers
         public class ActionParamsClass_CompiledControllerVirtualMethod2
         {
             public readonly string s = "s";
-        }
-        static readonly ActionParamsClass_AutoNamedAction s_params_AutoNamedAction = new ActionParamsClass_AutoNamedAction();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_AutoNamedAction AutoNamedActionParams { get { return s_params_AutoNamedAction; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_AutoNamedAction
-        {
-            public readonly string id = "id";
         }
         static readonly ActionParamsClass_SameProjectBaseControllerMethod s_params_SameProjectBaseControllerMethod = new ActionParamsClass_SameProjectBaseControllerMethod();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -301,18 +285,6 @@ namespace T4MVCHostMvc5App.Areas.Break.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CompiledControllerVirtualMethod2);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "s", s);
             CompiledControllerVirtualMethod2Override(callInfo, s);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void AutoNamedActionOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult AutoNamedAction(int id)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AutoNamedAction);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            AutoNamedActionOverride(callInfo, id);
             return callInfo;
         }
 

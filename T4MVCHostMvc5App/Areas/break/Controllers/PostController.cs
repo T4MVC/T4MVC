@@ -3,15 +3,13 @@ using System.Web.Mvc;
 
 namespace T4MVCHostMvc5App.Areas.Break.Controllers
 {
-
     [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Param")]
     public class MyParamObject
     {
         public string Name { get; set; }
         public int Age { get; set; }
     }
-
-    [RoutePrefix("post")]
+    
     public partial class PostController : MyAbstractBaseController
     {
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "s", Scope = "member", Target = "T4MVCHostMvc5App.Areas.Break.Controllers.PostController.#.ctor(System.String)" )]
@@ -48,12 +46,6 @@ namespace T4MVCHostMvc5App.Areas.Break.Controllers
         public override ActionResult CompiledControllerVirtualMethod2(string s)
         {
             return base.CompiledControllerVirtualMethod2(s);
-        }
-
-        [AutoNamedRoute( "auto-named-action/{id:int}" )]
-        public virtual ActionResult AutoNamedAction( int id )
-        {
-            return View();
         }
     }
 }
