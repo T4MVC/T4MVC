@@ -17,6 +17,10 @@ namespace T4MVCHostMvcApp {
         public static void RegisterRoutes(RouteCollection routes) {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+#if USE_ROUTE_ATTRIBUTES
+            routes.MapMvcAttributeRoutes();
+#endif
+
             routes.MapRoute(
                 "Default",                                              // Route name
                 "{controller}/{action}/{id}",                           // URL with parameters

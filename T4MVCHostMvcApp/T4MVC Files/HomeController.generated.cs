@@ -157,6 +157,7 @@ namespace T4MVCHostMvcApp.Controllers
             public readonly string ActionUsingPrivateFieldForDefaultValue = "ActionUsingPrivateFieldForDefaultValue";
             public readonly string ActionUsingEnumDeclaredInOtherNamespace = "ActionUsingEnumDeclaredInOtherNamespace";
             public readonly string SomeAbstractResult = "SomeAbstractResult";
+            public readonly string ManyControllers = "ManyControllers";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -194,6 +195,7 @@ namespace T4MVCHostMvcApp.Controllers
             public const string ActionUsingPrivateFieldForDefaultValue = "ActionUsingPrivateFieldForDefaultValue";
             public const string ActionUsingEnumDeclaredInOtherNamespace = "ActionUsingEnumDeclaredInOtherNamespace";
             public const string SomeAbstractResult = "SomeAbstractResult";
+            public const string ManyControllers = "ManyControllers";
         }
 
 
@@ -343,6 +345,7 @@ namespace T4MVCHostMvcApp.Controllers
                 public readonly string About = "About";
                 public readonly string DuplicateControl = "DuplicateControl";
                 public readonly string Index = "Index";
+                public readonly string ManyControllers = "ManyControllers";
                 public readonly string Qqq = "Qqq";
                 public readonly string QqQ = "QqQ";
                 public readonly string Qqq_txt3 = "Qqq_txt3";
@@ -352,6 +355,7 @@ namespace T4MVCHostMvcApp.Controllers
             public readonly string About = "~/Views/Home/About.aspx";
             public readonly string DuplicateControl = "~/Views/Home/DuplicateControl.ascx";
             public readonly string Index = "~/Views/Home/Index.aspx";
+            public readonly string ManyControllers = "~/Views/Home/ManyControllers.aspx";
             public readonly string Qqq = "~/Views/Home/Qqq.txt";
             public readonly string QqQ = "~/Views/Home/QqQ.txt2";
             public readonly string Qqq_txt3 = "~/Views/Home/Qqq.txt3";
@@ -823,6 +827,17 @@ namespace T4MVCHostMvcApp.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ViewResultBase(Area, Name, ActionNames.SomeAbstractResult);
             SomeAbstractResultOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ManyControllersOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ManyControllers()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ManyControllers);
+            ManyControllersOverride(callInfo);
             return callInfo;
         }
 
