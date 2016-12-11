@@ -1,4 +1,0 @@
-﻿<#@ template language="C#v3.5" debug="true" #>
-<#@ output extension=".txt" #>
-
-Hello
