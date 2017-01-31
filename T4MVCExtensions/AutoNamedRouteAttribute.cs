@@ -7,7 +7,7 @@ using System.Web.Mvc.Routing;
 
 namespace System.Web.Mvc
 {
-    [AttributeUsage( AttributeTargets.Method | AttributeTargets.Class, Inherited = false, AllowMultiple = true )]
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
     public class AutoNamedRouteAttribute : Attribute, IDirectRouteFactory
     {
         public string Template
@@ -27,38 +27,38 @@ namespace System.Web.Mvc
 
         }
 
-        public AutoNamedRouteAttribute( string template )
+        public AutoNamedRouteAttribute(string template)
         {
             Template = template;
         }
 
-        private string getAreaName( System.Web.Mvc.ControllerDescriptor controllerDescriptor )
+        private string getAreaName(System.Web.Mvc.ControllerDescriptor controllerDescriptor)
         {
             System.Web.Mvc.RouteAreaAttribute areaAttribute =
-               controllerDescriptor.GetCustomAttributes( typeof( System.Web.Mvc.RouteAreaAttribute ), inherit: true )
+               controllerDescriptor.GetCustomAttributes(typeof(System.Web.Mvc.RouteAreaAttribute), inherit: true)
                                    .Cast<System.Web.Mvc.RouteAreaAttribute>()
                                    .FirstOrDefault();
 
-            if( areaAttribute == null )
+            if(areaAttribute == null)
                 return null;
 
-            if( areaAttribute.AreaName != null )
+            if(areaAttribute.AreaName != null)
                 return areaAttribute.AreaName;
 
-            if( controllerDescriptor.ControllerType.Namespace != null )
-                return controllerDescriptor.ControllerType.Namespace.Split( '.' ).Last();
+            if(controllerDescriptor.ControllerType.Namespace != null)
+                return controllerDescriptor.ControllerType.Namespace.Split('.').Last();
 
             return null;
         }
 
-        public RouteEntry CreateRoute( DirectRouteFactoryContext context )
+        public RouteEntry CreateRoute(DirectRouteFactoryContext context)
         {
-            if( !context.TargetIsAction )
-                throw new InvalidOperationException( "AutoNamedRouteAttribute should be only used on actions" );
-            if( !context.Actions.Any() )
-                throw new InvalidOperationException( "Actions should be empty" );
+            if(!context.TargetIsAction)
+                throw new InvalidOperationException("AutoNamedRouteAttribute should be only used on actions");
+            if(!context.Actions.Any())
+                throw new InvalidOperationException("Actions should be empty");
 
-            IDirectRouteBuilder builder = context.CreateBuilder( Template );
+            IDirectRouteBuilder builder = context.CreateBuilder(Template);
             // generate name:
             // get the first action descriptor from our list because we only need to get its name
             var actionDescriptor = context.Actions.First();
@@ -66,9 +66,9 @@ namespace System.Web.Mvc
             var actionName = actionDescriptor.ActionName;
             var controllerName = controllerDescriptor.ControllerName;
             // get area also
-            var areaName = getAreaName( controllerDescriptor );
+            var areaName = getAreaName(controllerDescriptor);
             // compose a name
-            builder.Name = T4Extensions.ComposeAutoRouteName( areaName, controllerName, actionName );
+            builder.Name = T4Extensions.ComposeAutoRouteName(areaName, controllerName, actionName);
             builder.Order = Order;
             return builder.Build();
         }
