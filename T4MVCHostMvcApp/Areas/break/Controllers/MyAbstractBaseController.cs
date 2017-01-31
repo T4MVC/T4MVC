@@ -21,6 +21,8 @@ namespace T4MVCHostMvcApp.Areas.Break.Controllers
             return new EmptyResult();
         }
 
+#if !USE_ROUTE_ATTRIBUTES
+        // can't use generic actions with route attributes in MVC
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public T SomeGenericMethod<T>()
         {
@@ -34,6 +36,8 @@ namespace T4MVCHostMvcApp.Areas.Break.Controllers
         {
             return null;
         }
+#endif
+
         [NonAction]
         public virtual new ViewResult View(string viewName)
         {

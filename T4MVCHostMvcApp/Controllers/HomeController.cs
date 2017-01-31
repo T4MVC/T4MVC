@@ -131,11 +131,14 @@ namespace T4MVCHostMvcApp.Controllers
             return new EmptyResult();
         }
 
+#if !USE_ROUTE_ATTRIBUTES
+        // can't use MVC RouteAttributes with generic actions
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter"), SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Param"), SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "string")]
         public virtual ActionResult ActionWithGenericParam<T>(string someString)
         {
             return new EmptyResult();
         }
+#endif
 
         [SuppressMessage("Microsoft.Design", "CA1041:ProvideObsoleteAttributeMessage")]
         [Obsolete]
@@ -229,6 +232,11 @@ namespace T4MVCHostMvcApp.Controllers
         public virtual ViewResultBase SomeAbstractResult()
         {
             throw new NotImplementedException();
+        }
+
+        public virtual ActionResult ManyControllers()
+        {
+            return View();
         }
     }
 

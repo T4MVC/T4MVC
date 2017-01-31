@@ -105,6 +105,52 @@ namespace System.Web.Mvc
             return htmlHelper.RouteLink(linkText, routeName, protocol ?? result.GetT4MVCResult().Protocol, hostName, fragment, result.GetRouteValueDictionary(), htmlAttributes);
         }
 
+        public static MvcHtmlString AutoNamedRouteLink(this HtmlHelper htmlHelper, string linkText, ActionResult result)
+        {
+            return htmlHelper.AutoNamedRouteLink(linkText, result, null, null, null, null);
+        }
+
+        public static MvcHtmlString AutoNamedRouteLink(this HtmlHelper htmlHelper, string linkText, ActionResult result, object htmlAttributes)
+        {
+            return htmlHelper.AutoNamedRouteLink(linkText, result, htmlAttributes, null, null, null);
+        }
+
+        public static MvcHtmlString AutoNamedRouteLink(this HtmlHelper htmlHelper, string linkText, ActionResult result, object htmlAttributes, string protocol)
+        {
+            return htmlHelper.AutoNamedRouteLink(linkText, result, htmlAttributes, protocol, null, null);
+        }
+
+        public static MvcHtmlString AutoNamedRouteLink(this HtmlHelper htmlHelper, string linkText, ActionResult result, object htmlAttributes, string protocol, string hostName)
+        {
+            return htmlHelper.AutoNamedRouteLink(linkText, result, htmlAttributes, protocol, hostName, null);
+        }
+
+        public static MvcHtmlString AutoNamedRouteLink(this HtmlHelper htmlHelper, string linkText, ActionResult result, object htmlAttributes, string protocol, string hostName, string fragment)
+        {
+            return htmlHelper.AutoNamedRouteLink(linkText, result, HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes), protocol, hostName, fragment);
+        }
+
+        public static MvcHtmlString AutoNamedRouteLink(this HtmlHelper htmlHelper, string linkText, ActionResult result, IDictionary<string, object> htmlAttributes)
+        {
+            return htmlHelper.AutoNamedRouteLink(linkText, result, htmlAttributes, null, null, null);
+        }
+
+        public static MvcHtmlString AutoNamedRouteLink(this HtmlHelper htmlHelper, string linkText, ActionResult result, IDictionary<string, object> htmlAttributes, string protocol)
+        {
+            return htmlHelper.AutoNamedRouteLink(linkText, result, htmlAttributes, protocol, null, null);
+        }
+
+        public static MvcHtmlString AutoNamedRouteLink(this HtmlHelper htmlHelper, string linkText, ActionResult result, IDictionary<string, object> htmlAttributes, string protocol, string hostName)
+        {
+            return htmlHelper.AutoNamedRouteLink(linkText, result, htmlAttributes, protocol, hostName, null);
+        }
+
+        public static MvcHtmlString AutoNamedRouteLink(this HtmlHelper htmlHelper, string linkText, ActionResult result, IDictionary<string, object> htmlAttributes, string protocol, string hostName, string fragment)
+        {
+            string routeName = autoRouteNameFromActionResult(result);
+            return htmlHelper.RouteLink(linkText, routeName, protocol ?? result.GetT4MVCResult().Protocol, hostName, fragment, result.GetRouteValueDictionary(), htmlAttributes);
+        }
+
         public static MvcForm BeginForm(this HtmlHelper htmlHelper, ActionResult result)
         {
             return htmlHelper.BeginForm(result, FormMethod.Post);
@@ -258,6 +304,51 @@ namespace System.Web.Mvc
             return htmlHelper.RouteLink(linkText, routeName, taskResult.Result, htmlAttributes, protocol, hostName, fragment);
         }
 
+        public static MvcHtmlString AutoNamedRouteLink(this HtmlHelper htmlHelper, string linkText, Task<ActionResult> taskResult)
+        {
+            return htmlHelper.AutoNamedRouteLink(linkText, taskResult.Result, null, null, null, null);
+        }
+
+        public static MvcHtmlString AutoNamedRouteLink(this HtmlHelper htmlHelper, string linkText, Task<ActionResult> taskResult, object htmlAttributes)
+        {
+            return htmlHelper.AutoNamedRouteLink(linkText, taskResult.Result, htmlAttributes, null, null, null);
+        }
+
+        public static MvcHtmlString AutoNamedRouteLink(this HtmlHelper htmlHelper, string linkText, Task<ActionResult> taskResult, object htmlAttributes, string protocol)
+        {
+            return htmlHelper.AutoNamedRouteLink(linkText, taskResult.Result, htmlAttributes, protocol, null, null);
+        }
+
+        public static MvcHtmlString AutoNamedRouteLink(this HtmlHelper htmlHelper, string linkText, Task<ActionResult> taskResult, object htmlAttributes, string protocol, string hostName)
+        {
+            return htmlHelper.AutoNamedRouteLink(linkText, taskResult.Result, htmlAttributes, protocol, hostName, null);
+        }
+
+        public static MvcHtmlString AutoNamedRouteLink(this HtmlHelper htmlHelper, string linkText, Task<ActionResult> taskResult, object htmlAttributes, string protocol, string hostName, string fragment)
+        {
+            return htmlHelper.AutoNamedRouteLink(linkText, taskResult.Result, HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes), protocol, hostName, fragment);
+        }
+
+        public static MvcHtmlString AutoNamedRouteLink(this HtmlHelper htmlHelper, string linkText, Task<ActionResult> taskResult, IDictionary<string, object> htmlAttributes)
+        {
+            return htmlHelper.AutoNamedRouteLink(linkText, taskResult.Result, htmlAttributes, null, null, null);
+        }
+
+        public static MvcHtmlString AutoNamedRouteLink(this HtmlHelper htmlHelper, string linkText, Task<ActionResult> taskResult, IDictionary<string, object> htmlAttributes, string protocol)
+        {
+            return htmlHelper.AutoNamedRouteLink(linkText, taskResult.Result, htmlAttributes, protocol, null, null);
+        }
+
+        public static MvcHtmlString AutoNamedRouteLink(this HtmlHelper htmlHelper, string linkText, Task<ActionResult> taskResult, IDictionary<string, object> htmlAttributes, string protocol, string hostName)
+        {
+            return htmlHelper.AutoNamedRouteLink(linkText, taskResult.Result, htmlAttributes, protocol, hostName, null);
+        }
+
+        public static MvcHtmlString AutoNamedRouteLink(this HtmlHelper htmlHelper, string linkText, Task<ActionResult> taskResult, IDictionary<string, object> htmlAttributes, string protocol, string hostName, string fragment)
+        {
+            return htmlHelper.AutoNamedRouteLink(linkText, taskResult.Result, htmlAttributes, protocol, hostName, fragment);
+        }
+
         public static MvcForm BeginForm(this HtmlHelper htmlHelper, Task<ActionResult> taskResult)
         {
             return htmlHelper.BeginForm(taskResult.Result, FormMethod.Post);
@@ -312,7 +403,7 @@ namespace System.Web.Mvc
         {
             return htmlHelper.Action(taskResult.Result);
         }
-        
+
         /// <summary>
         /// If specific route can be found, return that route with the parameter tokens in route string.
         /// </summary>
@@ -322,14 +413,14 @@ namespace System.Web.Mvc
             string area = string.Empty;
             object token;
 
-            if (rvd.TryGetValue("area", out token))
+            if(rvd.TryGetValue("area", out token))
                 area = token.ToString();
 
-            if (!rvd.TryGetValue("controller", out token))
+            if(!rvd.TryGetValue("controller", out token))
                 throw new Exception("T4MVC JavascriptReplacableUrl could not locate controller in source dictionary");
             string controller = token.ToString();
 
-            if (!rvd.TryGetValue("action", out token))
+            if(!rvd.TryGetValue("action", out token))
                 throw new Exception("T4MVC JavascriptReplacableUrl could not locate action in source dictionary");
             string action = token.ToString();
 
@@ -341,7 +432,7 @@ namespace System.Web.Mvc
                 .Select(r => r.Url)
                 .FirstOrDefault();
 
-            if (String.IsNullOrEmpty(specificActionUrl))
+            if(String.IsNullOrEmpty(specificActionUrl))
             {
                 return urlHelper.RouteUrl(null, result.GetRouteValueDictionary());
             }
@@ -354,13 +445,13 @@ namespace System.Web.Mvc
         private static bool CompareValue(this RouteValueDictionary dictionary, string key, string value)
         {
             // Normalize the value to null if empty or whitespace
-            if (string.IsNullOrWhiteSpace(value))
+            if(string.IsNullOrWhiteSpace(value))
             {
                 value = null;
             }
 
             // Do we actually have the RouteValueDictionary
-            if (dictionary == null)
+            if(dictionary == null)
             {
                 // No dictionary, match if the value is also null or whitespace
                 return value == null;
@@ -390,7 +481,7 @@ namespace System.Web.Mvc
         {
             return urlHelper.RouteUrl(null, result.GetRouteValueDictionary(), protocol ?? result.GetT4MVCResult().Protocol, hostName);
         }
-        
+
         public static string Action(this UrlHelper urlHelper, Task<ActionResult> taskResult)
         {
             return urlHelper.Action(taskResult.Result, null, null);
@@ -466,7 +557,7 @@ namespace System.Web.Mvc
         {
             return ajaxHelper.RouteLink(linkText, result.GetRouteValueDictionary(), ajaxOptions, htmlAttributes);
         }
-        
+
         public static MvcHtmlString ActionLink(this AjaxHelper ajaxHelper, string linkText, Task<ActionResult> taskResult, AjaxOptions ajaxOptions)
         {
             return ajaxHelper.ActionLink(linkText, taskResult.Result, ajaxOptions);
@@ -497,6 +588,22 @@ namespace System.Web.Mvc
             return ajaxHelper.RouteLink(linkText, routeName, result.GetRouteValueDictionary(), ajaxOptions, htmlAttributes);
         }
 
+        public static MvcHtmlString AutoNamedRouteLink(this AjaxHelper ajaxHelper, string linkText, ActionResult result, AjaxOptions ajaxOptions)
+        {
+            return ajaxHelper.RouteLink(linkText, result, ajaxOptions, null);
+        }
+
+        public static MvcHtmlString AutoNamedRouteLink(this AjaxHelper ajaxHelper, string linkText, ActionResult result, AjaxOptions ajaxOptions, object htmlAttributes)
+        {
+            return ajaxHelper.RouteLink(linkText, result, ajaxOptions, HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes));
+        }
+
+        public static MvcHtmlString AutoNamedRouteLink(this AjaxHelper ajaxHelper, string linkText, ActionResult result, AjaxOptions ajaxOptions, IDictionary<string, object> htmlAttributes)
+        {
+            string routeName = autoRouteNameFromActionResult(result);
+            return ajaxHelper.RouteLink(linkText, routeName, result.GetRouteValueDictionary(), ajaxOptions, htmlAttributes);
+        }
+
         public static MvcHtmlString RouteLink(this AjaxHelper ajaxHelper, string linkText, string routeName, Task<ActionResult> taskResult, AjaxOptions ajaxOptions)
         {
             return ajaxHelper.RouteLink(linkText, routeName, taskResult.Result, ajaxOptions, null);
@@ -511,7 +618,22 @@ namespace System.Web.Mvc
         {
             return ajaxHelper.RouteLink(linkText, routeName, taskResult.Result, ajaxOptions, htmlAttributes);
         }
-        
+
+        public static MvcHtmlString AutoNamedRouteLink(this AjaxHelper ajaxHelper, string linkText, Task<ActionResult> taskResult, AjaxOptions ajaxOptions)
+        {
+            return ajaxHelper.AutoNamedRouteLink(linkText, taskResult.Result, ajaxOptions, null);
+        }
+
+        public static MvcHtmlString AutoNamedRouteLink(this AjaxHelper ajaxHelper, string linkText, Task<ActionResult> taskResult, AjaxOptions ajaxOptions, object htmlAttributes)
+        {
+            return ajaxHelper.AutoNamedRouteLink(linkText, taskResult.Result, ajaxOptions, HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes));
+        }
+
+        public static MvcHtmlString AutoNamedRouteLink(this AjaxHelper ajaxHelper, string linkText, Task<ActionResult> taskResult, AjaxOptions ajaxOptions, IDictionary<string, object> htmlAttributes)
+        {
+            return ajaxHelper.AutoNamedRouteLink(linkText, taskResult.Result, ajaxOptions, htmlAttributes);
+        }
+
         public static MvcForm BeginForm(this AjaxHelper ajaxHelper, ActionResult result, AjaxOptions ajaxOptions)
         {
             return ajaxHelper.BeginForm(result, ajaxOptions, null);
@@ -527,7 +649,7 @@ namespace System.Web.Mvc
             var callInfo = result.GetT4MVCResult();
             return ajaxHelper.BeginForm(callInfo.Action, callInfo.Controller, callInfo.RouteValueDictionary, ajaxOptions, htmlAttributes);
         }
-        
+
         public static MvcForm BeginForm(this AjaxHelper ajaxHelper, Task<ActionResult> taskResult, AjaxOptions ajaxOptions)
         {
             return ajaxHelper.BeginForm(taskResult.Result, ajaxOptions, null);
@@ -557,7 +679,7 @@ namespace System.Web.Mvc
         {
             return ajaxHelper.BeginRouteForm(routeName, result.GetRouteValueDictionary(), ajaxOptions, htmlAttributes);
         }
-        
+
         public static MvcForm BeginRouteForm(this AjaxHelper ajaxHelper, string routeName, Task<ActionResult> taskResult, AjaxOptions ajaxOptions)
         {
             return ajaxHelper.BeginRouteForm(routeName, taskResult.Result, ajaxOptions, null);
@@ -665,7 +787,7 @@ namespace System.Web.Mvc
         public static Route MapRouteArea(this AreaRegistrationContext context, string name, string url, ActionResult result, object defaults, object constraints, string[] namespaces)
         {
             // Create and add the route
-            if ((namespaces == null) && (context.Namespaces != null))
+            if((namespaces == null) && (context.Namespaces != null))
             {
                 namespaces = context.Namespaces.ToArray();
             }
@@ -713,7 +835,7 @@ namespace System.Web.Mvc
             var routeValues = new RouteValueDictionary(defaults);
 
             // Then add the Controller/Action names and the parameters from the call
-            foreach (var pair in result.GetRouteValueDictionary())
+            foreach(var pair in result.GetRouteValueDictionary())
             {
                 routeValues.Add(pair.Key, pair.Value);
             }
@@ -725,7 +847,7 @@ namespace System.Web.Mvc
 
             route.DataTokens = new RouteValueDictionary();
 
-            if (namespaces != null && namespaces.Length > 0)
+            if(namespaces != null && namespaces.Length > 0)
             {
                 route.DataTokens["Namespaces"] = namespaces;
             }
@@ -736,7 +858,7 @@ namespace System.Web.Mvc
         public static IT4MVCActionResult GetT4MVCResult(this ActionResult result)
         {
             var t4MVCResult = result as IT4MVCActionResult;
-            if (t4MVCResult == null)
+            if(t4MVCResult == null)
             {
                 throw new InvalidOperationException("T4MVC was called incorrectly. You may need to force it to regenerate by right clicking on T4MVC.tt and choosing Run Custom Tool");
             }
@@ -758,7 +880,7 @@ namespace System.Web.Mvc
             RouteValueDictionary currentRouteValues = result.GetRouteValueDictionary();
 
             // Add all the extra values
-            foreach (var pair in routeValues)
+            foreach(var pair in routeValues)
             {
                 ModelUnbinderHelpers.AddRouteValues(currentRouteValues, pair.Key, pair.Value);
             }
@@ -769,7 +891,7 @@ namespace System.Web.Mvc
         public static ActionResult AddRouteValues(this ActionResult result, System.Collections.Specialized.NameValueCollection nameValueCollection)
         {
             // Copy all the values from the NameValueCollection into the route dictionary
-            if (nameValueCollection.AllKeys.Any(m => m == null))  //if it has a null, the CopyTo extension will crash!
+            if(nameValueCollection.AllKeys.Any(m => m == null))  //if it has a null, the CopyTo extension will crash!
             {
                 var filtered = new System.Collections.Specialized.NameValueCollection(nameValueCollection);
                 filtered.Remove(null);
@@ -802,7 +924,7 @@ namespace System.Web.Mvc
 
         public static bool FileExists(string virtualPath)
         {
-            if (!HostingEnvironment.IsHosted) return false;
+            if(!HostingEnvironment.IsHosted) return false;
             string filePath = HostingEnvironment.MapPath(virtualPath);
             return System.IO.File.Exists(filePath);
         }
@@ -810,9 +932,36 @@ namespace System.Web.Mvc
         static DateTime CenturyBegin = new DateTime(2001, 1, 1);
         public static string TimestampString(string virtualPath)
         {
-            if (!HostingEnvironment.IsHosted) return string.Empty;
+            if(!HostingEnvironment.IsHosted) return string.Empty;
             string filePath = HostingEnvironment.MapPath(virtualPath);
             return Convert.ToString((System.IO.File.GetLastWriteTimeUtc(filePath).Ticks - CenturyBegin.Ticks) / 1000000000, 16);
+        }
+
+        private static string autoRouteNameFromActionResult(ActionResult result)
+        {
+            var t4mvcRes = result.GetT4MVCResult();
+            string actionName = t4mvcRes.Action;
+            string ctrlName = t4mvcRes.Controller;
+            // get area from route values
+            object areaName = "";
+            t4mvcRes.RouteValueDictionary.TryGetValue("area", out areaName);
+            t4mvcRes.RouteValueDictionary.Remove("area");
+            // compose route name
+            string routeName = ComposeAutoRouteName(areaName as string, ctrlName, actionName);
+            return routeName;
+        }
+
+        public static string ComposeAutoRouteName(string areaName, string controllerName, string actionName)
+        {
+            if(controllerName == null)
+                throw new ArgumentNullException("controllerName", "Controller name cannot be null");
+            if(actionName == null)
+                throw new ArgumentNullException("actionName", "Action name cannot be null");
+
+            if(string.IsNullOrWhiteSpace(areaName))
+                areaName = "__AUTONAMEDROUTE_DEFAULT__";
+
+            return string.Join("_", areaName, controllerName, actionName).ToLowerInvariant();
         }
     }
 }
