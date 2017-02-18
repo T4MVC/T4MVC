@@ -102,6 +102,7 @@ namespace <#=settings.T4MVCNamespace #>
 <#} #>
 }
 
+#pragma warning disable 0436
 namespace <#=settings.T4MVCNamespace #>
 {
     [<#= GeneratedCode #>, DebuggerNonUserCode]
@@ -111,6 +112,7 @@ namespace <#=settings.T4MVCNamespace #>
         public static Dummy Instance = new Dummy();
     }
 }
+#pragma warning restore 0436
 
 <#foreach (var resultType in ResultTypes.Values) { #>
 [<#= GeneratedCode #>, DebuggerNonUserCode]
