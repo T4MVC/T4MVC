@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 4.0.0 (2-18-2017)
+* Disable compiler warning about clashing Dummy classes. [url:https://github.com/T4MVC/T4MVC/pull/97]
+
 !!! 4.0.0-beta1 (1-31-2017)
 * Make UrlPath constant publicly accessible. [url:https://github.com/T4MVC/T4MVC/pull/92]
 * Breaking change: Requires MVC 5, hence the major version bump
