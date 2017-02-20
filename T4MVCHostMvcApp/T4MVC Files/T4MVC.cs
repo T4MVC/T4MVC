@@ -176,7 +176,7 @@ internal partial class T4MVC_System_Web_Mvc_ActionResult : System.Web.Mvc.Action
         this.InitMVCT4Result(area, controller, action, protocol);
     }
      
-    public override void ExecuteResult(System.Web.Mvc.ControllerContext context) { }
+    public override void ExecuteResult(System.Web.Mvc.ControllerContext var10) { }
     
     public string Controller { get; set; }
     public string Action { get; set; }
@@ -243,7 +243,7 @@ internal partial class T4MVC_System_Web_Mvc_FileResult : System.Web.Mvc.FileResu
         this.InitMVCT4Result(area, controller, action, protocol);
     }
      
-    protected override void WriteFile(System.Web.HttpResponseBase response) { }
+    protected override void WriteFile(System.Web.HttpResponseBase var11) { }
     
     public string Controller { get; set; }
     public string Action { get; set; }
@@ -323,7 +323,7 @@ internal partial class T4MVC_System_Web_Mvc_ViewResultBase : System.Web.Mvc.View
         this.InitMVCT4Result(area, controller, action, protocol);
     }
      
-    protected override System.Web.Mvc.ViewEngineResult FindView(System.Web.Mvc.ControllerContext context) { return default(System.Web.Mvc.ViewEngineResult);  }
+    protected override System.Web.Mvc.ViewEngineResult FindView(System.Web.Mvc.ControllerContext var12) { return default(System.Web.Mvc.ViewEngineResult);  }
     
     public string Controller { get; set; }
     public string Action { get; set; }
@@ -935,6 +935,7 @@ namespace Links
         }
     }
 }
+
 
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 internal static class T4MVCHelpers {
