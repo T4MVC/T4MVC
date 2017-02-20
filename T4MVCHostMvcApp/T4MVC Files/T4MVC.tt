@@ -2077,7 +2077,7 @@ class FunctionInfo
             else
                 TT.Write(", ");
 
-            TT.Write(p.Type + " " + p.Name);
+            TT.Write(p.Type + " " + (string.IsNullOrEmpty(p.Name) ? "foo" : p.Name));
             if(includeDefaults && !string.IsNullOrEmpty(p.DefaultValue))
                 TT.Write(" = " + p.DefaultValue);
         }
