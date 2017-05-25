@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/11451mttjts8003t?svg=true)](https://ci.appveyor.com/project/T4MVC/t4mvc)
+
 T4MVC is a T4 template for ASP.NET MVC apps that creates strongly typed helpers that eliminate the use of literal strings in many places.
 
 e.g. instead of
@@ -28,8 +30,3 @@ and that's just the beginning!
 *   **Twitter quotes**: cool things people are saying on Twitter [here](/wikipage?title=T4MVC_Twitter&amp;referringTitle=Home "T4MVC_Twitter&amp;referringTitle=Home")
 
 T4MVC is part of the [MvcContrib](http://mvccontrib.codeplex.com) project, which is part of the [Outercurve Foundation](http://www.outercurve.org/)
-
-## Continuous Integration
-
-[![Build status](https://ci.appveyor.com/api/projects/status/11451mttjts8003t?svg=true)](https://ci.appveyor.com/project/T4MVC/t4mvc)
-
