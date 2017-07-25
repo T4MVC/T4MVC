@@ -860,6 +860,8 @@ namespace T4MVCHostMvcApp.Tests
 
             if (!string.IsNullOrEmpty(area))
                 TestRouteValue(actionResult, "area", area);
+            else
+                TestNoRouteValue(actionResult, "area");
 
             TestRouteValue(actionResult, "controller", controller);
             TestRouteValue(actionResult, "action", action);
