@@ -5,13 +5,13 @@ T4MVC is a T4 template for ASP.NET MVC apps that creates strongly typed helpers 
 e.g. instead of
 
 ````c#
-@Html.ActionLink("Delete Dinner", "Delete", "Dinners", new { id = Model.DinnerID }, null)
+@Html.ActionLink("Dinner Details", "Details", "Dinners", new { id = Model.DinnerID }, null)
 ````
 
 T4MVC lets you write
 
 ````c#
-@Html.ActionLink("Delete Dinner", MVC.Dinners.Delete(Model.DinnerID))
+@Html.ActionLink("Dinner Details", MVC.Dinners.Details(Model.DinnerID))
 ````
 
 and that's just the beginning!
