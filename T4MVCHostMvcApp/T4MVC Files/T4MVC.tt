@@ -1203,13 +1203,13 @@ public static class <#= settings.AssetsNamespace #>
             if (projectItem.Name.EndsWith(".js")  && !projectItem.Name.Contains("-vsdoc")) 
             {
 #>
-public const string <#=name#> = "<#=bundleAssetPath#>"; 
+public static readonly string <#=name#> = T4MVCHelpers.ProcessAssetPath("<#=bundleAssetPath#>"); 
 <#+
             }
             else if (projectItem.Name.EndsWith(".css")) 
             { 
 #>
-public const string <#=name#> = "<#=bundleAssetPath#>";
+public static readonly string <#=name#> = T4MVCHelpers.ProcessAssetPath("<#=bundleAssetPath#>");
 <#+
             }
         } 

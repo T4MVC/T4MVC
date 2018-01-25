@@ -689,14 +689,14 @@ namespace Links
         {
             public static class Assets
             {
-                public const string jquery_1_3_2_js = "~/Scripts/jquery-1.3.2.js"; 
-                public const string jquery_1_3_2_min_js = "~/Scripts/jquery-1.3.2.min.js"; 
-                public const string jquery_validate_js = "~/Scripts/jquery.validate.js"; 
-                public const string jquery_validate_min_js = "~/Scripts/jquery.validate.min.js"; 
-                public const string MicrosoftAjax_debug_js = "~/Scripts/MicrosoftAjax.debug.js"; 
-                public const string MicrosoftAjax_js = "~/Scripts/MicrosoftAjax.js"; 
-                public const string MicrosoftMvcAjax_debug_js = "~/Scripts/MicrosoftMvcAjax.debug.js"; 
-                public const string MicrosoftMvcAjax_js = "~/Scripts/MicrosoftMvcAjax.js"; 
+                public static readonly string jquery_1_3_2_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/jquery-1.3.2.js"); 
+                public static readonly string jquery_1_3_2_min_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/jquery-1.3.2.min.js"); 
+                public static readonly string jquery_validate_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/jquery.validate.js"); 
+                public static readonly string jquery_validate_min_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/jquery.validate.min.js"); 
+                public static readonly string MicrosoftAjax_debug_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/MicrosoftAjax.debug.js"); 
+                public static readonly string MicrosoftAjax_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/MicrosoftAjax.js"); 
+                public static readonly string MicrosoftMvcAjax_debug_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/MicrosoftMvcAjax.debug.js"); 
+                public static readonly string MicrosoftMvcAjax_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/MicrosoftMvcAjax.js"); 
             }
         }
         public static partial class Content 
@@ -733,9 +733,9 @@ namespace Links
             }
             public static class Assets
             {
-                public const string Site_css = "~/Content/Site.css";
-                public const string StyleSheet_css = "~/Content/StyleSheet.css";
-                public const string StyleSheet_min_css = "~/Content/StyleSheet.min.css";
+                public static readonly string Site_css = T4MVCHelpers.ProcessAssetPath("~/Content/Site.css");
+                public static readonly string StyleSheet_css = T4MVCHelpers.ProcessAssetPath("~/Content/StyleSheet.css");
+                public static readonly string StyleSheet_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/StyleSheet.min.css");
             }
         }
         public static partial class ContentStatic 
@@ -753,7 +753,7 @@ namespace Links
             {
                 public static class Assets
                 {
-                    public const string SomeOtherScript_js = "~/ContentStatic/Scripts/SomeOtherScript.js"; 
+                    public static readonly string SomeOtherScript_js = T4MVCHelpers.ProcessAssetPath("~/ContentStatic/Scripts/SomeOtherScript.js"); 
                 }
             }
         }
@@ -823,7 +823,7 @@ namespace Links
             {
                 public static class Assets
                 {
-                    public const string Hello_js = "~/Views/Shared/Hello.js"; 
+                    public static readonly string Hello_js = T4MVCHelpers.ProcessAssetPath("~/Views/Shared/Hello.js"); 
                 }
             }
             public static class Assets
@@ -928,7 +928,7 @@ namespace Links
                 {
                     public static class Assets
                     {
-                        public const string Home_css = "~/Areas/Home/Content/Home.css";
+                        public static readonly string Home_css = T4MVCHelpers.ProcessAssetPath("~/Areas/Home/Content/Home.css");
                     }
                 }
             }
@@ -949,8 +949,14 @@ internal static class T4MVCHelpers {
         return path;
     }
 
+    private static string ProcessAssetPathDefault(string virtualPath) {
+        // The path that comes in starts with ~/ and should retain this prefix
+        return virtualPath;
+    }
+
     // Calling ProcessVirtualPath through delegate to allow it to be replaced for unit testing
     public static Func<string, string> ProcessVirtualPath = ProcessVirtualPathDefault;
+    public static Func<string, string> ProcessAssetPath = ProcessAssetPathDefault;
 
     // Calling T4Extension.TimestampString through delegate to allow it to be replaced for unit testing and other purposes
     public static Func<string, string> TimestampString = System.Web.Mvc.T4Extensions.TimestampString;

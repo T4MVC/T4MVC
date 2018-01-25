@@ -28,8 +28,14 @@ internal static class T4MVCHelpers {
         return path;
     }
 
+    private static string ProcessAssetPathDefault(string virtualPath) {
+        // The path that comes in starts with ~/ and should retain this prefix
+        return virtualPath;
+    }
+
     // Calling ProcessVirtualPath through delegate to allow it to be replaced for unit testing
     public static Func<string, string> ProcessVirtualPath = ProcessVirtualPathDefault;
+    public static Func<string, string> ProcessAssetPath = ProcessAssetPathDefault;
 
     // Calling T4Extension.TimestampString through delegate to allow it to be replaced for unit testing and other purposes
     public static Func<string, string> TimestampString = System.Web.Mvc.T4Extensions.TimestampString;
