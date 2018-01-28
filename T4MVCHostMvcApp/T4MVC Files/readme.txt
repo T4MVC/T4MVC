@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 4.1.0 (1-28-2018)
+* Provide hook for processing asset paths. [url:https://github.com/T4MVC/T4MVC/issues/105]
+
 !!! 4.0.0 (2-18-2017)
 * Disable compiler warning about clashing Dummy classes. [url:https://github.com/T4MVC/T4MVC/pull/97]
 
