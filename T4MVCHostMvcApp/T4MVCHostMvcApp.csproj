@@ -200,6 +200,12 @@
     <Content Include="Views\Home\DisplayTemplates\SomeDisplayTemplate.ascx" />
     <Content Include="Views\Home\DuplicateControl.ascx" />
     <Content Include="Views\Home\EditorTemplates\SomeEditorTemplate.ascx" />
+    <Content Include="Views\Home\Qqq.Nested.Again.txt">
+      <DependentUpon>Qqq.Nested.txt</DependentUpon>
+    </Content>
+    <Content Include="Views\Home\Qqq.Nested.txt">
+      <DependentUpon>Qqq.txt</DependentUpon>
+    </Content>
     <Content Include="Views\Home\SomeName\SomeName\SomeName.txt" />
     <Content Include="Views\NoControllerMatchingFolder.Foo\DuplicateControl.ascx" />
     <Content Include="Views\Shared\AnotherPartial.ascx" />

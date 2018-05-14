@@ -479,6 +479,8 @@ namespace Links
             }
         
             public static readonly string Qqq_txt = Url("Qqq.txt");
+            public static readonly string Qqq_Nested_txt = Url("Qqq.Nested.txt");
+            public static readonly string Qqq_Nested_Again_txt = Url("Qqq.Nested.Again.txt");
             public static readonly string QqQ_txt2 = Url("QqQ.txt2");
             public static readonly string Qqq_txt3 = Url("Qqq.txt3");
             public static readonly string SomeLinkedFile_txt = Url("SomeLinkedFile.txt");
