@@ -1141,7 +1141,8 @@ void ProcessBundleFilesRecursive(ProjectItem projectItem, string path)
 void ProcessBundleFilesRecursive(ProjectItem projectItem, string path, HashSet<String> nameSet)
 {
     // The passed in HashSet is to guarantee uniqueness with our parent and siblings
-    string name = SanitizeWithNoConflicts(projectItem.Name, nameSet);
+    string projectItemName = projectItem.Name;
+    string name = SanitizeWithNoConflicts(projectItemName, nameSet);
 
     // This HashSet is to guarantee uniqueness of our direct children
     // We add our own name to it to avoid class name conflicts (http://mvccontrib.codeplex.com/workitem/7153)
@@ -1166,22 +1167,34 @@ public static partial class <#=EscapeID(name)#>
             {
                 ProcessBundleFilesRecursive(
                     item,
-                    path + "/" + projectItem.Name,
+                    path + "/" + projectItemName,
                     childrenNameSet);
             }
 
             if (IsFile(item))
             {
-                files.Add(item);
+                AddItemRecursive(files, item);
             }
         }
 
-        BuildBundleConstants(files, path + "/" + projectItem.Name, childrenNameSet);
+        BuildBundleConstants(files, path + "/" + projectItemName, childrenNameSet);
 #>
 }
 <#+
         PopIndent();
     }    
+}
+
+void AddItemRecursive(List<ProjectItem> files, ProjectItem item)
+{
+    files.Add(item);
+    if (item.ProjectItems.Count > 0)
+    {
+        foreach (ProjectItem subItem in item.ProjectItems)
+        {
+            AddItemRecursive(files, subItem);
+        }
+    }
 }
 
 void BuildBundleConstants(List<ProjectItem> projectItems, string path, HashSet<String> childrenNameSet)
