@@ -49,6 +49,12 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 4.2.0 (5-15-2018)
+* Add support for nested views. [url:https://github.com/T4MVC/T4MVC/pull/112]
+
+!!! 4.1.1 (3-26-2018)
+* Update All Microsoft.AspNet.* packages. [url:https://github.com/T4MVC/T4MVC/pull/109]
+
 !!! 4.1.0 (1-28-2018)
 * Provide hook for processing asset paths. [url:https://github.com/T4MVC/T4MVC/issues/105]
 

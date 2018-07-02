@@ -1,6 +1,6 @@
 ﻿<#
 /*
-T4MVC Version 4.1.0
+T4MVC Version 4.2.0
 Find latest version and documentation at https://github.com/T4MVC/T4MVC/wiki/Documentation
 Discuss on StackOverflow or on GitHub (https://github.com/T4MVC/T4MVC/issues)
 
@@ -998,6 +998,7 @@ void AddViewsRecursive(ProjectItems items, ViewsFolderInfo viewsFolder, bool use
                 continue;
 
             viewsFolder.AddView(item, useNonQualifiedViewNames);
+            AddViewsRecursive(item.ProjectItems, viewsFolder, useNonQualifiedViewNames);
         }
         else if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFolder)
         {

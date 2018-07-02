@@ -200,6 +200,13 @@ namespace T4MVCHostMvcApp.Tests
         }
 
         [TestMethod()]
+        public void TestNestedViewName()
+        {
+            Assert.AreEqual("~/Views/Home/Qqq.Nested.txt", MVC.Home.Views.Qqq_Nested);
+            Assert.AreEqual("~/Views/Home/Qqq.Nested.Again.txt", MVC.Home.Views.Qqq_Nested_Again);
+        }
+
+        [TestMethod()]
         public void TestNestedViewNameWithSameNameAsParentFolder()
         {
             Assert.AreEqual("~/Views/Home/Sub Home/Qqq.txt", MVC.Home.Views.Sub_Home.Qqq);

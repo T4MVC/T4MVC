@@ -907,6 +907,7 @@ void AddViewsRecursive(ProjectItems items, ViewsFolderInfo viewsFolder, bool use
                 continue;
 
             viewsFolder.AddView(item, useNonQualifiedViewNames);
+            AddViewsRecursive(item.ProjectItems, viewsFolder, useNonQualifiedViewNames);
         }
         else if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFolder)
         {

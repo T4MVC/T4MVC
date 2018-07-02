@@ -347,6 +347,8 @@ namespace T4MVCHostMvcApp.Controllers
                 public readonly string Index = "Index";
                 public readonly string ManyControllers = "ManyControllers";
                 public readonly string Qqq = "Qqq";
+                public readonly string Qqq_Nested = "Qqq.Nested";
+                public readonly string Qqq_Nested_Again = "Qqq.Nested.Again";
                 public readonly string QqQ = "QqQ";
                 public readonly string Qqq_txt3 = "Qqq_txt3";
                 public readonly string SomeLinkedFile = "SomeLinkedFile";
@@ -357,6 +359,8 @@ namespace T4MVCHostMvcApp.Controllers
             public readonly string Index = "~/Views/Home/Index.aspx";
             public readonly string ManyControllers = "~/Views/Home/ManyControllers.aspx";
             public readonly string Qqq = "~/Views/Home/Qqq.txt";
+            public readonly string Qqq_Nested = "~/Views/Home/Qqq.Nested.txt";
+            public readonly string Qqq_Nested_Again = "~/Views/Home/Qqq.Nested.Again.txt";
             public readonly string QqQ = "~/Views/Home/QqQ.txt2";
             public readonly string Qqq_txt3 = "~/Views/Home/Qqq.txt3";
             public readonly string SomeLinkedFile = "~/Views/Home/SomeLinkedFile.txt";
