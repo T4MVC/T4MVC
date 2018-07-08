@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 4.2.1 (5-15-2018)
+* Update NuGet references. [url:https://github.com/T4MVC/T4MVC/pull/114]
+
 !!! 4.2.0 (5-15-2018)
 * Add support for nested views. [url:https://github.com/T4MVC/T4MVC/pull/112]
 
