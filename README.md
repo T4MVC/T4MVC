@@ -24,7 +24,7 @@ and that's just the beginning!
 *   **Learn**: visit the [Documentation page](https://github.com/T4MVC/T4MVC/wiki/Documentation)
 *   **Install** a VS Extension to automatically rerun T4MVC on build. You can use [AutoT4MVC](http://visualstudiogallery.msdn.microsoft.com/8d820b76-9fc4-429f-a95f-e68ed7d3111a) or [Chirpy](http://chirpy.codeplex.com/).
 *   **Discuss**: Discuss it on [GitHub](https://github.com/T4MVC/T4MVC/issues)
-*   **Contribute**: learn how on the [Contributor page](/wikipage?title=T4MVC_contrib&amp;referringTitle=Home "T4MVC_contrib&amp;referringTitle=Home")
+*   **Contribute**: learn how on the [Contributor page](https://github.com/T4MVC/T4MVC/wiki/Contributing)
 *   **News**: [Follow David Ebbo on Twitter](http://twitter.com/davidebbo/) to get T4MVC announcements.
 *   **History &amp; release notes**: [change history](T4MVCHostMvcApp/T4MVC%20Files/readme.txt)
 *   **Twitter quotes**: cool things people are saying on Twitter [here](/wikipage?title=T4MVC_Twitter&amp;referringTitle=Home "T4MVC_Twitter&amp;referringTitle=Home")
