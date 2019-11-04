@@ -221,9 +221,9 @@ Namespace <#=controller.Namespace #>
         <NonAction>
         <<#= GeneratedCode #>, DebuggerNonUserCode()>
         Public Overridable Function <#=method.Name #>() as <#=method.ReturnTypeFullName #>
-<#if (method.ReturnTypeFullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>") { #>
+<#if (method.ReturnTypeFullName == "System.Threading.Tasks.Task(Of System.Web.Mvc.ActionResult)") { #>
             Dim callInfo As New T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>)
-            Return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult)
+            Return System.Threading.Tasks.Task.FromResult(DirectCast(callInfo, ActionResult))
 <#} else { #>
             Return New T4MVC_<#=method.ReturnTypeUniqueName #>(Area, Name, ActionNames.<#=method.ActionName #><# if (method.ActionUrlHttps) {#>, "https"<#}#>)
 <#} #>
@@ -246,8 +246,8 @@ Namespace <#=controller.Namespace #>
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, <#=p.RouteNameExpression #>, <#=p.Name #>)
 <#} #>
 <#}#>
-<#if (method.ReturnTypeFullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>") { #>
-            Return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult)
+<#if (method.ReturnTypeFullName == "System.Threading.Tasks.Task(Of System.Web.Mvc.ActionResult)") { #>
+            Return System.Threading.Tasks.Task.FromResult(DirectCast(callInfo, ActionResult))
 <#} else { #>
             Return callInfo
 <#} #>
@@ -370,8 +370,8 @@ foreach (var group in controller.UniqueParameterNamesGroupedByActionName) if (gr
 <#} #>
 <#}#>
             <#=method.Name #>Override(callInfo<#if (method.Parameters.Count > 0) { #><#foreach (var p in method.Parameters) { #>, <#=p.Name #><#}}#>)
-<#if (method.ReturnTypeFullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>") { #>
-            Return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult)
+<#if (method.ReturnTypeFullName == "System.Threading.Tasks.Task(Of System.Web.Mvc.ActionResult)") { #>
+            Return System.Threading.Tasks.Task.FromResult(DirectCast(callInfo, ActionResult))
 <#} else { #>
             Return callInfo
 <#} #>
@@ -816,7 +816,7 @@ void ProcessControllerActionMethods(ControllerInfo controllerInfo, CodeClass2 cu
                 continue;
 
             // We only support action methods that return an ActionResult and Task<ActionResult> derived types
-            if (!method.Type.CodeType.get_IsDerivedFrom("System.Web.Mvc.ActionResult") && method.Type.CodeType.FullName !="System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>")
+            if (!method.Type.CodeType.get_IsDerivedFrom("System.Web.Mvc.ActionResult") && method.Type.CodeType.FullName !="System.Threading.Tasks.Task(Of System.Web.Mvc.ActionResult)")
             {
                 Warning(String.Format("{0} doesn't support {1}.{2} because it doesn't return a supported {3} type", T4FileName, type.Name, method.Name, method.Type.CodeType.FullName));
                 continue;
@@ -828,7 +828,7 @@ void ProcessControllerActionMethods(ControllerInfo controllerInfo, CodeClass2 cu
                 continue;
 
             var methodType = method.Type;
-            if(method.Type.CodeType.FullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>")
+            if(method.Type.CodeType.FullName == "System.Threading.Tasks.Task(Of System.Web.Mvc.ActionResult)")
                 methodType = Project.CodeModel.CreateCodeTypeRef("System.Web.Mvc.ActionResult");
 
             // If we haven't yet seen this return type, keep track of it
@@ -1709,7 +1709,7 @@ class FunctionInfo
     public List<MethodParamInfo> Parameters { get; private set; }
     public bool CanBeCalledWithoutParameters { get; private set; }
 
-    private bool IsTaskBased { get {return ReturnTypeImpl.AsFullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>"; } }
+    private bool IsTaskBased { get {return ReturnTypeImpl.AsFullName == "System.Threading.Tasks.Task(Of System.Web.Mvc.ActionResult)"; } }
 
     // Write out all the parameters as part of a method declaration
     public void WriteFormalParameters(bool first, bool includeDefaults = true)
@@ -1844,7 +1844,7 @@ class ResultTypeInfo
         }
     }
 
-    private bool IsTaskBased { get {return _codeType.AsFullName == "System.Threading.Tasks.Task<System.Web.Mvc.ActionResult>"; } }
+    private bool IsTaskBased { get {return _codeType.AsFullName == "System.Threading.Tasks.Task(Of System.Web.Mvc.ActionResult)"; } }
 }
 
 class MethodParamInfo
