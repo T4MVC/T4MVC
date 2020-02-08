@@ -189,6 +189,7 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Controllers\.editorconfig" />
     <None Include="T4MVC Files\T4MVC.tt.settings.xml">
       <SubType>Designer</SubType>
     </None>

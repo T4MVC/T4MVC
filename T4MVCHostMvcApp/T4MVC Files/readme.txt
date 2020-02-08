@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 4.2.3 (2-12-2020)
+* Fix .editorconfig issue. [url:https://github.com/T4MVC/T4MVC/issues/124]
+
 !!! 4.2.2 (6-02-2019)
 * Update to MVC 5.2.7. [url:https://github.com/T4MVC/T4MVC/pull/121]
 

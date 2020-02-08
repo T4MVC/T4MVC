@@ -1,6 +1,6 @@
 ﻿<#
 /*
-T4MVC Version 4.2.2
+T4MVC Version 4.2.3
 Find latest version and documentation at https://github.com/T4MVC/T4MVC/wiki/Documentation
 Discuss on StackOverflow or on GitHub (https://github.com/T4MVC/T4MVC/issues)
 
@@ -721,6 +721,10 @@ void ProcessControllersRecursive(ProjectItem projectItem, AreaInfo area)
     {
         ProcessControllersRecursive(item, area);
     }
+
+    // There is a CodeModel bug when it deals with a .editorconfig, so just skip those
+    // See https://github.com/T4MVC/T4MVC/issues/124 for details
+    if (Path.GetFileName(projectItem.get_FileNames(0)) == ".editorconfig") return;
 
     if (projectItem.FileCodeModel != null)
     {
