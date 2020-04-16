@@ -172,7 +172,23 @@
       <SubType>Designer</SubType>
     </CodeAnalysisDictionary>
     <Content Include="Areas\Home\Views\Home\EditorTemplates\SomeAreaEditorTemplate.ascx" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="Content\FileWithNoExtension" />
+    <Content Include="Content\Less.css">
+      <DependentUpon>Less.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Less.min.css">
+      <DependentUpon>Less.css</DependentUpon>
+    </Content>
+    <Content Include="Content\SASS.css">
+      <DependentUpon>SASS.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\SASS.min.css">
+      <DependentUpon>SASS.css</DependentUpon>
+    </Content>
     <Content Include="Content\StyleSheet.min.css" />
     <Content Include="Content\SomeRandomName\SomeRandomName\SomeRandomName.txt" />
     <Content Include="Content\StyleSheet.css" />
@@ -190,6 +206,8 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Controllers\.editorconfig" />
+    <Content Include="Content\SASS.scss" />
+    <Content Include="Content\Less.less" />
     <None Include="T4MVC Files\T4MVC.tt.settings.xml">
       <SubType>Designer</SubType>
     </None>

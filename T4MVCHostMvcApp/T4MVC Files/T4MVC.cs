@@ -379,6 +379,12 @@ namespace Links
         public static readonly string Hello_World_txt = Url("Hello World.txt");
         public static readonly string Hello_World_txt_ = Url("Hello$World.txt");
         public static readonly string Hello_World_txt__ = Url("Hello+World.txt");
+        public static readonly string Less_less = Url("Less.less");
+        public static readonly string Less_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/Less.min.css") ? Url("Less.min.css") : Url("Less.css");
+        public static readonly string Less_min_css = Url("Less.min.css");
+        public static readonly string SASS_scss = Url("SASS.scss");
+        public static readonly string SASS_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/SASS.min.css") ? Url("SASS.min.css") : Url("SASS.css");
+        public static readonly string SASS_min_css = Url("SASS.min.css");
         public static readonly string Site_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/Site.min.css") ? Url("Site.min.css") : Url("Site.css");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class SomeRandomName {
@@ -735,6 +741,10 @@ namespace Links
             }
             public static class Assets
             {
+                public static readonly string Less_css_ = T4MVCHelpers.ProcessAssetPath("~/Content/Less.css");
+                public static readonly string Less_min_css_ = T4MVCHelpers.ProcessAssetPath("~/Content/Less.min.css");
+                public static readonly string SASS_css_ = T4MVCHelpers.ProcessAssetPath("~/Content/SASS.css");
+                public static readonly string SASS_min_css_ = T4MVCHelpers.ProcessAssetPath("~/Content/SASS.min.css");
                 public static readonly string Site_css = T4MVCHelpers.ProcessAssetPath("~/Content/Site.css");
                 public static readonly string StyleSheet_css = T4MVCHelpers.ProcessAssetPath("~/Content/StyleSheet.css");
                 public static readonly string StyleSheet_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/StyleSheet.min.css");

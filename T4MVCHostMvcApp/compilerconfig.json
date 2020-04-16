@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "Content/SASS.css",
+    "inputFile": "Content/SASS.scss"
+  },
+  {
+    "outputFile": "Content/Less.css",
+    "inputFile": "Content/Less.less"
+  }
+]
