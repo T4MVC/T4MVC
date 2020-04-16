@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 4.2.4 (4-15-2020)
+* generate asset paths for nested project items. [url:https://github.com/T4MVC/T4MVC/pull/113]
+
 !!! 4.2.3 (2-12-2020)
 * Fix .editorconfig issue. [url:https://github.com/T4MVC/T4MVC/issues/124]
 
