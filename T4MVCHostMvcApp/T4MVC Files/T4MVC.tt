@@ -175,9 +175,10 @@ RenderAdditionalCode();
 <#manager.StartNewFile(controller.GeneratedFileName); #>
 namespace <#=controller.Namespace #>
 {
-    [<#= GeneratedCode #>, DebuggerNonUserCode]
+    [<#= GeneratedCode #>]
     public partial class <#=controller.ClassName #>
     {
+        [DebuggerNonUserCode]
         protected <#=controller.ClassName #>() { }
     }
 }
