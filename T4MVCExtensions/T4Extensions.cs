@@ -917,7 +917,10 @@ namespace System.Web.Mvc
             result.Action = action;
             result.Protocol = protocol;
             result.RouteValueDictionary = new RouteValueDictionary();
-            result.RouteValueDictionary.Add("Area", area ?? "");
+
+            if (!string.IsNullOrEmpty(area))
+                result.RouteValueDictionary.Add("Area", area);
+
             result.RouteValueDictionary.Add("Controller", controller);
             result.RouteValueDictionary.Add("Action", action);
         }
