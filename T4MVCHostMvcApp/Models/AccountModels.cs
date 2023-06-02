@@ -209,7 +209,7 @@ namespace T4MVCHostMvcApp.Models
 
         public override string FormatErrorMessage(string name)
         {
-            return String.Format(CultureInfo.CurrentUICulture, ErrorMessageString,
+            return String.Format(CultureInfo.CurrentCulture, ErrorMessageString,
                 OriginalProperty, ConfirmProperty);
         }
 
@@ -236,7 +236,7 @@ namespace T4MVCHostMvcApp.Models
 
         public override string FormatErrorMessage(string name)
         {
-            return String.Format(CultureInfo.CurrentUICulture, ErrorMessageString,
+            return String.Format(CultureInfo.CurrentCulture, ErrorMessageString,
                 name, _minCharacters);
         }
 
