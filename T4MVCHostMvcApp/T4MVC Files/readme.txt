@@ -49,6 +49,9 @@ KNOWN ISSUES:
 
 HISTORY:
 
+!!! 4.2.5 (6-05-2023)
+* Update to Update to MVC 5.2.9. [url:https://github.com/T4MVC/T4MVC/issues/142]
+
 !!! 4.2.4 (4-15-2020)
 * generate asset paths for nested project items. [url:https://github.com/T4MVC/T4MVC/pull/113]
 
