@@ -25,9 +25,10 @@ using System.Web.Routing;
 using T4MVC;
 namespace T4MVCHostMvcApp.Areas.Break.Controllers
 {
-    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    [GeneratedCode("T4MVC", "2.0")]
     public partial class MyAbstractBaseController
     {
+        [DebuggerNonUserCode]
         protected MyAbstractBaseController() { }
     }
 }

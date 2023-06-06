@@ -11,7 +11,7 @@ namespace T4MVCHostMvcApp.Controllers
 
         }
 
-        [SuppressMessage( "Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Qqq" )]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Qqq")]
         public virtual ActionResult Qqq()
         {
             return new EmptyResult();
